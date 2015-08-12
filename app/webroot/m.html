@@ -1,0 +1,187 @@
+<!doctype html> 
+<html> 
+    <head> 
+        <meta charset="UTF-8" /> 
+        <title>Mormonism Research Library (mobile)</title> 
+        <style type="text/css" media="screen">@import "/js/jqtouch/jqtouch.min.css";</style> 
+        <style type="text/css" media="screen">@import "/css/themes/apple/theme.min.css";</style> 
+        <script src="/js/jqtouch/jquery.1.3.2.min.js" type="text/javascript" charset="utf-8"></script> 
+        <script src="/js/jqtouch/jqtouch.min.js" type="application/x-javascript" charset="utf-8"></script> 
+        <script type="text/javascript" charset="utf-8"> 
+            var jQT = new $.jQTouch({
+                icon: 'jqtouch.png',
+                addGlossToIcon: false,
+                startupScreen: 'jqt_startup.png',
+                statusBar: 'black',
+                preloadImages: [
+                    '/css/themes/jqt/img/back_button.png',
+                    '/css/themes/jqt/img/back_button_clicked.png',
+                    '/css/themes/jqt/img/button_clicked.png',
+                    '/css/themes/jqt/img/grayButton.png',
+                    '/css/themes/jqt/img/whiteButton.png',
+                    '/css/themes/jqt/img/loading.gif'
+                    ]
+            });
+            // Some sample Javascript functions:
+            $(function(){
+                // Show a swipe event on swipe test
+                $('#swipeme').swipe(function(evt, data) {                
+                    $(this).html('You swiped <strong>' + data.direction + '</strong>!');
+                });
+                $('a[target="_blank"]').click(function() {
+                    if (confirm('This link opens in a new window.')) {
+                        return true;
+                    } else {
+                        $(this).removeClass('active');
+                        return false;
+                    }
+                });
+                // Page animation callback events
+                $('#pageevents').
+                    bind('pageAnimationStart', function(e, info){ 
+                        $(this).find('.info').append('Started animating ' + info.direction + '&hellip; ');
+                    }).
+                    bind('pageAnimationEnd', function(e, info){
+                        $(this).find('.info').append(' finished animating ' + info.direction + '.<br /><br />');
+                    });
+                // Page animations end with AJAX callback event, example 1 (load remote HTML only first time)
+                $('#callback').bind('pageAnimationEnd', function(e, info){
+                    if (!$(this).data('loaded')) {                      // Make sure the data hasn't already been loaded (we'll set 'loaded' to true a couple lines further down)
+                        $(this).append($('<div>Loading</div>').         // Append a placeholder in case the remote HTML takes its sweet time making it back
+                            load('ajax.html .info', function() {        // Overwrite the "Loading" placeholder text with the remote HTML
+                                $(this).parent().data('loaded', true);  // Set the 'loaded' var to true so we know not to re-load the HTML next time the #callback div animation ends
+                            }));
+                    }
+                });
+				
+				$('#volume').bind('pageAnimationEnd', function(e, info){
+				});
+				
+                // Orientation callback event
+                $('body').bind('turn', function(e, data){
+                    $('#orient').html('Orientation: ' + data.orientation);
+                });
+            });
+        </script> 
+        <style type="text/css" media="screen"> 
+            body.fullscreen #home .info {
+                display: none;
+            }
+            #about {
+                padding: 100px 10px 40px;
+                text-shadow: rgba(255, 255, 255, 0.3) 0px -1px 0;
+                font-size: 13px;
+                text-align: center;
+                background: #161618;
+            }
+            #about p {
+                margin-bottom: 8px;
+            }
+            #about a {
+                color: #fff;
+                font-weight: bold;
+                text-decoration: none;
+            }
+        </style> 
+    </head> 
+    <body> 
+        <div id="about" class="selectable"> 
+                <p><img src="jqtouch.png" /></p> 
+                <p><strong>jQTouch</strong><br />Version 1.0 beta<br /> 
+                    <a href="http://www.davidkaneda.com">By David Kaneda</a></p> 
+                <p><em>Create powerful mobile apps with<br /> just HTML, CSS, and jQuery.</em></p> 
+                <p> 
+                    <a href="http://twitter.com/jqtouch" target="_blank">@jQTouch on Twitter</a> 
+                </p> 
+                <p><br /><br /><a href="#" class="grayButton goback">Close</a></p> 
+        </div> 
+        <div id="ajax"> 
+            <div class="toolbar"> 
+                <h1>AJAX</h1> 
+                <a class="back" href="#home">Home</a> 
+            </div> 
+            <ul class="rounded"> 
+                <li class="arrow"><a href="#ajax_post">POST Form Example</a></li> 
+                <li class="arrow"><a href="ajax.html">GET Example</a></li> 
+                <li class="arrow"><a href="#callback">With Callback</a></li> 
+            </ul> 
+	        </div>
+        <div id="callback"> 
+            <div class="toolbar"> 
+                <h1>AJAX w/Callback</h1> 
+                <a class="back" href="#">Ajax</a> 
+            </div> 
+        </div> 
+        <div id="callbacks"> 
+            <div class="toolbar"> 
+                <h1>Events</h1> 
+                <a class="back" href="#home">Home</a> 
+            </div> 
+            <ul class="rounded"> 
+                <li><a href="#pageevents">Page events</a></li> 
+                <li id="swipeme">Swipe me!</li> 
+                <li id="orient">Orientation: <strong>profile</strong></li> 
+            </ul>
+        </div>
+        <div id="home" class="current"> 
+            <div class="toolbar"> 
+                <h1>Mormonis Research Library</h1> 
+                <a class="button slideup" id="infoButton" href="#about">About</a> 
+            </div> 
+            <ul class="rounded"> 
+                <li class="arrow"><a href="#volumes">Volumes</a> <small class="counter">26</small></li> 
+                <li class="arrow"><a href="#animations">Speakers</a> <small class="counter">8</small></li>
+            </ul>
+            <div class="info"> 
+                <p>Add this page to your home screen to view the custom icon, startup screen, and full screen mode.</p> 
+            </div> 
+        </div>
+        <div id="volumes"> 
+            <div class="toolbar"> 
+                <h1>Journal of Discourses</h1> 
+                <a class="back" href="#">Home</a> 
+            </div> 
+ 
+            <h2>Volumes</h2> 
+            <ul class="rounded"> 
+                <li class="arrow"><a href="test.html">1</a></li>
+				<li class="arrow"><a href="#volume">2</a></li>
+				<li class="arrow"><a href="#3">3</a></li>
+				<li class="arrow"><a href="#4">4</a></li>
+				<li class="arrow"><a href="#5">5</a></li>
+            </ul> 
+        </div> 
+		<style>
+			#volume .edgetoedge {
+				padding: 8px;	
+				font-size: 1.25em;
+			}
+		</style>
+        <div id="volume"> 
+            <div class="toolbar"> 
+                <h1>Volume 2</h1> 
+                <a class="back" href="#">Volumes</a> 
+            </div> 
+ 
+            <div class="edgetoedge"> 
+                <p>My Friends—It is with a heart lifted up in gratitude to Him who reigns above, for the privilege of rising before you to express my feelings, and of beholding so many persons happily situated in the enjoyment of civil and religious liberty, that I have the privilege this day, in the company of the thousands that surround me, of rejoicing in the celebration of the 24th of July, it being the first day for seventeen years since the organization of the Church of Jesus Christ of Latter-day Saints, that they could lie down to rest in perfect peace—without being disturbed by the cruel hand of persecution. Yes, my friends, after seventeen years of cruel, bloody persecution, inflicted in the most ruthless and savage manner upon the people of the Church of Latter-day Saints, they—a few pioneers, 143 in number, had at last the privilege, on the 24th of July, 1847, of lying down in this secluded valley, in this desolate and mountain country; of establishing institutions that insure freedom to all, liberty to every person—the liberty of conscience, as well as every privilege which can be desired by any citizens of this earth.
+As I walked with the procession from the habitation of the President to this place, with heart and eyes filled with weeping, I saw the beauty and the glory of the liberty and the happiness that surrounded us: my mind was caught back in an instant to the days of bloody persecution. Joseph was not there; Hyrum was not there; David (Patten) was not there in the procession. Where are they? Sleeping in the silent tomb. They were murdered, cruelly murdered, in violation of all law, and every principle of justice; cruelly murdered for their religion, and we survive their ashes that are mingling with the dust, after being sacrificed; after, as martyrs, sealing their testimony, we are even permitted to live, and enjoy five years of our lives where no man has power to murder, or to rob, or to burn our houses, or destroy our property, or ravish our women, or kill our children; no man has the power to do it without justice overtaking him.
+The history of our persecutions is unparalleled in the history of past ages. To be sure, persecutions have existed in countries where religion was established by law, and where any other religion than the one established, was decreed by law to be heretical, and its votaries doomed to persecution and the flames. But in the countries where we suffered our persecution, there is a good government; there are good institutions that are calculated to protect every person in the enjoyment of every right that is dear to man.
+The persecutions we have suffered were in violation of every good institution, of every wholesome law, of every institution and constitution which exist in the countries where they have been inflicted. And what is more singular, out of the hundreds of murders which have been committed upon men, women, and children, in the most barbarous, ruthless, and reckless manner—not one murderer has ever been brought to justice; not a single man who has shed the blood of a Latter-day Saint has ever been punished or brought to justice; but they are permitted to run at large, in the face and eyes of every officer of government, who are directly concerned to preserve the laws, and see them faithfully executed. The history of no country on the earth affords a parallel to this; it cannot be found; that is, such a wholesale murder, robbery, house burning, butchering of men, women, and children, and, finally, the wholesale banishment of tens of thousands of souls from their homes and country; this has actually been effected in violation of the laws and regulations of the country where it occurred, and not one person has ever been punished for these crimes. I challenge the world to produce the record upon the face of the earth, that shows, in all these murders, cold-blooded butcheries, house burnings, and wholesale robberies, that a single person has suffered the just penalty of the law; that a solitary criminal was punished; that any of the unprincipled savages who were guilty of these high-handed depredations, were ever brought to justice. Ought we not, then, to rejoice, that there is a spot upon the footstool of God, where law is respected; where the Constitution for which our fathers bled is revered; where the people who dwell here can enjoy liberty, and worship God in three or in twenty different ways, and no man be permitted to plague his head about it? I rejoice that this is the case; and when I reflect upon the scenes we have passed through, and realize our present prosperity, my heart is filled with joy.
+I have looked upon scenes that are calculated to stir up the stoutest heart, without shedding a tear; but I cannot look upon the procession of this day, and consider the blessings that now surround this people, without shedding tears of gratitude, that God has so kindly delivered us out of all our distresses, and given to us our liberty. To be sure, after working our way into these valleys, making the roads through mountains, seeking out the route, and coming here, our persecutions did not cease; our enemies were like the good old Quaker when he turned the dog out of doors: said he, “I won't kill thee, thou hast got out of my reach; I cannot kill thee, but I will give thee a bad name;” and he hallooed out “bad dog,” and somebody, supposing the dog to be mad, shot him. So with us; after robbing us of millions of property, and driving us cruelly from the land of our birth; after violating every solitary law of the government; in which many of the officers were partakers; expelling us into the wilderness, where they thought we would actually perish (and there is not to be found in the history of the world, a parallel case of suffering that this people endured); while in the midst of this, the cry of mad dog was raised, to finish, as they thought, the work of destruction and murder. Without a guide, without a knowledge of the country, without reading even the notes of any traveler upon this earth, or seeing the face of a being whoever set foot upon this land, we were led by the hand of God, through His servant Brigham, threading the difficult passes of these mountains, until we set our foot upon this place, which was, at that time, a desert, containing nothing but a few bunches of dead grass, and crickets enough to fence the land. We were more than one thousand miles from where provisions could be obtained, and found not game enough to support an Indian population. We set down here, and we called upon God to bless our undertakings. We formed a government here; and a government has been in existence in this Territory of Utah for five years.
+I now want to ask a few grave questions upon this subject. It is customary for the General Government to extend a fostering hand and parental care to all new territories. When we first settled here, this was Mexican territory; but it was soon after acquired by treaty, and became U.S. territory. Four years and a half a government has been supported here, governmental laws and regulations have been kept up.
+            </div> 
+        </div> 
+ 
+        <form id="ajax_post" action="ajax_post.php" method="POST" class="form"> 
+            <div class="toolbar"> 
+                <h1>Post Demo</h1> 
+                <a class="back" href="#">Ajax</a> 
+            </div> 
+            <ul class="rounded"> 
+                <li><input type="text" name="zip" value="" placeholder="Zip Code" /></li> 
+            </ul> 
+            <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#" class="submit whiteButton">Submit</a> 
+        </form> 
+    </body> 
+</html>

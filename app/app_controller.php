@@ -1,0 +1,4 @@
+<?
+class AppController extends Controller {
+
+}
