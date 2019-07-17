@@ -206,13 +206,13 @@
   margin: 0;
 }
 
-.tabular th a,
+/* .tabular th a,
 .tabular td a {
   color: black;
   text-decoration: none;
-}
+} */
 
-.tabular.hover-rows tbody tr:hover td {
+/* .tabular.hover-rows tbody tr:hover td {
   background-color: #c1dbfc;
   border-right: 1px solid transparent;
   cursor: pointer;
@@ -221,15 +221,7 @@
   background-image: url("./tr_hover_background.png");
   background-position: top;
   background-repeat: repeat-x;
-}
-
-.tabular.hover-rows tbody tr:hover td:first-child {
-  border-left: 1px solid #7da2ce;
-}
-
-.tabular.hover-rows tbody tr:hover td:last-child {
-  border-right: 1px solid #7da2ce;
-}
+} */
 
 .page > table {
   border-collapse: collapse;
