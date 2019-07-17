@@ -27,7 +27,15 @@ exports.createPages = async ({ actions: { createPage } }) => {
       component: require.resolve("./src/templates/volume.js"),
       context: {
         volumeNumber,
-        discourses: discourseSets[volumeNumber - 1],
+        discourses: discourseSets[volumeNumber - 1].map(discourse => ({
+          id: discourse.id,
+          volume: discourse.volume,
+          start_page: discourse.start_page,
+          end_page: discourse.end_page,
+          date: discourse.date,
+          speaker: discourse.speaker,
+          title: discourse.title,
+        })),
       },
     })
   }
