@@ -1,1 +1,0 @@
-Old-school CakePHP app for showcasing Journal of Discourses.
