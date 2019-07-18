@@ -19,10 +19,7 @@ const volumeNumbers = Array.apply(null, { length: VOLUME_COUNT })
 
 const allDiscourses = JSON.parse(
   fs.readFileSync(require.resolve("./data/jod.json"))
-).map(discourse => ({
-  ...discourse,
-  content: parseDiscourseContent(discourse.content)
-}));
+);
 
 const discourseSets = volumeNumbers.map(volumeNumber => {
   return allDiscourses.filter(discourse => discourse.volume === volumeNumber);
@@ -52,15 +49,17 @@ exports.createPages = async ({ actions: { createPage } }) => {
   }
 
   allDiscourses.forEach(discourse => {
-    console.log(discourse.title);
-    // console.log(`/${discourse.volume}/${discourse.start_page}`)
+    console.log(`/${discourse.volume}/${discourse.start_page}`);
     createPage({
       path: `/${discourse.volume}/${discourse.start_page}`,
       component: require.resolve("./src/templates/discourse.js"),
       context: {
         volumeNumber: discourse.volume,
         volumeNumbers,
-        discourse
+        discourse: {
+          ...discourse,
+          content: parseDiscourseContent(discourse.content)
+        }
       }
     });
   });

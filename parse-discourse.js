@@ -28,6 +28,8 @@ const parseDiscourseContent = content => {
     }
   );
 
+  $("a").remove();
+
   // Split paragraphs by page breaks
   $("p > .pagebreak").each(function() {
     const parentP = $(this).parent("p");

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "gatsby";
 import { prepareTitle } from "../common.js";
 import Header from "./header.js";
 
