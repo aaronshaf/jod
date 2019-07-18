@@ -1,3 +1,54 @@
+.volume-numbers {
+  display: flex;
+}
+
+.volume-number:first-of-type {
+  text-align: left;
+}
+
+.volume-number {
+  flex: 1;
+  text-align: right;
+}
+
+td {
+  padding: 6px 4px;
+}
+
+.page {
+  padding: 15px;
+  padding-top: 10px;
+  margin-bottom: 22px;
+  overflow: hidden;
+  background-color: #fff;
+  display: flex;
+  -moz-box-shadow: 3px 3px 3px #e5e3d1;
+  -webkit-box-shadow: 3px 3px 3px #e5e3d1;
+}
+
+.column {
+  flex: 1;
+  text-align: justify;
+}
+
+.page .column.left {
+  padding-left: 0px;
+  padding-right: 15px;
+  border-right: 1px solid #ddd;
+}
+
+.page .column {
+  padding-left: 15px;
+  border-right: 0px none;
+}
+
+p {
+  text-indent: 1.8em;
+  margin: 0;
+}
+
+/* Old */
+
 #floating-page-numbers .page-number {
   position: absolute;
   margin-left: -82px;
@@ -290,18 +341,6 @@ div.columnbreak {
   margin-top: 12px;
 }
 
-.discourse.paginated .meta,
-.content .page {
-  clear: both;
-  padding: 15px;
-  padding-top: 10px;
-  margin-bottom: 22px;
-  overflow: hidden;
-  background-color: #fff;
-  -moz-box-shadow: 3px 3px 3px #e5e3d1;
-  -webkit-box-shadow: 3px 3px 3px #e5e3d1;
-}
-
 .discourse.paginated .meta {
   padding-top: 15px;
 }
@@ -311,28 +350,6 @@ div.columnbreak {
   -moz-box-shadow: 3px 3px 3px #e5e3d1;
   -webkit-box-shadow: 3px 3px 3px #e5e3d1;
   padding: 15px;
-}
-
-.content .page .column {
-  float: left;
-  width: 419px;
-  text-align: justify;
-}
-
-.content .page .column.left {
-  padding-left: 0px;
-  padding-right: 15px;
-  border-right: 1px solid #ddd;
-}
-
-.content .page .column {
-  padding-left: 15px;
-  border-right: 0px none;
-}
-
-.discourse .content p {
-  text-indent: 1.8em;
-  margin: 0;
 }
 .discourse p.continued {
   text-indent: 0em;
@@ -1101,7 +1118,6 @@ table#content-field-overview .content-new {
 }
 
 body {
-  font-size: 83%;
   font-family: "Trebuchet MS", Arial, Helvetica;
   background-color: #f0eee1;
   margin: 0;

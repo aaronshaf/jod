@@ -1,11 +1,14 @@
-import React from "react"
-import { Link } from "gatsby"
-import { prepareTitle } from "../common.js"
+import React from "react";
+import { Link } from "gatsby";
+import { prepareTitle } from "../common.js";
+import Header from "./header.js";
 
-export default ({ pageContext: { volumeNumber, discourses } }) => (
+export default ({
+  pageContext: { volumeNumbers, volumeNumber, discourses }
+}) => (
   <div style={{ width: 960, margin: "4rem auto" }}>
+    <Header volumeNumbers={volumeNumbers} volumeNumber={volumeNumber} />
     <h1>Volume {volumeNumber}</h1>
-    <Link to="/">Back</Link>
     <table className="tabular hover-rows">
       <thead>
         <tr>
@@ -28,14 +31,14 @@ export default ({ pageContext: { volumeNumber, discourses } }) => (
                 <Link
                   to={`/${discourse.volume}/${discourse.start_page}`}
                   dangerouslySetInnerHTML={{
-                    __html: prepareTitle(discourse.title),
+                    __html: prepareTitle(discourse.title)
                   }}
                 />
               </td>
             </tr>
-          )
+          );
         })}
       </tbody>
     </table>
   </div>
-)
+);
