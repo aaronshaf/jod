@@ -9,22 +9,32 @@ const SiteTitleWrapper = styled.div`
 
 const SiteTitle = styled.h1`
   color: white;
-  width: 960px;
+  max-width: 960px;
   margin: auto;
+`;
+
+const SiteTitleLink = styled(Link)`
+  color: white;
+  text-decoration: none;
 `;
 
 const Subheading = styled.div`
   color: #919faf;
-  width: 960px;
+  max-width: 960px;
   margin: auto;
 `;
 
+const VolumeNumbersWrapper = styled.div`
+  border-top: 1px solid #fefdfa;
+  border-bottom: 1px solid #e3e1ce;
+`;
+
 const VolumeNumbers = styled.nav`
+  max-width: 960px;
+  margin: auto;
   display: flex;
   list-style-type: none;
   line-height: 1.4em;
-  width: 960px;
-  margin: auto;
   padding: 8px 0;
   align-items: center;
 `;
@@ -60,6 +70,7 @@ const VolumeNumber = styled(Link)`
       rgba(139, 165, 70, 1) 100%
     );
   }
+  &.active,
   &:active,
   &[aria-current="page"] {
     background: rgb(157, 179, 98);
@@ -81,26 +92,35 @@ export default class Header extends React.Component {
     return (
       <header>
         <SiteTitleWrapper>
-          <SiteTitle>Journal of Discourses</SiteTitle>
+          <SiteTitle>
+            <SiteTitleLink to="/">Journal of Discourses</SiteTitleLink>
+          </SiteTitle>
           <Subheading>
             A 26-volume collection of public sermons by Mormon leaders from 1851
             - 1886.
           </Subheading>
         </SiteTitleWrapper>
-        <VolumeNumbers>
-          {volumeNumbers.map(volumeNumber => (
-            <>
-              {volumeNumber === 1 && (
-                <>
-                  <span>Vol.</span>{" "}
-                </>
-              )}
-              <VolumeNumber to={`/${volumeNumber}`} key={volumeNumber}>
-                {volumeNumber}
-              </VolumeNumber>
-            </>
-          ))}
-        </VolumeNumbers>
+        <VolumeNumbersWrapper>
+          <VolumeNumbers>
+            {volumeNumbers.map(volumeNumber => (
+              <React.Fragment key={volumeNumber}>
+                {volumeNumber === 1 && (
+                  <>
+                    <span>Vol.</span>{" "}
+                  </>
+                )}
+                <VolumeNumber
+                  key={volumeNumber}
+                  partiallyActive={true}
+                  activeClassName={"active"}
+                  to={`/${volumeNumber}`}
+                >
+                  {volumeNumber}
+                </VolumeNumber>
+              </React.Fragment>
+            ))}
+          </VolumeNumbers>
+        </VolumeNumbersWrapper>
       </header>
     );
   }

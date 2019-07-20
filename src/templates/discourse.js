@@ -1,33 +1,42 @@
 import React from "react";
 import { prepareTitle } from "../common.js";
 import Header from "./header.js";
+import styled from "@emotion/styled";
+
+const Discourse = styled.div`
+  max-width: 960px;
+  margin: 0 auto;
+  font-size: 0.9rem;
+`;
 
 export default ({
   pageContext: { volumeNumbers, volumeNumber, discourse }
 }) => (
-  <div style={{ width: 960, margin: "4rem auto" }}>
+  <>
     <Header volumeNumbers={volumeNumbers} volumeNumber={volumeNumber} />
-    <article>
-      <h1
-        dangerouslySetInnerHTML={{
-          __html: prepareTitle(discourse.title)
-        }}
-      />
-      <div
-        dangerouslySetInnerHTML={{
-          __html: prepareTitle(discourse.speaker)
-        }}
-      />
-      <div
-        dangerouslySetInnerHTML={{
-          __html: discourse.content
-        }}
-      />
-      {/* <div
+    <Discourse>
+      <article>
+        <h1
+          dangerouslySetInnerHTML={{
+            __html: prepareTitle(discourse.title)
+          }}
+        />
+        <div
+          dangerouslySetInnerHTML={{
+            __html: prepareTitle(discourse.speaker)
+          }}
+        />
+        <div
+          dangerouslySetInnerHTML={{
+            __html: discourse.content
+          }}
+        />
+        {/* <div
         dangerouslySetInnerHTML={{
           __html: prepareContent(discourse.content)
         }}
       /> */}
-    </article>
-  </div>
+      </article>
+    </Discourse>
+  </>
 );

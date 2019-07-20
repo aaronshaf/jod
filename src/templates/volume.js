@@ -4,6 +4,11 @@ import { prepareTitle } from "../common.js";
 import Header from "./header.js";
 import styled from "@emotion/styled";
 
+const VolumeWrapper = styled.div`
+  border-top: 1px solid #faf9f3;
+  margin-bottom: 24px;
+`;
+
 const Volume = styled.div`
   max-width: 960px;
   margin: 0 auto;
@@ -28,7 +33,7 @@ const DiscourseListItem = styled.div`
 `;
 
 const Pages = styled.div`
-  width: 70px;
+  width: 80px;
   padding: 4px 8px;
   padding-left: 12px;
 `;
@@ -53,10 +58,11 @@ export default ({
 }) => (
   <>
     <Header volumeNumbers={volumeNumbers} volumeNumber={volumeNumber} />
-    <Volume>
-      <h2>Volume {volumeNumber}</h2>
-      <DiscourseList>
-        {/* <thead>
+    <VolumeWrapper>
+      <Volume>
+        <h2>Volume {volumeNumber}</h2>
+        <DiscourseList>
+          {/* <thead>
         <tr>
           <th>Pages</th>
           <th>Date</th>
@@ -64,26 +70,27 @@ export default ({
           <th>Title</th>
         </tr>
       </thead> */}
-        {discourses.map(discourse => {
-          return (
-            <DiscourseListItem key={discourse.id}>
-              <Pages>
-                {discourse.start_page} - {discourse.end_page}
-              </Pages>
-              <Date>{discourse.date}</Date>
-              <Speaker>{discourse.speaker}</Speaker>
-              <Title>
-                <Link
-                  to={`/${discourse.volume}/${discourse.start_page}`}
-                  dangerouslySetInnerHTML={{
-                    __html: prepareTitle(discourse.title)
-                  }}
-                />
-              </Title>
-            </DiscourseListItem>
-          );
-        })}
-      </DiscourseList>
-    </Volume>
+          {discourses.map(discourse => {
+            return (
+              <DiscourseListItem key={discourse.id}>
+                <Pages>
+                  pp. {discourse.start_page}-{discourse.end_page}
+                </Pages>
+                <Date>{discourse.date}</Date>
+                <Speaker>{discourse.speaker}</Speaker>
+                <Title>
+                  <Link
+                    to={`/${discourse.volume}/${discourse.start_page}`}
+                    dangerouslySetInnerHTML={{
+                      __html: prepareTitle(discourse.title)
+                    }}
+                  />
+                </Title>
+              </DiscourseListItem>
+            );
+          })}
+        </DiscourseList>
+      </Volume>
+    </VolumeWrapper>
   </>
 );
