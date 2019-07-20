@@ -6,7 +6,6 @@ import styled from "@emotion/styled";
 
 const VolumeWrapper = styled.div`
   border-top: 1px solid #faf9f3;
-  margin-bottom: 24px;
 `;
 
 const Volume = styled.div`

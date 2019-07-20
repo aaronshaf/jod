@@ -10,34 +10,48 @@ const Discourse = styled.div`
   line-height: 1.45em;
 `;
 
+const DiscourseTitle = styled.h2`
+  padding: 0;
+  margin: 0;
+  margin-bottom: 16px;
+`;
+
+const Subtitle = styled.div``;
+
+const Reporter = styled.div``;
+
 export default ({
   pageContext: { volumeNumbers, volumeNumber, discourse }
-}) => (
-  <>
-    <Header volumeNumbers={volumeNumbers} volumeNumber={volumeNumber} />
-    <Discourse>
-      <article>
-        <h1
+}) => {
+  console.debug({ discourse });
+  return (
+    <>
+      <Header volumeNumbers={volumeNumbers} volumeNumber={volumeNumber} />
+      <Discourse>
+        <article>
+          <div className="page">
+            <div>
+              <DiscourseTitle
+                dangerouslySetInnerHTML={{
+                  __html: prepareTitle(discourse.title)
+                }}
+              />
+              <Subtitle>{discourse.subtitle}</Subtitle>
+              <Reporter>Reported by {discourse.reported_by}</Reporter>
+            </div>
+          </div>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: discourse.content
+            }}
+          />
+          {/* <div
           dangerouslySetInnerHTML={{
-            __html: prepareTitle(discourse.title)
+            __html: prepareContent(discourse.content)
           }}
-        />
-        <div
-          dangerouslySetInnerHTML={{
-            __html: prepareTitle(discourse.speaker)
-          }}
-        />
-        <div
-          dangerouslySetInnerHTML={{
-            __html: discourse.content
-          }}
-        />
-        {/* <div
-        dangerouslySetInnerHTML={{
-          __html: prepareContent(discourse.content)
-        }}
-      /> */}
-      </article>
-    </Discourse>
-  </>
-);
+        /> */}
+        </article>
+      </Discourse>
+    </>
+  );
+};
