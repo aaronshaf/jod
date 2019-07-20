@@ -6,7 +6,8 @@ import styled from "@emotion/styled";
 const Discourse = styled.div`
   max-width: 960px;
   margin: 0 auto;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
+  line-height: 1.45em;
 `;
 
 export default ({

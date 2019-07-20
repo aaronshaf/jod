@@ -12,7 +12,7 @@ const VolumeWrapper = styled.div`
 const Volume = styled.div`
   max-width: 960px;
   margin: 0 auto;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
 `;
 
 const DiscourseList = styled.div`
