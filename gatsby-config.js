@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    title: `Jouranl of Discourses`,
+    description: `A 26-volume collection of public sermons by Mormon leaders from 1851-1886`,
     author: `@gatsbyjs`
   },
   plugins: [

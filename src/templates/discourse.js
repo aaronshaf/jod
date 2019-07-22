@@ -1,5 +1,5 @@
 import React from "react";
-import { prepareTitle } from "../common.js";
+import { prepareTitle, slugify } from "../common.js";
 import Header from "./header.js";
 import styled from "@emotion/styled";
 
@@ -8,6 +8,7 @@ const Discourse = styled.div`
   margin: 0 auto;
   font-size: 0.92rem;
   line-height: 1.45em;
+  margin-top: 14px;
 `;
 
 const DiscourseTitle = styled.h2`
@@ -20,10 +21,10 @@ const Subtitle = styled.div``;
 
 const Reporter = styled.div``;
 
-export default ({
-  pageContext: { volumeNumbers, volumeNumber, discourse }
-}) => {
-  console.debug({ discourse });
+export default props => {
+  const {
+    pageContext: { volumeNumbers, volumeNumber, discourse }
+  } = props;
   return (
     <>
       <Header volumeNumbers={volumeNumbers} volumeNumber={volumeNumber} />
@@ -38,6 +39,11 @@ export default ({
               />
               <Subtitle>{discourse.subtitle}</Subtitle>
               <Reporter>Reported by {discourse.reported_by}</Reporter>
+              <div style={{ width: "170px" }}>
+                <img
+                  src={`/images/speakers/${slugify(discourse.speaker)}.jpg`}
+                />
+              </div>
             </div>
           </div>
           <div

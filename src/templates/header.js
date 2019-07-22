@@ -27,7 +27,6 @@ const Subheading = styled.div`
 const VolumeNumbersWrapper = styled.div`
   border-top: 1px solid #fefdfa;
   border-bottom: 1px solid #e3e1ce;
-  margin-bottom: 14px;
 `;
 
 const VolumeNumbers = styled.nav`
