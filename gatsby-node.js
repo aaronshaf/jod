@@ -19,7 +19,7 @@ const volumeNumbers = Array.apply(null, { length: VOLUME_COUNT })
 
 const allDiscourses = JSON.parse(
   fs.readFileSync(require.resolve("./data/jod.json"))
-).slice(0, 50);
+);
 
 const discourseSets = volumeNumbers.map(volumeNumber => {
   return allDiscourses.filter(discourse => discourse.volume === volumeNumber);
@@ -52,7 +52,6 @@ exports.createPages = async ({ actions: { createPage } }) => {
     console.log(`/${discourse.volume}/${discourse.start_page}`);
     createPage({
       path: `/${discourse.volume}/${discourse.start_page}`,
-      // foo: "bar",
       component: require.resolve("./src/templates/discourse.js"),
       context: {
         volumeNumber: discourse.volume,
