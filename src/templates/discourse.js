@@ -32,6 +32,10 @@ const SpeakerImage = styled.div`
   margin-top: 12px;
 `;
 
+const Flex = styled.div`
+  flex: 1;
+`;
+
 export default ({
   data: { file },
   pageContext: { volumeNumbers, volumeNumber, discourse }
@@ -42,7 +46,7 @@ export default ({
       <Discourse>
         <article>
           <div className="page">
-            <div>
+            <Flex>
               <DiscourseTitle
                 dangerouslySetInnerHTML={{
                   __html: prepareTitle(discourse.title)
@@ -61,7 +65,7 @@ export default ({
                   />
                 )}
               </SpeakerImage>
-            </div>
+            </Flex>
           </div>
           <div
             dangerouslySetInnerHTML={{
