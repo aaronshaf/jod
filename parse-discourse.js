@@ -4,6 +4,7 @@ const prepareContent = content =>
   unescape(
     content
       .replace(/\\n/g, " ")
+      .replace(/\\r/g, " ")
       .replace(/\\'/g, "'")
       .replace(/\\/g, "")
   );
