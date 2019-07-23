@@ -1,8 +1,12 @@
 const cheerio = require("cheerio");
 
-const prepareContent = content => content.replace(/\\n/g, " ");
-// .replace(/\\'/g, "'")
-// .replace(/\\/g, "");
+const prepareContent = content =>
+  unescape(
+    content
+      .replace(/\\n/g, " ")
+      .replace(/\\'/g, "'")
+      .replace(/\\/g, "")
+  );
 
 const allPreviousChildren = node => {
   // including text nodes
@@ -17,7 +21,7 @@ const parseDiscourseContent = content => {
   const $ = cheerio.load(
     `<div class="unsorted-pages">${content}</div><div class="sorted-pages" />`,
     {
-      normalizeWhitespace: false,
+      normalizeWhitespace: true,
       xmlMode: false,
       decodeEntities: false
     }

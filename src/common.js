@@ -1,11 +1,7 @@
-export const prepareTitle = title =>
-  title.replace(/\\'/g, "'").replace(/\\n/g, " ");
+export const prepareTitle = title => title.replace(/\\'/g, "'");
 
 export const prepareContent = title =>
-  title
-    .replace(/\\'/g, "'")
-    .replace(/\\n/g, " ")
-    .replace(/&amp;/g, "&");
+  title.replace(/\\'/g, "'").replace(/\\n/g, " ");
 
 export const slugify = text =>
   text
