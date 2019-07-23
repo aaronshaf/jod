@@ -1,5 +1,5 @@
 import React from "react";
-import { prepareTitle, slugify } from "../common.js";
+import { prepareTitle } from "../common.js";
 import Header from "./header.js";
 import styled from "@emotion/styled";
 import { graphql } from "gatsby";
@@ -15,18 +15,27 @@ const Discourse = styled.div`
 
 const DiscourseTitle = styled.h2`
   padding: 0;
-  margin: 0;
+  margin-left: 1.4em;
+  text-indent: -1.4em;
   margin-bottom: 16px;
+  margin-top: 6px;
+  line-height: 1.15em;
 `;
 
 const Subtitle = styled.div``;
 
 const Reporter = styled.div``;
 
-export default props => {
-  const {
-    pageContext: { volumeNumbers, volumeNumber, discourse }
-  } = props;
+const SpeakerImage = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+`;
+
+export default ({
+  data: { file },
+  pageContext: { volumeNumbers, volumeNumber, discourse }
+}) => {
   return (
     <>
       <Header volumeNumbers={volumeNumbers} volumeNumber={volumeNumber} />
@@ -39,11 +48,19 @@ export default props => {
                   __html: prepareTitle(discourse.title)
                 }}
               />
-              <Subtitle>{discourse.subtitle}</Subtitle>
-              <Reporter>Reported by {discourse.reported_by}</Reporter>
-              {props.data.file && (
-                <Img fixed={props.data.file.childImageSharp.fixed} />
-              )}
+              <Subtitle>{prepareTitle(discourse.subtitle)}</Subtitle>
+              <Reporter>
+                Reported by {prepareTitle(discourse.reported_by)}
+              </Reporter>
+              <SpeakerImage>
+                {file && (
+                  <Img
+                    fixed={file.childImageSharp.fixed}
+                    objectFit="cover"
+                    objectPosition="50% 50%"
+                  />
+                )}
+              </SpeakerImage>
             </div>
           </div>
           <div
@@ -51,11 +68,6 @@ export default props => {
               __html: discourse.content
             }}
           />
-          {/* <div
-          dangerouslySetInnerHTML={{
-            __html: prepareContent(discourse.content)
-          }}
-        /> */}
         </article>
       </Discourse>
     </>
@@ -66,8 +78,6 @@ export const query = graphql`
   query($mug: String!) {
     file(relativePath: { eq: $mug }) {
       childImageSharp {
-        # Specify the image processing specifications right in the query.
-        # Makes it trivial to update as your page's design changes.
         fixed(width: 160, height: 200) {
           ...GatsbyImageSharpFixed
         }
