@@ -1,6 +1,16 @@
 const fs = require("fs");
 const parseDiscourseContent = require("./parse-discourse.js");
 
+const slugify = text =>
+  text
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]+/g, "")
+    .replace(/--+/g, "-")
+    .replace(/^-+/, "")
+    .replace(/-+$/, "");
+
 const pruneDiscourse = discourse => ({
   id: discourse.id,
   volume: discourse.volume,
@@ -19,7 +29,7 @@ const volumeNumbers = Array.apply(null, { length: VOLUME_COUNT })
 
 const allDiscourses = JSON.parse(
   fs.readFileSync(require.resolve("./data/jod.json"))
-);
+).slice(0, 50);
 
 const discourseSets = volumeNumbers.map(volumeNumber => {
   return allDiscourses.filter(discourse => discourse.volume === volumeNumber);
@@ -56,6 +66,7 @@ exports.createPages = async ({ actions: { createPage } }) => {
       context: {
         volumeNumber: discourse.volume,
         volumeNumbers,
+        mug: `speakers/${slugify(discourse.speaker)}.jpg`,
         discourse: {
           ...discourse,
           content: parseDiscourseContent(discourse.content)

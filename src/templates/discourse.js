@@ -2,6 +2,8 @@ import React from "react";
 import { prepareTitle, slugify } from "../common.js";
 import Header from "./header.js";
 import styled from "@emotion/styled";
+import { graphql } from "gatsby";
+import Img from "gatsby-image";
 
 const Discourse = styled.div`
   max-width: 960px;
@@ -39,11 +41,9 @@ export default props => {
               />
               <Subtitle>{discourse.subtitle}</Subtitle>
               <Reporter>Reported by {discourse.reported_by}</Reporter>
-              <div style={{ width: "170px" }}>
-                <img
-                  src={`/images/speakers/${slugify(discourse.speaker)}.jpg`}
-                />
-              </div>
+              {props.data.file && (
+                <Img fixed={props.data.file.childImageSharp.fixed} />
+              )}
             </div>
           </div>
           <div
@@ -61,3 +61,17 @@ export default props => {
     </>
   );
 };
+
+export const query = graphql`
+  query($mug: String!) {
+    file(relativePath: { eq: $mug }) {
+      childImageSharp {
+        # Specify the image processing specifications right in the query.
+        # Makes it trivial to update as your page's design changes.
+        fixed(width: 160, height: 200) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+  }
+`;
