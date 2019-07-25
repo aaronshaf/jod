@@ -1,6 +1,6 @@
 import React from "react";
 import { prepareTitle } from "../common.js";
-import Header from "./header.js";
+import Layout from "../components/layout";
 import styled from "@emotion/styled";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
@@ -17,7 +17,7 @@ const DiscourseTitle = styled.h2`
   padding: 0;
   margin-left: 1.4em;
   text-indent: -1.4em;
-  margin-bottom: 16px;
+  margin-bottom: 22px;
   margin-top: 6px;
   line-height: 1.15em;
 `;
@@ -41,8 +41,7 @@ export default ({
   pageContext: { volumeNumbers, volumeNumber, discourse }
 }) => {
   return (
-    <>
-      <Header volumeNumbers={volumeNumbers} volumeNumber={volumeNumber} />
+    <Layout volumeNumbers={volumeNumbers} volumeNumber={volumeNumber}>
       <Discourse>
         <article>
           <div className="page">
@@ -74,7 +73,7 @@ export default ({
           />
         </article>
       </Discourse>
-    </>
+    </Layout>
   );
 };
 

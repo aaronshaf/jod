@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 import { prepareTitle } from "../common.js";
-import Header from "./header.js";
+import Layout from "../components/layout";
 import styled from "@emotion/styled";
 
 const VolumeWrapper = styled.div`
@@ -24,6 +24,7 @@ const DiscourseList = styled.div`
   clear: both;
   width: 100%;
   background-color: white;
+  margin-bottom: 16px;
 `;
 const DiscourseListItem = styled.div`
   display: flex;
@@ -55,8 +56,7 @@ const Title = styled.div`
 export default ({
   pageContext: { volumeNumbers, volumeNumber, discourses }
 }) => (
-  <>
-    <Header volumeNumbers={volumeNumbers} volumeNumber={volumeNumber} />
+  <Layout volumeNumbers={volumeNumbers} volumeNumber={volumeNumber}>
     <VolumeWrapper>
       <Volume>
         <h2>Volume {volumeNumber}</h2>
@@ -91,5 +91,5 @@ export default ({
         </DiscourseList>
       </Volume>
     </VolumeWrapper>
-  </>
+  </Layout>
 );
