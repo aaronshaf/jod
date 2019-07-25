@@ -54,7 +54,7 @@ export default ({
               />
               <Subtitle>{prepareTitle(discourse.subtitle)}</Subtitle>
               <Reporter>
-                Reported by {prepareTitle(discourse.reported_by)}
+                Reported by {prepareTitle(discourse.reported_by)}.
               </Reporter>
               <SpeakerImage>
                 {file && (
