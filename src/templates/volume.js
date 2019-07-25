@@ -64,10 +64,12 @@ export default ({
           <DiscourseList>
             {discourses.map(discourse => {
               const event = new Date();
-              event.setFullYear(parseInt(discourse.date.substr(0, 4), 10));
-              event.setMonth(parseInt(discourse.date.substr(5, 7), 10) - 1);
-              event.setDate(parseInt(discourse.date.substr(8, 10), 10));
-              event.setUTCHours(0);
+              if (discourse.date) {
+                event.setFullYear(parseInt(discourse.date.substr(0, 4), 10));
+                event.setMonth(parseInt(discourse.date.substr(5, 7), 10) - 1);
+                event.setDate(parseInt(discourse.date.substr(8, 10), 10));
+                event.setUTCHours(0);
+              }
               const dateOptions = {
                 year: "numeric",
                 month: "long",
@@ -79,7 +81,8 @@ export default ({
                     pp. {discourse.start_page}-{discourse.end_page}
                   </Pages>
                   <DateComponent title={discourse.date}>
-                    {event.toLocaleDateString("default", dateOptions)}
+                    {discourse.date &&
+                      event.toLocaleDateString("default", dateOptions)}
                   </DateComponent>
                   <Speaker>{discourse.speaker}</Speaker>
                   <Title>
