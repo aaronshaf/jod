@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Journal of Discourses`,
     description: `A 26-volume collection of public sermons by Mormon leaders from 1851-1886`,
-    author: `@gatsbyjs`
+    author: `@mrmdotorg`
   },
   plugins: [
     `gatsby-plugin-emotion`,

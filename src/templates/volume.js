@@ -39,7 +39,7 @@ const Pages = styled.div`
 `;
 
 const Date = styled.div`
-  width: 90px;
+  width: 145px;
   padding: 4px 8px;
 `;
 
@@ -55,41 +55,47 @@ const Title = styled.div`
 
 export default ({
   pageContext: { volumeNumbers, volumeNumber, discourses }
-}) => (
-  <Layout volumeNumbers={volumeNumbers} volumeNumber={volumeNumber}>
-    <VolumeWrapper>
-      <Volume>
-        <h2>Volume {volumeNumber}</h2>
-        <DiscourseList>
-          {/* <thead>
-        <tr>
-          <th>Pages</th>
-          <th>Date</th>
-          <th>Speaker</th>
-          <th>Title</th>
-        </tr>
-      </thead> */}
-          {discourses.map(discourse => {
-            return (
-              <DiscourseListItem key={discourse.id}>
-                <Pages>
-                  pp. {discourse.start_page}-{discourse.end_page}
-                </Pages>
-                <Date>{discourse.date}</Date>
-                <Speaker>{discourse.speaker}</Speaker>
-                <Title>
-                  <Link
-                    to={`/${discourse.volume}/${discourse.start_page}`}
-                    dangerouslySetInnerHTML={{
-                      __html: prepareTitle(discourse.title)
-                    }}
-                  />
-                </Title>
-              </DiscourseListItem>
-            );
-          })}
-        </DiscourseList>
-      </Volume>
-    </VolumeWrapper>
-  </Layout>
-);
+}) => {
+  return (
+    <Layout volumeNumbers={volumeNumbers} volumeNumber={volumeNumber}>
+      <VolumeWrapper>
+        <Volume>
+          <h2>Volume {volumeNumber}</h2>
+          <DiscourseList>
+            {discourses.map(discourse => {
+              const event = new window.Date();
+              event.setFullYear(parseInt(discourse.date.substr(0, 4), 10));
+              event.setMonth(parseInt(discourse.date.substr(5, 7), 10) - 1);
+              event.setDate(parseInt(discourse.date.substr(8, 10), 10));
+              event.setUTCHours(0);
+              const dateOptions = {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+              };
+              return (
+                <DiscourseListItem key={discourse.id}>
+                  <Pages>
+                    pp. {discourse.start_page}-{discourse.end_page}
+                  </Pages>
+                  <Date title={discourse.date}>
+                    {event.toLocaleDateString("default", dateOptions)}
+                  </Date>
+                  <Speaker>{discourse.speaker}</Speaker>
+                  <Title>
+                    <Link
+                      to={`/${discourse.volume}/${discourse.start_page}`}
+                      dangerouslySetInnerHTML={{
+                        __html: prepareTitle(discourse.title)
+                      }}
+                    />
+                  </Title>
+                </DiscourseListItem>
+              );
+            })}
+          </DiscourseList>
+        </Volume>
+      </VolumeWrapper>
+    </Layout>
+  );
+};
