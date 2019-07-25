@@ -38,7 +38,7 @@ const Pages = styled.div`
   padding-left: 12px;
 `;
 
-const Date = styled.div`
+const DateComponent = styled.div`
   width: 145px;
   padding: 4px 8px;
 `;
@@ -63,7 +63,7 @@ export default ({
           <h2>Volume {volumeNumber}</h2>
           <DiscourseList>
             {discourses.map(discourse => {
-              const event = new window.Date();
+              const event = new Date();
               event.setFullYear(parseInt(discourse.date.substr(0, 4), 10));
               event.setMonth(parseInt(discourse.date.substr(5, 7), 10) - 1);
               event.setDate(parseInt(discourse.date.substr(8, 10), 10));
@@ -78,9 +78,9 @@ export default ({
                   <Pages>
                     pp. {discourse.start_page}-{discourse.end_page}
                   </Pages>
-                  <Date title={discourse.date}>
+                  <DateComponent title={discourse.date}>
                     {event.toLocaleDateString("default", dateOptions)}
-                  </Date>
+                  </DateComponent>
                   <Speaker>{discourse.speaker}</Speaker>
                   <Title>
                     <Link
