@@ -97,27 +97,29 @@ export default class Header extends React.Component {
           </SiteTitle>
           <Subheading>{siteDescription}</Subheading>
         </SiteTitleWrapper>
-        <VolumeNumbersWrapper>
-          <VolumeNumbers>
-            {volumeNumbers.map(volumeNumber => (
-              <React.Fragment key={volumeNumber}>
-                {volumeNumber === 1 && (
-                  <>
-                    <span>Vol.</span>{" "}
-                  </>
-                )}
-                <VolumeNumber
-                  key={volumeNumber}
-                  partiallyActive={true}
-                  activeClassName={"active"}
-                  to={`/${volumeNumber}`}
-                >
-                  {volumeNumber}
-                </VolumeNumber>
-              </React.Fragment>
-            ))}
-          </VolumeNumbers>
-        </VolumeNumbersWrapper>
+        {volumeNumbers && (
+          <VolumeNumbersWrapper>
+            <VolumeNumbers>
+              {volumeNumbers.map(volumeNumber => (
+                <React.Fragment key={volumeNumber}>
+                  {volumeNumber === 1 && (
+                    <>
+                      <span>Vol.</span>{" "}
+                    </>
+                  )}
+                  <VolumeNumber
+                    key={volumeNumber}
+                    partiallyActive={true}
+                    activeClassName={"active"}
+                    to={`/${volumeNumber}`}
+                  >
+                    {volumeNumber}
+                  </VolumeNumber>
+                </React.Fragment>
+              ))}
+            </VolumeNumbers>
+          </VolumeNumbersWrapper>
+        )}
       </header>
     );
   }
