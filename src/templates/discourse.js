@@ -17,14 +17,14 @@ const DiscourseTitle = styled.h2`
   padding: 0;
   margin-left: 1.4em;
   text-indent: -1.4em;
-  margin-bottom: 22px;
+  margin-bottom: 16px;
   margin-top: 6px;
   line-height: 1.15em;
 `;
 
 const FirstPage = styled.div`
-  padding: 15px;
-  padding-top: 10px;
+  padding: 25px;
+  padding-top: 20px;
   margin-bottom: 22px;
   overflow: hidden;
   background-color: #fff;
@@ -34,8 +34,8 @@ const FirstPage = styled.div`
 `;
 
 const Page = styled.div`
-  padding: 15px;
-  padding-top: 10px;
+  padding: 25px;
+  padding-top: 23px;
   margin-bottom: 22px;
   overflow: hidden;
   background-color: #fff;
@@ -56,11 +56,17 @@ const Page = styled.div`
 
 const Columns = styled.div`
   display: flex;
+  & p {
+    margin: 0;
+  }
+  & p:not(.continued) {
+    text-indent: 1.8em;
+  }
 `;
 
 const PageHead = styled.div`
   display: flex;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 `;
 
 const PageHeader = styled.div`
@@ -85,7 +91,7 @@ const Reporter = styled.div``;
 const SpeakerImage = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 12px;
+  margin-top: 16px;
 `;
 
 const Flex = styled.div`
@@ -132,7 +138,7 @@ export default ({
                 </EvenPageNumber>
                 <PageHeader>
                   {pageNumber % 2 === 1
-                    ? discourse.page_header
+                    ? prepareTitle(discourse.page_header)
                     : "Journal of Discourses"}
                 </PageHeader>
                 <OddPageNumber>
