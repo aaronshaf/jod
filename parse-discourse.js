@@ -92,7 +92,11 @@ const parseDiscourseContent = content => {
     $(this).addClass("left");
   });
 
-  return $.html(".sorted-pages");
+  const pages = [];
+  $(".sorted-pages .page").each(function(i, elem) {
+    pages.push($(this).html());
+  });
+  return pages; // $.html(".sorted-pages");
 };
 
 module.exports = content => parseDiscourseContent(prepareContent(content));

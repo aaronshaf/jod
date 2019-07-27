@@ -5,7 +5,7 @@ import styled from "@emotion/styled";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
 
-const Discourse = styled.div`
+const Discourse = styled.article`
   max-width: 960px;
   margin: 0 auto;
   font-size: 0.92rem;
@@ -20,6 +20,62 @@ const DiscourseTitle = styled.h2`
   margin-bottom: 22px;
   margin-top: 6px;
   line-height: 1.15em;
+`;
+
+const FirstPage = styled.div`
+  padding: 15px;
+  padding-top: 10px;
+  margin-bottom: 22px;
+  overflow: hidden;
+  background-color: #fff;
+  display: flex;
+  -moz-box-shadow: 3px 3px 3px #e5e3d1;
+  -webkit-box-shadow: 3px 3px 3px #e5e3d1;
+`;
+
+const Page = styled.div`
+  padding: 15px;
+  padding-top: 10px;
+  margin-bottom: 22px;
+  overflow: hidden;
+  background-color: #fff;
+  -moz-box-shadow: 3px 3px 3px #e5e3d1;
+  -webkit-box-shadow: 3px 3px 3px #e5e3d1;
+
+  & .column.left {
+    padding-left: 0px;
+    padding-right: 15px;
+    border-right: 1px solid #ddd;
+  }
+
+  & .column {
+    padding-left: 15px;
+    border-right: 0px none;
+  }
+`;
+
+const Columns = styled.div`
+  display: flex;
+`;
+
+const PageHead = styled.div`
+  display: flex;
+  margin-bottom: 8px;
+`;
+
+const PageHeader = styled.div`
+  flex: 1;
+  text-align: center;
+  text-transform: uppercase;
+`;
+
+const EvenPageNumber = styled.div`
+  width: 40px;
+`;
+
+const OddPageNumber = styled.div`
+  width: 40px;
+  text-align: right;
 `;
 
 const Subtitle = styled.div``;
@@ -40,38 +96,59 @@ export default ({
   data: { file },
   pageContext: { volumeNumbers, volumeNumber, discourse }
 }) => {
+  console.debug(discourse);
   return (
     <Layout volumeNumbers={volumeNumbers} volumeNumber={volumeNumber}>
       <Discourse>
-        <article>
-          <div className="page">
-            <Flex>
-              <DiscourseTitle
+        <FirstPage>
+          <Flex>
+            <DiscourseTitle
+              dangerouslySetInnerHTML={{
+                __html: prepareTitle(discourse.title)
+              }}
+            />
+            <Subtitle>{prepareTitle(discourse.subtitle)}</Subtitle>
+            <Reporter>
+              Reported by {prepareTitle(discourse.reported_by)}.
+            </Reporter>
+            <SpeakerImage>
+              {file && (
+                <Img
+                  fixed={file.childImageSharp.fixed}
+                  objectFit="cover"
+                  objectPosition="50% 50%"
+                />
+              )}
+            </SpeakerImage>
+          </Flex>
+        </FirstPage>
+        {discourse.content.map((page, index) => {
+          const pageNumber = discourse.start_page + index;
+          return (
+            <Page key={index}>
+              <PageHead>
+                <EvenPageNumber>
+                  {pageNumber % 2 === 0 && pageNumber}
+                </EvenPageNumber>
+                <PageHeader>
+                  {pageNumber % 2 === 1
+                    ? discourse.page_header
+                    : "Journal of Discourses"}
+                </PageHeader>
+                <OddPageNumber>
+                  {pageNumber % 2 === 1 && (
+                    <EvenPageNumber>{pageNumber}</EvenPageNumber>
+                  )}
+                </OddPageNumber>
+              </PageHead>
+              <Columns
                 dangerouslySetInnerHTML={{
-                  __html: prepareTitle(discourse.title)
+                  __html: page
                 }}
               />
-              <Subtitle>{prepareTitle(discourse.subtitle)}</Subtitle>
-              <Reporter>
-                Reported by {prepareTitle(discourse.reported_by)}.
-              </Reporter>
-              <SpeakerImage>
-                {file && (
-                  <Img
-                    fixed={file.childImageSharp.fixed}
-                    objectFit="cover"
-                    objectPosition="50% 50%"
-                  />
-                )}
-              </SpeakerImage>
-            </Flex>
-          </div>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: discourse.content
-            }}
-          />
-        </article>
+            </Page>
+          );
+        })}
       </Discourse>
     </Layout>
   );
