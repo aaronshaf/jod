@@ -49,6 +49,7 @@ export default ({
       <Discourse>
         <DiscourseNav>
           <PreviousDiscourse>
+            <span style={{ marginRight: "4px" }}>&larr;</span>
             {previousDiscourse && (
               <Link
                 to={`${volumeNumber}/${previousDiscourse.start_page}`}
@@ -70,7 +71,8 @@ export default ({
                 pp. {nextDiscourse.start_page}-{nextDiscourse.end_page}
               </Link>
             )}
-            <Img fixed={data.nextImage.childImageSharp.fixed} />
+            <span style={{ marginLeft: "4px" }}>&rarr;</span>
+            {/* <Img fixed={data.nextImage.childImageSharp.fixed} /> */}
           </NextDiscourse>
         </DiscourseNav>
         <FirstPage>
@@ -146,15 +148,6 @@ export const query = graphql`
       childImageSharp {
         fixed(width: 160, height: 200) {
           ...GatsbyImageSharpFixed_withWebp_noBase64
-        }
-      }
-    }
-    nextImage: file(relativePath: { eq: "next.png" }) {
-      childImageSharp {
-        # Specify the image processing specifications right in the query.
-        # Makes it trivial to update as your page's design changes.
-        fixed(width: 25, height: 25) {
-          ...GatsbyImageSharpFixed
         }
       }
     }
