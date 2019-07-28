@@ -17,6 +17,28 @@ export const Discourse = styled.article`
   margin-top: 14px;
 `;
 
+export const DiscourseNav = styled.nav`
+  display: flex;
+  font-size: 1.06rem;
+  margin-bottom: 16px;
+`;
+
+export const PreviousDiscourse = styled.div`
+  width: 100px;
+  white-space: nowrap;
+`;
+
+export const CurrentDiscourse = styled.div`
+  flex: 1;
+  text-align: center;
+`;
+
+export const NextDiscourse = styled.div`
+  width: 100px;
+  white-space: nowrap;
+  text-align: right;
+`;
+
 export const DiscourseTitle = styled.h2`
   padding: 0;
   margin-left: 1.4em;

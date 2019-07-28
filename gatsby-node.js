@@ -58,8 +58,26 @@ exports.createPages = async ({ actions: { createPage } }) => {
     });
   }
 
-  allDiscourses.forEach(discourse => {
+  for (let x = 0; x < allDiscourses.length; x++) {
+    const discourse = allDiscourses[x];
     console.log(`/${discourse.volume}/${discourse.start_page}`);
+    const previousDiscourse = allDiscourses[x - 1]
+      ? {
+          page_header: allDiscourses[x - 1].page_header,
+          speaker: allDiscourses[x - 1].speaker,
+          start_page: allDiscourses[x - 1].start_page,
+          end_page: allDiscourses[x - 1].end_page
+        }
+      : null;
+    const nextDiscourse = allDiscourses[x + 1]
+      ? {
+          page_header: allDiscourses[x + 1].page_header,
+          speaker: allDiscourses[x + 1].speaker,
+          start_page: allDiscourses[x + 1].start_page,
+          end_page: allDiscourses[x + 1].end_page
+        }
+      : null;
+    console.log({ nextDiscourse });
     createPage({
       path: `/${discourse.volume}/${discourse.start_page}`,
       component: require.resolve("./src/templates/discourse.js"),
@@ -70,8 +88,10 @@ exports.createPages = async ({ actions: { createPage } }) => {
         discourse: {
           ...discourse,
           content: parseDiscourseContent(discourse.content)
-        }
+        },
+        previousDiscourse,
+        nextDiscourse
       }
     });
-  });
+  }
 };
