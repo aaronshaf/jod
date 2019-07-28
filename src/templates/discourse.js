@@ -49,14 +49,20 @@ export default ({
       <Discourse>
         <DiscourseNav>
           <PreviousDiscourse>
-            <span style={{ marginRight: "4px" }}>&larr;</span>
             {previousDiscourse && (
-              <Link
-                to={`${volumeNumber}/${previousDiscourse.start_page}`}
-                title={`${previousDiscourse.page_header}, by ${previousDiscourse.speaker}`}
-              >
-                pp. {previousDiscourse.start_page}-{previousDiscourse.end_page}
-              </Link>
+              <>
+                <span style={{ marginRight: "4px" }}>&larr;</span>
+                <Link
+                  to={`${volumeNumber}/${previousDiscourse.start_page}`}
+                  title={`${previousDiscourse.page_header}, by ${previousDiscourse.speaker}`}
+                >
+                  {previousDiscourse.volume !== discourse.volume && (
+                    <>vol. {previousDiscourse.volume}, </>
+                  )}
+                  pp. {previousDiscourse.start_page}-
+                  {previousDiscourse.end_page}
+                </Link>
+              </>
             )}
           </PreviousDiscourse>
           <CurrentDiscourse>
@@ -64,15 +70,19 @@ export default ({
           </CurrentDiscourse>
           <NextDiscourse>
             {nextDiscourse && (
-              <Link
-                to={`${volumeNumber}/${nextDiscourse.start_page}`}
-                title={`${nextDiscourse.page_header}, by ${nextDiscourse.speaker}`}
-              >
-                pp. {nextDiscourse.start_page}-{nextDiscourse.end_page}
-              </Link>
+              <>
+                <Link
+                  to={`${volumeNumber}/${nextDiscourse.start_page}`}
+                  title={`${nextDiscourse.page_header}, by ${nextDiscourse.speaker}`}
+                >
+                  {nextDiscourse.volume !== discourse.volume && (
+                    <>vol. {nextDiscourse.volume}, </>
+                  )}
+                  pp. {nextDiscourse.start_page}-{nextDiscourse.end_page}
+                </Link>
+                <span style={{ marginLeft: "4px" }}>&rarr;</span>
+              </>
             )}
-            <span style={{ marginLeft: "4px" }}>&rarr;</span>
-            {/* <Img fixed={data.nextImage.childImageSharp.fixed} /> */}
           </NextDiscourse>
         </DiscourseNav>
         <FirstPage>

@@ -29,7 +29,7 @@ const volumeNumbers = Array.apply(null, { length: VOLUME_COUNT })
 
 const allDiscourses = JSON.parse(
   fs.readFileSync(require.resolve("./data/jod.json"))
-).slice(0, process.env.NODE_ENV === "development" ? 5 : undefined);
+).slice(0, process.env.NODE_ENV === "development" ? 100 : undefined);
 
 const discourseSets = volumeNumbers.map(volumeNumber => {
   return allDiscourses.filter(discourse => discourse.volume === volumeNumber);
@@ -63,6 +63,7 @@ exports.createPages = async ({ actions: { createPage } }) => {
     console.log(`/${discourse.volume}/${discourse.start_page}`);
     const previousDiscourse = allDiscourses[x - 1]
       ? {
+          volume: allDiscourses[x - 1].volume,
           page_header: allDiscourses[x - 1].page_header,
           speaker: allDiscourses[x - 1].speaker,
           start_page: allDiscourses[x - 1].start_page,
@@ -71,6 +72,7 @@ exports.createPages = async ({ actions: { createPage } }) => {
       : null;
     const nextDiscourse = allDiscourses[x + 1]
       ? {
+          volume: allDiscourses[x + 1].volume,
           page_header: allDiscourses[x + 1].page_header,
           speaker: allDiscourses[x + 1].speaker,
           start_page: allDiscourses[x + 1].start_page,

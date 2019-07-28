@@ -24,7 +24,7 @@ export const DiscourseNav = styled.nav`
 `;
 
 export const PreviousDiscourse = styled.div`
-  width: 100px;
+  width: 150px;
   white-space: nowrap;
 `;
 
@@ -34,7 +34,7 @@ export const CurrentDiscourse = styled.div`
 `;
 
 export const NextDiscourse = styled.div`
-  width: 100px;
+  width: 150px;
   white-space: nowrap;
   text-align: right;
 `;
