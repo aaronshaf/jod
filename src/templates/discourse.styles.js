@@ -30,7 +30,16 @@ export const PreviousDiscourse = styled.div`
 
 export const CurrentDiscourse = styled.div`
   flex: 1;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CitationButton = styled.button`
+  border: 0 none;
+  background: none;
+  padding: 0;
+  margin-left: 6px;
 `;
 
 export const NextDiscourse = styled.div`

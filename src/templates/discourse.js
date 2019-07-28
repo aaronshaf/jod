@@ -6,6 +6,7 @@ import { graphql } from "gatsby";
 import Img from "gatsby-image";
 import { Link } from "gatsby";
 import {
+  CitationButton,
   Columns,
   CurrentDiscourse,
   Discourse,
@@ -67,6 +68,13 @@ export default ({
           </PreviousDiscourse>
           <CurrentDiscourse>
             vol. {volumeNumber}, pp. {discourse.start_page}-{discourse.end_page}
+            <CitationButton>
+              <Img
+                fixed={data.citationImage.childImageSharp.fixed}
+                objectFit="cover"
+                objectPosition="50% 50%"
+              />
+            </CitationButton>
           </CurrentDiscourse>
           <NextDiscourse>
             {nextDiscourse && (
@@ -157,7 +165,16 @@ export const query = graphql`
     mug: file(relativePath: { eq: $mug }) {
       childImageSharp {
         fixed(width: 160, height: 200) {
-          ...GatsbyImageSharpFixed_withWebp_noBase64
+          ...GatsbyImageSharpFixed_withWebp_tracedSVG
+        }
+      }
+    }
+    citationImage: file(relativePath: { eq: "cite.png" }) {
+      childImageSharp {
+        # Specify the image processing specifications right in the query.
+        # Makes it trivial to update as your page's design changes.
+        fixed(width: 18, height: 18) {
+          ...GatsbyImageSharpFixed_tracedSVG
         }
       }
     }

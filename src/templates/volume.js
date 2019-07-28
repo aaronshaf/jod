@@ -57,7 +57,6 @@ const Title = styled.div`
 export default ({
   pageContext: { volumeNumbers, volumeNumber, discourses }
 }) => {
-  const seoTitle = "";
   return (
     <Layout volumeNumbers={volumeNumbers} volumeNumber={volumeNumber}>
       <SEO title={`Journal of Discourses, vol. ${volumeNumber}`} />
