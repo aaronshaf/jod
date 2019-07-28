@@ -1,119 +1,40 @@
 import React from "react";
 import { prepareTitle } from "../common.js";
 import Layout from "../components/layout";
-import styled from "@emotion/styled";
+import SEO from "../components/seo";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
-import { Link } from "gatsby";
-
-const SubtleLink = styled(Link)`
-  color: black;
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-const Discourse = styled.article`
-  max-width: 960px;
-  margin: 0 auto;
-  font-size: 0.92rem;
-  line-height: 1.45em;
-  margin-top: 14px;
-`;
-
-const DiscourseTitle = styled.h2`
-  padding: 0;
-  margin-left: 1.4em;
-  text-indent: -1.4em;
-  margin-bottom: 16px;
-  margin-top: 6px;
-  line-height: 1.15em;
-`;
-
-const FirstPage = styled.div`
-  padding: 25px;
-  padding-top: 20px;
-  margin-bottom: 22px;
-  overflow: hidden;
-  background-color: #fff;
-  display: flex;
-  -moz-box-shadow: 3px 3px 3px #e5e3d1;
-  -webkit-box-shadow: 3px 3px 3px #e5e3d1;
-`;
-
-const Page = styled.div`
-  padding: 25px;
-  padding-top: 23px;
-  margin-bottom: 22px;
-  overflow: hidden;
-  background-color: #fff;
-  -moz-box-shadow: 3px 3px 3px #e5e3d1;
-  -webkit-box-shadow: 3px 3px 3px #e5e3d1;
-
-  & .column.left {
-    padding-left: 0px;
-    padding-right: 15px;
-    border-right: 1px solid #ddd;
-  }
-
-  & .column {
-    padding-left: 15px;
-    border-right: 0px none;
-  }
-`;
-
-const Columns = styled.div`
-  display: flex;
-  & p {
-    margin: 0;
-  }
-  & p:not(.continued) {
-    text-indent: 1.8em;
-  }
-`;
-
-const PageHead = styled.div`
-  display: flex;
-  margin-bottom: 16px;
-`;
-
-const PageHeader = styled.div`
-  flex: 1;
-  text-align: center;
-  text-transform: uppercase;
-`;
-
-const EvenPageNumber = styled.div`
-  width: 40px;
-`;
-
-const OddPageNumber = styled.div`
-  width: 40px;
-  text-align: right;
-`;
-
-const Subtitle = styled.div``;
-
-const Reporter = styled.div``;
-
-const SpeakerImage = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 16px;
-`;
-
-const Flex = styled.div`
-  flex: 1;
-`;
+import {
+  Columns,
+  Discourse,
+  DiscourseTitle,
+  EvenPageNumber,
+  FirstPage,
+  Flex,
+  OddPageNumber,
+  Page,
+  SubtleLink,
+  PageHead,
+  PageHeader,
+  Reporter,
+  SpeakerImage,
+  Subtitle
+} from "./discourse.styles.js";
 
 export default ({
   data: { file },
   pageContext: { volumeNumbers, volumeNumber, discourse }
 }) => {
   console.debug(discourse);
+  // const citation = `${discourse.speaker}, "${discourse.page_header}", Journal of Discourses, vol. ${discourse.volume}, pp. ${discourse.start_page}-${discourse.end_page}, AAAA 16, 1853.`;
+  const seoTitle = `${prepareTitle(discourse.page_header)}, by ${
+    discourse.speaker
+  } (Journal of Discourses ${discourse.volume}:${discourse.start_page}-${
+    discourse.end_page
+  })`;
   return (
     <Layout volumeNumbers={volumeNumbers} volumeNumber={volumeNumber}>
+      <SEO title={seoTitle} description={prepareTitle(discourse.subtitle)} />
       <Discourse>
         <FirstPage>
           <Flex>
