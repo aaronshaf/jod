@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import { prepareTitle } from "../common.js";
 import Layout from "../components/layout";
 import styled from "@emotion/styled";
+import SEO from "../components/seo";
 
 const VolumeWrapper = styled.div`
   border-top: 1px solid #faf9f3;
@@ -56,8 +57,10 @@ const Title = styled.div`
 export default ({
   pageContext: { volumeNumbers, volumeNumber, discourses }
 }) => {
+  const seoTitle = "";
   return (
     <Layout volumeNumbers={volumeNumbers} volumeNumber={volumeNumber}>
+      <SEO title={`Journal of Discourses, vol. ${volumeNumber}`} />
       <VolumeWrapper>
         <Volume>
           <h2>Volume {volumeNumber}</h2>
