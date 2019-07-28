@@ -165,7 +165,7 @@ export const query = graphql`
     mug: file(relativePath: { eq: $mug }) {
       childImageSharp {
         fixed(width: 160, height: 200) {
-          ...GatsbyImageSharpFixed_withWebp_tracedSVG
+          ...GatsbyImageSharpFixed_withWebp_noBase64
         }
       }
     }

@@ -40,6 +40,8 @@ export const CitationButton = styled.button`
   background: none;
   padding: 0;
   margin-left: 6px;
+  height: 18px;
+  width: 18px;
 `;
 
 export const NextDiscourse = styled.div`
