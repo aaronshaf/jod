@@ -77,7 +77,6 @@ exports.createPages = async ({ actions: { createPage } }) => {
           end_page: allDiscourses[x + 1].end_page
         }
       : null;
-    console.log({ nextDiscourse });
     createPage({
       path: `/${discourse.volume}/${discourse.start_page}`,
       component: require.resolve("./src/templates/discourse.js"),

@@ -27,7 +27,7 @@ import {
 } from "./discourse.styles.js";
 
 export default ({
-  data: { file },
+  data,
   pageContext: {
     volumeNumbers,
     volumeNumber,
@@ -36,6 +36,7 @@ export default ({
     nextDiscourse
   }
 }) => {
+  console.debug(data);
   // const citation = `${discourse.speaker}, "${discourse.page_header}", Journal of Discourses, vol. ${discourse.volume}, pp. ${discourse.start_page}-${discourse.end_page}, AAAA 16, 1853.`;
   const seoTitle = `${prepareTitle(discourse.page_header)}, by ${
     discourse.speaker
@@ -69,6 +70,7 @@ export default ({
                 pp. {nextDiscourse.start_page}-{nextDiscourse.end_page}
               </Link>
             )}
+            <Img fixed={data.nextImage.childImageSharp.fixed} />
           </NextDiscourse>
         </DiscourseNav>
         <FirstPage>
@@ -83,9 +85,9 @@ export default ({
               Reported by {prepareTitle(discourse.reported_by)}.
             </Reporter>
             <SpeakerImage>
-              {file && (
+              {data.mug && (
                 <Img
-                  fixed={file.childImageSharp.fixed}
+                  fixed={data.mug.childImageSharp.fixed}
                   objectFit="cover"
                   objectPosition="50% 50%"
                 />
@@ -140,9 +142,18 @@ export default ({
 
 export const query = graphql`
   query($mug: String!) {
-    file(relativePath: { eq: $mug }) {
+    mug: file(relativePath: { eq: $mug }) {
       childImageSharp {
         fixed(width: 160, height: 200) {
+          ...GatsbyImageSharpFixed_withWebp_noBase64
+        }
+      }
+    }
+    nextImage: file(relativePath: { eq: "next.png" }) {
+      childImageSharp {
+        # Specify the image processing specifications right in the query.
+        # Makes it trivial to update as your page's design changes.
+        fixed(width: 25, height: 25) {
           ...GatsbyImageSharpFixed
         }
       }
