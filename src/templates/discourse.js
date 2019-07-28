@@ -72,11 +72,14 @@ export default ({
                     </SubtleLink>
                   )}
                 </EvenPageNumber>
-                <PageHeader>
-                  {pageNumber % 2 === 1
-                    ? prepareTitle(discourse.page_header)
-                    : "Journal of Discourses"}
-                </PageHeader>
+                <PageHeader
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      pageNumber % 2 === 1
+                        ? prepareTitle(discourse.page_header)
+                        : "Journal of Discourses"
+                  }}
+                />
                 <OddPageNumber>
                   {pageNumber % 2 === 1 && (
                     <SubtleLink
