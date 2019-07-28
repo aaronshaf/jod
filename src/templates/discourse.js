@@ -4,6 +4,15 @@ import Layout from "../components/layout";
 import styled from "@emotion/styled";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
+import { Link } from "gatsby";
+
+const SubtleLink = styled(Link)`
+  color: black;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
 const Discourse = styled.article`
   max-width: 960px;
@@ -131,10 +140,16 @@ export default ({
         {discourse.content.map((page, index) => {
           const pageNumber = discourse.start_page + index;
           return (
-            <Page key={index}>
+            <Page key={index} id={pageNumber}>
               <PageHead>
                 <EvenPageNumber>
-                  {pageNumber % 2 === 0 && pageNumber}
+                  {pageNumber % 2 === 0 && (
+                    <SubtleLink
+                      to={`${discourse.volume}/${discourse.start_page}#${pageNumber}`}
+                    >
+                      {pageNumber}
+                    </SubtleLink>
+                  )}
                 </EvenPageNumber>
                 <PageHeader>
                   {pageNumber % 2 === 1
@@ -143,7 +158,11 @@ export default ({
                 </PageHeader>
                 <OddPageNumber>
                   {pageNumber % 2 === 1 && (
-                    <EvenPageNumber>{pageNumber}</EvenPageNumber>
+                    <SubtleLink
+                      to={`${discourse.volume}/${discourse.start_page}#${pageNumber}`}
+                    >
+                      {pageNumber}
+                    </SubtleLink>
                   )}
                 </OddPageNumber>
               </PageHead>
