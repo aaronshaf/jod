@@ -1,3 +1,4 @@
+import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { Link } from "gatsby";
 
@@ -59,25 +60,22 @@ export const DiscourseTitle = styled.h2`
   line-height: 1.15em;
 `;
 
-export const FirstPage = styled.div`
+const pageCss = css`
   padding: 25px;
   padding-top: 20px;
   margin-bottom: 22px;
   overflow: hidden;
   background-color: #fff;
+  box-shadow: 3px 3px 3px #e5e3d1;
+`;
+
+export const FirstPage = styled.div`
+  ${pageCss}
   display: flex;
-  -moz-box-shadow: 3px 3px 3px #e5e3d1;
-  -webkit-box-shadow: 3px 3px 3px #e5e3d1;
 `;
 
 export const Page = styled.div`
-  padding: 25px;
-  padding-top: 23px;
-  margin-bottom: 22px;
-  overflow: hidden;
-  background-color: #fff;
-  -moz-box-shadow: 3px 3px 3px #e5e3d1;
-  -webkit-box-shadow: 3px 3px 3px #e5e3d1;
+  ${pageCss}
 
   & .column {
     flex: 1;
@@ -138,4 +136,9 @@ export const SpeakerImage = styled.div`
 
 export const Flex = styled.div`
   flex: 1;
+`;
+
+export const Citation = styled.div`
+  ${pageCss}
+  padding-bottom: 20px;
 `;

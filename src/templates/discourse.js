@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { prepareTitle } from "../common.js";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -6,6 +6,7 @@ import { graphql } from "gatsby";
 import Img from "gatsby-image";
 import { Link } from "gatsby";
 import {
+  Citation,
   CitationButton,
   Columns,
   CurrentDiscourse,
@@ -37,8 +38,31 @@ export default ({
     nextDiscourse
   }
 }) => {
-  console.debug(data);
-  // const citation = `${discourse.speaker}, "${discourse.page_header}", Journal of Discourses, vol. ${discourse.volume}, pp. ${discourse.start_page}-${discourse.end_page}, AAAA 16, 1853.`;
+  const [showCitation, setShowCitation] = useState(false);
+  // const [copySuccess, setCopySuccess] = useState("");
+  const inputRef = useRef(null);
+
+  function doIt() {
+    if (window.getSelection && inputRef.current) {
+      const range = document.createRange();
+      range.selectNode(inputRef.current);
+      window.getSelection().addRange(range);
+      document.execCommand("copy");
+      alert("text copied");
+    }
+  }
+
+  useEffect(() => {
+    doIt();
+  }, [inputRef.current]);
+
+  // function copyToClipboard(e) {
+  //   inputRef.current.select();
+  //   document.execCommand("copy");
+  //   e.target.focus();
+  //   setCopySuccess("Copied!");
+  // }
+
   const seoTitle = `${prepareTitle(discourse.page_header)}, by ${
     discourse.speaker
   } (Journal of Discourses ${discourse.volume}:${discourse.start_page}-${
@@ -54,7 +78,7 @@ export default ({
               <>
                 <span style={{ marginRight: "4px" }}>&larr;</span>
                 <Link
-                  to={`${volumeNumber}/${previousDiscourse.start_page}`}
+                  to={`/${volumeNumber}/${previousDiscourse.start_page}`}
                   title={`${previousDiscourse.page_header}, by ${previousDiscourse.speaker}`}
                 >
                   {previousDiscourse.volume !== discourse.volume && (
@@ -68,7 +92,7 @@ export default ({
           </PreviousDiscourse>
           <CurrentDiscourse>
             vol. {volumeNumber}, pp. {discourse.start_page}-{discourse.end_page}
-            <CitationButton>
+            <CitationButton onClick={() => setShowCitation(!showCitation)}>
               <Img
                 fixed={data.citationImage.childImageSharp.fixed}
                 objectFit="cover"
@@ -80,7 +104,7 @@ export default ({
             {nextDiscourse && (
               <>
                 <Link
-                  to={`${volumeNumber}/${nextDiscourse.start_page}`}
+                  to={`/${volumeNumber}/${nextDiscourse.start_page}`}
                   title={`${nextDiscourse.page_header}, by ${nextDiscourse.speaker}`}
                 >
                   {nextDiscourse.volume !== discourse.volume && (
@@ -93,6 +117,13 @@ export default ({
             )}
           </NextDiscourse>
         </DiscourseNav>
+        {showCitation && (
+          <Citation ref={inputRef}>
+            {discourse.speaker}, "{discourse.page_header}", Journal of
+            Discourses, vol. {discourse.volume}, pp. {discourse.start_page}-
+            {discourse.end_page}, AAAA 16, 1853.
+          </Citation>
+        )}
         <FirstPage>
           <Flex>
             <DiscourseTitle
@@ -123,7 +154,7 @@ export default ({
                 <EvenPageNumber>
                   {pageNumber % 2 === 0 && (
                     <SubtleLink
-                      to={`${discourse.volume}/${discourse.start_page}#${pageNumber}`}
+                      to={`/${discourse.volume}/${discourse.start_page}#${pageNumber}`}
                     >
                       {pageNumber}
                     </SubtleLink>
@@ -140,7 +171,7 @@ export default ({
                 <OddPageNumber>
                   {pageNumber % 2 === 1 && (
                     <SubtleLink
-                      to={`${discourse.volume}/${discourse.start_page}#${pageNumber}`}
+                      to={`/${discourse.volume}/${discourse.start_page}#${pageNumber}`}
                     >
                       {pageNumber}
                     </SubtleLink>
