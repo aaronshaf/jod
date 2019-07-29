@@ -28,22 +28,30 @@ export const Subheading = styled.div`
 `;
 
 export const VolumeNumbersWrapper = styled.div`
+  max-width: 100%;
+  overflow: auto;
+  padding-left: 24px;
+  padding-right: 24px;
   border-top: 1px solid #fefdfa;
   border-bottom: 1px solid #e3e1ce;
+  display: flex;
 `;
 
 export const VolumeNumbers = styled.nav`
   max-width: 960px;
   margin: auto;
   display: flex;
+  align-items: center;
   list-style-type: none;
   line-height: 1.4em;
-  padding: 8px 0;
-  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-right: 24px;
 `;
 
 export const VolumeNumber = styled(Link)`
   flex: 1;
+  min-width: 16px;
   margin-left: 7px;
   white-space: nowrap;
   text-align: center;
@@ -83,6 +91,10 @@ export const VolumeNumber = styled(Link)`
       rgba(153, 175, 91, 1) 35%,
       rgba(139, 165, 70, 1) 100%
     );
+
+    &:last-of-type {
+      margin-right: 24px;
+    }
   }
   &:active {
     margin-bottom: -1px;
