@@ -41,18 +41,17 @@ export default ({
   }
 }) => {
   const [showCitation, setShowCitation] = useState(false);
-  // const [copySuccess, setCopySuccess] = useState("");
+  const [copySuccess, setCopySuccess] = useState(false);
   const citationSpanRef = useRef(null);
 
   useEffect(() => {
-    console.debug("1");
     if (showCitation && window.getSelection && citationSpanRef.current) {
-      console.debug("2", citationSpanRef.current.innerText);
+      window.getSelection().removeAllRanges();
       const range = document.createRange();
       range.selectNode(citationSpanRef.current);
-      console.debug(window.getSelection());
       window.getSelection().addRange(range);
       document.execCommand("copy");
+      setCopySuccess(true);
     }
   }, [showCitation, citationSpanRef.current]);
 
@@ -124,7 +123,7 @@ export default ({
               <em>Journal of Discourses</em>, vol. {discourse.volume}, pp.{" "}
               {discourse.start_page}-{discourse.end_page}, AAAA 16, 1853.
             </CitationText>
-            <CitationCopyNotice>(copied)</CitationCopyNotice>
+            {copySuccess && <CitationCopyNotice>(copied)</CitationCopyNotice>}
           </Citation>
         )}
         <FirstPage>

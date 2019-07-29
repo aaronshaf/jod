@@ -146,5 +146,5 @@ export const Citation = styled.div`
 export const CitationText = styled.span``;
 
 export const CitationCopyNotice = styled.span`
-  margin-left: 8px;
+  margin-left: 6px;
 `;
