@@ -53,6 +53,9 @@ const DiscourseListItem = styled.div`
   &:last-of-type {
     margin-bottom: 8px;
   }
+  &:hover {
+    background-color: #f8f8f8;
+  }
 `;
 
 const Pages = styled.div`
