@@ -14,6 +14,9 @@ export const SiteTitle = styled.h1`
   font-family: Times New Roman, serif;
   font-size: 2.2rem;
   font-weight: lighter;
+  @media (max-width: 640px) {
+    font-size: 1.8rem;
+  }
 `;
 
 export const SiteTitleLink = styled(Link)`

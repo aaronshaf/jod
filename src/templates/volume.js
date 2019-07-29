@@ -25,9 +25,12 @@ const DiscourseList = styled.div`
   border-spacing: 0;
   border-top: 1px solid #e3e1ce;
   clear: both;
-  width: 100%;
+  max-width: 100%;
   background-color: white;
   margin-bottom: 16px;
+  @media (max-width: 640px) {
+    padding: 12px;
+  }
 `;
 
 const DiscourseListItem = styled.div`
@@ -41,9 +44,10 @@ const DiscourseListItem = styled.div`
     margin-top: 8px;
     margin-bottom: 8px;
   }
-  &:first-of-type,
-  &:last-of-type {
+  &:first-of-type {
     margin-top: 8px;
+  }
+  &:last-of-type {
     margin-bottom: 8px;
   }
 `;
@@ -53,6 +57,7 @@ const Pages = styled.div`
   padding: 4px 8px;
   @media (max-width: 640px) {
     order: 4;
+    padding-left: 24px;
   }
   @media (min-width: 641px) {
     padding-left: 12px;
@@ -63,6 +68,7 @@ const DateComponent = styled.div`
   width: 145px;
   padding: 4px 8px;
   @media (max-width: 640px) {
+    padding-left: 24px;
     order: 3;
   }
 `;
@@ -72,6 +78,7 @@ const Speaker = styled.div`
   padding: 4px 8px;
   @media (max-width: 640px) {
     order: 2;
+    padding-left: 24px;
   }
 `;
 const Title = styled.div`
