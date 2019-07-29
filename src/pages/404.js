@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import css from "@emotion/css/macro";
 
 const NotFoundPage = props => {
   console.debug({ props });
@@ -8,8 +9,15 @@ const NotFoundPage = props => {
   return (
     <Layout volumeNumbers={volumeNumbers}>
       <SEO title="404: Not found" />
-      <h1>NOT FOUND</h1>
-      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+      <div
+        css={css`
+          max-width: 960px;
+          margin: 0 auto;
+          font-size: 0.92rem;
+        `}
+      >
+        <h1>Not found</h1>
+      </div>
     </Layout>
   );
 };
