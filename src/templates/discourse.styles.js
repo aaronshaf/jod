@@ -142,3 +142,9 @@ export const Citation = styled.div`
   ${pageCss}
   padding-bottom: 20px;
 `;
+
+export const CitationText = styled.span``;
+
+export const CitationCopyNotice = styled.span`
+  margin-left: 8px;
+`;

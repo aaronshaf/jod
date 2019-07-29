@@ -8,6 +8,8 @@ import { Link } from "gatsby";
 import {
   Citation,
   CitationButton,
+  CitationText,
+  CitationCopyNotice,
   Columns,
   CurrentDiscourse,
   Discourse,
@@ -40,24 +42,22 @@ export default ({
 }) => {
   const [showCitation, setShowCitation] = useState(false);
   // const [copySuccess, setCopySuccess] = useState("");
-  const inputRef = useRef(null);
-
-  function doIt() {
-    if (window.getSelection && inputRef.current) {
-      const range = document.createRange();
-      range.selectNode(inputRef.current);
-      window.getSelection().addRange(range);
-      document.execCommand("copy");
-      alert("text copied");
-    }
-  }
+  const citationSpanRef = useRef(null);
 
   useEffect(() => {
-    doIt();
-  }, [inputRef.current]);
+    console.debug("1");
+    if (showCitation && window.getSelection && citationSpanRef.current) {
+      console.debug("2", citationSpanRef.current.innerText);
+      const range = document.createRange();
+      range.selectNode(citationSpanRef.current);
+      console.debug(window.getSelection());
+      window.getSelection().addRange(range);
+      document.execCommand("copy");
+    }
+  }, [showCitation, citationSpanRef.current]);
 
   // function copyToClipboard(e) {
-  //   inputRef.current.select();
+  //   citationSpanRef.current.select();
   //   document.execCommand("copy");
   //   e.target.focus();
   //   setCopySuccess("Copied!");
@@ -118,10 +118,13 @@ export default ({
           </NextDiscourse>
         </DiscourseNav>
         {showCitation && (
-          <Citation ref={inputRef}>
-            {discourse.speaker}, "{discourse.page_header}", Journal of
-            Discourses, vol. {discourse.volume}, pp. {discourse.start_page}-
-            {discourse.end_page}, AAAA 16, 1853.
+          <Citation>
+            <CitationText ref={citationSpanRef}>
+              {discourse.speaker}, "{discourse.page_header}",{" "}
+              <em>Journal of Discourses</em>, vol. {discourse.volume}, pp.{" "}
+              {discourse.start_page}-{discourse.end_page}, AAAA 16, 1853.
+            </CitationText>
+            <CitationCopyNotice>(copied)</CitationCopyNotice>
           </Citation>
         )}
         <FirstPage>
