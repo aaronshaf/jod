@@ -112,7 +112,7 @@ export default ({
             {nextDiscourse && (
               <>
                 <Link
-                  to={`/${volumeNumber}/${nextDiscourse.start_page}`}
+                  to={`/${nextDiscourse.volume}/${nextDiscourse.start_page}`}
                   title={`${nextDiscourse.page_header}, by ${nextDiscourse.speaker}`}
                 >
                   {nextDiscourse.volume !== discourse.volume && (
