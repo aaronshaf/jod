@@ -11,7 +11,12 @@ import {
 
 export default class Header extends React.Component {
   render() {
-    const { volumeNumbers, siteTitle, siteDescription } = this.props;
+    const {
+      volumeNumbers,
+      volumeNumber,
+      siteTitle,
+      siteDescription
+    } = this.props;
     return (
       <header>
         <SiteTitleWrapper>
@@ -23,20 +28,20 @@ export default class Header extends React.Component {
         {volumeNumbers && (
           <VolumeNumbersWrapper>
             <VolumeNumbers>
-              {volumeNumbers.map(volumeNumber => (
-                <React.Fragment key={volumeNumber}>
-                  {volumeNumber === 1 && (
+              {volumeNumbers.map(volumeNumber_ => (
+                <React.Fragment key={volumeNumber_}>
+                  {volumeNumber_ === 1 && (
                     <>
                       <span>Vol.</span>{" "}
                     </>
                   )}
                   <VolumeNumber
-                    key={volumeNumber}
-                    partiallyActive={true}
+                    key={volumeNumber_}
+                    partiallyActive={volumeNumber != null}
                     activeClassName={"active"}
-                    to={`/${volumeNumber}`}
+                    to={`/${volumeNumber_}`}
                   >
-                    {volumeNumber}
+                    {volumeNumber_}
                   </VolumeNumber>
                 </React.Fragment>
               ))}

@@ -86,7 +86,7 @@ export default ({
               <>
                 <span style={{ marginRight: "4px" }}>&larr;</span>
                 <Link
-                  to={`/${volumeNumber}/${previousDiscourse.start_page}`}
+                  to={`/${previousDiscourse.volume}/${previousDiscourse.start_page}`}
                   title={`${previousDiscourse.page_header}, by ${previousDiscourse.speaker}`}
                 >
                   {previousDiscourse.volume !== discourse.volume && (
