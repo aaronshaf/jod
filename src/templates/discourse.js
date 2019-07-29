@@ -55,18 +55,27 @@ export default ({
     }
   }, [showCitation, citationSpanRef.current]);
 
-  // function copyToClipboard(e) {
-  //   citationSpanRef.current.select();
-  //   document.execCommand("copy");
-  //   e.target.focus();
-  //   setCopySuccess("Copied!");
-  // }
-
   const seoTitle = `${prepareTitle(discourse.page_header)}, by ${
     discourse.speaker
   } (Journal of Discourses ${discourse.volume}:${discourse.start_page}-${
     discourse.end_page
   })`;
+
+  const event = new Date();
+  if (discourse.date) {
+    event.setFullYear(parseInt(discourse.date.substr(0, 4), 10));
+    event.setMonth(parseInt(discourse.date.substr(5, 7), 10) - 1);
+    event.setDate(parseInt(discourse.date.substr(8, 10), 10));
+    event.setUTCHours(0);
+  }
+  const dateOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  };
+  const formattedDate =
+    discourse.date && event.toLocaleDateString("default", dateOptions);
+
   return (
     <Layout volumeNumbers={volumeNumbers} volumeNumber={volumeNumber}>
       <SEO title={seoTitle} description={prepareTitle(discourse.subtitle)} />
@@ -121,7 +130,7 @@ export default ({
             <CitationText ref={citationSpanRef}>
               {discourse.speaker}, "{discourse.page_header}",{" "}
               <em>Journal of Discourses</em>, vol. {discourse.volume}, pp.{" "}
-              {discourse.start_page}-{discourse.end_page}, AAAA 16, 1853.
+              {discourse.start_page}-{discourse.end_page}, {formattedDate}.
             </CitationText>
             {copySuccess && <CitationCopyNotice>(copied)</CitationCopyNotice>}
           </Citation>
