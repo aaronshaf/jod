@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 
 export const SiteTitleWrapper = styled.div`
   background-color: #052f54;
-  padding: 24px 0;
+  padding: 24px;
 `;
 
 export const SiteTitle = styled.h1`
