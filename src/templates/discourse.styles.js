@@ -92,7 +92,9 @@ export const Page = styled.div`
 
   & .column {
     @media (max-width: 640px) {
-      // padding-left: 15px;
+      &.left::after {
+        content: "[column]";
+      }
     }
     @media (min-width: 641px) {
       padding-left: 15px;

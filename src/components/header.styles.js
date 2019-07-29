@@ -28,6 +28,9 @@ export const Subheading = styled.div`
   color: #919faf;
   max-width: 960px;
   margin: auto;
+  @media (max-width: 640px) {
+    font-size: 0.9rem;
+  }
 `;
 
 export const VolumeNumbersWrapper = styled.div`
