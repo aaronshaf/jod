@@ -13,6 +13,9 @@ const Volume = styled.div`
   max-width: 960px;
   margin: 0 auto;
   font-size: 0.92rem;
+`;
+
+const VolumeTitle = styled.h2`
   padding-left: 24px;
   padding-right: 24px;
 `;
@@ -98,7 +101,7 @@ export default ({
       <SEO title={`Journal of Discourses, vol. ${volumeNumber}`} />
       <VolumeWrapper>
         <Volume>
-          <h2>Volume {volumeNumber}</h2>
+          <VolumeTitle>Volume {volumeNumber}</VolumeTitle>
           <DiscourseList>
             {discourses.map(discourse => {
               const event = new Date();

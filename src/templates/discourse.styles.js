@@ -84,18 +84,28 @@ export const Page = styled.div`
 
   & .column.left {
     padding-left: 0px;
-    padding-right: 15px;
-    border-right: 1px solid #ddd;
+    @media (min-width: 641px) {
+      padding-right: 15px;
+      border-right: 1px solid #ddd;
+    }
   }
 
   & .column {
-    padding-left: 15px;
+    @media (max-width: 640px) {
+      // padding-left: 15px;
+    }
+    @media (min-width: 641px) {
+      padding-left: 15px;
+    }
     border-right: 0px none;
   }
 `;
 
 export const Columns = styled.div`
   display: flex;
+  @media (max-width: 640px) {
+    display: block;
+  }
   & p {
     margin: 0;
   }
