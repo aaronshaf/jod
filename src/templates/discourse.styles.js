@@ -2,6 +2,32 @@ import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { Link } from "gatsby";
 
+export const TraversalLinkText = styled.span`
+  @media (max-width: 640px) {
+    display: none;
+  }
+  @media (min-width: 641px) {
+    display: inline;
+  }
+`;
+
+export const TraversalArrow = styled.span`
+  display: inline;
+  margin-left: 4px;
+  margin-right: 4px;
+`;
+
+export const TraversalLinkImage = styled.img`
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  @media (max-width: 640px) {
+  }
+  @media (min-width: 641px) {
+    // display: none;
+  }
+`;
+
 export const SubtleLink = styled(Link)`
   color: black;
   text-decoration: none;

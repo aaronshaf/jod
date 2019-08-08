@@ -27,8 +27,13 @@ import {
   Reporter,
   SpeakerImage,
   Subtitle,
-  SubtleLink
+  SubtleLink,
+  TraversalArrow,
+  TraversalLinkImage,
+  TraversalLinkText
 } from "./discourse.styles.js";
+import previousSvg from "../images/previous.svg";
+import nextSvg from "../images/next.svg";
 
 export default ({
   data,
@@ -84,16 +89,18 @@ export default ({
           <PreviousDiscourse>
             {previousDiscourse && (
               <>
-                <span style={{ marginRight: "4px" }}>&larr;</span>
                 <Link
                   to={`/${previousDiscourse.volume}/${previousDiscourse.start_page}`}
                   title={`${previousDiscourse.page_header}, by ${previousDiscourse.speaker}`}
                 >
-                  {previousDiscourse.volume !== discourse.volume && (
-                    <>vol. {previousDiscourse.volume}, </>
-                  )}
-                  pp. {previousDiscourse.start_page}-
-                  {previousDiscourse.end_page}
+                  <TraversalLinkImage src={previousSvg} />
+                  <TraversalLinkText>
+                    {previousDiscourse.volume !== discourse.volume && (
+                      <>vol. {previousDiscourse.volume}, </>
+                    )}
+                    pp. {previousDiscourse.start_page}-
+                    {previousDiscourse.end_page}
+                  </TraversalLinkText>
                 </Link>
               </>
             )}
@@ -115,12 +122,14 @@ export default ({
                   to={`/${nextDiscourse.volume}/${nextDiscourse.start_page}`}
                   title={`${nextDiscourse.page_header}, by ${nextDiscourse.speaker}`}
                 >
-                  {nextDiscourse.volume !== discourse.volume && (
-                    <>vol. {nextDiscourse.volume}, </>
-                  )}
-                  pp. {nextDiscourse.start_page}-{nextDiscourse.end_page}
+                  <TraversalLinkText>
+                    {nextDiscourse.volume !== discourse.volume && (
+                      <>vol. {nextDiscourse.volume}, </>
+                    )}
+                    pp. {nextDiscourse.start_page}-{nextDiscourse.end_page}
+                  </TraversalLinkText>
+                  <TraversalLinkImage src={nextSvg} />
                 </Link>
-                <span style={{ marginLeft: "4px" }}>&rarr;</span>
               </>
             )}
           </NextDiscourse>
