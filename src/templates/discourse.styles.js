@@ -53,6 +53,12 @@ export const DiscourseNav = styled.nav`
 export const PreviousDiscourse = styled.div`
   width: 150px;
   white-space: nowrap;
+  @media (max-width: 960px) {
+    padding-left: 12px;
+    & img {
+      margin-right: 8px;
+    }
+  }
 `;
 
 export const CurrentDiscourse = styled.div`
@@ -75,6 +81,12 @@ export const NextDiscourse = styled.div`
   width: 150px;
   white-space: nowrap;
   text-align: right;
+  @media (max-width: 960px) {
+    padding-right: 12px;
+    & img {
+      margin-left: 8px;
+    }
+  }
 `;
 
 export const DiscourseTitle = styled.h2`
