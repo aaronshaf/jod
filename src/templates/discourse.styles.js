@@ -2,6 +2,11 @@ import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { Link } from "gatsby";
 
+export const TraversalLink = styled(Link)`
+  display: flex;
+  align-items: center;
+`;
+
 export const TraversalLinkText = styled.span`
   @media (max-width: 640px) {
     display: none;
@@ -79,8 +84,9 @@ export const CitationButton = styled.button`
 
 export const NextDiscourse = styled.div`
   width: 150px;
+  display: flex;
+  flex-direction: row-reverse;
   white-space: nowrap;
-  text-align: right;
   @media (max-width: 960px) {
     padding-right: 12px;
     & img {

@@ -4,7 +4,6 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
-import { Link } from "gatsby";
 import {
   Citation,
   CitationButton,
@@ -28,7 +27,7 @@ import {
   SpeakerImage,
   Subtitle,
   SubtleLink,
-  TraversalArrow,
+  TraversalLink,
   TraversalLinkImage,
   TraversalLinkText
 } from "./discourse.styles.js";
@@ -89,7 +88,7 @@ export default ({
           <PreviousDiscourse>
             {previousDiscourse && (
               <>
-                <Link
+                <TraversalLink
                   to={`/${previousDiscourse.volume}/${previousDiscourse.start_page}`}
                   title={`${previousDiscourse.page_header}, by ${previousDiscourse.speaker}`}
                 >
@@ -101,7 +100,7 @@ export default ({
                     pp. {previousDiscourse.start_page}-
                     {previousDiscourse.end_page}
                   </TraversalLinkText>
-                </Link>
+                </TraversalLink>
               </>
             )}
           </PreviousDiscourse>
@@ -118,7 +117,7 @@ export default ({
           <NextDiscourse>
             {nextDiscourse && (
               <>
-                <Link
+                <TraversalLink
                   to={`/${nextDiscourse.volume}/${nextDiscourse.start_page}`}
                   title={`${nextDiscourse.page_header}, by ${nextDiscourse.speaker}`}
                 >
@@ -129,7 +128,7 @@ export default ({
                     pp. {nextDiscourse.start_page}-{nextDiscourse.end_page}
                   </TraversalLinkText>
                   <TraversalLinkImage src={nextSvg} />
-                </Link>
+                </TraversalLink>
               </>
             )}
           </NextDiscourse>
