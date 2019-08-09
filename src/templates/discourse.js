@@ -28,7 +28,8 @@ import {
   Subtitle,
   SubtleLink,
   TraversalLink,
-  TraversalLinkImage,
+  TraversalLinkImageStart,
+  TraversalLinkImageEnd,
   TraversalLinkText
 } from "./discourse.styles.js";
 import previousSvg from "../images/previous.svg";
@@ -92,7 +93,7 @@ export default ({
                   to={`/${previousDiscourse.volume}/${previousDiscourse.start_page}`}
                   title={`${previousDiscourse.page_header}, by ${previousDiscourse.speaker}`}
                 >
-                  <TraversalLinkImage src={previousSvg} />
+                  <TraversalLinkImageStart src={previousSvg} />
                   <TraversalLinkText>
                     {previousDiscourse.volume !== discourse.volume && (
                       <>vol. {previousDiscourse.volume}, </>
@@ -127,7 +128,7 @@ export default ({
                     )}
                     pp. {nextDiscourse.start_page}-{nextDiscourse.end_page}
                   </TraversalLinkText>
-                  <TraversalLinkImage src={nextSvg} />
+                  <TraversalLinkImageEnd src={nextSvg} />
                 </TraversalLink>
               </>
             )}

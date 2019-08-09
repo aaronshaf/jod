@@ -22,7 +22,7 @@ export const TraversalArrow = styled.span`
   margin-right: 4px;
 `;
 
-export const TraversalLinkImage = styled.img`
+export const TraversalLinkImage = css`
   width: 20px;
   height: 20px;
   display: inline-block;
@@ -31,6 +31,16 @@ export const TraversalLinkImage = styled.img`
   @media (min-width: 641px) {
     // display: none;
   }
+`;
+
+export const TraversalLinkImageStart = styled.img`
+  ${TraversalLinkImage};
+  margin-right: 6px;
+`;
+
+export const TraversalLinkImageEnd = styled.img`
+  ${TraversalLinkImage};
+  margin-left: 6px;
 `;
 
 export const SubtleLink = styled(Link)`
