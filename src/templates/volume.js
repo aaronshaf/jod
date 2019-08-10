@@ -38,6 +38,7 @@ const DiscourseList = styled.div`
 
 const DiscourseListItem = styled.div`
   display: flex;
+  width: 100%;
   @media (max-width: 640px) {
     flex-direction: column;
     margin-top: 24px;
@@ -80,9 +81,13 @@ const DateComponent = styled.div`
 `;
 
 const Speaker = styled.div`
-  width: 130px;
   padding: 4px 8px;
   @media (max-width: 640px) {
+    order: 2;
+    padding-left: 24px;
+  }
+  @media (min-width: 641px) {
+    width: 130px;
     order: 2;
     padding-left: 24px;
   }
