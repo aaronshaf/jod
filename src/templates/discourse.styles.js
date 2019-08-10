@@ -69,6 +69,7 @@ export const PreviousDiscourse = styled.div`
   white-space: nowrap;
   @media (max-width: 960px) {
     width: 20px;
+    height: 20px;
     padding-left: 12px;
     & img {
       margin-right: 8px;
