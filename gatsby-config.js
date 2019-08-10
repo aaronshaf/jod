@@ -20,7 +20,7 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `gatsby-starter-default`,
-        short_name: `starter`,
+        short_name: `JoD`,
         start_url: `/`,
         background_color: `#122E51`,
         theme_color: `#122E51`,
