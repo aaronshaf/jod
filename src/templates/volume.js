@@ -7,6 +7,10 @@ import SEO from "../components/seo";
 
 const VolumeWrapper = styled.div`
   border-top: 1px solid #faf9f3;
+  @media (min-width: 641px) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
 `;
 
 const Volume = styled.div`

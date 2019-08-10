@@ -39,11 +39,13 @@ export const Subheading = styled.div`
 export const VolumeNumbersWrapper = styled.div`
   max-width: 100%;
   overflow: auto;
-  padding-left: 24px;
-  padding-right: 24px;
   border-top: 1px solid #fefdfa;
   border-bottom: 1px solid #e3e1ce;
   display: flex;
+  @media (max-width: 640px) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
 `;
 
 export const VolumeNumbers = styled.nav`
