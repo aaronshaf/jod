@@ -42,14 +42,15 @@ export const VolumeNumbersWrapper = styled.div`
   border-top: 1px solid #fefdfa;
   border-bottom: 1px solid #e3e1ce;
   display: flex;
-  @media (max-width: 640px) {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
+  padding-left: 24px;
+  padding-right: 24px;
 `;
 
 export const VolumeNumbers = styled.nav`
   max-width: 960px;
+  @media (min-width: 641px) {
+    width: 960px;
+  }
   margin: auto;
   display: flex;
   align-items: center;
@@ -58,6 +59,7 @@ export const VolumeNumbers = styled.nav`
   padding-top: 8px;
   padding-bottom: 8px;
   padding-right: 24px;
+  box-sizing: border-box;
 `;
 
 export const VolumeNumber = styled(Link)`
