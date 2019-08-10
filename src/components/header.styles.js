@@ -25,7 +25,7 @@ export const SiteTitleLink = styled(Link)`
 `;
 
 export const Subheading = styled.div`
-  color: #919faf;
+  color: #b7c5d7;
   max-width: 960px;
   margin: auto;
   @media (max-width: 640px) {
