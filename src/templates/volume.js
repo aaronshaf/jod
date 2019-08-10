@@ -16,8 +16,10 @@ const Volume = styled.div`
 `;
 
 const VolumeTitle = styled.h2`
-  padding-left: 24px;
-  padding-right: 24px;
+  @media (max-width: 640px) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
 `;
 
 const DiscourseList = styled.div`
