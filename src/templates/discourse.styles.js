@@ -66,13 +66,16 @@ export const DiscourseNav = styled.nav`
 `;
 
 export const PreviousDiscourse = styled.div`
-  width: 150px;
   white-space: nowrap;
   @media (max-width: 960px) {
+    width: 20px;
     padding-left: 12px;
     & img {
       margin-right: 8px;
     }
+  }
+  @media (min-width: 961px) {
+    width: 150px;
   }
 `;
 
@@ -93,15 +96,18 @@ export const CitationButton = styled.button`
 `;
 
 export const NextDiscourse = styled.div`
-  width: 150px;
   display: flex;
   flex-direction: row-reverse;
   white-space: nowrap;
   @media (max-width: 960px) {
+    width: 20;
     padding-right: 12px;
     & img {
       margin-left: 8px;
     }
+  }
+  @media (min-width: 961px) {
+    width: 150px;
   }
 `;
 
