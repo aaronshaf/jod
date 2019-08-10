@@ -147,7 +147,7 @@ export const Page = styled.div`
   & .column {
     @media (max-width: 640px) {
       &.left::after {
-        content: "[column]";
+        content: "";
       }
     }
     @media (min-width: 641px) {
