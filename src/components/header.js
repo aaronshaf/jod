@@ -40,6 +40,7 @@ export default class Header extends React.Component {
                     partiallyActive={volumeNumber != null}
                     activeClassName={"active"}
                     to={`/${volumeNumber_}`}
+                    title={`Volume ${volumeNumber_}`}
                   >
                     {volumeNumber_}
                   </VolumeNumber>
