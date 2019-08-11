@@ -83,7 +83,11 @@ export default ({
 
   return (
     <Layout volumeNumbers={volumeNumbers} volumeNumber={volumeNumber}>
-      <SEO title={seoTitle} description={prepareTitle(discourse.subtitle)} />
+      <SEO
+        title={seoTitle}
+        description={prepareTitle(discourse.subtitle)}
+        canonicalUrl={`https://jod.mrm.org/${volumeNumber}/${discourse.start_page}`}
+      />
       <Discourse>
         <DiscourseNav>
           <PreviousDiscourse>

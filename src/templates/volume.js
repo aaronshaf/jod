@@ -110,7 +110,10 @@ export default ({
 }) => {
   return (
     <Layout volumeNumbers={volumeNumbers} volumeNumber={volumeNumber}>
-      <SEO title={`Journal of Discourses, vol. ${volumeNumber}`} />
+      <SEO
+        title={`Journal of Discourses, vol. ${volumeNumber}`}
+        canonicalUrl={`https://jod.mrm.org/${volumeNumber}`}
+      />
       <VolumeWrapper>
         <Volume>
           <VolumeTitle>Volume {volumeNumber}</VolumeTitle>
