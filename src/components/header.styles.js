@@ -106,7 +106,7 @@ export const VolumeNumber = styled(Link)`
     );
 
     &:last-of-type {
-      margin-right: 24px;
+      // margin-right: 24px;
     }
   }
   &:active {
