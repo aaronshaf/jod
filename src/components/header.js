@@ -39,7 +39,7 @@ export default class Header extends React.Component {
                     key={volumeNumber_}
                     partiallyActive={volumeNumber != null}
                     activeClassName={"active"}
-                    to={`/${volumeNumber_}`}
+                    to={`/${volumeNumber_}/`}
                     title={`Volume ${volumeNumber_}`}
                   >
                     {volumeNumber_}
