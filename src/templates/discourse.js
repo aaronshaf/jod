@@ -66,20 +66,21 @@ export default ({
     discourse.end_page
   })`;
 
-  const event = new Date();
+  let event;
   if (discourse.date) {
-    event.setFullYear(parseInt(discourse.date.substr(0, 4), 10));
-    event.setMonth(parseInt(discourse.date.substr(5, 7), 10) - 1);
-    event.setDate(parseInt(discourse.date.substr(8, 10), 10));
-    event.setUTCHours(0);
+    const fullYear = parseInt(discourse.date.substr(0, 4), 10);
+    const month = parseInt(discourse.date.substr(5, 7), 10) - 1;
+    const day = parseInt(discourse.date.substr(8, 10), 10);
+    event = new Date(Date.UTC(fullYear, month, day, 0, 0, 0));
   }
   const dateOptions = {
     year: "numeric",
     month: "long",
-    day: "numeric"
+    day: "numeric",
+    timeZone: "UTC"
   };
   const formattedDate =
-    discourse.date && event.toLocaleDateString("default", dateOptions);
+    discourse.date && event && event.toLocaleDateString("default", dateOptions);
 
   return (
     <Layout volumeNumbers={volumeNumbers} volumeNumber={volumeNumber}>

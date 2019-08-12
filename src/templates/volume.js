@@ -119,17 +119,18 @@ export default ({
           <VolumeTitle>Volume {volumeNumber}</VolumeTitle>
           <DiscourseList>
             {discourses.map(discourse => {
-              const event = new Date();
+              let event;
               if (discourse.date) {
-                event.setFullYear(parseInt(discourse.date.substr(0, 4), 10));
-                event.setMonth(parseInt(discourse.date.substr(5, 7), 10) - 1);
-                event.setDate(parseInt(discourse.date.substr(8, 10), 10));
-                event.setUTCHours(0);
+                const fullYear = parseInt(discourse.date.substr(0, 4), 10);
+                const month = parseInt(discourse.date.substr(5, 7), 10) - 1;
+                const day = parseInt(discourse.date.substr(8, 10), 10);
+                event = new Date(Date.UTC(fullYear, month, day, 0, 0, 0));
               }
               const dateOptions = {
                 year: "numeric",
                 month: "long",
-                day: "numeric"
+                day: "numeric",
+                timeZone: "UTC"
               };
               return (
                 <DiscourseListItem key={discourse.id}>
@@ -138,6 +139,7 @@ export default ({
                   </Pages>
                   <DateComponent title={discourse.date}>
                     {discourse.date &&
+                      event &&
                       event.toLocaleDateString("default", dateOptions)}
                   </DateComponent>
                   <Speaker>{discourse.speaker}</Speaker>
