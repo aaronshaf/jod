@@ -141,7 +141,7 @@ export const Page = styled.div`
 
 export const Columns = styled.div`
   display: flex;
-  @media (max-width: 640px) {
+  @media (max-width: 740px) {
     display: block;
   }
   & p {
@@ -155,12 +155,12 @@ export const Columns = styled.div`
 export const column = css`
   flex: 1;
   text-align: justify;
-  @media (max-width: 640px) {
+  @media (max-width: 740px) {
     // &.left::after {
     //   content: "";
     // }
   }
-  @media (min-width: 641px) {
+  @media (min-width: 741px) {
     padding-left: 15px;
   }
   border-right: 0px none;
@@ -169,7 +169,7 @@ export const column = css`
 export const LeftColumn = styled.div`
   ${column};
   padding-left: 0px;
-  @media (min-width: 641px) {
+  @media (min-width: 741px) {
     padding-right: 15px;
     border-right: 1px solid #ddd;
   }
@@ -180,12 +180,12 @@ export const RightColumn = styled.div`
 `;
 
 export const ColumnSeparator = styled.div`
-  @media (max-width: 640px) {
+  @media (max-width: 740px) {
     text-align: center;
     padding-top: 5px;
     padding-bottom: 5px;
   }
-  @media (min-width: 641px) {
+  @media (min-width: 741px) {
     display: none;
   }
   height: 30px;
