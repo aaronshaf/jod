@@ -29,16 +29,16 @@ const VolumeTitle = styled.h2`
 const DiscourseList = styled.div`
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
-  border-bottom: 1px solid #e3e1ce;
-  border-left: 1px solid #e3e1ce;
+  border: 1px solid #e3e1ce;
   border-spacing: 0;
-  border-top: 1px solid #e3e1ce;
   clear: both;
   max-width: 100%;
   background-color: white;
   margin-bottom: 16px;
   @media (max-width: 640px) {
     padding: 12px;
+    border-left: 0 none;
+    border-right: 0 none;
   }
 `;
 
