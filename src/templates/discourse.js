@@ -193,8 +193,7 @@ export default ({
           </Flex>
         </FirstPage>
         {discourse.content.map((page, index) => {
-          const columns = page[0];
-          if (columns == null) {
+          if (page.columns == null) {
             return null;
           }
           const pageNumber = discourse.start_page + index;
@@ -231,7 +230,7 @@ export default ({
               <Columns>
                 <LeftColumn
                   dangerouslySetInnerHTML={{
-                    __html: columns[0]
+                    __html: page.columns[0]
                   }}
                 />
                 <ColumnSeparator>
@@ -239,7 +238,7 @@ export default ({
                 </ColumnSeparator>
                 <RightColumn
                   dangerouslySetInnerHTML={{
-                    __html: columns[1]
+                    __html: page.columns[1]
                   }}
                 />
               </Columns>
