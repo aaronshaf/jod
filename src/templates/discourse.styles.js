@@ -155,15 +155,11 @@ export const Columns = styled.div`
 export const column = css`
   flex: 1;
   text-align: justify;
-  @media (max-width: 740px) {
-    // &.left::after {
-    //   content: "";
-    // }
-  }
+  border-right: 0px none;
   @media (min-width: 741px) {
     padding-left: 15px;
+    padding-right: 15px;
   }
-  border-right: 0px none;
 `;
 
 export const LeftColumn = styled.div`
