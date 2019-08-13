@@ -182,7 +182,11 @@ export default ({
             </SpeakerImage>
           </Flex>
         </FirstPage>
-        {discourse.content.map(([page], index) => {
+        {discourse.content.map((page, index) => {
+          const columns = page[0];
+          if (columns == null) {
+            return null;
+          }
           const pageNumber = discourse.start_page + index;
           return (
             <Page key={index} id={pageNumber}>
@@ -217,7 +221,7 @@ export default ({
               <Columns>
                 <LeftColumn
                   dangerouslySetInnerHTML={{
-                    __html: page[0]
+                    __html: columns[0]
                   }}
                 />
                 <ColumnSeparator>
@@ -225,7 +229,7 @@ export default ({
                 </ColumnSeparator>
                 <RightColumn
                   dangerouslySetInnerHTML={{
-                    __html: page[1]
+                    __html: columns[1]
                   }}
                 />
               </Columns>
