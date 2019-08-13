@@ -4,7 +4,6 @@ import SEO from "../components/seo";
 import css from "@emotion/css/macro";
 
 const NotFoundPage = props => {
-  console.debug({ props });
   const volumeNumbers = [...Array(26).keys()].map(x => x + 1);
   return (
     <Layout volumeNumbers={volumeNumbers}>

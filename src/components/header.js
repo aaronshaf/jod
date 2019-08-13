@@ -25,7 +25,6 @@ export default function Header(props) {
   }, []);
 
   const handleScroll = event => {
-    // console.debug(event.target.scrollLeft);
     setScrollState(event.target.scrollLeft);
   };
 

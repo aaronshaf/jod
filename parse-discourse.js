@@ -93,8 +93,12 @@ const parseDiscourseContent = content => {
   });
 
   const pages = [];
-  $(".sorted-pages .page").each(function(i, elem) {
-    pages.push($(this).html());
+  $(".sorted-pages .page").each(function(_i, _elem) {
+    const columns = [];
+    $(".column").each(function(_j, _columnElem) {
+      columns.push($(this).html());
+    });
+    pages.push(columns);
   });
   return pages; // $.html(".sorted-pages");
 };

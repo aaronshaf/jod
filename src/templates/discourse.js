@@ -7,9 +7,11 @@ import Img from "gatsby-image";
 import {
   Citation,
   CitationButton,
-  CitationText,
   CitationCopyNotice,
+  CitationText,
+  ColumnIcon,
   Columns,
+  ColumnSeparator,
   CurrentDiscourse,
   Discourse,
   DiscourseNav,
@@ -17,12 +19,14 @@ import {
   EvenPageNumber,
   FirstPage,
   Flex,
+  LeftColumn,
   NextDiscourse,
   OddPageNumber,
   Page,
   PageHead,
   PageHeader,
   PreviousDiscourse,
+  RightColumn,
   Reporter,
   SpeakerImage,
   Subtitle,
@@ -34,6 +38,7 @@ import {
 } from "./discourse.styles.js";
 import previousSvg from "../images/previous.svg";
 import nextSvg from "../images/next.svg";
+import columnSvg from "../images/column.svg";
 
 export default ({
   data,
@@ -177,7 +182,7 @@ export default ({
             </SpeakerImage>
           </Flex>
         </FirstPage>
-        {discourse.content.map((page, index) => {
+        {discourse.content.map((columns, index) => {
           const pageNumber = discourse.start_page + index;
           return (
             <Page key={index} id={pageNumber}>
@@ -209,11 +214,21 @@ export default ({
                   )}
                 </OddPageNumber>
               </PageHead>
-              <Columns
-                dangerouslySetInnerHTML={{
-                  __html: page
-                }}
-              />
+              <Columns>
+                <LeftColumn
+                  dangerouslySetInnerHTML={{
+                    __html: columns[0]
+                  }}
+                />
+                <ColumnSeparator>
+                  <ColumnIcon src={columnSvg} />
+                </ColumnSeparator>
+                <RightColumn
+                  dangerouslySetInnerHTML={{
+                    __html: columns[1]
+                  }}
+                />
+              </Columns>
             </Page>
           );
         })}

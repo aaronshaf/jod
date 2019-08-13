@@ -137,31 +137,6 @@ export const FirstPage = styled.div`
 
 export const Page = styled.div`
   ${pageCss}
-
-  & .column {
-    flex: 1;
-    text-align: justify;
-  }
-
-  & .column.left {
-    padding-left: 0px;
-    @media (min-width: 641px) {
-      padding-right: 15px;
-      border-right: 1px solid #ddd;
-    }
-  }
-
-  & .column {
-    @media (max-width: 640px) {
-      &.left::after {
-        content: "";
-      }
-    }
-    @media (min-width: 641px) {
-      padding-left: 15px;
-    }
-    border-right: 0px none;
-  }
 `;
 
 export const Columns = styled.div`
@@ -175,6 +150,51 @@ export const Columns = styled.div`
   & p:not(.continued) {
     text-indent: 1.8em;
   }
+`;
+
+export const column = css`
+  flex: 1;
+  text-align: justify;
+  @media (max-width: 640px) {
+    // &.left::after {
+    //   content: "";
+    // }
+  }
+  @media (min-width: 641px) {
+    padding-left: 15px;
+  }
+  border-right: 0px none;
+`;
+
+export const LeftColumn = styled.div`
+  ${column};
+  padding-left: 0px;
+  @media (min-width: 641px) {
+    padding-right: 15px;
+    border-right: 1px solid #ddd;
+  }
+`;
+
+export const RightColumn = styled.div`
+  ${column};
+`;
+
+export const ColumnSeparator = styled.div`
+  @media (max-width: 640px) {
+    text-align: center;
+    // padding-top: 6px;
+    // padding-bottom: 6px;
+  }
+  @media (min-width: 641px) {
+    display: none;
+  }
+  height: 30px;
+`;
+
+export const ColumnIcon = styled.img`
+  width: 32px;
+  height: 30px;
+  line-height: 0;
 `;
 
 export const PageHead = styled.div`
