@@ -142,9 +142,15 @@ export default ({
         {showCitation && (
           <Citation>
             <CitationText ref={citationSpanRef}>
-              {discourse.speaker}, "{discourse.page_header}",{" "}
-              <em>Journal of Discourses</em>, vol. {discourse.volume}, pp.{" "}
-              {discourse.start_page}-{discourse.end_page}, {formattedDate}.
+              {discourse.speaker}, "
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: discourse.page_header
+                }}
+              />
+              ", <em>Journal of Discourses</em>, vol. {discourse.volume}, pp.{" "}
+              {discourse.start_page}-{discourse.end_page}
+              {formattedDate && <>, {formattedDate}</>}.
             </CitationText>
             {copySuccess && <CitationCopyNotice>(copied)</CitationCopyNotice>}
           </Citation>
