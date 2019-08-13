@@ -106,27 +106,21 @@ const Title = styled.div`
 `;
 
 export default ({
-  pageContext: {
-    volumeNumbers,
-    volumeNumber,
-    discourses,
-    nextDiscourse,
-    previousDiscourse
-  }
+  pageContext: { volumeNumbers, volumeNumber, discourses }
 }) => {
   const nextUrl =
-    nextDiscourse &&
-    `https://jod.mrm.org/${nextDiscourse.volume}/${nextDiscourse.start_page}`;
+    volumeNumber < 26 && `https://jod.mrm.org/${volumeNumber + 1}`;
 
   const previousUrl =
-    previousDiscourse &&
-    `https://jod.mrm.org/${previousDiscourse.volume}/${previousDiscourse.start_page}`;
+    volumeNumber > 1 && `https://jod.mrm.org/${volumeNumber - 1}`;
 
   return (
     <Layout volumeNumbers={volumeNumbers} volumeNumber={volumeNumber}>
       <SEO
         title={`Journal of Discourses, vol. ${volumeNumber}`}
         canonicalUrl={`https://jod.mrm.org/${volumeNumber}`}
+        nextUrl={nextUrl}
+        previousUrl={previousUrl}
       />
       <VolumeWrapper>
         <Volume>

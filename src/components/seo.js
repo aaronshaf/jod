@@ -16,6 +16,7 @@ function SEO({
   meta,
   title,
   canonicalUrl,
+  parentUrl,
   previousUrl,
   nextUrl
 }) {
@@ -78,6 +79,7 @@ function SEO({
       ].concat(meta)}
     >
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+      {parentUrl && <link rel="parent" href={parentUrl} />}
       {previousUrl && <link rel="prev" href={previousUrl} />}
       {nextUrl && <link rel="next" href={nextUrl} />}
     </Helmet>

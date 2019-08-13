@@ -87,6 +87,8 @@ export default ({
   const formattedDate =
     discourse.date && event && event.toLocaleDateString("default", dateOptions);
 
+  const parentUrl = `https://jod.mrm.org/${discourse.volume}`;
+
   const nextUrl =
     nextDiscourse &&
     `https://jod.mrm.org/${nextDiscourse.volume}/${nextDiscourse.start_page}`;
@@ -101,6 +103,7 @@ export default ({
         title={seoTitle}
         description={prepareTitle(discourse.subtitle)}
         canonicalUrl={`https://jod.mrm.org/${volumeNumber}/${discourse.start_page}`}
+        parentUrl={parentUrl}
         nextUrl={nextUrl}
         previousUrl={previousUrl}
       />
