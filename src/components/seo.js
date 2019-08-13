@@ -10,7 +10,15 @@ import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 
-function SEO({ description, lang, meta, title, canonicalUrl }) {
+function SEO({
+  description,
+  lang,
+  meta,
+  title,
+  canonicalUrl,
+  previousDiscourseUrl,
+  nextDiscourseUrl
+}) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -70,6 +78,8 @@ function SEO({ description, lang, meta, title, canonicalUrl }) {
       ].concat(meta)}
     >
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+      {previousDiscourseUrl && <link rel="prev" href={previousDiscourseUrl} />}
+      {nextDiscourseUrl && <link rel="next" href={nextDiscourseUrl} />}
     </Helmet>
   );
 }
