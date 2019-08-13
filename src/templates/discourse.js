@@ -87,14 +87,22 @@ export default ({
   const formattedDate =
     discourse.date && event && event.toLocaleDateString("default", dateOptions);
 
+  const nextUrl =
+    nextDiscourse &&
+    `https://jod.mrm.org/${nextDiscourse.volume}/${nextDiscourse.start_page}`;
+
+  const previousUrl =
+    previousDiscourse &&
+    `https://jod.mrm.org/${previousDiscourse.volume}/${previousDiscourse.start_page}`;
+
   return (
     <Layout volumeNumbers={volumeNumbers} volumeNumber={volumeNumber}>
       <SEO
         title={seoTitle}
         description={prepareTitle(discourse.subtitle)}
         canonicalUrl={`https://jod.mrm.org/${volumeNumber}/${discourse.start_page}`}
-        nextDiscourseUrl={`https://jod.mrm.org/${nextDiscourse.volume}/${nextDiscourse.start_page}`}
-        previousDiscourseUrl={`https://jod.mrm.org/${previousDiscourse.volume}/${previousDiscourse.start_page}`}
+        nextUrl={nextUrl}
+        previousUrl={previousUrl}
       />
       <Discourse>
         <DiscourseNav>

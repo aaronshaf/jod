@@ -16,8 +16,8 @@ function SEO({
   meta,
   title,
   canonicalUrl,
-  previousDiscourseUrl,
-  nextDiscourseUrl
+  previousUrl,
+  nextUrl
 }) {
   const { site } = useStaticQuery(
     graphql`
@@ -78,8 +78,8 @@ function SEO({
       ].concat(meta)}
     >
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
-      {previousDiscourseUrl && <link rel="prev" href={previousDiscourseUrl} />}
-      {nextDiscourseUrl && <link rel="next" href={nextDiscourseUrl} />}
+      {previousUrl && <link rel="prev" href={previousUrl} />}
+      {nextUrl && <link rel="next" href={nextUrl} />}
     </Helmet>
   );
 }
