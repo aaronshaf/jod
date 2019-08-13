@@ -29,7 +29,7 @@ const volumeNumbers = Array.apply(null, { length: VOLUME_COUNT })
 
 const allDiscourses = JSON.parse(
   fs.readFileSync(require.resolve("./data/jod.json"))
-).slice(0, process.env.NODE_ENV === "development" ? 100 : undefined);
+).slice(0, process.env.NODE_ENV === "development" ? 50 : undefined);
 
 const discourseSets = volumeNumbers.map(volumeNumber => {
   return allDiscourses.filter(discourse => discourse.volume === volumeNumber);

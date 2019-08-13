@@ -182,8 +182,8 @@ export const RightColumn = styled.div`
 export const ColumnSeparator = styled.div`
   @media (max-width: 640px) {
     text-align: center;
-    padding-top: 6px;
-    padding-bottom: 4px;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
   @media (min-width: 641px) {
     display: none;
