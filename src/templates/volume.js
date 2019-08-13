@@ -106,8 +106,22 @@ const Title = styled.div`
 `;
 
 export default ({
-  pageContext: { volumeNumbers, volumeNumber, discourses }
+  pageContext: {
+    volumeNumbers,
+    volumeNumber,
+    discourses,
+    nextDiscourse,
+    previousDiscourse
+  }
 }) => {
+  const nextUrl =
+    nextDiscourse &&
+    `https://jod.mrm.org/${nextDiscourse.volume}/${nextDiscourse.start_page}`;
+
+  const previousUrl =
+    previousDiscourse &&
+    `https://jod.mrm.org/${previousDiscourse.volume}/${previousDiscourse.start_page}`;
+
   return (
     <Layout volumeNumbers={volumeNumbers} volumeNumber={volumeNumber}>
       <SEO
