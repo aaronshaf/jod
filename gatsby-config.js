@@ -19,7 +19,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
+        name: `Journal of Discourses`,
         short_name: `JoD`,
         start_url: `/`,
         background_color: `#122E51`,
