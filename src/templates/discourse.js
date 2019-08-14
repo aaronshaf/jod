@@ -39,6 +39,11 @@ import {
 import previousSvg from "../images/previous.svg";
 import nextSvg from "../images/next.svg";
 import columnSvg from "../images/column.svg";
+import Entities from "html-entities";
+
+const Html4Entities = Entities.Html4Entities;
+
+const entities = new Html4Entities();
 
 export default ({
   data,
@@ -65,11 +70,11 @@ export default ({
     }
   }, [showCitation, citationSpanRef.current]);
 
-  const seoTitle = `${prepareTitle(discourse.page_header)}, by ${
-    discourse.speaker
-  } (Journal of Discourses ${discourse.volume}:${discourse.start_page}-${
-    discourse.end_page
-  })`;
+  const seoTitle = `${entities.decode(
+    prepareTitle(discourse.page_header)
+  )}, by ${discourse.speaker} (Journal of Discourses ${discourse.volume}:${
+    discourse.start_page
+  }-${discourse.end_page})`;
 
   let event;
   if (discourse.date) {
