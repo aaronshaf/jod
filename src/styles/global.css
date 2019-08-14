@@ -1,5 +1,6 @@
 body {
-  font-family: "Trebuchet MS", Arial, Helvetica;
+  font-family: "Lexend Deca", "Trebuchet MS", Arial, Helvetica;
+  font-display: fallback;
   background-color: #f0eee1;
   margin: 0;
 }

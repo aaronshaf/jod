@@ -78,6 +78,10 @@ function SEO({
         }
       ].concat(meta)}
     >
+      <link
+        href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=fallback"
+        rel="stylesheet"
+      />
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
       {parentUrl && <link rel="parent" href={parentUrl} />}
       {previousUrl && <link rel="prev" href={previousUrl} />}
