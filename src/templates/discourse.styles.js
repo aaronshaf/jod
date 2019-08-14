@@ -68,7 +68,6 @@ export const DiscourseNav = styled.nav`
 export const PreviousDiscourse = styled.div`
   white-space: nowrap;
   @media (max-width: 960px) {
-    width: 20px;
     height: 20px;
     padding-left: 12px;
     & img {
@@ -101,7 +100,7 @@ export const NextDiscourse = styled.div`
   flex-direction: row-reverse;
   white-space: nowrap;
   @media (max-width: 960px) {
-    width: 20;
+    width: 20px;
     padding-right: 12px;
     & img {
       margin-left: 8px;
