@@ -113,8 +113,8 @@ export const NextDiscourse = styled.div`
 
 export const DiscourseTitle = styled.h2`
   padding: 0;
-  margin-left: 1.4em;
-  text-indent: -1.4em;
+  margin-left: 0.8em;
+  text-indent: -0.8em;
   margin-bottom: 16px;
   margin-top: 6px;
   line-height: 1.15em;

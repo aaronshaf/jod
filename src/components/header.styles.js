@@ -12,6 +12,7 @@ export const SiteTitle = styled.h1`
   margin: auto;
   font-variant: small-caps;
   font-family: Times New Roman, serif;
+  letter-spacing: 1px;
   font-size: 2.2rem;
   font-weight: lighter;
   @media (max-width: 640px) {
