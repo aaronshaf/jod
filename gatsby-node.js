@@ -94,5 +94,21 @@ exports.createPages = async ({ actions: { createPage } }) => {
         nextDiscourse
       }
     });
+
+    createPage({
+      path: `/${discourse.volume}/${discourse.start_page}/amp/`,
+      component: require.resolve("./src/templates/discourse.amp.js"),
+      context: {
+        volumeNumber: discourse.volume,
+        volumeNumbers,
+        mug: `speakers/${slugify(discourse.speaker)}.jpg`,
+        discourse: {
+          ...discourse,
+          content: parseDiscourseContent(discourse.content)
+        },
+        previousDiscourse,
+        nextDiscourse
+      }
+    });
   }
 };

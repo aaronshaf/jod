@@ -43,6 +43,31 @@ module.exports = {
         forceSSL: true
       }
     },
-    "gatsby-plugin-sitemap"
+    "gatsby-plugin-sitemap",
+    {
+      resolve: `gatsby-plugin-amp`,
+      options: {
+        // analytics: {
+        //   type: 'gtag',
+        //   dataCredentials: 'include',
+        //   config: {
+        //     vars: {
+        //       gtag_id: <GA_TRACKING_ID>,
+        //       config: {
+        //         <GA_TRACKING_ID>: {
+        //           page_location: '{{pathname}}'
+        //         },
+        //       },
+        //     },
+        //   },
+        // },
+        canonicalBaseUrl: "https://jod.mrm.org/",
+        components: ["amp-form"],
+        excludedPaths: ["/404*", "/"],
+        pathIdentifier: "/amp/",
+        relAmpHtmlPattern: "{{canonicalBaseUrl}}{{pathname}}{{pathIdentifier}}",
+        useAmpClientIdApi: true
+      }
+    }
   ]
 };
