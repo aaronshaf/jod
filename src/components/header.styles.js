@@ -17,7 +17,7 @@ export const HeaderInner = styled.div`
 
 export const SearchForm = styled.form`
   background-color: white;
-  border-radius: 0px;
+  border-radius: 3px;
   overflow: hidden;
   @media (max-width: 640px) {
     display: none;
@@ -30,7 +30,7 @@ export const SearchQuery = styled.input`
   outline: 0;
   font-size: 1rem;
   width: 200px;
-  padding: 6px;
+  padding: 6px 8px;
 `;
 
 export const SearchButton = styled.button`
@@ -41,7 +41,7 @@ export const SearchButton = styled.button`
 `;
 
 export const SearchButtonIcon = styled.img`
-  width: 26px;
+  width: 28px;
   height: 26px;
   margin: 2px;
 `;
