@@ -49,7 +49,12 @@ export default function HeaderComponent(props) {
             <SearchForm action="http://www.google.com/search" method="get">
               <input type="hidden" name="domains" value="jod.mrm.org" />
               <input type="hidden" name="sitesearch" value="jod.mrm.org" />
-              <SearchQuery type="text" name="q" className="query" />
+              <SearchQuery
+                type="text"
+                name="q"
+                placeholder="Search"
+                className="query"
+              />
               <SearchButton className="go" type="submit" title="Search">
                 <SearchButtonIcon src={searchSvg} />
               </SearchButton>
