@@ -23,6 +23,7 @@ export const SearchForm = styled.form`
     display: none;
   }
   display: flex;
+  margin-left: 12px;
 `;
 
 export const SearchQuery = styled.input`
