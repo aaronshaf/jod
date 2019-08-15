@@ -189,7 +189,7 @@ export default ({
             <Reporter>
               Reported by {prepareTitle(discourse.reported_by)}.
             </Reporter>
-            <SpeakerImage>
+            {/* <SpeakerImage>
               {data.mug && (
                 <Img
                   fixed={data.mug.childImageSharp.fixed}
@@ -197,7 +197,7 @@ export default ({
                   objectPosition="50% 50%"
                 />
               )}
-            </SpeakerImage>
+            </SpeakerImage> */}
           </Flex>
         </FirstPage>
         {discourse.content.map((page, index) => {
