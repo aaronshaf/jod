@@ -45,6 +45,7 @@ export const SearchButtonIcon = styled.img`
   width: 28px;
   height: 26px;
   margin: 2px;
+  margin-top: 4px;
 `;
 
 export const SiteTitleWrapper = styled.div`
