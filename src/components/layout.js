@@ -37,6 +37,7 @@ const Layout = ({ children, volumeNumbers, volumeNumber }) => {
                   `"Lexend Deca", `}
                 "Trebuchet MS",
               Arial, Helvetica;
+            font-display: optional;
             background-color: #f0eee1;
             margin: 0;
           }

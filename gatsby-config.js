@@ -2,7 +2,8 @@ module.exports = {
   siteMetadata: {
     title: `Journal of Discourses`,
     description: `A 26-volume collection of public sermons by Mormon leaders from 1851-1886`,
-    author: `@mrmdotorg`
+    author: `@mrmdotorg`,
+    siteUrl: `https://jod.mrm.org`
   },
   plugins: [
     `gatsby-plugin-emotion`,
@@ -41,6 +42,7 @@ module.exports = {
         pageTransitionDelay: 500,
         forceSSL: true
       }
-    }
+    },
+    "gatsby-plugin-sitemap"
   ]
 };
