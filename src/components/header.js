@@ -46,7 +46,7 @@ export default function HeaderComponent(props) {
             <Subheading>{siteDescription}</Subheading>
           </SiteTitleWrapper>
           <div>
-            <SearchForm action="http://www.google.com/search" method="get">
+            <SearchForm action="https://www.google.com/search" method="get">
               <input type="hidden" name="domains" value="jod.mrm.org" />
               <input type="hidden" name="sitesearch" value="jod.mrm.org" />
               <SearchQuery
