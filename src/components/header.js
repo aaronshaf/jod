@@ -5,6 +5,7 @@ import {
   HeaderInner,
   SearchForm,
   SearchButton,
+  SearchButtonIcon,
   SearchQuery,
   SiteTitle,
   SiteTitleLink,
@@ -14,6 +15,7 @@ import {
   VolumeNumbers,
   VolumeNumbersWrapper
 } from "./header.styles.js";
+import searchSvg from "../images/search.svg";
 
 export default function HeaderComponent(props) {
   const { volumeNumbers, volumeNumber, siteTitle, siteDescription } = props;
@@ -49,7 +51,7 @@ export default function HeaderComponent(props) {
               <input type="hidden" name="sitesearch" value="jod.mrm.org" />
               <SearchQuery type="text" name="q" className="query" />
               <SearchButton className="go" type="submit" title="Search">
-                Search
+                <SearchButtonIcon src={searchSvg} />
               </SearchButton>
             </SearchForm>
           </div>

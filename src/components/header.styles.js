@@ -22,6 +22,7 @@ export const SearchForm = styled.form`
   @media (max-width: 640px) {
     display: none;
   }
+  display: flex;
 `;
 
 export const SearchQuery = styled.input`
@@ -33,11 +34,16 @@ export const SearchQuery = styled.input`
 `;
 
 export const SearchButton = styled.button`
-  font-size: 1rem;
-  padding: 6px;
   background-color: #f1ae46;
   color: white;
   border: 0 none;
+  padding: 0;
+`;
+
+export const SearchButtonIcon = styled.img`
+  width: 28px;
+  height: 28px;
+  margin: 2px;
 `;
 
 export const SiteTitleWrapper = styled.div`
