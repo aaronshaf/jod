@@ -23,20 +23,12 @@ const Layout = ({ children, volumeNumbers, volumeNumber }) => {
     }
   `);
 
-  React.useLayoutEffect(() => {
-    localStorage.probablyHasFont = "1";
-  });
-
   return (
     <>
       <Global
         styles={css`
           body {
-            font-family: ${typeof window !== "undefined" &&
-                  window.localStorage.probablyHasFont === "1" &&
-                  `"Lexend Deca", `}
-                "Trebuchet MS",
-              Arial, Helvetica;
+            font-family: "Lexend Deca", "Trebuchet MS", Arial, Helvetica;
             font-display: optional;
             background-color: #f0eee1;
             margin: 0;
