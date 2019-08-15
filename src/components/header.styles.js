@@ -41,8 +41,8 @@ export const SearchButton = styled.button`
 `;
 
 export const SearchButtonIcon = styled.img`
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   margin: 2px;
 `;
 
