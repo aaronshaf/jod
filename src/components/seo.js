@@ -79,7 +79,7 @@ function SEO({
       ].concat(meta)}
     >
       <link
-        href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap"
+        href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=optional"
         rel="stylesheet"
       />
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
