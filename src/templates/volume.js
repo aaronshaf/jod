@@ -65,7 +65,7 @@ const DiscourseListItem = styled.div`
 `;
 
 const Pages = styled.div`
-  width: 80px;
+  width: 90px;
   padding: 4px 8px;
   @media (max-width: 640px) {
     order: 4;
