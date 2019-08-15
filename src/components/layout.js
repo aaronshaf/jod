@@ -32,8 +32,8 @@ const Layout = ({ children, volumeNumbers, volumeNumber }) => {
       <Global
         styles={css`
           body {
-            font-family: ${localStorage &&
-                  localStorage.probablyHasFont === "1" &&
+            font-family: ${typeof window !== "undefined" &&
+                  window.localStorage.probablyHasFont === "1" &&
                   `"Lexend Deca", `}
                 "Trebuchet MS",
               Arial, Helvetica;
