@@ -135,13 +135,6 @@ export default ({
           </PreviousDiscourse>
           <CurrentDiscourse>
             vol. {volumeNumber}, pp. {discourse.start_page}-{discourse.end_page}
-            <CitationButton onClick={() => setShowCitation(!showCitation)}>
-              <Img
-                fixed={data.citationImage.childImageSharp.fixed}
-                objectFit="cover"
-                objectPosition="50% 50%"
-              />
-            </CitationButton>
           </CurrentDiscourse>
           <NextDiscourse>
             {nextDiscourse && (

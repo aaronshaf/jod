@@ -43,7 +43,8 @@ module.exports = {
         forceSSL: true
       }
     },
-    "gatsby-plugin-sitemap",
+    "gatsby-plugin-sitemap"
+    /*
     {
       resolve: `gatsby-plugin-amp`,
       options: {
@@ -69,5 +70,6 @@ module.exports = {
         useAmpClientIdApi: true
       }
     }
+    */
   ]
 };
