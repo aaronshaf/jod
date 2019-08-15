@@ -1,6 +1,11 @@
 import React, { useLayoutEffect, useRef } from "react";
 import { useLocalStorageState } from "react-storage-hooks";
 import {
+  Header,
+  HeaderInner,
+  SearchForm,
+  SearchButton,
+  SearchQuery,
   SiteTitle,
   SiteTitleLink,
   SiteTitleWrapper,
@@ -10,7 +15,7 @@ import {
   VolumeNumbersWrapper
 } from "./header.styles.js";
 
-export default function Header(props) {
+export default function HeaderComponent(props) {
   const { volumeNumbers, volumeNumber, siteTitle, siteDescription } = props;
 
   const [scrollLeft, setScrollState] = useLocalStorageState(
@@ -29,13 +34,27 @@ export default function Header(props) {
   };
 
   return (
-    <header>
-      <SiteTitleWrapper>
-        <SiteTitle>
-          <SiteTitleLink to="/">{siteTitle}</SiteTitleLink>
-        </SiteTitle>
-        <Subheading>{siteDescription}</Subheading>
-      </SiteTitleWrapper>
+    <>
+      <Header>
+        <HeaderInner>
+          <SiteTitleWrapper>
+            <SiteTitle>
+              <SiteTitleLink to="/">{siteTitle}</SiteTitleLink>
+            </SiteTitle>
+            <Subheading>{siteDescription}</Subheading>
+          </SiteTitleWrapper>
+          <div>
+            <SearchForm action="http://www.google.com/search" method="get">
+              <input type="hidden" name="domains" value="jod.mrm.org" />
+              <input type="hidden" name="sitesearch" value="jod.mrm.org" />
+              <SearchQuery type="text" name="q" className="query" />
+              <SearchButton className="go" type="submit" title="Search">
+                Search
+              </SearchButton>
+            </SearchForm>
+          </div>
+        </HeaderInner>
+      </Header>
       {volumeNumbers && (
         <VolumeNumbersWrapper ref={wrapperEl} onScroll={handleScroll}>
           <VolumeNumbers>
@@ -60,6 +79,6 @@ export default function Header(props) {
           </VolumeNumbers>
         </VolumeNumbersWrapper>
       )}
-    </header>
+    </>
   );
 }

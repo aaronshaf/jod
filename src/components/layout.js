@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
 import Header from "./header";
 import styled from "@emotion/styled";
+import { Global, css } from "@emotion/core";
 
 const Footer = styled.footer`
   text-align: center;
@@ -22,8 +23,28 @@ const Layout = ({ children, volumeNumbers, volumeNumber }) => {
     }
   `);
 
+  React.useLayoutEffect(() => {
+    localStorage.probablyHasFont = "1";
+  });
+
   return (
     <>
+      <Global
+        styles={css`
+          body {
+            font-family: ${localStorage.probablyHasFont === "1" &&
+                  `"Lexend Deca", `}
+                "Trebuchet MS",
+              Arial, Helvetica;
+            background-color: #f0eee1;
+            margin: 0;
+          }
+
+          a {
+            color: #0066cc;
+          }
+        `}
+      />
       <Header
         volumeNumbers={volumeNumbers}
         volumeNumber={volumeNumber}

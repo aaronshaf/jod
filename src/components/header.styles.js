@@ -1,9 +1,47 @@
 import { Link } from "gatsby";
 import styled from "@emotion/styled";
 
-export const SiteTitleWrapper = styled.div`
+export const Header = styled.header`
   background-color: #052f54;
   padding: 24px;
+`;
+
+export const HeaderInner = styled.div`
+  display: flex;
+  @media (min-width: 960px) {
+    width: 960px;
+    margin: auto;
+  }
+  align-items: center;
+`;
+
+export const SearchForm = styled.form`
+  background-color: white;
+  border-radius: 0px;
+  overflow: hidden;
+  @media (max-width: 640px) {
+    display: none;
+  }
+`;
+
+export const SearchQuery = styled.input`
+  border: 0 none;
+  outline: 0;
+  font-size: 1rem;
+  width: 200px;
+  padding: 6px;
+`;
+
+export const SearchButton = styled.button`
+  font-size: 1rem;
+  padding: 6px;
+  background-color: #f1ae46;
+  color: white;
+  border: 0 none;
+`;
+
+export const SiteTitleWrapper = styled.div`
+  flex: 1;
 `;
 
 export const SiteTitle = styled.h1`
@@ -38,6 +76,7 @@ export const Subheading = styled.div`
 `;
 
 export const VolumeNumbersWrapper = styled.div`
+  background-color: #f0eee1;
   max-width: 100%;
   overflow: auto;
   border-top: 1px solid #fefdfa;
