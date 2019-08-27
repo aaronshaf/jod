@@ -1,6 +1,7 @@
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { Link } from "gatsby";
+import { color, typography, space, layout } from "styled-system";
 
 export const TraversalLink = styled(Link)`
   display: flex;
@@ -16,27 +17,17 @@ export const TraversalLinkText = styled.span`
   }
 `;
 
-export const TraversalArrow = styled.span`
-  display: inline;
-  margin-left: 4px;
-  margin-right: 4px;
-`;
-
 export const TraversalLinkImage = css`
   width: 20px;
   height: 20px;
   display: inline-block;
-  @media (max-width: 640px) {
-  }
-  @media (min-width: 641px) {
-    // display: none;
-  }
 `;
 
 export const TraversalLinkImageStart = styled.img`
   ${TraversalLinkImage};
-  margin-right: 6px;
+  ${space};
 `;
+TraversalLinkImageStart.defaultProps = { marginRight: 1 };
 
 export const TraversalLinkImageEnd = styled.img`
   ${TraversalLinkImage};
@@ -44,26 +35,29 @@ export const TraversalLinkImageEnd = styled.img`
 `;
 
 export const SubtleLink = styled(Link)`
-  color: black;
+  ${color};
   text-decoration: none;
   &:hover {
     text-decoration: underline;
   }
 `;
+SubtleLink.defaultProps = { color: "black" };
 
 export const Discourse = styled.article`
+  ${typography};
   max-width: 960px;
   margin: 0 auto;
-  font-size: 0.92rem;
   line-height: 1.45em;
   margin-top: 14px;
 `;
+Discourse.defaultProps = { fontSize: 1 };
 
 export const DiscourseNav = styled.nav`
+  ${typography};
   display: flex;
-  font-size: 1.06rem;
   margin-bottom: 16px;
 `;
+DiscourseNav.defaultProps = { fontSize: 3 };
 
 export const PreviousDiscourse = styled.div`
   white-space: nowrap;
@@ -175,16 +169,16 @@ export const RightColumn = styled.div`
 `;
 
 export const ColumnSeparator = styled.div`
-  @media (max-width: 740px) {
-    text-align: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
-  }
-  @media (min-width: 741px) {
-    display: none;
-  }
+  ${space};
+  ${layout};
+  text-align: center;
   height: 30px;
 `;
+ColumnSeparator.defaultProps = {
+  paddingBottom: 1,
+  paddingTop: 1,
+  display: ["block", "none"]
+};
 
 export const ColumnIcon = styled.img`
   width: 32px;
@@ -193,9 +187,10 @@ export const ColumnIcon = styled.img`
 `;
 
 export const PageHead = styled.div`
+  ${space};
   display: flex;
-  margin-bottom: 16px;
 `;
+PageHead.defaultProps = { marginBottom: 3 };
 
 export const PageHeader = styled.div`
   flex: 1;
@@ -217,22 +212,20 @@ export const Subtitle = styled.div``;
 export const Reporter = styled.div``;
 
 export const SpeakerImage = styled.div`
+  ${space};
   display: flex;
   justify-content: center;
-  margin-top: 16px;
 `;
+SpeakerImage.defaultProps = { marginTop: 3 };
 
 export const Flex = styled.div`
   flex: 1;
 `;
 
-export const Citation = styled.div`
-  ${pageCss}
-  padding-bottom: 20px;
-`;
+export const Citation = styled.div(pageCss, space);
+Citation.defaultProps = { padding: 3 };
 
-export const CitationText = styled.span``;
+export const CitationText = styled.span();
 
-export const CitationCopyNotice = styled.span`
-  margin-left: 6px;
-`;
+export const CitationCopyNotice = styled.span(space);
+CitationCopyNotice.defaultProps = { marginLeft: 2 };

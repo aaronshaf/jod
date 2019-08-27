@@ -1,5 +1,6 @@
 import { Link } from "gatsby";
 import styled from "@emotion/styled";
+import { typography } from "styled-system";
 
 export const Header = styled.header`
   background-color: #052f54;
@@ -27,12 +28,13 @@ export const SearchForm = styled.form`
 `;
 
 export const SearchQuery = styled.input`
+  ${typography};
   border: 0 none;
   outline: 0;
-  font-size: 1rem;
   width: 200px;
   padding: 6px 8px;
 `;
+SearchQuery.defaultProps = { fontSize: 2 };
 
 export const SearchButton = styled.button`
   background-color: #f1ae46;
@@ -53,18 +55,16 @@ export const SiteTitleWrapper = styled.div`
 `;
 
 export const SiteTitle = styled.h1`
+  ${typography};
   color: white;
   max-width: 960px;
   margin: auto;
   font-variant: small-caps;
   font-family: Times New Roman, serif;
   letter-spacing: 1px;
-  font-size: 2.2rem;
   font-weight: lighter;
-  @media (max-width: 640px) {
-    font-size: 1.8rem;
-  }
 `;
+SiteTitle.defaultProps = { fontSize: [4, 5] };
 
 export const SiteTitleLink = styled(Link)`
   color: white;
@@ -72,16 +72,12 @@ export const SiteTitleLink = styled(Link)`
 `;
 
 export const Subheading = styled.div`
+  ${typography};
   color: #b7c5d7;
   max-width: 960px;
   margin: auto;
-  @media (max-width: 640px) {
-    font-size: 0.8rem;
-  }
-  @media (min-width: 641px) {
-    font-size: 0.9rem;
-  }
 `;
+Subheading.defaultProps = { fontSize: [0, 1] };
 
 export const VolumeNumbersWrapper = styled.div`
   background-color: #f0eee1;

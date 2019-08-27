@@ -4,12 +4,14 @@ import { useStaticQuery, graphql } from "gatsby";
 import Header from "./header";
 import styled from "@emotion/styled";
 import { Global, css } from "@emotion/core";
+import { typography } from "styled-system";
 
 const Footer = styled.footer`
+  ${typography};
   text-align: center;
-  font-size: 0.86rem;
   margin: 22px;
 `;
+Footer.defaultProps = { fontSize: 1 };
 
 const Layout = ({ children, volumeNumbers, volumeNumber }) => {
   const data = useStaticQuery(graphql`
