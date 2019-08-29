@@ -5,6 +5,9 @@ import Header from "./header";
 import styled from "@emotion/styled";
 import { Global, css } from "@emotion/core";
 import { typography } from "styled-system";
+import { ThemeProvider } from "emotion-theming";
+import theme from "../theme.js";
+import ss_css from "@styled-system/css";
 
 const Footer = styled.footer`
   ${typography};
@@ -26,20 +29,20 @@ const Layout = ({ children, volumeNumbers, volumeNumber }) => {
   `);
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Global
-        styles={css`
-          body {
-            font-family: "Lexend Deca", "Trebuchet MS", Arial, Helvetica;
-            font-display: optional;
-            background-color: #f0eee1;
-            margin: 0;
+        styles={ss_css({
+          body: {
+            bg: "whites.1",
+            padding: 0,
+            margin: 0,
+            fontFamily: '"Lexend Deca", "Trebuchet MS", Arial, Helvetica',
+            fontDisplay: "optional"
+          },
+          a: {
+            color: "#0066cc"
           }
-
-          a {
-            color: #0066cc;
-          }
-        `}
+        })}
       />
       <Header
         volumeNumbers={volumeNumbers}
@@ -54,7 +57,7 @@ const Layout = ({ children, volumeNumbers, volumeNumber }) => {
           <a href="http://www.mrm.org">Mormonism Research Ministry</a>
         </Footer>
       </div>
-    </>
+    </ThemeProvider>
   );
 };
 
