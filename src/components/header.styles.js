@@ -16,32 +16,37 @@ export const HeaderInner = styled.div(
   align-items: center;
 `,
   themeKeys({
-    width: [null, 0]
+    width: [null, null, 1]
   })
 );
 
-export const SearchForm = styled.form`
-  background-color: white;
+export const SearchForm = styled.form(
+  `
   border-radius: 3px;
   overflow: hidden;
-  @media (max-width: 640px) {
-    display: none;
-  }
-  display: flex;
-  margin-left: 12px;
-`;
+`,
+  themeKeys({
+    marginLeft: 5,
+    display: ["none", "flex"]
+  })
+);
 
-export const SearchQuery = styled.input`
-  font-size: ${t("fontSizes.2")};
+export const SearchQuery = styled.input(
+  `
   border: 0 none;
   outline: 0;
   width: 200px;
-  padding: ${t("space.2")} ${t("space.3")};
-`;
+`,
+  themeKeys({
+    fontSize: 2,
+    padding: [2, 3]
+    // marginLeft: 5,
+    // display: ["none", "flex"]
+  })
+);
 
 export const SearchButton = styled.button`
   background-color: ${t("colors.oranges.0")};
-  color: white;
   border: 0 none;
   padding: 0;
 `;

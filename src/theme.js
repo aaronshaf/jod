@@ -2,7 +2,7 @@
 
 const space = [0, 2, 4, 8, 16, 32].map(n => `${n}px`);
 
-const sizes = ["960px"];
+const sizes = ["640px", "960px"];
 
 const fontSizes = ["0.86rem", "0.92rem", "1rem", "1.06rem", "1.8rem", "2.2rem"];
 
