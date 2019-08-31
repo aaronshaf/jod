@@ -2,7 +2,7 @@ import { Link } from "gatsby";
 import styled from "@emotion/styled";
 import { typography } from "styled-system";
 import { themeGet as t } from "@styled-system/theme-get";
-import themeKeys from "@styled-system/css";
+import themed from "@styled-system/css";
 
 export const Header = styled.header`
   background-color: ${t("colors.blues.1")};
@@ -15,7 +15,7 @@ export const HeaderInner = styled.div(
   margin: auto;
   align-items: center;
 `,
-  themeKeys({
+  themed({
     width: [null, null, 1]
   })
 );
@@ -25,7 +25,7 @@ export const SearchForm = styled.form(
   border-radius: 3px;
   overflow: hidden;
 `,
-  themeKeys({
+  themed({
     marginLeft: 5,
     display: ["none", "flex"]
   })
@@ -37,7 +37,7 @@ export const SearchQuery = styled.input(
   outline: 0;
   width: 200px;
 `,
-  themeKeys({
+  themed({
     fontSize: 2,
     padding: [2, 3]
     // marginLeft: 5,
@@ -45,11 +45,16 @@ export const SearchQuery = styled.input(
   })
 );
 
-export const SearchButton = styled.button`
-  background-color: ${t("colors.oranges.0")};
+export const SearchButton = styled.button(
+  `
   border: 0 none;
-  padding: 0;
-`;
+`,
+  themed({
+    padding: 0,
+    backgroundColor: "oranges.0",
+    color: "whites.0"
+  })
+);
 
 export const SearchButtonIcon = styled.img`
   width: 28px;
@@ -75,29 +80,36 @@ export const SiteTitle = styled.h1`
 `;
 SiteTitle.defaultProps = { fontSize: [4, 5] };
 
-export const SiteTitleLink = styled(Link)`
-  color: ${t("colors.whites.0")};
-  text-decoration: none;
-`;
+export const SiteTitleLink = styled(Link)(
+  themed({
+    textDecoration: "none",
+    color: "whites.0"
+  })
+);
 
-export const Subheading = styled.div`
-  ${typography};
-  color: ${t("colors.greys.0")};
-  max-width: 960px;
-  margin: auto;
-  margin-top: ${t("space.2")};
-`;
-Subheading.defaultProps = { fontSize: [0, 1] };
+export const Subheading = styled.div(
+  themed({
+    margin: "auto",
+    maxWidth: 1,
+    marginTop: 2,
+    color: "greys.0",
+    fontSize: [0, 1]
+  })
+);
 
-export const VolumeNumbersWrapper = styled.div`
-  max-width: 100%;
-  overflow: auto;
-  border-top: 1px solid ${t("colors.whites.0")};
-  border-bottom: 1px solid ${t("colors.whites.2")};
-  display: flex;
-  padding-left: ${t("space.4")};
-  padding-right: ${t("space.4")};
-`;
+export const VolumeNumbersWrapper = styled.div(
+  themed({
+    maxWidth: "100%",
+    overflow: "auto",
+    display: "flex",
+    borderTop: "1px solid",
+    borderTopColor: "whites.0",
+    borderBottom: "1px solid",
+    borderBottomColor: "whites.2",
+    paddingLeft: "space.4",
+    paddingRight: "space.4"
+  })
+);
 
 export const VolumeNumbers = styled.nav`
   max-width: 960px;
