@@ -1,20 +1,24 @@
 import { Link } from "gatsby";
 import styled from "@emotion/styled";
 import { typography } from "styled-system";
+import { themeGet as t } from "@styled-system/theme-get";
+import themeKeys from "@styled-system/css";
 
 export const Header = styled.header`
-  background-color: #052f54;
-  padding: 24px;
+  background-color: ${t("colors.blues.1")};
+  padding: ${t("space.4")};
 `;
 
-export const HeaderInner = styled.div`
+export const HeaderInner = styled.div(
+  `
   display: flex;
-  @media (min-width: 960px) {
-    width: 960px;
-    margin: auto;
-  }
+  margin: auto;
   align-items: center;
-`;
+`,
+  themeKeys({
+    width: [null, 0]
+  })
+);
 
 export const SearchForm = styled.form`
   background-color: white;
@@ -28,16 +32,15 @@ export const SearchForm = styled.form`
 `;
 
 export const SearchQuery = styled.input`
-  ${typography};
+  font-size: ${t("fontSizes.2")};
   border: 0 none;
   outline: 0;
   width: 200px;
-  padding: 6px 8px;
+  padding: ${t("space.2")} ${t("space.3")};
 `;
-SearchQuery.defaultProps = { fontSize: 2 };
 
 export const SearchButton = styled.button`
-  background-color: #f1ae46;
+  background-color: ${t("colors.oranges.0")};
   color: white;
   border: 0 none;
   padding: 0;
@@ -63,31 +66,32 @@ export const SiteTitle = styled.h1`
   font-family: Times New Roman, serif;
   letter-spacing: 1px;
   font-weight: lighter;
+  line-height: ${t("fontSizes.4")};
 `;
 SiteTitle.defaultProps = { fontSize: [4, 5] };
 
 export const SiteTitleLink = styled(Link)`
-  color: white;
+  color: ${t("colors.whites.0")};
   text-decoration: none;
 `;
 
 export const Subheading = styled.div`
   ${typography};
-  color: #b7c5d7;
+  color: ${t("colors.greys.0")};
   max-width: 960px;
   margin: auto;
+  margin-top: ${t("space.2")};
 `;
 Subheading.defaultProps = { fontSize: [0, 1] };
 
 export const VolumeNumbersWrapper = styled.div`
-  background-color: #f0eee1;
   max-width: 100%;
   overflow: auto;
-  border-top: 1px solid #fefdfa;
-  border-bottom: 1px solid #e3e1ce;
+  border-top: 1px solid ${t("colors.whites.0")};
+  border-bottom: 1px solid ${t("colors.whites.2")};
   display: flex;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-left: ${t("space.4")};
+  padding-right: ${t("space.4")};
 `;
 
 export const VolumeNumbers = styled.nav`

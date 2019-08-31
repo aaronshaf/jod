@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { Link } from "gatsby";
 import { color, typography, space, layout } from "styled-system";
 import themeKeys from "@styled-system/css";
+import { themeGet as t } from "@styled-system/theme-get";
 
 export const TraversalLink = styled(Link)`
   display: flex;
@@ -24,13 +25,12 @@ export const TraversalLinkImage = css`
 
 export const TraversalLinkImageStart = styled.img`
   ${TraversalLinkImage};
-  ${space};
+  margin-right: ${t("space.2")};
 `;
-TraversalLinkImageStart.defaultProps = { marginRight: 1 };
 
 export const TraversalLinkImageEnd = styled.img`
   ${TraversalLinkImage};
-  margin-left: 6px;
+  margin-left: ${t("space.2")};
 `;
 
 export const SubtleLink = styled(Link)`
