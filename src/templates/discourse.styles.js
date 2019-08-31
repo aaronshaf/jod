@@ -2,20 +2,19 @@ import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { Link } from "gatsby";
 import { color, typography, space, layout } from "styled-system";
+import themeKeys from "@styled-system/css";
 
 export const TraversalLink = styled(Link)`
   display: flex;
   align-items: center;
 `;
 
-export const TraversalLinkText = styled.span`
-  @media (max-width: 640px) {
-    display: none;
-  }
-  @media (min-width: 641px) {
-    display: inline;
-  }
-`;
+export const TraversalLinkText = styled.span(
+  layout,
+  themeKeys({
+    display: ["none", "inline"]
+  })
+);
 
 export const TraversalLinkImage = css`
   width: 20px;
