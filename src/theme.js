@@ -1,10 +1,10 @@
 // https://www.npmjs.com/package/polished
 
+const sizes = [640, 960].map(n => `${n}px`);
+
 const space = [0, 2, 4, 8, 16, 32].map(n => `${n}px`);
 
-const sizes = ["640px", "960px"];
-
-const fontSizes = ["0.86rem", "0.92rem", "1rem", "1.06rem", "1.8rem", "2.2rem"];
+const fontSizes = [0.86, 0.92, 1, 1.06, 1.8, 2.2].map(n => `${n}rem`);
 
 const theme = {
   sizes,

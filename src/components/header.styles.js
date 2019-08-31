@@ -35,11 +35,11 @@ export const SearchQuery = styled.input(
   `
   border: 0 none;
   outline: 0;
-  width: 200px;
 `,
   themed({
     fontSize: 2,
-    padding: [2, 3]
+    padding: [2, 3],
+    width: [null, "180px", "220px"]
     // marginLeft: 5,
     // display: ["none", "flex"]
   })
@@ -106,8 +106,8 @@ export const VolumeNumbersWrapper = styled.div(
     borderTopColor: "whites.0",
     borderBottom: "1px solid",
     borderBottomColor: "whites.2",
-    paddingLeft: "space.4",
-    paddingRight: "space.4"
+    paddingLeft: 4,
+    paddingRight: 4
   })
 );
 

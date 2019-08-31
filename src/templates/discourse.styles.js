@@ -2,7 +2,7 @@ import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { Link } from "gatsby";
 import { color, typography, space, layout } from "styled-system";
-import themeKeys from "@styled-system/css";
+import themed from "@styled-system/css";
 import { themeGet as t } from "@styled-system/theme-get";
 
 export const TraversalLink = styled(Link)`
@@ -12,7 +12,7 @@ export const TraversalLink = styled(Link)`
 
 export const TraversalLinkText = styled.span(
   layout,
-  themeKeys({
+  themed({
     display: ["none", "inline"]
   })
 );
@@ -42,76 +42,77 @@ export const SubtleLink = styled(Link)`
 `;
 SubtleLink.defaultProps = { color: "black" };
 
-export const Discourse = styled.article`
-  ${typography};
-  max-width: 960px;
-  margin: 0 auto;
-  line-height: 1.45em;
-  margin-top: 14px;
-`;
-Discourse.defaultProps = { fontSize: 1 };
+export const Discourse = styled.article(
+  themed({
+    lineHeight: "1.45em",
+    marginX: "auto",
+    marginBottom: 0,
+    marginTop: "14px",
+    fontSize: 1,
+    maxWidth: 1
+  })
+);
 
-export const DiscourseNav = styled.nav`
-  ${typography};
-  display: flex;
-  margin-bottom: 16px;
-`;
-DiscourseNav.defaultProps = { fontSize: 3 };
+export const DiscourseNav = styled.nav(
+  themed({
+    display: "flex",
+    marginBottom: 4,
+    fontSize: 3
+  })
+);
 
-export const PreviousDiscourse = styled.div`
-  white-space: nowrap;
-  @media (max-width: 960px) {
-    height: 20px;
-    padding-left: 12px;
-    & img {
-      margin-right: 8px;
-    }
-  }
-  @media (min-width: 961px) {
-    width: 150px;
-  }
-`;
+export const PreviousDiscourse = styled.div(
+  themed({
+    whiteSpace: "nowrap",
+    height: "20px",
+    width: [null, null, "150px"],
+    paddingLeft: [4, 3],
+    paddingRight: 3
+  })
+);
 
-export const CurrentDiscourse = styled.div`
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+export const NextDiscourse = styled.div(
+  themed({
+    whiteSpace: "nowrap",
+    height: "20px",
+    display: "flex",
+    width: [null, null, "150px"],
+    paddingRight: [4, 3],
+    paddingLeft: 3,
+    flexDirection: "row-reverse"
+  })
+);
 
-export const CitationButton = styled.button`
-  border: 0 none;
-  background: none;
-  padding: 0;
-  margin-left: 6px;
-  height: 18px;
-  width: 18px;
-`;
+export const CurrentDiscourse = styled.div(
+  themed({
+    flex: 1,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  })
+);
 
-export const NextDiscourse = styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-  white-space: nowrap;
-  @media (max-width: 960px) {
-    width: 20px;
-    padding-right: 12px;
-    & img {
-      margin-left: 8px;
-    }
-  }
-  @media (min-width: 961px) {
-    width: 150px;
-  }
-`;
+export const CitationButton = styled.button(
+  themed({
+    border: 0,
+    background: "none",
+    width: "18px",
+    height: "18px",
+    marginLeft: 2,
+    padding: 0
+  })
+);
 
-export const DiscourseTitle = styled.h2`
-  padding: 0;
-  margin-left: 0.8em;
-  text-indent: -0.8em;
-  margin-bottom: 16px;
-  margin-top: 6px;
-  line-height: 1.15em;
-`;
+export const DiscourseTitle = styled.h2(
+  themed({
+    padding: 0,
+    marginTop: 2,
+    marginBottom: 3,
+    marginLeft: 4,
+    textIndent: "-0.8em",
+    lineHeight: "1.15em"
+  })
+);
 
 const pageCss = css`
   padding: 25px;
