@@ -120,8 +120,8 @@ const pageCss = themed({
   paddingTop: 0,
   marginBottom: 4,
   overflow: "hidden",
-  backgroundColor: "#fff",
-  boxShadow: "3px 3px 3px #e5e3d1"
+  backgroundColor: "whites.0",
+  boxShadow: "3px 3px 3px #e3e1ce" // TODO: use theme color
 });
 
 export const FirstPage = styled.div(
@@ -159,7 +159,9 @@ export const LeftColumn = styled.div(
   themed({
     paddingLeft: 0,
     paddingRight: [null, 4],
-    borderRight: [null, "1px solid #ddd"]
+    borderRightStyle: "solid",
+    borderRightWidth: [null, "1px"],
+    borderRightColor: "greys.1"
   })
 );
 

@@ -36,7 +36,8 @@ const theme = {
       "#f1ae46" // porsche
     ],
     greys: [
-      "#b7c5d7" // casper
+      "#b7c5d7", // casper
+      "#dddddd" // alto
     ],
     greens: [
       "#b3cd6b", // wild willow 1
