@@ -62,13 +62,13 @@ export const SiteTitleWrapper = styled.div`
 
 export const SiteTitle = styled.h1(
   themed({
-    lineHeight: 0.92,
+    lineHeight: 0.9,
     margin: "auto",
     maxWidth: 1,
     fontSize: [4, 5],
     fontWeight: "lighter",
     letterSpacing: "1px",
-    fontFamily: "Times New Roman, serif",
+    fontFamily: "Georgia, Times New Roman, serif",
     fontVariant: "small-caps"
   })
 );
@@ -84,7 +84,7 @@ export const Subheading = styled.div(
   themed({
     margin: "auto",
     maxWidth: 1,
-    marginTop: 2,
+    marginTop: 1,
     color: "greys.0",
     fontSize: [0, 1]
   })

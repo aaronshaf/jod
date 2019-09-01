@@ -77,7 +77,7 @@ export const Speaker = styled.div(
     paddingX: [4, 3],
     paddingY: [1, 2],
     order: [2, null],
-    width: [null, "130px"]
+    width: [null, "140px"]
   })
 );
 
