@@ -142,7 +142,7 @@ background: linear-gradient(
     "&:active": {
       marginBottom: "-1px"
     },
-    borderBottom: "1px solid rgba(0, 0, 0, 0.25)",
+    borderBottom: "1px solid rgba(0, 0, 0, 0.25)", // TODO use theme color
     borderRadius: "5px",
     color: "whites.0",
     display: "inline-block",
@@ -155,7 +155,7 @@ background: linear-gradient(
     paddingX: "5px",
     textAlign: "center",
     textDecoration: "none",
-    textShadow: "0 -1px 1px rgba(0, 0, 0, 0.25)",
+    textShadow: "0 -1px 1px rgba(0, 0, 0, 0.25)", // TODO: use theme color
     whiteSpace: "nowrap"
   })
 );
