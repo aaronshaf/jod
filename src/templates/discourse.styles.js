@@ -183,7 +183,8 @@ export const PageHead = styled.div(
   themed({
     display: "flex",
     marginTop: 4,
-    marginBottom: 4
+    marginBottom: 4,
+    marginX: 2
   })
 );
 
