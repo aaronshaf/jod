@@ -1,7 +1,7 @@
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { Link } from "gatsby";
-import { color, typography, space, layout } from "styled-system";
+import { color } from "styled-system";
 import themed from "@styled-system/css";
 import { themeGet as t } from "@styled-system/theme-get";
 
@@ -11,7 +11,6 @@ export const TraversalLink = styled(Link)`
 `;
 
 export const TraversalLinkText = styled.span(
-  layout,
   themed({
     display: ["none", "inline"]
   })
@@ -33,14 +32,15 @@ export const TraversalLinkImageEnd = styled.img`
   margin-left: ${t("space.2")};
 `;
 
-export const SubtleLink = styled(Link)`
-  ${color};
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-SubtleLink.defaultProps = { color: "black" };
+export const SubtleLink = styled(Link)(
+  themed({
+    textDecoration: "none",
+    "&:hover": {
+      textDecoration: "underline"
+    },
+    color: "black"
+  })
+);
 
 export const Discourse = styled.article(
   themed({
@@ -106,7 +106,7 @@ export const CitationButton = styled.button(
 export const DiscourseTitle = styled.h2(
   themed({
     padding: 0,
-    marginTop: 2,
+    marginTop: 5,
     marginBottom: 3,
     marginLeft: 4,
     textIndent: "-0.8em",
@@ -114,14 +114,14 @@ export const DiscourseTitle = styled.h2(
   })
 );
 
-const pageCss = css`
-  padding: 25px;
-  padding-top: 20px;
-  margin-bottom: 22px;
-  overflow: hidden;
-  background-color: #fff;
-  box-shadow: 3px 3px 3px #e5e3d1;
-`;
+const pageCss = themed({
+  padding: 5,
+  paddingTop: 0,
+  marginBottom: 4,
+  overflow: "hidden",
+  backgroundColor: "#fff",
+  boxShadow: "3px 3px 3px #e5e3d1"
+});
 
 export const FirstPage = styled.div`
   ${pageCss}
@@ -145,87 +145,99 @@ export const Columns = styled.div`
   }
 `;
 
-export const column = css`
-  flex: 1;
-  text-align: justify;
-  border-right: 0px none;
-  @media (min-width: 741px) {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-`;
+export const column = themed({
+  flex: 1,
+  textAlign: "justify",
+  borderRight: "0px none",
+  paddingLeft: [0, 4],
+  paddingRight: [0, 4]
+});
 
-export const LeftColumn = styled.div`
-  ${column};
-  padding-left: 0px;
-  @media (min-width: 741px) {
-    padding-right: 15px;
-    border-right: 1px solid #ddd;
-  }
-`;
+export const LeftColumn = styled.div(
+  column,
+  themed({
+    paddingLeft: 0,
+    paddingRight: [null, 4],
+    borderRight: [null, "1px solid #ddd"]
+  })
+);
 
-export const RightColumn = styled.div`
-  ${column};
-`;
+export const RightColumn = styled.div(column);
 
-export const ColumnSeparator = styled.div`
-  ${space};
-  ${layout};
-  text-align: center;
-  height: 30px;
-`;
-ColumnSeparator.defaultProps = {
-  paddingBottom: 1,
-  paddingTop: 1,
-  display: ["block", "none"]
-};
+export const ColumnSeparator = styled.div(
+  themed({
+    textAlign: "center",
+    height: "30px",
+    paddingBottom: 1,
+    paddingTop: 1,
+    display: ["block", "none"]
+  })
+);
 
-export const ColumnIcon = styled.img`
-  width: 32px;
-  height: 30px;
-  line-height: 0;
-`;
+export const ColumnIcon = styled.img(
+  themed({
+    width: "32px",
+    height: "30px",
+    lineHeight: "0"
+  })
+);
 
-export const PageHead = styled.div`
-  ${space};
-  display: flex;
-`;
-PageHead.defaultProps = { marginBottom: 3 };
+export const PageHead = styled.div(
+  themed({
+    display: "flex",
+    marginTop: 4,
+    marginBottom: 4
+  })
+);
 
-export const PageHeader = styled.div`
-  flex: 1;
-  text-align: center;
-  text-transform: uppercase;
-`;
+export const PageHeader = styled.div(
+  themed({
+    flex: "1",
+    textAlign: "center",
+    textTransform: "uppercase"
+  })
+);
 
-export const EvenPageNumber = styled.div`
-  width: 40px;
-`;
+export const EvenPageNumber = styled.div(
+  themed({
+    width: "40px"
+  })
+);
 
-export const OddPageNumber = styled.div`
-  width: 40px;
-  text-align: right;
-`;
+export const OddPageNumber = styled.div(
+  themed({
+    width: "40px",
+    textAlign: "right"
+  })
+);
 
 export const Subtitle = styled.div``;
 
 export const Reporter = styled.div``;
 
-export const SpeakerImage = styled.div`
-  ${space};
-  display: flex;
-  justify-content: center;
-`;
-SpeakerImage.defaultProps = { marginTop: 3 };
+export const SpeakerImage = styled.div(
+  themed({
+    display: "flex",
+    justifyContent: "center",
+    marginTop: 3
+  })
+);
 
 export const Flex = styled.div`
   flex: 1;
 `;
 
-export const Citation = styled.div(pageCss, space);
-Citation.defaultProps = { padding: 3 };
+export const Citation = styled.div(
+  pageCss,
+  themed({
+    padding: 3
+  })
+);
 
-export const CitationText = styled.span();
+export const CitationText = styled.span``;
 
-export const CitationCopyNotice = styled.span(space);
-CitationCopyNotice.defaultProps = { marginLeft: 2 };
+export const CitationCopyNotice = styled.span(
+  themed({
+    marginLeft: 2
+  })
+);
