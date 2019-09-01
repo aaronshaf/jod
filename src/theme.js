@@ -24,7 +24,9 @@ const theme = {
       "#fff",
       "#f0eeE2", // white rock,
       "#e3e1ce", // satin linin
-      "#fefdfa" // bianca (unused)
+      "#fefdfa", // bianca (unused)
+      "#faf9f3", // ecru white
+      "#f8f8f8" // alabaster
     ],
     blues: [
       "#0066cc", // mariner
@@ -35,6 +37,14 @@ const theme = {
     ],
     greys: [
       "#b7c5d7" // casper
+    ],
+    greens: [
+      "#b3cd6b", // wild willow 1
+      "#b1cc68", // wild willow 2,
+      "#a6c452", // celery,
+      "#9db362", // olivine
+      "#99af5b", // chelsea cucumber
+      "#8ba546" // sushi
     ]
   }
 };

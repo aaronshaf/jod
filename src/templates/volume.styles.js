@@ -1,104 +1,92 @@
 import styled from "@emotion/styled";
-import { typography } from "styled-system";
+import themed from "@styled-system/css";
 
-export const VolumeWrapper = styled.div`
-  border-top: 1px solid #faf9f3;
-  @media (min-width: 641px) {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-`;
+export const VolumeWrapper = styled.div(
+  themed({
+    borderTop: "1px solid",
+    borderTopColor: "whites.4",
+    paddingX: [0, 4]
+  })
+);
 
-export const Volume = styled.div`
-  ${typography};
-  max-width: 960px;
-  margin: 0 auto;
-`;
-Volume.defaultProps = { fontSize: 1 };
+export const Volume = styled.div(
+  themed({
+    maxWidth: 1,
+    marginX: "auto",
+    fontSize: 1
+  })
+);
 
-export const VolumeTitle = styled.h2`
-  @media (max-width: 640px) {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-`;
+export const VolumeTitle = styled.h2(
+  themed({
+    paddingX: [4, 0]
+  })
+);
 
-export const DiscourseList = styled.div`
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border: 1px solid #e3e1ce;
-  border-spacing: 0;
-  clear: both;
-  max-width: 100%;
-  background-color: white;
-  margin-bottom: 16px;
-  @media (max-width: 640px) {
-    padding: 12px;
-    border-left: 0 none;
-    border-right: 0 none;
-  }
-`;
+export const DiscourseList = styled.div(
+  themed({
+    backgroundColor: "whites.0",
+    borderRadius: "2px",
+    borderColor: "whites.2",
+    borderStyle: "solid",
+    borderLeftWidth: [0, "1px"],
+    borderRightWidth: [0, "1px"],
+    borderTopWidth: "1px",
+    borderTopBottom: "1px",
+    clear: "both",
+    marginBottom: 4,
+    maxWidth: "100%",
+    padding: [0, 0]
+  })
+);
 
-export const DiscourseListItem = styled.div`
-  display: flex;
-  @media (max-width: 640px) {
-    flex-direction: column;
-    margin-top: 24px;
-    margin-bottom: 24px;
-  }
-  @media (min-width: 641px) {
-    margin-top: 8px;
-    margin-bottom: 8px;
-  }
-  &:first-of-type {
-    margin-top: 8px;
-  }
-  &:last-of-type {
-    margin-bottom: 8px;
-  }
-  &:hover {
-    background-color: #f8f8f8;
-  }
-`;
+export const DiscourseListItem = styled.div(
+  themed({
+    display: "flex",
+    flexDirection: ["column", "row"],
+    marginY: [0, 3],
+    paddingX: [3, 0],
+    paddingY: [4, 0],
+    "&:hover": {
+      backgroundColor: "whites.5"
+    }
+  })
+);
 
-export const Pages = styled.div`
-  width: 90px;
-  padding: 4px 8px;
-  @media (max-width: 640px) {
-    order: 4;
-    padding-left: 24px;
-  }
-  @media (min-width: 641px) {
-    padding-left: 12px;
-  }
-`;
+export const Pages = styled.div(
+  themed({
+    width: [null, "90px"],
+    paddingLeft: 4,
+    paddingRight: 3,
+    paddingY: [1, 2],
+    order: [4, 0]
+  })
+);
 
-export const DateComponent = styled.div`
-  width: 145px;
-  padding: 4px 8px;
-  @media (max-width: 640px) {
-    padding-left: 24px;
-    order: 3;
-  }
-`;
+export const DateComponent = styled.div(
+  themed({
+    width: [null, "145px"],
+    paddingX: [4, 3],
+    paddingY: [1, 2],
+    order: [3, 1]
+  })
+);
 
-export const Speaker = styled.div`
-  padding: 4px 8px;
-  @media (max-width: 640px) {
-    order: 2;
-    padding-left: 24px;
-  }
-  @media (min-width: 641px) {
-    width: 130px;
-    padding-left: 24px;
-  }
-`;
+export const Speaker = styled.div(
+  themed({
+    paddingX: [4, 3],
+    paddingY: [1, 2],
+    order: [2, null],
+    width: [null, "130px"]
+  })
+);
 
-export const Title = styled.div`
-  flex: 1;
-  @media (max-width: 640px) {
-    order: 1;
-  }
-  padding: 4px 8px;
-  padding-right: 12px;
-`;
+export const Title = styled.div(
+  themed({
+    order: [0, 3],
+    flex: 1,
+    paddingY: [1, 2],
+    paddingLeft: [3, 0],
+    paddingRight: [4, 4]
+  })
+);
