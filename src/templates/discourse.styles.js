@@ -115,7 +115,8 @@ export const DiscourseTitle = styled.h2(
 );
 
 const pageCss = themed({
-  padding: 5,
+  padding: 4,
+  paddingBottom: 5,
   paddingTop: 0,
   marginBottom: 4,
   overflow: "hidden",
