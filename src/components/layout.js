@@ -7,14 +7,11 @@ import { Global, css } from "@emotion/core";
 import { typography, space } from "styled-system";
 import { ThemeProvider } from "emotion-theming";
 import theme from "../theme.js";
-import ss_css from "@styled-system/css";
+import themed from "@styled-system/css";
 
-const Footer = styled.footer`
-  ${typography};
-  ${space};
-  text-align: center;
-`;
-Footer.defaultProps = { fontSize: 1, margin: 3 };
+const Footer = styled.footer(
+  themed({ textAlign: "center", fontSize: 1, margin: 4 })
+);
 
 const Layout = ({ children, volumeNumbers, volumeNumber }) => {
   const data = useStaticQuery(graphql`
@@ -31,7 +28,7 @@ const Layout = ({ children, volumeNumbers, volumeNumber }) => {
   return (
     <ThemeProvider theme={theme}>
       <Global
-        styles={ss_css({
+        styles={themed({
           body: {
             bg: "whites.1",
             padding: 0,

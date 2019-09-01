@@ -106,7 +106,6 @@ export const CitationButton = styled.button(
 export const DiscourseTitle = styled.h2(
   themed({
     padding: 0,
-    marginTop: 5,
     marginBottom: 3,
     marginLeft: 4,
     textIndent: "-0.8em",
@@ -129,22 +128,19 @@ export const FirstPage = styled.div`
   display: flex;
 `;
 
-export const Page = styled.div`
-  ${pageCss}
-`;
+export const Page = styled.div(pageCss);
 
-export const Columns = styled.div`
-  display: flex;
-  @media (max-width: 740px) {
-    display: block;
-  }
-  & p {
-    margin: 0;
-  }
-  & p:not(.continued) {
-    text-indent: 1.8em;
-  }
-`;
+export const Columns = styled.div(
+  themed({
+    display: ["block", "flex"],
+    "& p": {
+      margin: 0
+    },
+    "& p:not(.continued)": {
+      textIndent: "1.8em"
+    }
+  })
+);
 
 export const column = themed({
   flex: 1,
@@ -169,8 +165,8 @@ export const ColumnSeparator = styled.div(
   themed({
     textAlign: "center",
     height: "30px",
-    paddingBottom: 1,
-    paddingTop: 1,
+    paddingBottom: 2,
+    paddingTop: 2,
     display: ["block", "none"]
   })
 );
