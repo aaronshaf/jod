@@ -107,6 +107,7 @@ export const DiscourseTitle = styled.h2(
   themed({
     padding: 0,
     marginBottom: 3,
+    marginTop: 5,
     marginLeft: 4,
     textIndent: "-0.8em",
     lineHeight: "1.15em"
@@ -123,10 +124,13 @@ const pageCss = themed({
   boxShadow: "3px 3px 3px #e5e3d1"
 });
 
-export const FirstPage = styled.div`
-  ${pageCss}
-  display: flex;
-`;
+export const FirstPage = styled.div(
+  pageCss,
+  themed({
+    display: "flex",
+    paddingX: 5
+  })
+);
 
 export const Page = styled.div(pageCss);
 
@@ -184,7 +188,7 @@ export const PageHead = styled.div(
     display: "flex",
     marginTop: 4,
     marginBottom: 4,
-    marginX: 2
+    marginX: [1, 2]
   })
 );
 
