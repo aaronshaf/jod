@@ -70,7 +70,7 @@ export default ({
       document.execCommand("copy");
       setCopySuccess(true);
     }
-  }, [showCitation, citationSpanRef.current]);
+  }, [showCitation]);
 
   const seoTitle = `${entities.decode(
     prepareTitle(discourse.page_header)

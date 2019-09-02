@@ -11,14 +11,15 @@ const slugify = text =>
     .replace(/^-+/, "")
     .replace(/-+$/, "");
 
-const pruneDiscourse = discourse => ({
+const normalizeDiscourse = discourse => ({
   id: discourse.id,
   volume: discourse.volume,
   start_page: discourse.start_page,
   end_page: discourse.end_page,
   date: discourse.date,
   speaker: discourse.speaker,
-  title: discourse.title
+  title: discourse.title,
+  mug: `speakers/${slugify(discourse.speaker)}.jpg`
 });
 
 const VOLUME_COUNT = 26;
@@ -42,7 +43,7 @@ exports.createPages = async ({ actions: { createPage } }) => {
     context: {
       volumeNumber: 1,
       volumeNumbers,
-      discourses: discourseSets[0].map(pruneDiscourse)
+      discourses: discourseSets[0].map(normalizeDiscourse)
     }
   });
 
@@ -53,7 +54,7 @@ exports.createPages = async ({ actions: { createPage } }) => {
       context: {
         volumeNumber,
         volumeNumbers,
-        discourses: discourseSets[volumeNumber - 1].map(pruneDiscourse)
+        discourses: discourseSets[volumeNumber - 1].map(normalizeDiscourse)
       }
     });
   }

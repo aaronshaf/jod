@@ -29,7 +29,7 @@ export default function HeaderComponent(props) {
 
   useLayoutEffect(() => {
     wrapperEl.current.scrollLeft = scrollLeft;
-  }, []);
+  }, [scrollLeft]);
 
   const handleScroll = event => {
     setScrollState(event.target.scrollLeft);

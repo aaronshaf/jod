@@ -1,7 +1,6 @@
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { Link } from "gatsby";
-import { color } from "styled-system";
 import themed from "@styled-system/css";
 import { themeGet as t } from "@styled-system/theme-get";
 
