@@ -13,7 +13,7 @@ export const Volume = styled.div(
   themed({
     maxWidth: 1,
     marginX: "auto",
-    fontSize: 1
+    fontSize: 2
   })
 );
 
