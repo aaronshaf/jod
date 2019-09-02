@@ -15,26 +15,29 @@ export const HeaderInner = styled.div(
     margin: "auto",
     alignItems: "center",
     maxWidth: [null, null, 1],
-    display: "flex"
+    display: ["block", "flex"]
   })
 );
 
 export const SearchForm = styled.form(
   themed({
-    marginLeft: 5,
-    display: ["none", "flex"],
+    marginLeft: [0, 3, 5],
+    marginTop: [3, 0],
+    display: "flex",
     borderRadius: "3px",
-    overflow: "hidden"
+    overflow: "hidden",
+    width: ["270px", null]
   })
 );
 
 export const SearchQuery = styled.input(
   themed({
-    fontSize: 2,
-    padding: [2, 3],
-    width: [null, "180px", "220px"],
+    fontSize: [1, 2, 3],
+    paddingX: 3,
+    paddingY: 3,
     outline: "0",
-    border: 0
+    border: 0,
+    flex: 1
   })
 );
 
@@ -65,7 +68,7 @@ export const SiteTitle = styled.h1(
     lineHeight: 0.9,
     margin: "auto",
     maxWidth: 1,
-    fontSize: [4, 5],
+    fontSize: [6, 7, 8],
     fontWeight: "lighter",
     letterSpacing: "1px",
     fontFamily: "Georgia, Times New Roman, serif",
@@ -86,7 +89,7 @@ export const Subheading = styled.div(
     maxWidth: 1,
     marginTop: 1,
     color: "greys.0",
-    fontSize: [0, 1]
+    fontSize: [0, 1, 2]
   })
 );
 

@@ -95,8 +95,8 @@ export const CitationButton = styled.button(
   themed({
     border: 0,
     background: "none",
-    width: "18px",
-    height: "18px",
+    width: "20px",
+    height: "20px",
     marginLeft: 2,
     padding: 0
   })
@@ -233,7 +233,7 @@ export const Flex = styled.div`
 export const Citation = styled.div(
   pageCss,
   themed({
-    padding: 3
+    padding: 4
   })
 );
 

@@ -4,7 +4,9 @@ const sizes = [640, 960].map(n => `${n}px`);
 
 const space = [0, 2, 4, 8, 16, 32].map(n => `${n}px`);
 
-const fontSizes = [0.86, 0.92, 1, 1.06, 1.8, 2.2].map(n => `${n}rem`);
+const fontSizes = [0.72, 0.86, 0.92, 1, 1.2, 1.4, 1.6, 1.8, 2.2].map(
+  n => `${n}rem`
+);
 
 const theme = {
   sizes,
