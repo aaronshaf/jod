@@ -47,7 +47,7 @@ export const Discourse = styled.article(
     marginX: "auto",
     marginBottom: 0,
     marginTop: "14px",
-    fontSize: 1,
+    fontSize: 2,
     maxWidth: 1
   })
 );
