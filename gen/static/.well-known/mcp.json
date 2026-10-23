@@ -1,0 +1,13 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "org.mrm.jod/journal-of-discourses",
+  "title": "Journal of Discourses",
+  "description": "Read-only search, full text and citations for the Journal of Discourses (26 volumes, 1854-1886, public domain).",
+  "version": "1.0.0",
+  "websiteUrl": "https://jod.mrm.org/",
+  "remotes": [{ "type": "streamable-http", "url": "https://jod.mrm.org/mcp" }],
+  "authentication": "none",
+  "tools": ["search_discourses", "get_discourse", "list_volumes", "list_speakers", "list_discourses", "cite"],
+  "rateLimit": "60 requests per minute per IP",
+  "license": "Text public domain"
+}

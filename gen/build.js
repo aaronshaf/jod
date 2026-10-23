@@ -110,7 +110,7 @@ async function main() {
   fs.mkdirSync(path.join(OUT, "data"), { recursive: true });
   fs.writeFileSync(path.join(OUT, "data/index.json"), JSON.stringify(index));
   fs.writeFileSync(path.join(OUT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(u => `<url><loc>${u}</loc></url>`).join("\n")}\n</urlset>\n`);
-  fs.writeFileSync(path.join(OUT, "robots.txt"), `# Journal of Discourses: public-domain text (1854-1886). All crawlers and AI agents welcome.\nUser-agent: *\nAllow: /\nDisallow: /search/\n\nSitemap: ${SITE}/sitemap.xml\n`);
+  fs.writeFileSync(path.join(OUT, "robots.txt"), `# Journal of Discourses: public-domain text (1854-1886). All crawlers and AI agents welcome.\nUser-agent: *\nAllow: /\nDisallow: /search/\nDisallow: /_idx/\n\nSitemap: ${SITE}/sitemap.xml\n`);
   let L = `# Journal of Discourses\n\n> Full text of the Journal of Discourses (26 volumes, 1854-1886): ${all.length} public sermons by LDS leaders, hosted by Mormonism Research Ministry (mrm.org). The text is public domain.\n\n- Each discourse: ${SITE}/<volume>/<start_page>/ (HTML), index.md (Markdown), index.json (JSON). Cite as "JD volume:page".\n- Full text by volume: ${SITE}/llms-full.txt\n- Index of all discourses: ${SITE}/data/index.json\n- MCP server (read-only, no auth, Streamable HTTP): ${SITE}/mcp\n\n`;
   for (const v of vols) { L += `## Volume ${v}\n\n`; for (const d of index.filter(i => i.volume === v)) L += `- [${d.title}](${d.url}index.md): ${d.speaker}${d.date ? ", " + d.date : ""} (JD ${v}:${d.start_page}-${d.end_page})\n`; L += "\n"; }
   fs.writeFileSync(path.join(OUT, "llms.txt"), L);
@@ -118,6 +118,7 @@ async function main() {
   let F = `# Journal of Discourses: full text (public domain)\n\n> The complete text is split by volume to keep files small. Each file is Markdown with front matter per discourse.\n\n`;
   for (const v of vols) { const body = full.filter((_, i) => index[i].volume === v).join("\n\n"); fs.writeFileSync(path.join(OUT, `llms-full/${v}.txt`), `# Journal of Discourses, volume ${v} (full text, public domain)\n\n` + body); F += `- [Volume ${v}](${SITE}/llms-full/${v}.txt)\n`; }
   fs.writeFileSync(path.join(OUT, "llms-full.txt"), F);
+  require("child_process").execFileSync(process.execPath, [path.join(__dirname, "search-index.js"), OUT], { stdio: "inherit" });
   require("child_process").execFileSync(path.join(NM, ".bin/pagefind"), ["--site", OUT, "--silent"], { stdio: "inherit" });
   console.log(`pages: ${urls.length} discourses: ${all.length} out: ${OUT}`);
 }
