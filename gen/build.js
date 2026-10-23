@@ -46,7 +46,7 @@ async function main() {
   const citeName = `img/cite.${crypto.createHash("sha1").update(citeBuf).digest("hex").slice(0, 8)}.png`;
   fs.writeFileSync(path.join(OUT, citeName), citeBuf);
   const citationImage = { childImageSharp: { fixed: { src: "/" + citeName, width: 20, height: 20 } } };
-  const clientSrc = fs.readFileSync(path.join(__dirname, "client.js"));
+  const clientSrc = Buffer.concat([fs.readFileSync(path.join(__dirname, "client.js")), Buffer.from("\n"), fs.readFileSync(path.join(__dirname, "search-client.js"))]);
   const clientName = `client.${crypto.createHash("sha1").update(clientSrc).digest("hex").slice(0, 10)}.js`;
   fs.writeFileSync(path.join(OUT, clientName), clientSrc);
   for (const d of ["icons"]) fs.cpSync(path.join(__dirname, "static", d), path.join(OUT, d), { recursive: true });
@@ -54,9 +54,9 @@ async function main() {
 
   const esc = s => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
   const iconLinks = `<script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/api/*","/mcp","/mcp/*","/_idx/*","/*.md","/*.json","/*.txt"]}}]},"eagerness":"moderate"}],"prerender":[{"where":{"selector_matches":"a[rel~=next], a[rel~=prev], nav a[title*=' by ']"},"eagerness":"moderate"}]}</script><link rel="icon" href="/icons/icon-48x48.png"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#122E51"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png"/><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt"/>`;
-  function page(file, r, extraHead, { pagefind = false, ogType = "website", canonical, image, pfTitle } = {}) {
+  function page(file, r, extraHead, { pagefind = false, ogType = "website", canonical, image, pfTitle, pfExtra } = {}) {
     let body = r.body;
-    if (pagefind) body = body.replace("<article ", `<article data-pagefind-body=""${pfTitle ? ` data-pagefind-meta="title:${esc(pfTitle)}"` : ""} `);
+    if (pagefind) body = body.replace(/<article ([^>]*)>/, (m0, attrs) => `<article data-pagefind-body=""${pfTitle ? ` data-pagefind-meta="title:${esc(pfTitle)}"` : ""} ${attrs}>${(pfExtra || []).map(([k, a, v]) => `<span data-pagefind-${k}="${a}:${esc(v)}"></span>`).join("")}`);
     const og = `<meta property="og:url" content="${esc(canonical)}"/><meta property="og:site_name" content="Journal of Discourses"/>${image ? `<meta property="og:image" content="${image}"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta name="twitter:image" content="${image}"/>` : `<meta property="og:image" content="${SITE}/icons/icon-512x512.png"/><meta name="twitter:image" content="${SITE}/icons/icon-512x512.png"/>`}<meta property="og:image:alt" content="Journal of Discourses"/>`;
     let head = (image ? r.head.replace('name="twitter:card" content="summary"', 'name="twitter:card" content="summary_large_image"') : r.head).replace(/(rel="(?:prev|next|parent)" href="https:\/\/jod\.mrm\.org\/[0-9/]*[0-9])"/g, "$1/\"").replace(/(content="[^"]*?)\s+"/g, '$1"').replace('property="og:type" content="website"', `property="og:type" content="${ogType}"`).replace(/(rel="canonical" href=")[^"]*"/, `$1${esc(canonical)}"`);
     if (!head.includes('rel="canonical"')) head += `<link rel="canonical" href="${esc(canonical)}"/>`;
@@ -101,7 +101,7 @@ async function main() {
     const png = await ogImage({ title, speaker: d.speaker, date: d.date ? fmtDate(d.date) : "", ref: `JD ${d.volume}:${d.start_page}-${d.end_page}` });
     fs.mkdirSync(path.join(OUT, `${d.volume}/${d.start_page}`), { recursive: true });
     fs.writeFileSync(path.join(OUT, `${d.volume}/${d.start_page}/og.png`), png);
-    page(`${d.volume}/${d.start_page}/index.html`, r, extra, { pfTitle: title + " — " + d.speaker + " (JD " + d.volume + ":" + d.start_page + ")", pagefind: true, ogType: "article", canonical: url, image: url + "og.png" });
+    page(`${d.volume}/${d.start_page}/index.html`, r, extra, { pfTitle: title, pfExtra: [["filter", "speaker", d.speaker], ["filter", "volume", String(d.volume)], ["meta", "speaker", d.speaker], ["meta", "date", d.date ? fmtDate(d.date) : ""], ["meta", "ref", `JD ${d.volume}:${d.start_page}-${d.end_page}`], ["sort", "order", String(d.volume * 10000 + d.start_page).padStart(7, "0")]], pagefind: true, ogType: "article", canonical: url, image: url + "og.png" });
     fs.writeFileSync(path.join(OUT, `${d.volume}/${d.start_page}/index.md`), md);
     fs.writeFileSync(path.join(OUT, `${d.volume}/${d.start_page}/index.json`), JSON.stringify(json));
     urls.push(url);
@@ -109,7 +109,13 @@ async function main() {
     full.push(md);
   }
   // search page
-  page("search/index.html", render("volume", "/search/", { pageContext: { volumeNumber: null, volumeNumbers: vols, discourses: [] } }), `<link href="/pagefind/pagefind-ui.css" rel="stylesheet"/><script src="/pagefind/pagefind-ui.js"></script><meta name="robots" content="noindex"/>`, { canonical: `${SITE}/search/` });
+  {
+    const r = render("volume", "/search/", { pageContext: { volumeNumber: null, volumeNumbers: vols, discourses: [] } });
+    const main = `<main><div id="jod-search" class="js-search" role="search"><div class="js-bar"><input type="search" aria-label="Search the Journal of Discourses" placeholder="Search 1,426 discourses" autocomplete="off" spellcheck="false"/><select id="js-speaker" aria-label="Speaker"><option value="">All speakers</option></select><select id="js-volume" aria-label="Volume"><option value="">All volumes</option></select></div><div class="js-meta" aria-live="polite"></div><ol class="js-list" hidden></ol><button class="js-more" type="button" hidden>More results</button><div class="js-empty">Search the full text of all 26 volumes. Quote words for an exact phrase. Try <a href="/search/?q=plan+of+salvation">plan of salvation</a>, <a href="/search/?q=adam+god">adam god</a>, or <a href="/search/?q=united+order">united order</a>. Press / to focus the box.</div></div></main>`;
+    r.body = r.body.replace(/<main>[\s\S]*<\/main>/, main);
+    r.head = r.head.replace(/<title[^>]*>[^<]*<\/title>/, "<title>Search · Journal of Discourses</title>");
+    page("search/index.html", r, `<style>${fs.readFileSync(path.join(__dirname, "search.css"), "utf8")}</style><meta name="robots" content="noindex"/>`, { canonical: `${SITE}/search/` });
+  }
   // data + agent files
   fs.mkdirSync(path.join(OUT, "data"), { recursive: true });
   fs.writeFileSync(path.join(OUT, "data/index.json"), JSON.stringify(index));

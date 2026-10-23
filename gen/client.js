@@ -26,13 +26,6 @@
       if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () {}); 
     });
   }
-  if (location.pathname === "/search/" && window.PagefindUI) {
-    var main = document.querySelector("main"); var div = document.createElement("div"); div.id = "search";
-    div.style.maxWidth = "960px"; div.style.margin = "16px auto"; div.style.padding = "0 16px";
-    main.innerHTML = ""; main.appendChild(div);
-    var ui = new PagefindUI({ element: "#search", showSubResults: true, showImages: false });
-    var q = new URLSearchParams(location.search).get("q"); if (q) ui.triggerSearch(q);
-  }
   if ("serviceWorker" in navigator) navigator.serviceWorker.getRegistrations().then(function (rs) { rs.forEach(function (r) { r.unregister(); }); });
 })();
 // Hover/touch prefetch fallback for browsers without Speculation Rules (Firefox, Safari).
