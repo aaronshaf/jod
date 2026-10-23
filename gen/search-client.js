@@ -39,7 +39,7 @@
       loadMore();
     });
   }
-  import("/pagefind/pagefind.js").then(function (m) {
+  import((window.JOD_PF || "/pagefind/") + "pagefind.js").then(function (m) {
     pf = m; pf.options({ excerptLength: 36 });
     return pf.filters();
   }).then(function (f) {

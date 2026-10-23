@@ -139,10 +139,33 @@ async function handleRpc(env, msg) {
   }
 }
 
+// Daily-quote Atom feed (one entry per day in America/Denver, last 30 days). Cached 1h at the edge.
+const xmlEsc = t => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+function denverYMD(ms) { return new Date(ms).toLocaleDateString("en-CA", { timeZone: "America/Denver" }); }
+async function quotesFeed(env, ctx) {
+  const today = denverYMD(Date.now());
+  const key = new Request(`${SITE}/__cache/v2/feed/quotes?d=${today}`);
+  const hit = await caches.default.match(key); if (hit) return hit;
+  const quotes = (await asset(env, "/quotes.json")).map(q => ({ ...q, url: SITE + q.url, source: SITE + q.source }));
+  const [y, m, d] = today.split("-").map(Number);
+  const base = Date.UTC(y, m - 1, d), N = quotes.length;
+  const entries = [];
+  for (let k = 0; k < 30; k++) {
+    const dayMs = base - k * 864e5, day = Math.round((dayMs - Date.UTC(2026, 0, 1)) / 864e5);
+    const q = quotes[((day % N) + N) % N], ymd = new Date(dayMs).toISOString().slice(0, 10);
+    entries.push(`<entry><id>${SITE}/quotes/${q.n}/#${ymd}</id><title>${xmlEsc(q.speaker + " (" + q.ref + ")")}</title><updated>${ymd}T07:00:00Z</updated><link rel="alternate" href="${q.url}"/><link rel="related" href="${q.source}"/><author><name>${xmlEsc(q.speaker)}</name></author><summary>${xmlEsc("\u201c" + q.text + "\u201d \u2014 " + q.speaker + ", " + q.ref)}</summary><content type="html">${xmlEsc(`<p>\u201c${xmlEsc(q.text)}\u201d</p><p>${xmlEsc(q.speaker)}, <a href="${q.source}">${xmlEsc(q.title)}</a>, ${q.ref}</p><p><img src="${q.url}og.png" alt=""/></p>`)}</content></entry>`);
+  }
+  const xml = `<?xml version="1.0" encoding="utf-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom"><id>${SITE}/feed/quotes.xml</id><title>Journal of Discourses: quote of the day</title><subtitle>A short public-domain passage each day from the Journal of Discourses.</subtitle><link rel="self" href="${SITE}/feed/quotes.xml"/><link rel="alternate" href="${SITE}/"/><updated>${today}T07:00:00Z</updated><rights>Text public domain</rights>${entries.join("")}</feed>`;
+  const res = new Response(xml, { headers: { "content-type": "application/atom+xml; charset=utf-8", "cache-control": "public, max-age=3600", "access-control-allow-origin": "*" } });
+  ctx.waitUntil(caches.default.put(key, res.clone()));
+  return res;
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const p = url.pathname;
+    if (p === "/feed/quotes.xml" || p === "/feed/quotes.atom") return quotesFeed(env, ctx);
     if (!(p === "/mcp" || p.startsWith("/mcp/") || p.startsWith("/api/"))) return env.ASSETS.fetch(request);
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS });
     const ip = request.headers.get("cf-connecting-ip") || "unknown";

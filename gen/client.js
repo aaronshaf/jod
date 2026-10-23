@@ -40,3 +40,18 @@
   document.addEventListener("mouseover", pf, { passive: true });
   document.addEventListener("touchstart", pf, { passive: true });
 })();
+// Home: swap the static quote of the day to the visitor's date in America/Denver.
+(function () {
+  var box = document.getElementById("jod-qotd"); if (!box) return;
+  fetch("/quotes.json").then(function (r) { return r.json(); }).then(function (qs) {
+    var p = new Date().toLocaleDateString("en-CA", { timeZone: "America/Denver" }).split("-").map(Number);
+    var day = Math.round((Date.UTC(p[0], p[1] - 1, p[2]) - Date.UTC(2026, 0, 1)) / 864e5);
+    var q = qs[((day % qs.length) + qs.length) % qs.length];
+    var set = function (k, f) { var el = box.querySelector('[data-q="' + k + '"]'); if (el) f(el); };
+    set("text", function (el) { el.textContent = "\u201c" + q.text + "\u201d"; });
+    set("by", function (el) { el.textContent = q.speaker + (q.date ? ", " + q.date : ""); });
+    set("source", function (el) { el.href = q.source; el.textContent = q.title.length > 70 ? q.title.slice(0, 67) + "\u2026" : q.title; });
+    set("ref", function (el) { el.textContent = q.ref; });
+    set("perma", function (el) { el.href = q.url; });
+  }).catch(function () {});
+})();
