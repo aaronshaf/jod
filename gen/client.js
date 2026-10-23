@@ -35,3 +35,15 @@
   }
   if ("serviceWorker" in navigator) navigator.serviceWorker.getRegistrations().then(function (rs) { rs.forEach(function (r) { r.unregister(); }); });
 })();
+// Hover/touch prefetch fallback for browsers without Speculation Rules (Firefox, Safari).
+(function () {
+  if (HTMLScriptElement.supports && HTMLScriptElement.supports("speculationrules")) return;
+  var done = {};
+  function pf(e) {
+    var a = e.target.closest && e.target.closest("a[href]"); if (!a || a.origin !== location.origin) return;
+    var p = a.pathname; if (done[p] || p === location.pathname || /^\/(api|mcp|_idx)(\/|$)|\.(md|json|txt)$/.test(p)) return;
+    done[p] = 1; var l = document.createElement("link"); l.rel = "prefetch"; l.href = p; document.head.appendChild(l);
+  }
+  document.addEventListener("mouseover", pf, { passive: true });
+  document.addEventListener("touchstart", pf, { passive: true });
+})();

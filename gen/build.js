@@ -31,6 +31,7 @@ async function main() {
 
   // assets
   const sharp = require("sharp");
+  const { ogImage } = require("./og.js");
   fs.mkdirSync(path.join(OUT, "img/speakers"), { recursive: true });
   const speakersDir = path.join(ROOT, "src/images/speakers");
   const mugs = {};
@@ -52,12 +53,12 @@ async function main() {
   for (const f of fs.readdirSync(path.join(__dirname, "static"))) if (f !== "icons") fs.cpSync(path.join(__dirname, "static", f), path.join(OUT, f), { recursive: true });
 
   const esc = s => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
-  const iconLinks = `<link rel="icon" href="/icons/icon-48x48.png"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#122E51"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png"/><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt"/>`;
-  function page(file, r, extraHead, { pagefind = false, ogType = "website", canonical } = {}) {
+  const iconLinks = `<script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/api/*","/mcp","/mcp/*","/_idx/*","/*.md","/*.json","/*.txt"]}}]},"eagerness":"moderate"}],"prerender":[{"where":{"selector_matches":"a[rel~=next], a[rel~=prev], nav a[title*=' by ']"},"eagerness":"moderate"}]}</script><link rel="icon" href="/icons/icon-48x48.png"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#122E51"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png"/><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt"/>`;
+  function page(file, r, extraHead, { pagefind = false, ogType = "website", canonical, image, pfTitle } = {}) {
     let body = r.body;
-    if (pagefind) body = body.replace("<article ", '<article data-pagefind-body="" ');
-    const og = `<meta property="og:url" content="${esc(canonical)}"/><meta property="og:site_name" content="Journal of Discourses"/><meta property="og:image" content="${SITE}/icons/icon-512x512.png"/><meta property="og:image:alt" content="Journal of Discourses"/><meta name="twitter:image" content="${SITE}/icons/icon-512x512.png"/>`;
-    let head = r.head.replace(/(content="[^"]*?)\s+"/g, '$1"').replace('property="og:type" content="website"', `property="og:type" content="${ogType}"`).replace(/(rel="canonical" href=")[^"]*"/, `$1${esc(canonical)}"`);
+    if (pagefind) body = body.replace("<article ", `<article data-pagefind-body=""${pfTitle ? ` data-pagefind-meta="title:${esc(pfTitle)}"` : ""} `);
+    const og = `<meta property="og:url" content="${esc(canonical)}"/><meta property="og:site_name" content="Journal of Discourses"/>${image ? `<meta property="og:image" content="${image}"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta name="twitter:image" content="${image}"/>` : `<meta property="og:image" content="${SITE}/icons/icon-512x512.png"/><meta name="twitter:image" content="${SITE}/icons/icon-512x512.png"/>`}<meta property="og:image:alt" content="Journal of Discourses"/>`;
+    let head = (image ? r.head.replace('name="twitter:card" content="summary"', 'name="twitter:card" content="summary_large_image"') : r.head).replace(/(rel="(?:prev|next|parent)" href="https:\/\/jod\.mrm\.org\/[0-9/]*[0-9])"/g, "$1/\"").replace(/(content="[^"]*?)\s+"/g, '$1"').replace('property="og:type" content="website"', `property="og:type" content="${ogType}"`).replace(/(rel="canonical" href=")[^"]*"/, `$1${esc(canonical)}"`);
     if (!head.includes('rel="canonical"')) head += `<link rel="canonical" href="${esc(canonical)}"/>`;
     const html = `<!DOCTYPE html><html ${r.htmlAttrs}><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>${head}${og}${iconLinks}${extraHead || ""}</head><body><div id="___gatsby"><div id="gatsby-focus-wrapper">${body}</div></div><script src="/${clientName}" defer></script></body></html>`;
     const p = path.join(OUT, file);
@@ -97,7 +98,10 @@ async function main() {
     const json = { id: d.id, url, volume: d.volume, start_page: d.start_page, end_page: d.end_page, title, subtitle, page_header: header, speaker: d.speaker, date, reported_by: plain(prep(d.reported_by)), citation: cite, license: "Public domain", text: paras };
     const ld = { "@context": "https://schema.org", "@type": "CreativeWork", name: title, headline: header, description: subtitle, author: { "@type": "Person", name: d.speaker }, dateCreated: date || undefined, url, inLanguage: "en", isPartOf: { "@type": "PublicationVolume", volumeNumber: String(d.volume), isPartOf: { "@type": "Periodical", name: "Journal of Discourses", url: SITE + "/" } }, pageStart: d.start_page, pageEnd: d.end_page, license: "https://creativecommons.org/publicdomain/mark/1.0/", encoding: [{ "@type": "MediaObject", encodingFormat: "text/markdown", contentUrl: SITE + rel + "index.md" }, { "@type": "MediaObject", encodingFormat: "application/json", contentUrl: SITE + rel + "index.json" }] };
     const extra = `<link rel="alternate" type="text/markdown" href="${rel}index.md"/><link rel="alternate" type="application/json" href="${rel}index.json"/><script type="application/ld+json">${JSON.stringify(ld).replace(/</g, "\\u003c")}</script><script type="application/json" id="jod-cite">${JSON.stringify({ text: cite }).replace(/</g, "\\u003c")}</script>`;
-    page(`${d.volume}/${d.start_page}/index.html`, r, extra, { pagefind: true, ogType: "article", canonical: url });
+    const png = await ogImage({ title, speaker: d.speaker, date: d.date ? fmtDate(d.date) : "", ref: `JD ${d.volume}:${d.start_page}-${d.end_page}` });
+    fs.mkdirSync(path.join(OUT, `${d.volume}/${d.start_page}`), { recursive: true });
+    fs.writeFileSync(path.join(OUT, `${d.volume}/${d.start_page}/og.png`), png);
+    page(`${d.volume}/${d.start_page}/index.html`, r, extra, { pfTitle: title + " — " + d.speaker + " (JD " + d.volume + ":" + d.start_page + ")", pagefind: true, ogType: "article", canonical: url, image: url + "og.png" });
     fs.writeFileSync(path.join(OUT, `${d.volume}/${d.start_page}/index.md`), md);
     fs.writeFileSync(path.join(OUT, `${d.volume}/${d.start_page}/index.json`), JSON.stringify(json));
     urls.push(url);
