@@ -53,5 +53,9 @@
     set("source", function (el) { el.href = q.source; el.textContent = q.title.length > 70 ? q.title.slice(0, 67) + "\u2026" : q.title; });
     set("ref", function (el) { el.textContent = q.ref; });
     set("perma", function (el) { el.href = q.url; });
+    set("portrait", function (el) {
+      if (q.portrait) { el.src = q.portrait.src160; el.srcset = q.portrait.src160 + " 160w, " + q.portrait.src320 + " 320w"; el.alt = q.portrait.alt; el.hidden = false; }
+      else { el.hidden = true; el.removeAttribute("src"); el.removeAttribute("srcset"); el.alt = ""; }
+    });
   }).catch(function () {});
 })();

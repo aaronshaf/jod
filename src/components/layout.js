@@ -51,6 +51,10 @@ const Layout = ({ children, volumeNumbers, volumeNumber }) => {
         <Footer>
           A project of{" "}
           <a href="http://www.mrm.org">Mormonism Research Ministry</a>
+          {" · "}
+          <a href="/speakers/">Speakers</a>
+          {" · "}
+          <a href="/about-portraits/">Portrait credits</a>
         </Footer>
       </div>
     </ThemeProvider>

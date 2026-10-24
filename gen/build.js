@@ -7,6 +7,7 @@ const OUT = path.resolve(process.argv[2] || path.join(ROOT, "dist"));
 const SITE = "https://jod.mrm.org";
 const BUILD_ID = Date.now().toString(36);
 const NM = path.join(__dirname, "node_modules");
+const LD = require("./jsonld.js");
 
 async function main() {
   const origErr = console.error;
@@ -43,6 +44,22 @@ async function main() {
     fs.writeFileSync(path.join(OUT, name), buf);
     mugs[`speakers/${f}`] = { src: "/" + name, width: 160, height: 200 };
   }
+  // portraits: public-domain Wikimedia Commons images (credits at /about-portraits/), hashed file names for immutable caching
+  const PORT = JSON.parse(fs.readFileSync(path.join(__dirname, "portraits.json"), "utf8"));
+  const portraits = {};
+  fs.mkdirSync(path.join(OUT, "img/portraits"), { recursive: true });
+  for (const [speaker, pt] of Object.entries(PORT)) {
+    const o = { ...pt, speaker };
+    for (const n of [160, 320]) {
+      const buf = fs.readFileSync(path.join(__dirname, "portraits", `${pt.slug}-${n}.webp`));
+      const name = `img/portraits/${pt.slug}-${n}.${crypto.createHash("sha1").update(buf).digest("hex").slice(0, 8)}.webp`;
+      fs.writeFileSync(path.join(OUT, name), buf);
+      o["src" + n] = "/" + name;
+    }
+    portraits[speaker] = o;
+  }
+  const ogPortraitCache = {};
+  const ogPortrait = async pt => ogPortraitCache[pt.slug] || (ogPortraitCache[pt.slug] = "data:image/jpeg;base64," + (await sharp(path.join(__dirname, "portraits", `${pt.slug}-320.webp`)).grayscale().jpeg({ quality: 85 }).toBuffer()).toString("base64"));
   const citeBuf = await sharp(path.join(ROOT, "src/images/cite.png")).resize(40, 40).png().toBuffer();
   const citeName = `img/cite.${crypto.createHash("sha1").update(citeBuf).digest("hex").slice(0, 8)}.png`;
   fs.writeFileSync(path.join(OUT, citeName), citeBuf);
@@ -71,9 +88,10 @@ async function main() {
   const urls = [];
   // volumes
   const volCtx = v => ({ pageContext: { volumeNumber: v, volumeNumbers: vols, discourses: sets[v - 1].map(norm) } });
+  const volLD = v => { const url = `${SITE}/${v}/`, ds = sets[v - 1]; return LD.script(LD.graph([...LD.base().slice(0, 2), LD.periodical(), LD.volumeNode(v, { hasPart: ds.map(d => LD.ref(LD.ID.article(v, d.start_page))) }), LD.webpage(url, "CollectionPage", `Journal of Discourses, volume ${v}`, { about: LD.ref(LD.ID.volume(v)), mainEntity: LD.ref(LD.ID.list(url)) }), { "@type": "ItemList", "@id": LD.ID.list(url), name: `Journal of Discourses, volume ${v}`, numberOfItems: ds.length, itemListElement: ds.map((d, i) => ({ "@type": "ListItem", position: i + 1, url: `${SITE}/${v}/${d.start_page}/`, name: plain(prep(d.title)) })) }, LD.crumbs(url, [["Journal of Discourses", SITE + "/"], [`Volume ${v}`, url]])])); };
   page("index.html", render("volume", "/", volCtx(1)), "", { canonical: `${SITE}/` });
   urls.push(`${SITE}/`);
-  for (const v of vols) { page(`${v}/index.html`, render("volume", `/${v}/`, volCtx(v)), "", { canonical: `${SITE}/${v}/` }); urls.push(`${SITE}/${v}/`); }
+  for (const v of vols) { page(`${v}/index.html`, render("volume", `/${v}/`, volCtx(v)), volLD(v), { canonical: `${SITE}/${v}/` }); urls.push(`${SITE}/${v}/`); }
   page("404.html", render("notfound", "/404/", {}), "", { canonical: `${SITE}/404/` });
   // discourses
   const fmtDate = d => { if (!d) return ""; const e = new Date(Date.UTC(+d.substr(0, 4), +d.substr(5, 2) - 1, +d.substr(8, 2))); return e.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" }); };
@@ -97,12 +115,11 @@ async function main() {
     const text = paras.join("\n\n");
     const md = `---\ntitle: ${JSON.stringify(title)}\nspeaker: ${JSON.stringify(d.speaker)}\ndate: ${date || ""}\nvolume: ${d.volume}\npages: ${d.start_page}-${d.end_page}\nreported_by: ${JSON.stringify(plain(prep(d.reported_by)))}\nurl: ${url}\ncitation: ${JSON.stringify(cite)}\nlicense: Public domain\n---\n\n# ${title}\n\n${subtitle}\n\n${text}\n`;
     const json = { id: d.id, url, volume: d.volume, start_page: d.start_page, end_page: d.end_page, title, subtitle, page_header: header, speaker: d.speaker, date, reported_by: plain(prep(d.reported_by)), citation: cite, license: "Public domain", text: paras };
-    const ld = { "@context": "https://schema.org", "@type": "CreativeWork", name: title, headline: header, description: subtitle, author: { "@type": "Person", name: d.speaker }, dateCreated: date || undefined, url, inLanguage: "en", isPartOf: { "@type": "PublicationVolume", volumeNumber: String(d.volume), isPartOf: { "@type": "Periodical", name: "Journal of Discourses", url: SITE + "/" } }, pageStart: d.start_page, pageEnd: d.end_page, license: "https://creativecommons.org/publicdomain/mark/1.0/", encoding: [{ "@type": "MediaObject", encodingFormat: "text/markdown", contentUrl: SITE + rel + "index.md" }, { "@type": "MediaObject", encodingFormat: "application/json", contentUrl: SITE + rel + "index.json" }] };
-    const crumbs = { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Journal of Discourses", item: SITE + "/" }, { "@type": "ListItem", position: 2, name: `Volume ${d.volume}`, item: `${SITE}/${d.volume}/` }, { "@type": "ListItem", position: 3, name: title, item: url }] };
-    ld.image = url + "og.png"; ld.publisher = { "@type": "Organization", name: "Mormonism Research Ministry", url: "https://www.mrm.org/" }; ld.mainEntityOfPage = url;
-    const ldAll = { "@context": "https://schema.org", "@graph": [Object.assign({}, ld, { "@context": undefined }), crumbs] };
-    const extra = `<link rel="alternate" type="text/markdown" href="${rel}index.md"/><link rel="alternate" type="application/json" href="${rel}index.json"/><script type="application/ld+json">${JSON.stringify(ldAll).replace(/</g, "\\u003c")}</script><script type="application/json" id="jod-cite">${JSON.stringify({ text: cite }).replace(/</g, "\\u003c")}</script>`;
-    const png = await ogImage({ title, speaker: d.speaker, date: d.date ? fmtDate(d.date) : "", ref: `JD ${d.volume}:${d.start_page}-${d.end_page}` });
+    const dslug = slugify(d.speaker), dport = portraits[d.speaker], artId = LD.ID.article(d.volume, d.start_page);
+    const art = LD.strip({ "@type": "Article", "@id": artId, name: title, headline: header, description: subtitle, url, author: LD.ref(LD.ID.person(dslug)), dateCreated: date || undefined, inLanguage: "en", genre: "Sermon", isPartOf: LD.ref(LD.ID.volume(d.volume)), pageStart: d.start_page, pageEnd: d.end_page, wordCount: text.split(/\s+/).filter(Boolean).length, citation: cite, license: LD.PDM, isAccessibleForFree: true, image: url + "og.png", mainEntityOfPage: LD.ref(LD.ID.webpage(url)), encoding: [{ "@type": "MediaObject", encodingFormat: "text/markdown", contentUrl: SITE + rel + "index.md" }, { "@type": "MediaObject", encodingFormat: "application/json", contentUrl: SITE + rel + "index.json" }] });
+    const ldAll = LD.graph([...LD.base(), LD.volumeNode(d.volume), LD.personNode(d.speaker, dslug, dport), ...(dport ? [LD.imageNode(dport)] : []), art, LD.webpage(url, "WebPage", title, { mainEntity: LD.ref(artId) }), LD.crumbs(url, [["Journal of Discourses", SITE + "/"], [`Volume ${d.volume}`, `${SITE}/${d.volume}/`], [title, url]])]);
+    const extra = `<link rel="alternate" type="text/markdown" href="${rel}index.md"/><link rel="alternate" type="application/json" href="${rel}index.json"/>${LD.script(ldAll)}<script type="application/json" id="jod-cite">${JSON.stringify({ text: cite }).replace(/</g, "\\u003c")}</script>`;
+    const png = await ogImage({ title, speaker: d.speaker, date: d.date ? fmtDate(d.date) : "", ref: `JD ${d.volume}:${d.start_page}-${d.end_page}`, portrait: dport ? await ogPortrait(dport) : null });
     fs.mkdirSync(path.join(OUT, `${d.volume}/${d.start_page}`), { recursive: true });
     fs.writeFileSync(path.join(OUT, `${d.volume}/${d.start_page}/og.png`), png);
     page(`${d.volume}/${d.start_page}/index.html`, r, extra, { pfTitle: title, pfExtra: [["filter", "speaker", d.speaker], ["filter", "volume", String(d.volume)], ["meta", "speaker", d.speaker], ["meta", "date", d.date ? fmtDate(d.date) : ""], ["meta", "ref", `JD ${d.volume}:${d.start_page}-${d.end_page}`], ["sort", "order", String(d.volume * 10000 + d.start_page).padStart(7, "0")]], pagefind: true, ogType: "article", canonical: url, image: url + "og.png" });
@@ -132,43 +149,96 @@ async function main() {
       picks.push({ j, ...cands[0] });
     }
     picks.sort((a, b) => hash("q" + a.j.id) < hash("q" + b.j.id) ? -1 : 1);
-    const quotes = picks.slice(0, 366).map((o, n) => ({ n: n + 1, text: o.t, speaker: o.j.speaker, date: o.j.date, title: o.j.title, ref: `JD ${o.j.volume}:${o.j.start_page}-${o.j.end_page}`, source: o.j.url, url: `${SITE}/quotes/${n + 1}/` }));
-    const qcss = `<style>.jq{max-width:760px;margin:24px auto;padding:0 16px}.jq blockquote{margin:0;background:#fff;border:1px solid #e3e1ce;padding:28px 32px;font-family:Georgia,"Times New Roman",serif;font-size:1.35rem;line-height:1.5;color:#000e1a}.jq .by{margin-top:14px;font-size:.92rem;color:#5a5a50}.jq .by a{color:#052f54}.jq .ref{color:#8a6a2a}.jq nav{display:flex;justify-content:space-between;margin-top:14px;font-size:.86rem}.jq nav a{color:#0066cc}@media(max-width:600px){.jq blockquote{padding:20px;font-size:1.15rem}}</style>`;
+    const prio = JSON.parse(fs.readFileSync(path.join(__dirname, "quotes-priority.json"), "utf8"));
+    const wsn = s => s.replace(/\s+/g, " ").trim();
+    const discByKey = new Map(bulk.map(j => [`${j.volume}:${j.start_page}`, j]));
+    // Priority quotes (validated exact matches, see gen/quotes-validation.md). Build fails if any is not verbatim in our text.
+    const prioPicks = prio.map(p => {
+      const j = discByKey.get(`${p.volume}:${p.start_page}`);
+      if (!j) throw new Error(`priority quote: no discourse at JD ${p.volume}:${p.start_page}`);
+      if (p.text !== wsn(p.text) || !j.text.some(t => wsn(t).includes(p.text))) throw new Error(`priority quote is not verbatim in JD ${p.volume}:${p.start_page}: ${p.text.slice(0, 60)}`);
+      if (j.speaker !== p.speaker || p.page < j.start_page || p.page > j.end_page) throw new Error(`priority quote metadata mismatch at JD ${p.volume}:${p.start_page}`);
+      return { j, t: p.text, i: -1, priority: true };
+    });
+    const NQ = 366, slotOf = i => Math.floor(i * NQ / prioPicks.length);
+    const pdisc = new Set(prioPicks.map(o => o.j.id));
+    const reserve = picks.slice(NQ).filter(o => !pdisc.has(o.j.id));
+    const slots = new Array(NQ).fill(null);
+    prioPicks.forEach((o, i) => { if (slots[slotOf(i)]) throw new Error("priority slot clash"); slots[slotOf(i)] = o; });
+    let ri = 0;
+    for (let k = 0; k < NQ; k++) if (!slots[k]) slots[k] = picks[k] && !pdisc.has(picks[k].j.id) ? picks[k] : reserve[ri++];
+    const quotes = slots.map((o, n) => ({ n: n + 1, text: o.t, speaker: o.j.speaker, date: o.j.date, title: o.j.title, ref: `JD ${o.j.volume}:${o.j.start_page}-${o.j.end_page}`, source: o.j.url, url: `${SITE}/quotes/${n + 1}/`, priority: !!o.priority, vol: o.j.volume, sp: o.j.start_page, port: portraits[o.j.speaker] || null }));
+    if (new Set(quotes.map(q => q.text)).size !== quotes.length) throw new Error("duplicate quote text in rotation");
+    const pimg = (sp, dq) => { const p = portraits[sp]; if (!p) return dq ? '<img class="qp" data-q="portrait" alt="" width="48" height="48" hidden/>' : ""; return `<img class="qp"${dq ? ' data-q="portrait"' : ""} src="${p.src160}" srcset="${p.src160} 160w, ${p.src320} 320w" sizes="48px" width="48" height="48" alt="${esc(p.alt)}" decoding="async"/>`; };
+    const crumbBase = ["Journal of Discourses", SITE + "/"];
+    const quoteGraph = q => {
+      const slug = slugify(q.speaker), port = q.port, aid = LD.ID.article(q.vol, q.sp), qid = LD.ID.quotation(q.n), dd = q.date ? q.date.slice(0, 10) : undefined, label = `${q.speaker} (${q.ref})`;
+      return LD.graph([...LD.base(), LD.volumeNode(q.vol), LD.personNode(q.speaker, slug, port), ...(port ? [LD.imageNode(port)] : []),
+        LD.strip({ "@type": "Article", "@id": aid, name: q.title, url: q.source, author: LD.ref(LD.ID.person(slug)), isPartOf: LD.ref(LD.ID.volume(q.vol)), dateCreated: dd, inLanguage: "en" }),
+        LD.strip({ "@type": "Quotation", "@id": qid, text: q.text, creator: LD.ref(LD.ID.person(slug)), spokenByCharacter: LD.ref(LD.ID.person(slug)), isPartOf: LD.ref(aid), citation: `${q.speaker}, "${q.title}", Journal of Discourses, vol. ${q.vol}, pp. ${q.ref.split(":")[1]}${dd ? ", " + fmtDate(q.date) : ""}.`, dateCreated: dd, inLanguage: "en", license: LD.PDM, isAccessibleForFree: true, url: q.url, image: q.url + "og.png", mainEntityOfPage: LD.ref(LD.ID.webpage(q.url)) }),
+        LD.webpage(q.url, "WebPage", label, { mainEntity: LD.ref(qid) }),
+        LD.crumbs(q.url, [crumbBase, ["Quotes", SITE + "/quotes/"], [label, q.url]])]);
+    };
+    const quotesIndexGraph = () => { const url = `${SITE}/quotes/`; return LD.graph([...LD.base(), LD.webpage(url, "CollectionPage", "Quotes from the Journal of Discourses", { mainEntity: LD.ref(LD.ID.list(url)) }), { "@type": "ItemList", "@id": LD.ID.list(url), name: "Quotes from the Journal of Discourses", numberOfItems: quotes.length, itemListElement: quotes.map(q => ({ "@type": "ListItem", position: q.n, url: q.url, name: `${q.speaker} (${q.ref})` })) }, LD.crumbs(url, [crumbBase, ["Quotes", url]])]); };
+    const qcss = `<style>.jq{max-width:760px;margin:24px auto;padding:0 16px}.jq blockquote{margin:0;background:#fff;border:1px solid #e3e1ce;padding:28px 32px;font-family:Georgia,"Times New Roman",serif;font-size:1.35rem;line-height:1.5;color:#000e1a}.jq .by{margin-top:14px;font-size:.92rem;color:#5a5a50}.jq .by a{color:#052f54}.jq .ref{color:#8a6a2a}.jq nav{display:flex;justify-content:space-between;margin-top:14px;font-size:.86rem}.jq nav a{color:#0066cc}@media(max-width:600px){.jq blockquote{padding:20px;font-size:1.15rem}}.jq .by{display:flex;gap:12px;align-items:center}.qp{width:48px;height:48px;flex:none;border-radius:50%;object-fit:cover;filter:grayscale(1);border:1px solid #e3e1ce;background:#f4f2e4}@media(max-width:600px){.qp{width:40px;height:40px}}</style>`;
     const shell = (pathName) => render("volume", pathName, { pageContext: { volumeNumber: null, volumeNumbers: vols, discourses: [] } });
     for (const q of quotes) {
       const r = shell(`/quotes/${q.n}/`);
       const dt = q.date ? fmtDate(q.date) : "";
-      r.body = r.body.replace(/<main>[\s\S]*<\/main>/, `<main><div class="jq"><blockquote>\u201c${esc(q.text)}\u201d<div class="by">${esc(q.speaker)}${dt ? ", " + dt : ""} \u00b7 <a href="${q.source.replace(SITE, "")}">${esc(q.title)}</a> \u00b7 <span class="ref">${q.ref}</span></div></blockquote><nav><a href="/quotes/${q.n > 1 ? q.n - 1 : quotes.length}/" rel="prev">Previous quote</a><a href="/quotes/">All quotes</a><a href="/quotes/${q.n < quotes.length ? q.n + 1 : 1}/" rel="next">Next quote</a></nav></div></main>`);
+      r.body = r.body.replace(/<main>[\s\S]*<\/main>/, `<main><div class="jq"><blockquote>\u201c${esc(q.text)}\u201d<div class="by">${pimg(q.speaker)}<span>${esc(q.speaker)}${dt ? ", " + dt : ""} \u00b7 <a href="${q.source.replace(SITE, "")}">${esc(q.title)}</a> \u00b7 <span class="ref">${q.ref}</span></span></div></blockquote><nav><a href="/quotes/${q.n > 1 ? q.n - 1 : quotes.length}/" rel="prev">Previous quote</a><a href="/quotes/">All quotes</a><a href="/quotes/${q.n < quotes.length ? q.n + 1 : 1}/" rel="next">Next quote</a></nav></div></main>`);
       const desc = `${q.speaker}, ${q.ref}`;
       r.head = r.head.replace(/<title[^>]*>[^<]*<\/title>/, `<title>\u201c${esc(q.text.slice(0, 90))}\u2026\u201d \u2014 ${esc(q.speaker)}</title>`).replace(/(name="description" content=")[^"]*"/, `$1${esc(q.text)}"`).replace(/(property="og:title" content=")[^"]*"/, `$1${esc(q.speaker + " (" + q.ref + ")")}"`).replace(/(property="og:description" content=")[^"]*"/, `$1${esc(q.text)}"`).replace(/(name="twitter:title" content=")[^"]*"/, `$1${esc(q.speaker + " (" + q.ref + ")")}"`).replace(/(name="twitter:description" content=")[^"]*"/, `$1${esc(q.text)}"`);
-      const png = await ogImage({ title: `\u201c${q.text}\u201d`, speaker: q.speaker, date: dt, ref: q.ref, max: 270, quote: true });
+      const png = await ogImage({ title: `\u201c${q.text}\u201d`, speaker: q.speaker, date: dt, ref: q.ref, max: 270, quote: true, portrait: q.port ? await ogPortrait(q.port) : null });
       fs.mkdirSync(path.join(OUT, `quotes/${q.n}`), { recursive: true });
       fs.writeFileSync(path.join(OUT, `quotes/${q.n}/og.png`), png);
-      const qld = { "@context": "https://schema.org", "@type": "Quotation", text: q.text, spokenByCharacter: { "@type": "Person", name: q.speaker }, isPartOf: q.source.split("#")[0], url: q.url };
-      page(`quotes/${q.n}/index.html`, r, qcss + `<link rel="alternate" type="application/atom+xml" title="Journal of Discourses: quote of the day" href="/feed/quotes.xml"/><script type="application/ld+json">${JSON.stringify(qld).replace(/</g, "\\u003c")}</script>`, { ogType: "article", canonical: q.url, image: q.url + "og.png" });
+      page(`quotes/${q.n}/index.html`, r, qcss + `<link rel="alternate" type="application/atom+xml" title="Journal of Discourses: quote of the day" href="/feed/quotes.xml"/>${LD.script(quoteGraph(q))}`, { ogType: "article", canonical: q.url, image: q.url + "og.png" });
     }
     { const r = shell("/quotes/"); r.body = r.body.replace(/<main>[\s\S]*<\/main>/, `<main><div class="jq"><h2>Quotes from the Journal of Discourses</h2><p style="color:#5a5a50;font-size:.92rem">One short passage per day. Feed: <a href="/feed/quotes.xml">/feed/quotes.xml</a>. Today: <a href="/quote/">/quote/</a>.</p><ol style="background:#fff;border:1px solid #e3e1ce;padding:12px 12px 12px 48px;line-height:1.5">${quotes.map(q => `<li style="margin:8px 0"><a href="/quotes/${q.n}/" style="color:#052f54;text-decoration:none">${esc(q.text.slice(0, 110))}\u2026</a> <span style="color:#5a5a50;font-size:.86rem">${esc(q.speaker)}, <span class="ref">${q.ref}</span></span></li>`).join("")}</ol></div></main>`);
       r.head = r.head.replace(/<title[^>]*>[^<]*<\/title>/, "<title>Quotes \u00b7 Journal of Discourses</title>");
-      page("quotes/index.html", r, qcss + `<link rel="alternate" type="application/atom+xml" href="/feed/quotes.xml"/>`, { canonical: `${SITE}/quotes/` }); }
+      page("quotes/index.html", r, qcss + LD.script(quotesIndexGraph()) + `<link rel="alternate" type="application/atom+xml" href="/feed/quotes.xml"/>`, { canonical: `${SITE}/quotes/` }); }
     { const r = shell("/quote/"); r.body = r.body.replace(/<main>[\s\S]*<\/main>/, `<main><div class="jq"><p>Loading today\u2019s quote\u2026 <a href="/quotes/">All quotes</a></p></div></main>`);
       page("quote/index.html", r, `<meta name="robots" content="noindex"/><script>(function(){var p=new Date().toLocaleDateString("en-CA",{timeZone:"America/Denver"}).split("-").map(Number);var d=Math.round((Date.UTC(p[0],p[1]-1,p[2])-Date.UTC(2026,0,1))/864e5);location.replace("/quotes/"+(((d%${quotes.length})+${quotes.length})%${quotes.length}+1)+"/")})()</script>`, { canonical: `${SITE}/quote/` }); }
     fs.mkdirSync(path.join(OUT, "_idx"), { recursive: true });
-    fs.writeFileSync(path.join(OUT, "quotes.json"), JSON.stringify(quotes.map(q => ({ n: q.n, text: q.text, speaker: q.speaker, date: q.date ? fmtDate(q.date) : "", title: q.title, ref: q.ref, source: q.source.replace(SITE, ""), url: `/quotes/${q.n}/` }))));
+    fs.writeFileSync(path.join(OUT, "quotes.json"), JSON.stringify(quotes.map(q => ({ n: q.n, text: q.text, speaker: q.speaker, date: q.date ? fmtDate(q.date) : "", title: q.title, ref: q.ref, source: q.source.replace(SITE, ""), url: `/quotes/${q.n}/`, portrait: q.port ? { src160: q.port.src160, src320: q.port.src320, alt: q.port.alt } : null }))));
     // home page: volume 1 list plus today's quote (static = build day in America/Denver; client swaps to the visitor's Denver date)
     {
       const denverDay = ms => { const [y, m, d] = new Date(ms).toLocaleDateString("en-CA", { timeZone: "America/Denver" }).split("-").map(Number); return Math.round((Date.UTC(y, m - 1, d) - Date.UTC(2026, 0, 1)) / 864e5); };
       const q = quotes[((denverDay(Date.now()) % quotes.length) + quotes.length) % quotes.length];
       const dt = q.date ? fmtDate(q.date) : "";
-      const block = `<section id="jod-qotd" style="max-width:960px;margin:16px auto 0;padding:0 16px;box-sizing:border-box" aria-label="Quote of the day"><div style="background:#fff;border:1px solid #e3e1ce;border-left:3px solid #f1ae46;padding:16px 20px"><div style="font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#5a5a50">Quote of the day</div><blockquote data-q="text" style="margin:8px 0 0;font-family:Georgia,'Times New Roman',serif;font-size:1.15rem;line-height:1.5;color:#000e1a">\u201c${esc(q.text)}\u201d</blockquote><div style="margin-top:8px;font-size:.86rem;color:#5a5a50"><span data-q="by">${esc(q.speaker)}${dt ? ", " + dt : ""}</span> \u00b7 <a data-q="source" href="${q.source.replace(SITE, "")}" style="color:#052f54">${esc(q.title.length > 70 ? q.title.slice(0, 67) + "\u2026" : q.title)}</a> <span data-q="ref" style="color:#8a6a2a">${q.ref}</span> \u00b7 <a data-q="perma" href="/quotes/${q.n}/" style="color:#0066cc">Permalink</a></div></div></section>`;
+      const block = `<section id="jod-qotd" style="max-width:960px;margin:16px auto 0;padding:0 16px;box-sizing:border-box" aria-label="Quote of the day"><div style="background:#fff;border:1px solid #e3e1ce;border-left:3px solid #f1ae46;padding:16px 20px"><div style="font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#5a5a50">Quote of the day</div><blockquote data-q="text" style="margin:8px 0 0;font-family:Georgia,'Times New Roman',serif;font-size:1.15rem;line-height:1.5;color:#000e1a">\u201c${esc(q.text)}\u201d</blockquote><div style="margin-top:10px;font-size:.86rem;color:#5a5a50;display:flex;gap:12px;align-items:center">${pimg(q.speaker, true)}<div><span data-q="by">${esc(q.speaker)}${dt ? ", " + dt : ""}</span> \u00b7 <a data-q="source" href="${q.source.replace(SITE, "")}" style="color:#052f54">${esc(q.title.length > 70 ? q.title.slice(0, 67) + "\u2026" : q.title)}</a> <span data-q="ref" style="color:#8a6a2a">${q.ref}</span> \u00b7 <a data-q="perma" href="/quotes/${q.n}/" style="color:#0066cc">Permalink</a></div></div></div></section>`;
       const r = shell("/");
       const vinfo = vols.map(v => { const ds = index.filter(i => i.volume === v), ys = ds.map(i => i.date && +i.date.slice(0, 4)).filter(Boolean); return { v, n: ds.length, y0: Math.min(...ys), y1: Math.max(...ys) }; });
-      const vcss = `<style>.jv{max-width:960px;margin:16px auto 32px;padding:0 16px;box-sizing:border-box}.jv h2{font-size:1.1rem;font-weight:normal;color:#5a5a50;margin:20px 2px 8px}.jv ul{list-style:none;margin:0;padding:1px;display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1px}.jv li{outline:1px solid #e3e1ce}.jv li a{display:flex;justify-content:space-between;align-items:baseline;gap:8px;background:#fff;padding:10px 14px;text-decoration:none;color:#000e1a}.jv li a:hover{background:#faf9f3}.jv .vn{font-family:Georgia,"Times New Roman",serif;font-size:1.05rem;color:#052f54}.jv .vm{font-size:.8rem;color:#5a5a50;white-space:nowrap}@media(max-width:600px){.jv ul{grid-template-columns:1fr}.jv li a{padding:9px 14px}}</style>`;
+      const vcss = `<style>.qp{width:48px;height:48px;flex:none;border-radius:50%;object-fit:cover;filter:grayscale(1);border:1px solid #e3e1ce;background:#f4f2e4}@media(max-width:600px){.qp{width:40px;height:40px}}.jv{max-width:960px;margin:16px auto 32px;padding:0 16px;box-sizing:border-box}.jv h2{font-size:1.1rem;font-weight:normal;color:#5a5a50;margin:20px 2px 8px}.jv ul{list-style:none;margin:0;padding:1px;display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1px}.jv li{outline:1px solid #e3e1ce}.jv li a{display:flex;justify-content:space-between;align-items:baseline;gap:8px;background:#fff;padding:10px 14px;text-decoration:none;color:#000e1a}.jv li a:hover{background:#faf9f3}.jv .vn{font-family:Georgia,"Times New Roman",serif;font-size:1.05rem;color:#052f54}.jv .vm{font-size:.8rem;color:#5a5a50;white-space:nowrap}@media(max-width:600px){.jv ul{grid-template-columns:1fr}.jv li a{padding:9px 14px}}</style>`;
       const vlist = `<div class="jv"><h2>Volumes</h2><ul>${vinfo.map(x => `<li><a href="/${x.v}/"><span class="vn">Volume ${x.v}</span><span class="vm">${x.y0 === x.y1 ? x.y0 : x.y0 + "\u2013" + String(x.y1).slice(2)} \u00b7 ${x.n}</span></a></li>`).join("")}</ul><p style="font-size:.8rem;color:#5a5a50;margin:8px 2px">Years and number of discourses per volume. <a href="/quotes/" style="color:#0066cc">All quotes</a> \u00b7 <a href="/search/" style="color:#0066cc">Search</a> \u00b7 <a href="/data/README.md" style="color:#0066cc">Bulk data</a></p></div>`;
       r.body = r.body.replace(/<main>[\s\S]*<\/main>/, "<main>" + block + vlist + "</main>");
       r.head = r.head.replace(/<title[^>]*>[^<]*<\/title>/, "<title>Journal of Discourses: public sermons by Mormon leaders, 1851-1886</title>").replace(/(name="description" content=")[^"]*"/, `$1Full text of all 26 volumes of the Journal of Discourses. Today: \u201c${esc(q.text.slice(0, 120))}\u2026\u201d (${esc(q.speaker)}, ${q.ref})"`);
-      page("index.html", r, vcss + `<link rel="alternate" type="application/atom+xml" title="Journal of Discourses: quote of the day" href="/feed/quotes.xml"/>`, { canonical: `${SITE}/`, image: `${SITE}/quotes/${q.n}/og.png` });
+      const homeGraph = LD.graph([LD.publisher(), LD.website(), LD.periodical({ hasPart: vols.map(v => LD.ref(LD.ID.volume(v))) }), ...vinfo.map(x => LD.volumeNode(x.v)),
+        LD.strip({ "@type": "Dataset", "@id": LD.ID.dataset, name: "Journal of Discourses: full text and metadata", description: `All 26 volumes (${all.length} discourses, 1854-1886) as JSON and SQLite: volume, pages, speaker, date, title and paragraph text. Public domain.`, url: SITE + "/data/README.md", license: LD.PDM, isAccessibleForFree: true, inLanguage: "en", temporalCoverage: "1854/1886", isBasedOn: LD.ref(LD.ID.periodical), creator: LD.ref(LD.ID.publisher), publisher: LD.ref(LD.ID.publisher), keywords: ["Journal of Discourses", "sermons", "Latter-day Saints", "19th century", "public domain"], distribution: [["jod.json.gz", "application/gzip"], ["jod.sqlite.gz", "application/gzip"], ["index.json", "application/json"]].map(([n, t]) => ({ "@type": "DataDownload", name: n, encodingFormat: t, contentUrl: `${SITE}/data/${n}` })) }),
+        LD.webpage(SITE + "/", "CollectionPage", "Journal of Discourses", { description: "Full text of all 26 volumes of the Journal of Discourses (1854-1886), with a quote of the day.", mainEntity: LD.ref(LD.ID.periodical), breadcrumb: undefined })]);
+      page("index.html", r, vcss + `<link rel="alternate" type="application/atom+xml" title="Journal of Discourses: quote of the day" href="/feed/quotes.xml"/>` + LD.script(homeGraph), { canonical: `${SITE}/`, image: `${SITE}/quotes/${q.n}/og.png` });
     }
     urls.push(`${SITE}/quotes/`, ...quotes.map(q => q.url));
+    // speakers index (stable Person @ids) and portrait credits
+    {
+      const spk = new Map();
+      for (const d of all) { const o = spk.get(d.speaker) || { n: 0, ys: [] }; o.n++; if (d.date && +d.date.slice(0, 4) > 1800) o.ys.push(+d.date.slice(0, 4)); spk.set(d.speaker, o); }
+      const list = [...spk.entries()].sort((a, b) => b[1].n - a[1].n || a[0].localeCompare(b[0]));
+      const pcss = `<style>.sp{max-width:760px;margin:24px auto;padding:0 16px;color:#000e1a}.sp h2{font-size:1.2rem;font-weight:normal;margin:0 0 8px}.sp p{color:#5a5a50;font-size:.92rem;line-height:1.5;margin:8px 0}.sp a{color:#052f54}.sp a.nm{text-decoration:none}.sp ul{list-style:none;margin:12px 0;padding:0;background:#fff;border:1px solid #e3e1ce}.sp li{display:flex;gap:12px;align-items:center;padding:8px 14px;border-top:1px solid #efedde}.sp li:first-child{border-top:0}.sp .nm{font-family:Georgia,"Times New Roman",serif;font-size:1.02rem}.sp .mt{display:block;font-size:.8rem;color:#5a5a50}.sp .qx{width:48px;height:48px;flex:none}.qp{width:48px;height:48px;flex:none;border-radius:50%;object-fit:cover;filter:grayscale(1);border:1px solid #e3e1ce;background:#f4f2e4}@media(max-width:600px){.qp,.sp .qx{width:40px;height:40px}}</style>`;
+      const mt = o => { const y0 = Math.min(...o.ys), y1 = Math.max(...o.ys); return `${o.n} discourse${o.n === 1 ? "" : "s"}${o.ys.length ? " \u00b7 " + (y0 === y1 ? y0 : y0 + "\u2013" + y1) : ""}`; };
+      const sUrl = `${SITE}/speakers/`;
+      { const r = shell("/speakers/");
+        r.body = r.body.replace(/<main>[\s\S]*<\/main>/, `<main><div class="sp"><h2>Speakers</h2><p>The ${list.length} speakers in the Journal of Discourses, by number of discourses. Each name opens a search filtered to that speaker. Portraits are shown only where a verified public-domain image exists; see <a href="/about-portraits/">portrait credits</a>.</p><ul>${list.map(([name, o]) => `<li id="${slugify(name)}">${portraits[name] ? pimg(name) : '<span class="qx"></span>'}<span><a class="nm" href="/search/?speaker=${encodeURIComponent(name)}">${esc(name)}</a><span class="mt">${mt(o)}</span></span></li>`).join("")}</ul></div></main>`);
+        r.head = r.head.replace(/<title[^>]*>[^<]*<\/title>/, "<title>Speakers \u00b7 Journal of Discourses</title>");
+        const g = LD.graph([...LD.base(), ...list.map(([name]) => LD.personNode(name, slugify(name), portraits[name])), ...list.filter(([name]) => portraits[name]).map(([name]) => LD.imageNode(portraits[name])), LD.webpage(sUrl, "CollectionPage", "Speakers in the Journal of Discourses", { mainEntity: LD.ref(LD.ID.list(sUrl)) }), { "@type": "ItemList", "@id": LD.ID.list(sUrl), name: "Speakers in the Journal of Discourses", numberOfItems: list.length, itemListElement: list.map(([name], i) => ({ "@type": "ListItem", position: i + 1, item: LD.ref(LD.ID.person(slugify(name))) })) }, LD.crumbs(sUrl, [crumbBase, ["Speakers", sUrl]])]);
+        page("speakers/index.html", r, pcss + LD.script(g), { canonical: sUrl }); }
+      const cUrl = `${SITE}/about-portraits/`, plist = list.filter(([name]) => portraits[name]);
+      { const r = shell("/about-portraits/");
+        r.body = r.body.replace(/<main>[\s\S]*<\/main>/, `<main><div class="sp"><h2>Portrait credits</h2><p>Portraits beside quotes are public-domain images from Wikimedia Commons, resized and cropped to a square for display. The photograph or painting was checked against its Commons description and category for identity and license. Speakers without a verified public-domain portrait are shown without one. Alt text names the person pictured.</p><ul>${plist.map(([name]) => { const p = portraits[name]; return `<li id="${p.slug}">${pimg(name)}<span><span class="nm">${esc(p.name)}</span><span class="mt">${esc(p.author)}; ${esc(p.date)}. Public domain. <a href="${esc(p.commons_url)}" rel="noopener">${esc(p.commons_file)}</a> on Wikimedia Commons.${p.note ? " " + esc(p.note) : ""}</span></span></li>`; }).join("")}</ul><p>The text of the discourses is public domain. Corrections to these credits are welcome via <a href="https://www.mrm.org/">mrm.org</a>.</p></div></main>`);
+        r.head = r.head.replace(/<title[^>]*>[^<]*<\/title>/, "<title>Portrait credits \u00b7 Journal of Discourses</title>");
+        const g = LD.graph([...LD.base(), ...plist.map(([name]) => LD.personNode(name, slugify(name), portraits[name])), ...plist.map(([name]) => LD.strip(Object.assign(LD.imageNode(portraits[name]), { about: LD.ref(LD.ID.person(slugify(name))) }))), LD.webpage(cUrl, "AboutPage", "Portrait credits", { mainEntity: LD.ref(LD.ID.list(cUrl)) }), { "@type": "ItemList", "@id": LD.ID.list(cUrl), name: "Portraits and their sources", numberOfItems: plist.length, itemListElement: plist.map(([, ], i) => ({ "@type": "ListItem", position: i + 1, item: LD.ref(LD.ID.portrait(portraits[plist[i][0]].slug)) })) }, LD.crumbs(cUrl, [crumbBase, ["Portrait credits", cUrl]])]);
+        page("about-portraits/index.html", r, pcss + LD.script(g), { canonical: cUrl }); }
+      urls.push(sUrl, cUrl);
+    }
   }
   // bulk data download
   {
