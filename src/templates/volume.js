@@ -4,7 +4,12 @@ import SEO from "../components/seo";
 import {
   VolumeWrapper,
   Volume,
+  VolumeBar,
+  VolumeHeading,
   VolumeTitle,
+  VolumeYears,
+  VolumeNav,
+  VolumeNavSpacer,
   DiscourseList
 } from "./volume.styles.js";
 import DiscourseListItem from "./DiscourseListItem.js";
@@ -18,6 +23,18 @@ export default ({
   const previousUrl =
     volumeNumber > 1 && `https://jod.mrm.org/${volumeNumber - 1}`;
 
+  const years = discourses
+    .map(d => d.date && parseInt(d.date.substr(0, 4), 10))
+    .filter(Boolean);
+  const y0 = years.length ? Math.min(...years) : null;
+  const y1 = years.length ? Math.max(...years) : null;
+  const yearRange =
+    y0 === null
+      ? null
+      : y0 === y1
+      ? String(y0)
+      : `${y0}\u2013${String(y1).slice(2)}`;
+
   return (
     <Layout volumeNumbers={volumeNumbers} volumeNumber={volumeNumber}>
       <SEO
@@ -28,7 +45,32 @@ export default ({
       />
       <VolumeWrapper>
         <Volume>
-          <VolumeTitle>Volume {volumeNumber}</VolumeTitle>
+          <VolumeBar>
+            {volumeNumber > 1 ? (
+              <VolumeNav
+                href={`/${volumeNumber - 1}/`}
+                rel="prev"
+                title={`Volume ${volumeNumber - 1}`}
+              >
+                {"\u2039"}&nbsp;Vol.&nbsp;{volumeNumber - 1}
+              </VolumeNav>
+            ) : (
+              <VolumeNavSpacer />
+            )}
+            <VolumeHeading>
+              <VolumeTitle>Volume {volumeNumber}</VolumeTitle>
+              {yearRange && <VolumeYears>{yearRange}</VolumeYears>}
+            </VolumeHeading>
+            {volumeNumber < 26 && (
+              <VolumeNav
+                href={`/${volumeNumber + 1}/`}
+                rel="next"
+                title={`Volume ${volumeNumber + 1}`}
+              >
+                Vol.&nbsp;{volumeNumber + 1}&nbsp;{"\u203a"}
+              </VolumeNav>
+            )}
+          </VolumeBar>
           <DiscourseList>
             {discourses.map(discourse => (
               <DiscourseListItem key={discourse.id} discourse={discourse} />

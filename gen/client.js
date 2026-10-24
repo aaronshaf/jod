@@ -4,6 +4,8 @@
   var wrap = nav && nav.parentNode && nav.parentNode.parentNode;
   if (wrap) {
     try { var s = JSON.parse(localStorage.getItem("volumeWrapperScrollLeft")); if (s) wrap.scrollLeft = s; } catch (e) {}
+    var cur = wrap.querySelector("a.active, a[aria-current]");
+    if (cur && (cur.offsetLeft < wrap.scrollLeft || cur.offsetLeft + cur.offsetWidth > wrap.scrollLeft + wrap.clientWidth)) wrap.scrollLeft = Math.max(0, cur.offsetLeft - (wrap.clientWidth - cur.offsetWidth) / 2);
     wrap.addEventListener("scroll", function () { try { localStorage.setItem("volumeWrapperScrollLeft", JSON.stringify(wrap.scrollLeft)); } catch (e) {} });
   }
   var form = document.querySelector("form[action*='google.com/search']");
