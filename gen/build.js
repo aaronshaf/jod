@@ -138,35 +138,24 @@ async function main() {
     r.head = r.head.replace(/<title[^>]*>[^<]*<\/title>/, "<title>Search · Journal of Discourses</title>");
     page("search/index.html", r, `<style>${fs.readFileSync(path.join(__dirname, "search.css"), "utf8")}</style><meta name="robots" content="noindex"/><script>window.JOD_PF="/pagefind/${BUILD_ID}/"</script>`, { canonical: `${SITE}/search/` });
   }
-  // quotes: deterministic selection of short quotable paragraphs, one per discourse, 366 total
+  // quotes: the validated rotation from gen/quotes-priority.json
   {
-    const hash = x => crypto.createHash("sha1").update(x).digest("hex");
-    const picks = [];
-    for (const j of bulk) {
-      const cands = j.text.map((t, i) => ({ t, i })).filter(o => o.t.length >= 120 && o.t.length <= 260 && /^[A-Z"]/.test(o.t) && /[.!?]"?$/.test(o.t) && !/\d{3,}|Reported by|Journal of Discourses/i.test(o.t));
-      if (!cands.length) continue;
-      cands.sort((a, b) => hash(j.id + a.i) < hash(j.id + b.i) ? -1 : 1);
-      picks.push({ j, ...cands[0] });
-    }
-    picks.sort((a, b) => hash("q" + a.j.id) < hash("q" + b.j.id) ? -1 : 1);
     const prio = JSON.parse(fs.readFileSync(path.join(__dirname, "quotes-priority.json"), "utf8"));
     const wsn = s => s.replace(/\s+/g, " ").trim();
     const discByKey = new Map(bulk.map(j => [`${j.volume}:${j.start_page}`, j]));
-    // Priority quotes (validated exact matches, see gen/quotes-validation.md). Build fails if any is not verbatim in our text.
-    const prioPicks = prio.map(p => {
+    // The whole rotation (one quote per day, in order; the daily quote is day-of-year in America/Denver mod the list length) is the validated set in
+    // quotes-priority.json: passages cited by evangelical/countercult sources, matched word for word against our text (see gen/quotes-validation.md).
+    // The build fails if any entry is not verbatim in our text, has no cited source, or is a duplicate.
+    const slots = prio.map(p => {
       const j = discByKey.get(`${p.volume}:${p.start_page}`);
       if (!j) throw new Error(`priority quote: no discourse at JD ${p.volume}:${p.start_page}`);
       if (p.text !== wsn(p.text) || !j.text.some(t => wsn(t).includes(p.text))) throw new Error(`priority quote is not verbatim in JD ${p.volume}:${p.start_page}: ${p.text.slice(0, 60)}`);
       if (j.speaker !== p.speaker || p.page < j.start_page || p.page > j.end_page) throw new Error(`priority quote metadata mismatch at JD ${p.volume}:${p.start_page}`);
+      if (!Array.isArray(p.source_notes) || !p.source_notes.length) throw new Error(`priority quote has no cited source: ${p.text.slice(0, 60)}`);
+      if (/\w- \w|\[|\]/.test(p.text)) throw new Error(`priority quote has an extraction artifact: ${p.text.slice(0, 60)}`);
       return { j, t: p.text, i: -1, priority: true };
     });
-    const NQ = 366, slotOf = i => Math.floor(i * NQ / prioPicks.length);
-    const pdisc = new Set(prioPicks.map(o => o.j.id));
-    const reserve = picks.slice(NQ).filter(o => !pdisc.has(o.j.id));
-    const slots = new Array(NQ).fill(null);
-    prioPicks.forEach((o, i) => { if (slots[slotOf(i)]) throw new Error("priority slot clash"); slots[slotOf(i)] = o; });
-    let ri = 0;
-    for (let k = 0; k < NQ; k++) if (!slots[k]) slots[k] = picks[k] && !pdisc.has(picks[k].j.id) ? picks[k] : reserve[ri++];
+    const NQ = slots.length;
     const quotes = slots.map((o, n) => ({ n: n + 1, text: o.t, speaker: o.j.speaker, date: o.j.date, title: o.j.title, ref: `JD ${o.j.volume}:${o.j.start_page}-${o.j.end_page}`, source: o.j.url, url: `${SITE}/quotes/${n + 1}/`, priority: !!o.priority, vol: o.j.volume, sp: o.j.start_page, port: portraits[o.j.speaker] || null }));
     if (new Set(quotes.map(q => q.text)).size !== quotes.length) throw new Error("duplicate quote text in rotation");
     const pimg = (sp, dq) => { const p = portraits[sp]; if (!p) return dq ? '<img class="qp" data-q="portrait" alt="" width="48" height="48" hidden/>' : ""; return `<img class="qp"${dq ? ' data-q="portrait"' : ""} src="${p.src160}" srcset="${p.src160} 160w, ${p.src320} 320w" sizes="48px" width="48" height="48" alt="${esc(p.alt)}" decoding="async"/>`; };
@@ -198,6 +187,8 @@ async function main() {
       page("quotes/index.html", r, qcss + LD.script(quotesIndexGraph()) + `<link rel="alternate" type="application/atom+xml" href="/feed/quotes.xml"/>`, { canonical: `${SITE}/quotes/` }); }
     { const r = shell("/quote/"); r.body = r.body.replace(/<main>[\s\S]*<\/main>/, `<main><div class="jq"><p>Loading today\u2019s quote\u2026 <a href="/quotes/">All quotes</a></p></div></main>`);
       page("quote/index.html", r, `<meta name="robots" content="noindex"/><script>(function(){var p=new Date().toLocaleDateString("en-CA",{timeZone:"America/Denver"}).split("-").map(Number);var d=Math.round((Date.UTC(p[0],p[1]-1,p[2])-Date.UTC(2026,0,1))/864e5);location.replace("/quotes/"+(((d%${quotes.length})+${quotes.length})%${quotes.length}+1)+"/")})()</script>`, { canonical: `${SITE}/quote/` }); }
+    // Earlier builds had 366 numbered quotes; numbers beyond today's rotation length redirect to the index.
+    fs.writeFileSync(path.join(OUT, "_redirects"), Array.from({ length: Math.max(0, 366 - quotes.length) }, (_, i) => `/quotes/${quotes.length + 1 + i}/ /quotes/ 301\n/quotes/${quotes.length + 1 + i}/og.png /quotes/ 301\n`).join(""));
     fs.mkdirSync(path.join(OUT, "_idx"), { recursive: true });
     fs.writeFileSync(path.join(OUT, "quotes.json"), JSON.stringify(quotes.map(q => ({ n: q.n, text: q.text, speaker: q.speaker, date: q.date ? fmtDate(q.date) : "", title: q.title, ref: q.ref, source: q.source.replace(SITE, ""), url: `/quotes/${q.n}/`, portrait: q.port ? { src160: q.port.src160, src320: q.port.src320, alt: q.port.alt } : null }))));
     // home page: volume 1 list plus today's quote (static = build day in America/Denver; client swaps to the visitor's Denver date)

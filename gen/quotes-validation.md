@@ -1,119 +1,386 @@
 # Journal of Discourses: quote validation report
 
-Quotes commonly cited by evangelical, critic, countercult and encyclopedic sources were compared with the text in this site's database (https://jod.mrm.org/data/). Only quotes whose words match our text exactly are used on the site; the site always shows **our** text verbatim, never the citing source's wording.
+Quotes cited by evangelical, countercult and critic sources (Mormonism Research Ministry, Utah Lighthouse Ministry, IRR, CARM, GotQuestions, MormonThink and similar) were compared with the text in this site's database (https://jod.mrm.org/data/). Only passages whose cited words match our text exactly are used on the site, and the site always shows **our** text verbatim, never the citing source's wording. The site presents the quotes neutrally (quote, speaker, discourse reference, portrait) with no commentary.
 
 ## Summary
 
-- Distinct candidate passages found (clusters of citations that point to the same passage): **566**
-  - exact: **402** (every quoted word found contiguously in the cited discourse)
-  - near: **128** (located in the right discourse, but the source differs in wording, adds or drops words, or splices fragments; listed with differences, **not used**)
-  - not found at the cited volume/page: **35** (listed, **not used**); of those, exact elsewhere: **1** (correct citation recorded below)
-- Priority quotes in the 366-slot daily rotation: **76** (all exact, 60 discourses). Other slots: automatically picked passages as before.
-- Source pages read: mrm.org quote pages (Brigham Young, Joseph Smith, polygamy, God, exaltation, priesthood, authority, etc.), Wikipedia (Adam–God doctrine, Blood atonement, Priesthood, Mormon polygamy, Danites, Mountain Meadows massacre, etc.), UTLM, MormonThink, IRR, FairMormon, gotquestions, CARM (partly paywalled), lifeafter.org.
+- **The daily rotation is these 351 quotes and nothing else** (`gen/quotes-priority.json`; no automatically picked filler). The quote of the day is the day of the year in America/Denver modulo 351; `/quotes/1/` to `/quotes/351/` are the permalinks, the Atom feed and `/quotes.json` use the same list. A target of 366 distinct validated passages was not reached after sentence-level screening; the rotation therefore repeats every 351 days, and `/quotes/352/` to `/quotes/366/` redirect to `/quotes/`.
+- Candidate passages: after a second research pass (about 3,800 source pages crawled: the mrm.org sitemap, all UTLM site posts and book chapters, CARM, IRR, GotQuestions Mormon pages, MormonThink, Wikipedia; 624 pages that cite the Journal of Discourses were matched against the database) there were **1,249** distinct exact-matching passages (previous pass: 402). Of these **351** are used after the checks below.
+- Every used quote appears in at least one cited evangelical/countercult/critic source (listed per quote in the table). Wikipedia is listed where it also documents the passage but never counts alone (6 quotes from the earlier list that were cited only by Wikipedia were removed).
+- Distinct citing pages across the used quotes: **332** (mrm.org 184, utlm.org 117, carm.org 6, irr.org 6, gotquestions.org 1, mormonthink.com 3, wikipedia.org 14, other 1).
+- Earlier validation of the first pass (kept below): 566 clusters, 402 exact, 128 near (not used), 35 not found at the cited location (not used).
 
 ## Method
 
-- Source pages were reduced to text and compared with every discourse by token n-gram (6-gram) matching after normalizing whitespace, case, quotation marks, dashes and ellipses; bracketed editorial insertions and footnote numbers in sources were treated as breaks, not as words.
-- **exact**: each quoted fragment (split at ellipses, brackets and parentheses; up to 12 words of attribution framing trimmed) occurs contiguously in the discourse, same words in the same order.
-- **near**: located, but at least one fragment cannot be matched word for word.
-- **not found**: no match in the cited volume/page; nearby pages and the whole corpus were checked; a correct citation is recorded when found elsewhere.
-- Excerpts are sentence-bounded verbatim substrings of one paragraph of our text (at most about 420 characters; no words altered; `gen/build.js` re-verifies every priority quote against the database at build time and fails the build on any mismatch).
-- Citations point at our own page for the discourse (JD volume:start–end pages); `gen/quotes-priority.json` also records the page where the passage occurs.
-- Source names are the cited page's address, reconstructed from the saved file names.
+- Source pages were reduced to text and compared with every discourse by token n-gram (6-gram) matching after normalizing whitespace, case, quotation marks, dashes and ellipses; bracketed editorial insertions and footnote numbers in sources were treated as breaks, not as words. Runs of at least 14 matching words were kept, then grouped into passages per discourse.
+- **exact**: each quoted fragment (split at ellipses, brackets and parentheses; up to 12 words of attribution framing trimmed) occurs contiguously in the discourse, same words in the same order. Near matches (a word added, dropped or changed by the source) are not used.
+- Excerpts are sentence-bounded verbatim substrings of one paragraph of our text. When a passage began with a pronoun or connective ("He", "That", "And"…), the preceding sentence of the same paragraph was included so that it is not misleading. Excerpts are mostly 150 to 450 characters (a few with the extra context up to about 600). No words are altered; `gen/build.js` re-verifies every quote against the database at build time and fails the build on a mismatch, a missing speaker/page, a missing cited source, a duplicate, or an extraction artifact (hyphenation, brackets).
+- Excluded: excerpts with extraction or hyphenation artifacts, unbalanced quotation marks, greetings and pleasantries, pure scripture quotations without commentary, anecdotes and administrative remarks that carry no teaching, heavily overlapping passages (word overlap above 50%, same paragraph), and quotes found only on Wikipedia or only on apologetic pages.
+- The order spreads topics and speakers across the year (no two neighbours on the same discourse; topic and speaker repeats are separated where possible).
+- Citations point at our own page for the discourse (JD volume:start–end pages); `gen/quotes-priority.json` also records the page where the passage occurs and the citing sources (`source_notes`).
+- Source names are the cited page's address.
 
-## Priority quotes (exact)
-
-Order = interleaved by topic; slots are spread evenly across the 366 days.
+## Quotes in the rotation (day order)
 
 | # | JD (page) | Speaker | Text begins | Cited by |
 |---|---|---|---|---|
-| 1 | 4:259 | Orson Hyde | It will be borne in mind that once on a time, there was a… | en.wikipedia.org/wiki/Mormon_polygamy, en.wikipedia.org/wiki/Mormonism_and_polygamy, mit.irr.org/polygamy +1 |
-| 2 | 3:247 | Brigham Young | Let me suppose a case. Suppose you found your brother in… | archive.utlm.org/onlinebooks/changech20.htm, en.wikipedia.org/wiki/Blood_atonement, mrm.org/blood-atonement +1 |
-| 3 | 3:93 | Brigham Young | The Lord created you and me for the purpose of becoming… | mrm.org/as-god-or-like-god, mrm.org/becoming-like-god, mrm.org/discourses-brigham-young-quotes +2 |
-| 4 | 1:50 | Brigham Young | Now hear it, O inhabitants of the earth, Jew and Gentile,… | en.wikipedia.org/wiki/Adam–God_doctrine, en.wikipedia.org/wiki/Brigham_Young, mit.irr.org/adam-god-doctrine +4 |
-| 5 | 2:210 | Orson Hyde | I discover that some of the Eastern papers represent me as… | en.wikipedia.org/wiki/Mormon_polygamy, en.wikipedia.org/wiki/Mormonism_and_polygamy, mrm.org/jesus-quotes |
-| 6 | 10:110 | Brigham Young | Shall I tell you the law of God in regard to the African… | archive.utlm.org/onlinebooks/changech20.htm, archive.utlm.org/onlinebooks/curseofcain_part2.htm, en.wikipedia.org/wiki/Black_people_and_Mormonism +6 |
-| 7 | 3:247 | Brigham Young | There is not a man or woman, who violates the covenants… | archive.utlm.org/onlinebooks/changech20.htm, carm.org/interesting-quotes-from-brigham-young-the-second-prophet-of-the-mormon-church, en.wikipedia.org/wiki/Blood_atonement +2 |
-| 8 | 6:3 | Joseph Smith | If the veil was rent today, and the great God who holds… | mrm.org/eternal-progression-quotes, mrm.org/god-of-mormonism, mrm.org/god-quotes +2 |
-| 9 | 1:50 | Brigham Young | He was not begotten by the Holy Ghost. And who is the… | en.wikipedia.org/wiki/Adam–God_doctrine, mrm.org/a-doctrine-god-revealed-to-brigham-young |
-| 10 | 2:82 | Orson Hyde | Now there was actually a marriage; and if Jesus was not the… | mrm.org/jesus-quotes |
-| 11 | 4:51 | Jedediah M. Grant | Brethren and sisters, we want you to repent and forsake… | archive.utlm.org/onlinebooks/changech20.htm, mrm.org/blood-atonement, utlm.org/brigham-youngs-wives- +2 |
-| 12 | 3:266 | Brigham Young | Now if any of you will deny the plurality of wives, and… | en.wikipedia.org/wiki/Mormon_polygamy, en.wikipedia.org/wiki/Mormonism_and_polygamy, mit.irr.org/polygamy |
-| 13 | 6:4 | Joseph Smith | Here, then, is eternal life—to know the only wise and true… | mrm.org/before-god-was-god, mrm.org/god-of-mormonism, mrm.org/godhood-quotes |
-| 14 | 13:264 | Brigham Young | I say now, when they are copied and approved by me they are… | carm.org/interesting-quotes-from-brigham-young-the-second-prophet-of-the-mormon-church, en.wikipedia.org/wiki/Journal_of_Discourses, mrm.org/authority-quotes +1 |
-| 15 | 1:51 | Brigham Young | What a learned idea! Jesus, our elder brother, was begotten… | en.wikipedia.org/wiki/Adam–God_doctrine, mit.irr.org/adam-god-doctrine, mrm.org/a-doctrine-god-revealed-to-brigham-young +3 |
-| 16 | 5:203 | Heber C. Kimball | You might as well deny “Mormonism,” and turn away from it,… | mrm.org/plural-marriage-early-utah, mrm.org/polygamy-quotes |
-| 17 | 7:290 | Brigham Young | That curse will remain upon them, and they never can hold… | archive.utlm.org/onlinebooks/curseofcain_part2.htm, mit.irr.org/brigham-young-on-race-later-comments, mrm.org/lds-citations-blacks +4 |
-| 18 | 4:53 | Brigham Young | And furthermore, I know that there are transgressors, who,… | archive.utlm.org/onlinebooks/changech20.htm, en.wikipedia.org/wiki/Blood_atonement, en.wikipedia.org/wiki/Mormon_Reformation +3 |
-| 19 | 6:120 | Wilford Woodruff | If there was a point where man in his progression could not… | mrm.org/eternal-progression-quotes, mrm.org/god-learning, mrm.org/god-quotes +2 |
-| 20 | 9:322 | Brigham Young | Why do we believe in and practice polygamy? Because the… | mrm.org/journalgems, mrm.org/plural-marriage-early-utah, mrm.org/polygamy-quotes |
-| 21 | 2:6 | Brigham Young | You believe Adam was made of the dust of this earth. This I… | mit.irr.org/adam-god-doctrine, mrm.org/bible-quotes, www.mormonthink.com/QUOTES/adamgod.htm |
-| 22 | 4:53 | Brigham Young | There are sins that men commit for which they cannot… | archive.utlm.org/onlinebooks/changech20.htm, en.wikipedia.org/wiki/Blood_atonement, mrm.org/blood-atonement +1 |
-| 23 | 11:269 | Brigham Young | The only men who become Gods, even the Sons of God, are… | en.fairmormon.org/answers/Quote-mining-Journal-of-Discourses, mrm.org/plural-marriage-early-utah, mrm.org/polygamy-quotes |
-| 24 | 7:333 | Brigham Young | How many Gods there are, I do not know. But there never was… | mrm.org/discourses-brigham-young-quotes, mrm.org/god-quotes, mrm.org/kfd +1 |
-| 25 | 11:269 | Brigham Young | I heard the revelation on polygamy, and I believed it with… | mrm.org/polygamy-quotes |
-| 26 | 4:220 | Brigham Young | I have known a great many men who have left this Church for… | archive.utlm.org/onlinebooks/changech20.htm, en.wikipedia.org/wiki/Blood_atonement, en.wikipedia.org/wiki/Mountain_Meadows_massacre +2 |
-| 27 | 3:319 | Brigham Young | He was the person who brought the animals and the seeds… | www.mormonthink.com/QUOTES/adamgod.htm |
-| 28 | 11:272 | Brigham Young | It comes in consequence of their fathers rejecting the… | archive.utlm.org/onlinebooks/curseofcain_part2.htm, en.wikipedia.org/wiki/Black_people_and_Mormonism, mit.irr.org/brigham-young-on-race-later-comments +2 |
-| 29 | 18:259 | Brigham Young | When they receive their crowns, their dominions, they then… | mrm.org/becoming-like-god, mrm.org/exaltation-speculation, mrm.org/godhood-quotes +1 |
-| 30 | 12:97 | Brigham Young | Be careful, O, ye mothers in Israel, and do not teach your… | mrm.org/discourses-brigham-young-quotes, mrm.org/lds-citations-blacks, mrm.org/marriage-quotes |
-| 31 | 4:219 | Brigham Young | The time has been in Israel under the law of God, the… | www.mormonthink.com/QUOTES/bloodatonement.htm |
-| 32 | 5:331 | Brigham Young | Some have grumbled because I believe our God to be so near… | www.mormonthink.com/QUOTES/adamgod.htm |
-| 33 | 4:56 | Brigham Young | This is the reason why the doctrine of plurality of wives… | mrm.org/discourses-brigham-young-quotes, utlm.org/brigham-youngs-wives- |
-| 34 | 8:160 | Brigham Young | Intelligent beings are organized to become Gods, even the… | mrm.org/discourses-brigham-young-quotes, mrm.org/godhood-quotes |
-| 35 | 4:375 | Heber C. Kimball | I wish they would go this fall: it might relieve us from… | archive.utlm.org/onlinebooks/changech20.htm, en.wikipedia.org/wiki/Blood_atonement, mrm.org/blood-atonement +1 |
-| 36 | 4:209 | Heber C. Kimball | In the spirit world there is an increase of males and… | en.fairmormon.org/answers/Quote-mining-Journal-of-Discourses, mrm.org/polygamy-quotes |
-| 37 | 7:285 | Brigham Young | Here let me state to all philosophers of every class upon… | www.mormonthink.com/QUOTES/adamgod.htm |
-| 38 | 2:143 | Brigham Young | When all the other children of Adam have had the privilege… | archive.utlm.org/onlinebooks/curseofcain_part2.htm, en.wikipedia.org/wiki/Brigham_Young, mrm.org/race-and-the-priesthood |
-| 39 | 1:123 | Orson Hyde | Remember that God, our heavenly Father, was perhaps once a… | mrm.org/god-learning, mrm.org/god-quotes, mrm.org/regress |
-| 40 | 13:95 | Brigham Young | I have never yet preached a sermon and sent it out to the… | en.fairmormon.org/answers/Quote-mining-Journal-of-Discourses, mrm.org/adam-god |
-| 41 | 1:345 | Jedediah M. Grant | He says, “The grand reason why the Gentiles and… | en.wikipedia.org/wiki/Mormon_polygamy, en.wikipedia.org/wiki/Mormonism_and_polygamy |
-| 42 | 1:108 | Brigham Young | If you want to know what to do with a thief that you may… | archive.utlm.org/onlinebooks/changech20.htm, mrm.org/blood-atonement, www.mormonthink.com/QUOTES/bloodatonement.htm |
-| 43 | 26:368 | Lorenzo Snow | As man now is, God once was—even the babe of Bethlehem,… | mrm.org/eternal-progression-quotes, mrm.org/quotes-lorenzo-snow |
-| 44 | 1:346 | Jedediah M. Grant | The grand reason of the burst of public sentiment in… | en.wikipedia.org/wiki/Mormon_polygamy, en.wikipedia.org/wiki/Mormonism_and_polygamy |
-| 45 | 4:217 | Brigham Young | Whether Adam is the personage that we should consider our… | en.wikipedia.org/wiki/Adam–God_doctrine |
-| 46 | 1:83 | Brigham Young | I say, rather than that apostates should flourish here, I… | archive.utlm.org/onlinebooks/changech20.htm, www.mormonthink.com/QUOTES/bloodatonement.htm |
-| 47 | 17:225 | Orson Pratt | I want to prophesy that all men and women who oppose the… | archive.utlm.org/onlinebooks/curseofcain_part2.htm, mrm.org/polygamy-quotes |
-| 48 | 25:58 | Joseph F. Smith | God designed this in the beginning. We are the children of… | mrm.org/eternal-progression-quotes, mrm.org/god-quotes, mrm.org/regress |
-| 49 | 10:250 | Brigham Young | Treat the slaves kindly and let them live, for Ham must be… | archive.utlm.org/onlinebooks/curseofcain_part2.htm, en.wikipedia.org/wiki/Black_people_and_Mormonism |
-| 50 | 6:275 | Brigham Young | Yes, an Adam will have to go there, and he cannot do… | en.wikipedia.org/wiki/Adam–God_doctrine |
-| 51 | 1:97 | George A. Smith | The principle, the only one that beats and throbs through… | archive.utlm.org/onlinebooks/changech20.htm, www.mormonthink.com/QUOTES/bloodatonement.htm |
-| 52 | 17:225 | Orson Pratt | Sisters, you begin to say before your husbands, or husbands… | archive.utlm.org/onlinebooks/curseofcain_part2.htm, mrm.org/polygamy-quotes |
-| 53 | 14:71 | Brigham Young | How many earths are there? I observed this morning that you… | mrm.org/eternal-progression-quotes, mrm.org/exaltation, mrm.org/god-never-sinned |
-| 54 | 20:29 | Joseph F. Smith | To put this matter more correctly before you, I here… | mit.irr.org/polygamy, mrm.org/polygamy-quotes |
-| 55 | 2:186 | Brigham Young | I will tell you how much I love those characters. If they… | www.mormonthink.com/QUOTES/bloodatonement.htm |
-| 56 | 4:1 | Heber C. Kimball | I have learned by experience that there is but one God that… | en.wikipedia.org/wiki/Adam–God_doctrine, mrm.org/adam-god, mrm.org/pinning-down-mormon-doctrine +1 |
-| 57 | 20:31 | Joseph F. Smith | But if he remain faithful with only the one wife, observing… | mit.irr.org/polygamy, mrm.org/polygamy-quotes |
-| 58 | 6:2 | Joseph Smith | My first object is to find out the character of the only… | mrm.org/kfd, mrm.org/regress |
-| 59 | 1:73 | Orson Hyde | It would have a tendency to place a terror on those who… | archive.utlm.org/onlinebooks/changech20.htm, www.mormonthink.com/QUOTES/bloodatonement.htm |
-| 60 | 14:86 | Brigham Young | They are of the house of Israel; they once had the Gospel… | mit.irr.org/brigham-young-on-race-later-comments, mrm.org/discourses-brigham-young-quotes, mrm.org/lds-citations-blacks |
-| 61 | 16:167 | Brigham Young | Now, sisters, do not say, “I do not want a husband when I… | mrm.org/plural-marriage-early-utah, mrm.org/polygamy-quotes |
-| 62 | 5:19 | Heber C. Kimball | We must be grafted into the true vine, and continue to… | mrm.org/god-quotes, mrm.org/regress |
-| 63 | 17:143 | Brigham Young | We shall go on from one step to another, reaching forth… | mrm.org/becoming-like-god, mrm.org/godhood-quotes |
-| 64 | 9:312 | Brigham Young | I have taught for thirty years, and still teach, that he… | carm.org/interesting-quotes-from-brigham-young-the-second-prophet-of-the-mormon-church, en.fairmormon.org/answers/Quote-mining-Journal-of-Discourses |
-| 65 | 4:55 | Brigham Young | And my wives have got to do one of two things; either round… | en.wikipedia.org/wiki/Brigham_Young, utlm.org/brigham-youngs-wives- |
-| 66 | 6:38 | Heber C. Kimball | But they cannot whore it here; for, gentlemen, if there is… | archive.utlm.org/onlinebooks/changech20.htm |
-| 67 | 9:286 | Brigham Young | Brother Kimball quoted a saying of Joseph the Prophet, that… | en.wikipedia.org/wiki/Heavenly_Mother_Mormonism, mrm.org/god-quotes |
-| 68 | 20:276 | George Q. Cannon | If plural marriage be divine, as the Latter-day Saints say… | mrm.org/plural-marriage-early-utah, mrm.org/polygamy-quotes |
-| 69 | 14:116 | Brigham Young | God never made something out of nothing; it is not in the… | en.wikipedia.org/wiki/Mormon_cosmology, mrm.org/discourses-brigham-young-quotes |
-| 70 | 12:30 | Brigham Young | Is there war in our religion? No; neither war nor… | en.wikipedia.org/wiki/Blood_atonement, en.wikipedia.org/wiki/Danites, en.wikipedia.org/wiki/Mormon_Reformation |
-| 71 | 22:304 | John Taylor | And after the flood we are told that the curse that had… | archive.utlm.org/onlinebooks/curseofcain_part2.htm, mrm.org/lds-citations-blacks, mrm.org/son-of-ham-withholding-the-lds-priesthood +1 |
-| 72 | 19:269 | Erastus Snow | “What,” says one, “do you mean we should understand that… | en.wikipedia.org/wiki/Heavenly_Mother_Mormonism |
-| 73 | 6:238 | Joseph Smith | This may take place before some of us leave this stage of… | en.wikipedia.org/wiki/Adam–God_doctrine, www.mormonthink.com/QUOTES/adamgod.htm |
-| 74 | 5:313 | Lorenzo Snow | Through a continual course of progression, our heavenly… | mrm.org/quotes-lorenzo-snow |
-| 75 | 3:226 | Brigham Young | The time is coming when justice will be laid to the line… | archive.utlm.org/onlinebooks/changech20.htm, en.wikipedia.org/wiki/Blood_atonement, en.wikipedia.org/wiki/Mormon_Reformation |
-| 76 | 7:299 | Amasa M. Lyman | We may talk of men being redeemed by the efficacy of his… | www.mormonthink.com/QUOTES/bloodatonement.htm |
+| 1 | 4:259 | Orson Hyde | It will be borne in mind that once on a time, there was a ma… | en.wikipedia.org/wiki/Mormon_polygamy, en.wikipedia.org/wiki/Mormonism_and_polygamy, mit.irr.org/polygamy, mrm.org/jesus-quotes |
+| 2 | 15:117 | George Q. Cannon | I have not the right to say that a man can enter into the ki… | utlm.org/mormon-claims-answered-chapter-8-salvation |
+| 3 | 24:194 | Joseph F. Smith | If we begin to cut off this one and that one, and set their … | mrm.org/gospel-doctrine-quotes |
+| 4 | 2:216 | George A. Smith | You never felt such a shock go through any house or company … | archive.utlm.org/onlinebooks/changech18.htm, archive.utlm.org/onlinebooks/changech19.htm, utlm.org/the-changing-world-of-mormonism-chapter-18, utlm.org/the-changing-world-of-mormonism-chapter-19 |
+| 5 | 3:247 | Brigham Young | Let me suppose a case. Suppose you found your brother in bed… | archive.utlm.org/onlinebooks/changech20.htm, en.wikipedia.org/wiki/Blood_atonement, mrm.org/blood-atonement, www.mormonthink.com/QUOTES/bloodatonement.htm |
+| 6 | 16:348 | Orson Pratt | Go and ask any of these fallen churches—go to the oldest amo… | utlm.org/lds-church-leaders-declare-christianity-to-be-in-a-state-of-total-apostasy |
+| 7 | 10:127 | John Taylor | How did this state of things called Mormonism originate? We … | mrm.org/first-vision-accounts, mrm.org/first-vision-quotes, mrm.org/nelsons-mandate, mrm.org/nicknames-of-the-church, utlm.org/evolution-of-the-first-vision, utlm.org/grappling |
+| 8 | 13:320 | Wilford Woodruff | The first quorum of Apostles were all put to death, except J… | mrm.org/calling-apostle-john, mrm.org/surviving-apostles, mrm.org/wilford-woodruff-quotes |
+| 9 | 23:300 | Erastus Snow | The Book of Mormon contains the fullness of the everlasting … | mrm.org/book-of-mormon-index |
+| 10 | 3:93 | Brigham Young | The Lord created you and me for the purpose of becoming Gods… | mrm.org/as-god-or-like-god, mrm.org/becoming-like-god, mrm.org/discourses-brigham-young-quotes, mrm.org/exaltation, mrm.org/godhood-quotes |
+| 11 | 5:133 | Heber C. Kimball | Will the President that sits in the chair of state be tipped… | archive.utlm.org/onlinebooks/changech19.htm, utlm.org/the-changing-world-of-mormonism-chapter-19 |
+| 12 | 20:276 | George Q. Cannon | If you are sentenced to prison for marrying more wives than … | archive.utlm.org/onlinebooks/changech9c.htm, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 13 | 24:304 | Charles W. Penrose | Our organization is a very glorious one. It is a perfect org… | mit.irr.org/authority-claims-of-lds-leaders |
+| 14 | 26:133 | John Taylor | We are told that if we cannot abide the law of the celestial… | mrm.org/tithing |
+| 15 | 1:50 | Brigham Young | Now hear it, O inhabitants of the earth, Jew and Gentile, Sa… | en.wikipedia.org/wiki/Adam–God_doctrine, en.wikipedia.org/wiki/Brigham_Young, mit.irr.org/adam-god-doctrine, mrm.org/a-doctrine-god-revealed-to-brigham-young, mrm.org/adam-god, mrm.org/adam-god-teaching, www.mormonthink.com/QUOTES/adamgod.htm |
+| 16 | 7:36 | Orson Pratt | Therefore, the testimony establishing the truth of the Book … | archive.utlm.org/onlinebooks/changech12a.htm, utlm.org/the-changing-world-of-mormonism-chapter-12 |
+| 17 | 18:117 | Wilford Woodruff | I am willing to exchange all the errors and false notions I … | mit.irr.org/authority-claims-of-lds-leaders, mrm.org/wilford-woodruff-quotes |
+| 18 | 20:188 | Lorenzo Snow | We may think that we cannot live up to the perfect law, that… | mrm.org/lds-apostle-tries-to-comfort-discouraged-mormons, mrm.org/perfectionism, mrm.org/quotes-lorenzo-snow |
+| 19 | 23:361 | George Q. Cannon | If we get our salvation we shall have to pass by him; if we … | mrm.org/authority-quotes, mrm.org/joseph-smith-is-triggering-faith-crises-among-mormons, mrm.org/joseph-smith-quotes, mrm.org/no-salvation-without-joseph-smith, mrm.org/starr-katich, utlm.org/importance-of-joseph-smith-in-mormonism |
+| 20 | 2:210 | Orson Hyde | I discover that some of the Eastern papers represent me as a… | en.wikipedia.org/wiki/Mormon_polygamy, en.wikipedia.org/wiki/Mormonism_and_polygamy, mrm.org/jesus-quotes |
+| 21 | 21:370 | John Taylor | Abraham came through Shem, and the Savior came through this … | archive.utlm.org/onlinebooks/curseofcain_part2.htm |
+| 22 | 24:96 | Charles W. Penrose | The Apostle Paul asks this question in the fifteenth chapter… | mrm.org/blueprint-church, mrm.org/greg-trimble-response, mrm.org/historical-baptism-dead, mrm.org/temple-ceremony |
+| 23 | 7:181 | Orson Pratt | About six hundred years before Christ, a Prophet was raised … | mrm.org/jerusalem |
+| 24 | 3:109 | Heber C. Kimball | Yes, they will, but they will be saved as I have told you ma… | archive.utlm.org/onlinebooks/changech21.htm, utlm.org/the-changing-world-of-mormonism-chapter-21 |
+| 25 | 10:110 | Brigham Young | Shall I tell you the law of God in regard to the African rac… | archive.utlm.org/onlinebooks/changech20.htm, archive.utlm.org/onlinebooks/curseofcain_part2.htm, en.wikipedia.org/wiki/Black_people_and_Mormonism, en.wikipedia.org/wiki/Blood_atonement, en.wikipedia.org/wiki/Brigham_Young, mit.irr.org/brigham-young-on-race-later-comments, mrm.org/blood-atonement, mrm.org/lds-citations-blacks, mrm.org/why-priesthood-ban |
+| 26 | 25:157 | George Q. Cannon | I was answered that I must join none of them, for they were … | archive.utlm.org/onlinebooks/changech1.htm, archive.utlm.org/onlinebooks/changech6.htm, en.wikipedia.org/wiki/Mormonism_and_Christianity, mrm.org/april-general-conference-reaffirms-mormonisms-love-hate-relationship-with-christianity, mrm.org/baptist-preacher, mrm.org/bofm-answer-man, mrm.org/cultic-characteristics-of-mormonism, mrm.org/first-vision-account, mrm.org/first-vision-accounts, mrm.org/first-vision-quotes, mrm.org/gospel-topics-women, mrm.org/great-apostasy, mrm.org/mormon-official-equates-christianity-with-a-false-cult, mrm.org/mormons-on-pbs, mrm.org/scott-christianity, mrm.org/we-never-criticize, utlm.org/covering-up-syn-ex-satanist-brings-confusion-to-mormons-and-their-critics, utlm.org/dunn-in-the-name-of-god, utlm.org/evolution-of-the-first-vision, utlm.org/examining-the-first-vision, utlm.org/farms, utlm.org/first-vision-200-years-later, utlm.org/grappling, utlm.org/jerald-1, utlm.org/lds-church-leaders-declare-christianity-to-be-in-a-state-of-total-apostasy, utlm.org/letters-to-the-editor-january-2005, utlm.org/mormon-claims-answered-chapter-1-origin-and-history-of-mormonism, utlm.org/satanic-verses-and-mormonism, utlm.org/temple-ritual-altered, utlm.org/the-changing-world-of-mormonism-chapter-1, utlm.org/the-changing-world-of-mormonism-chapter-6, utlm.org/the-gods-of-mormonism |
+| 27 | 20:29 | Joseph F. Smith | If, then, this principle was of such great importance that t… | archive.utlm.org/onlinebooks/changech9b.htm, utlm.org/polygamy-and-truth, utlm.org/problems-in-the-lds-essays-on-plural-marriage, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 28 | 21:163 | John Taylor | Who was Joseph Smith? The Book of Mormon tells us he was of … | mrm.org/joseph-smith-quotes |
+| 29 | 3:247 | Brigham Young | There is not a man or woman, who violates the covenants made… | archive.utlm.org/onlinebooks/changech20.htm, carm.org/interesting-quotes-from-brigham-young-the-second-prophet-of-the-mormon-church, en.wikipedia.org/wiki/Blood_atonement, mrm.org/discourses-brigham-young-quotes, www.mormonthink.com/QUOTES/bloodatonement.htm |
+| 30 | 13:181 | Orson Hyde | “Am I mistaken?” said I, “or is it really the voice of Josep… | mrm.org/transfiguration-brigham |
+| 31 | 17:104 | Orson Pratt | I do not wonder that the world say that the Latter-day Saint… | archive.utlm.org/onlinebooks/changech18.htm, mrm.org/wisdom-starr, utlm.org/the-changing-world-of-mormonism-chapter-18 |
+| 32 | 12:334 | George A. Smith | When the holy angel appeared, Joseph inquired which of all t… | archive.utlm.org/onlinebooks/changech6.htm, mrm.org/first-vision-accounts, mrm.org/first-vision-stories, utlm.org/evolution-of-the-first-vision, utlm.org/first-vision-200-years-later, utlm.org/grappling, utlm.org/jerald-2, utlm.org/the-changing-world-of-mormonism-chapter-6 |
+| 33 | 24:372 | George Q. Cannon | Joseph saw that the Father had a form; that He had a head; t… | archive.utlm.org/onlinebooks/changech6.htm, utlm.org/examining-the-first-vision, utlm.org/the-changing-world-of-mormonism-chapter-6, utlm.org/the-gods-of-mormonism |
+| 34 | 6:3 | Joseph Smith | If the veil was rent today, and the great God who holds this… | mrm.org/eternal-progression-quotes, mrm.org/god-of-mormonism, mrm.org/god-quotes, mrm.org/godhood-quotes, mrm.org/regress |
+| 35 | 5:22 | Heber C. Kimball | For a man of God to be confined to one woman is small busine… | archive.utlm.org/onlinebooks/changech9b.htm, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 36 | 7:299 | Amasa M. Lyman | We may talk of men being redeemed by the efficacy of his blo… | www.mormonthink.com/QUOTES/bloodatonement.htm |
+| 37 | 13:320 | Wilford Woodruff | On the occasion of that visit we are informed that Jesus cho… | mrm.org/wilford-woodruff-quotes |
+| 38 | 2:338 | Orson Pratt | I am inclined to think, from some things in the revelations,… | archive.utlm.org/onlinebooks/changech7.htm, utlm.org/the-changing-world-of-mormonism-chapter-7 |
+| 39 | 1:50 | Brigham Young | When the Virgin Mary conceived the child Jesus, the Father h… | en.wikipedia.org/wiki/Adam–God_doctrine, mrm.org/a-doctrine-god-revealed-to-brigham-young |
+| 40 | 14:320 | George Q. Cannon | Why is it that we are so anxious to build temples? It is tha… | mrm.org/temple-quotes |
+| 41 | 13:38 | George A. Smith | The Latter-day Saints believe the Bible. An agent of the Ame… | mrm.org/bible-quotes |
+| 42 | 13:18 | John Taylor | Our religion binds men and women for time and all eternity. … | mrm.org/marriage-quotes |
+| 43 | 23:292 | Lorenzo Snow | Well, what have we to fear with regard to persecution and wi… | mrm.org/nicknames-of-the-church, mrm.org/quotes-lorenzo-snow |
+| 44 | 2:82 | Orson Hyde | Now there was actually a marriage; and if Jesus was not the … | mrm.org/jesus-quotes |
+| 45 | 18:179 | Orson Pratt | Who is Babylon? I have already explained that Babylon is a g… | mrm.org/we-never-criticize |
+| 46 | 1:238 | Brigham Young | Here I shall have to disagree with you, to begin with; for I… | mormonthink.com/QUOTES/adamgod.htm, mrm.org/virgin-birth |
+| 47 | 24:189 | Joseph F. Smith | Whenever you see a man rise up claiming to have received dir… | mrm.org/gospel-doctrine-quotes, mrm.org/revelation-modern-day |
+| 48 | 22:173 | Wilford Woodruff | The Lamanites, now a downtrodden people, are a remnant of th… | mrm.org/dna |
+| 49 | 4:51 | Jedediah M. Grant | Brethren and sisters, we want you to repent and forsake your… | archive.utlm.org/onlinebooks/changech20.htm, mrm.org/blood-atonement, utlm.org/brigham-youngs-wives-, utlm.org/jedediah-m-grant-sermon-blood-atonement-, www.mormonthink.com/QUOTES/bloodatonement.htm |
+| 50 | 5:90 | Heber C. Kimball | You might as well go and be baptized for a devil as for a ma… | mrm.org/historical-baptism-dead |
+| 51 | 16:305 | John Taylor | We call ourselves Christians, that is, we Methodists, Baptis… | mrm.org/christianity-quotes, mrm.org/gospel-kingdom-quotes, mrm.org/nicknames-of-the-church |
+| 52 | 6:155 | Orson Hyde | If it is all right with him, it is all right with me. Then i… | mrm.org/praise-to-the-man |
+| 53 | 3:266 | Brigham Young | Now if any of you will deny the plurality of wives, and cont… | en.wikipedia.org/wiki/Mormon_polygamy, en.wikipedia.org/wiki/Mormonism_and_polygamy, mit.irr.org/polygamy |
+| 54 | 18:50 | Orson Pratt | If you have been pretty good people and have kept the comman… | mrm.org/godhood-quotes |
+| 55 | 13:166 | Wilford Woodruff | If we were to do away with polygamy, it would only be one fe… | archive.utlm.org/onlinebooks/changech9c.htm, mrm.org/book-of-mormon-doctrines, mrm.org/end-plural-marriage, mrm.org/manifesto, mrm.org/policy-or-gods-directive, mrm.org/polygamy, mrm.org/polygamy-quotes, mrm.org/salt-lake-tribune-editorials, mrm.org/warren-jeffs, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 56 | 6:35 | Heber C. Kimball | We shall clean the platter of all such scoundrels; and if me… | archive.utlm.org/onlinebooks/changech20.htm, utlm.org/blood-flows-in-utah, utlm.org/brigham-young-sermon-blood-atonement-3, utlm.org/heber-c-kimball-sermon-blood-atonement, utlm.org/kimballs-journal-confirms-oath-of-vengeance, utlm.org/new-light-on-blood-atonement, utlm.org/the-changing-world-of-mormonism-chapter-20 |
+| 57 | 11:53 | John Taylor | We do believe it, and we honestly acknowledge that this is t… | mrm.org/notable-teachings-from-john-taylor, utlm.org/the-mormon-kingdom, utlm.org/top-stories |
+| 58 | 6:4 | Joseph Smith | Here, then, is eternal life—to know the only wise and true G… | mrm.org/before-god-was-god, mrm.org/god-of-mormonism, mrm.org/godhood-quotes |
+| 59 | 24:185 | George Q. Cannon | I do not wish to say anything in relation to other forms of … | mrm.org/april-general-conference-reaffirms-mormonisms-love-hate-relationship-with-christianity, mrm.org/are-baptists-christian, mrm.org/christian-or-not, mrm.org/christianity-quotes, mrm.org/mormon-official-equates-christianity-with-a-false-cult, mrm.org/we-never-criticize |
+| 60 | 2:13 | Jedediah M. Grant | When the family organization was revealed from heaven—the pa… | archive.utlm.org/onlinebooks/changech9b.htm, mrm.org/starr-katich, utlm.org/covering-up-mormon-polygamy, utlm.org/joseph-smith-and-polygamy, utlm.org/legacy-distorted-view, utlm.org/new-joseph-smith-movie-history-or-propaganda, utlm.org/polygamist-sentenced-to-five-years-in-prison, utlm.org/polygamy-and-truth, utlm.org/problems-in-the-lds-essays-on-plural-marriage, utlm.org/sacred-marriage-secret-affair, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 61 | 3:347 | Orson Pratt | You recollect that when the Book of Mormon was translated fr… | utlm.org/book-of-mormon-plates-artifact-vision-or-hoax |
+| 62 | 8:234 | Orson Hyde | Some persons say that Brigham does not give revelations as d… | mrm.org/the-doctrine-of-christ |
+| 63 | 13:264 | Brigham Young | I say now, when they are copied and approved by me they are … | carm.org/interesting-quotes-from-brigham-young-the-second-prophet-of-the-mormon-church, en.wikipedia.org/wiki/Journal_of_Discourses, mrm.org/authority-quotes, www.gotquestions.org/Journal_of_Discourses.html |
+| 64 | 12:278 | Wilford Woodruff | Jesus told His disciples to go into all the world and preach… | utlm.org/blacks-and-the-mormon-priesthood |
+| 65 | 1:155 | John Taylor | Now I come to us, “Mormons.” We are the only true Church, so… | mrm.org/gospel-kingdom-quotes, mrm.org/nelsons-mandate, mrm.org/nicknames-of-the-church |
+| 66 | 23:360 | George Q. Cannon | Jesus said to him, “Suffer it to be so now; for thus it beco… | utlm.org/mormon-claims-answered-chapter-8-salvation |
+| 67 | 3:125 | Heber C. Kimball | The principle of plurality of wives never will be done away … | archive.utlm.org/onlinebooks/changech9c.htm, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 68 | 1:51 | Brigham Young | What a learned idea! Jesus, our elder brother, was begotten … | en.wikipedia.org/wiki/Adam–God_doctrine, mit.irr.org/adam-god-doctrine, mrm.org/a-doctrine-god-revealed-to-brigham-young, mrm.org/adam-god, mrm.org/pinning-down-mormon-doctrine, www.mormonthink.com/QUOTES/adamgod.htm |
+| 69 | 16:349 | Orson Pratt | Consequently if they, in their zeal towards God, say that th… | utlm.org/lds-church-leaders-declare-christianity-to-be-in-a-state-of-total-apostasy |
+| 70 | 19:229 | Wilford Woodruff | I straightway went into the baptismal font and called upon b… | archive.utlm.org/onlinebooks/changech22a.htm, mrm.org/baptism-for-the-dead-quotes, mrm.org/rendezvousing-with-spirits, mrm.org/st-george-temple-scare, mrm.org/temple-mcguire, utlm.org/mormon-claims-answered-chapter-9-temples-and-temple-ordinances, utlm.org/the-changing-world-of-mormonism-chapter-22 |
+| 71 | 4:260 | Orson Hyde | How much soever of holy horror this doctrine may excite in p… | utlm.org/lds-leaders-claim-to-be-descended-from-christ-and-his-apostles |
+| 72 | 22:44 | Joseph F. Smith | Notwithstanding, the disciples of Jesus, excepting John the … | mrm.org/we-never-criticize, utlm.org/lds-church-leaders-declare-christianity-to-be-in-a-state-of-total-apostasy |
+| 73 | 5:203 | Heber C. Kimball | You might as well deny “Mormonism,” and turn away from it, a… | mrm.org/plural-marriage-early-utah, mrm.org/polygamy-quotes |
+| 74 | 3:360 | Brigham Young | No, for you ought to love a woman only so far as she adorns … | mrm.org/brigham-young, mrm.org/discourses-brigham-young-quotes, mrm.org/doctrine-quotes |
+| 75 | 23:343 | Charles W. Penrose | The God whom the “Christians” worship is a being of their ow… | mrm.org/god-quotes, mrm.org/million-dollar-question |
+| 76 | 20:167 | John Taylor | None of them was right, just as it was when the Prophet Jose… | archive.utlm.org/onlinebooks/changech6.htm, mrm.org/first-vision-accounts, mrm.org/first-vision-quotes, utlm.org/the-changing-world-of-mormonism-chapter-6 |
+| 77 | 7:30 | Orson Pratt | We defy the world to produce a true copy of the original of … | archive.utlm.org/onlinebooks/changech12a.htm, utlm.org/the-changing-world-of-mormonism-chapter-12 |
+| 78 | 7:290 | Brigham Young | How long is that race to endure the dreadful curse that is u… | archive.utlm.org/onlinebooks/curseofcain_part2.htm, mit.irr.org/brigham-young-on-race-later-comments, mrm.org/lds-citations-blacks, mrm.org/race-and-priesthood, mrm.org/why-priesthood-ban, utlm.org/brigham-young-sermon-blacks-and-the-priesthood-, www.mormonthink.com/QUOTES/adamgod.htm |
+| 79 | 6:335 | Orson Hyde | Someone may say, “If this work of the last days be true, why… | mrm.org/first-vision-accounts, utlm.org/evolution-of-the-first-vision, utlm.org/grappling |
+| 80 | 26:7 | George Q. Cannon | There has been some agitation in years past respecting plura… | archive.utlm.org/onlinebooks/changech9c.htm, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 81 | 5:275 | Heber C. Kimball | When the United States have done their best, then other nati… | utlm.org/the-thinking-has-been-done-the-mountain-meadows-to-guyana |
+| 82 | 4:53 | Brigham Young | I do know that there are sins committed, of such a nature th… | archive.utlm.org/onlinebooks/changech20.htm, en.wikipedia.org/wiki/Blood_atonement, en.wikipedia.org/wiki/Mormon_Reformation, mrm.org/blood-atonement, utlm.org/brigham-youngs-wives-, www.mormonthink.com/QUOTES/bloodatonement.htm |
+| 83 | 19:228 | Wilford Woodruff | I look upon this portion of our ministry as a mission of as … | mrm.org/awake-or-asleep, utlm.org/mormon-claims-answered-chapter-9-temples-and-temple-ordinances |
+| 84 | 6:24 | John Taylor | Was the kingdom that the Prophets talked about, that should … | utlm.org/the-mormon-kingdom |
+| 85 | 15:188 | Orson Pratt | Because the Book of Mormon reveals the mode as it was given … | mit.irr.org/authority-of-lds-scriptures |
+| 86 | 4:260 | Orson Hyde | Is there no way provided for those to come into this covenan… | utlm.org/lds-leaders-claim-to-be-descended-from-christ-and-his-apostles |
+| 87 | 6:120 | Wilford Woodruff | If there was a point where man in his progression could not … | mrm.org/eternal-progression-quotes, mrm.org/god-learning, mrm.org/god-quotes, mrm.org/pinning-down-mormon-doctrine, mrm.org/wilford-woodruff-quotes |
+| 88 | 25:368 | George Q. Cannon | What I mean by this is: if a man apostatizes and breaks cove… | mrm.org/gospel-topics-women, mrm.org/marriage-quotes |
+| 89 | 6:38 | Heber C. Kimball | The President of the United States and his coadjutors that h… | archive.utlm.org/onlinebooks/changech19.htm, utlm.org/the-changing-world-of-mormonism-chapter-19 |
+| 90 | 18:44 | Orson Pratt | No; it is in accordance with the Scriptures, for they forete… | mrm.org/we-never-criticize |
+| 91 | 23:173 | Joseph F. Smith | I have shown what Christ is like, and he is like his Father,… | carm.org/with-a-mormon-on-mormon-doctrine, en.wikipedia.org/wiki/Jesus_in_Mormonism, mrm.org/blueprint-church, mrm.org/first-vision-quotes, utlm.org/first-vision-200-years-later, utlm.org/grappling, utlm.org/mormon-claims-answered-chapter-2-god |
+| 92 | 9:322 | Brigham Young | Why do we believe in and practice polygamy? Because the Lord… | mrm.org/journalgems, mrm.org/plural-marriage-early-utah, mrm.org/polygamy-quotes |
+| 93 | 2:14 | Jedediah M. Grant | What would a man of God say, who felt aright, when Joseph as… | archive.utlm.org/onlinebooks/changech9b.htm, mrm.org/joseph-smith-quotes, mrm.org/polygamy-quotes, mrm.org/starr-katich, utlm.org/abuse, utlm.org/covering-up-mormon-polygamy, utlm.org/joseph-smith-and-polygamy, utlm.org/legacy-distorted-view, utlm.org/new-joseph-smith-movie-history-or-propaganda, utlm.org/polygamist-sentenced-to-five-years-in-prison, utlm.org/polygamy-and-truth, utlm.org/problems-in-the-lds-essays-on-plural-marriage, utlm.org/sacred-marriage-secret-affair, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 94 | 20:99 | Orson Hyde | Polygamy is a principle revealed from heaven with a commandm… | mrm.org/polygamy |
+| 95 | 6:167 | John Taylor | Myself and hundreds of the Elders around me have seen its po… | mit.irr.org/authority-claims-of-lds-leaders, mrm.org/mormonisms-only-true-church-doctrine-does-not-feel-loving, mrm.org/mormonisms-were-not-weird-campaign, mrm.org/we-never-criticize, utlm.org/excerpts-from-letters-and-emails-7, utlm.org/lds-church-leaders-declare-christianity-to-be-in-a-state-of-total-apostasy, utlm.org/letters-november-2005 |
+| 96 | 13:125 | Orson Pratt | Jesus made his appearance on the earth in the meridian of ti… | archive.utlm.org/onlinebooks/changech23.htm, mrm.org/christianity-quotes, mrm.org/great-apostasy, utlm.org/jerald-and-sandra-tanners-testimonies, utlm.org/mormon-claims-answered-chapter-7-the-church, utlm.org/the-changing-world-of-mormonism-chapter-23 |
+| 97 | 2:6 | Brigham Young | You believe Adam was made of the dust of this earth. This I … | mit.irr.org/adam-god-doctrine, mrm.org/bible-quotes, www.mormonthink.com/QUOTES/adamgod.htm |
+| 98 | 13:320 | Wilford Woodruff | After the death and resurrection of the Savior, when he mini… | mrm.org/wilford-woodruff-quotes |
+| 99 | 2:106 | Heber C. Kimball | When brother Joseph Smith lived, he was our Prophet, our See… | mrm.org/topicsrebuttals-rejoindersmormonism-201church-and-its-leadership-johnson, utlm.org/the-thinking-has-been-done-the-mountain-meadows-to-guyana |
+| 100 | 23:362 | George Q. Cannon | There was no end scarcely, in many respects, to the knowledg… | utlm.org/evolution-of-the-first-vision |
+| 101 | 3:291 | George A. Smith | We breathe the free air, we have the best looking men and ha… | archive.utlm.org/onlinebooks/changech9b.htm, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 102 | 4:53 | Brigham Young | There are sins that men commit for which they cannot receive… | archive.utlm.org/onlinebooks/changech20.htm, en.wikipedia.org/wiki/Blood_atonement, mrm.org/blood-atonement, utlm.org/brigham-youngs-wives- |
+| 103 | 16:344 | Orson Pratt | The people had entirely apostatized from that ancient order … | utlm.org/lds-church-leaders-declare-christianity-to-be-in-a-state-of-total-apostasy |
+| 104 | 20:257 | John Taylor | When the Father and the Son and Moroni and others came to Jo… | utlm.org/evolution-of-the-first-vision |
+| 105 | 25:21 | George Teasdale | I believe in plural marriage as a part of the Gospel, just a… | archive.utlm.org/onlinebooks/changech9c.htm, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 106 | 11:269 | Brigham Young | The only men who become Gods, even the Sons of God, are thos… | en.fairmormon.org/answers/Quote-mining-Journal-of-Discourses, mrm.org/plural-marriage-early-utah, mrm.org/polygamy-quotes |
+| 107 | 2:82 | Orson Hyde | I shall say here, that before the Savior died, he looked upo… | utlm.org/mormon-claims-answered-chapter-2-god |
+| 108 | 2:196 | Wilford Woodruff | The ancient doctrine and power will unlock the mysteries of … | mrm.org/we-never-criticize |
+| 109 | 24:193 | Joseph F. Smith | The moment a man says he will not submit to legally constitu… | mrm.org/authority-quotes, mrm.org/gospel-doctrine-quotes, mrm.org/is-lds-doctrinal-purity, mrm.org/mormon-missionaries-bicycles, mrm.org/priesthood-quotes |
+| 110 | 6:351 | Orson Pratt | The Book of Mormon, therefore, is the only record (professin… | archive.utlm.org/onlinebooks/changech9a.htm, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 111 | 7:333 | Brigham Young | How many Gods there are, I do not know. But there never was … | mrm.org/discourses-brigham-young-quotes, mrm.org/god-quotes, mrm.org/kfd, mrm.org/regress |
+| 112 | 18:241 | Brigham Young | Hundreds and thousands, I suppose, were baptized before any … | archive.utlm.org/onlinebooks/changech22a.htm, mrm.org/hougey, utlm.org/the-changing-world-of-mormonism-chapter-22 |
+| 113 | 17:224 | Orson Pratt | I did hope there was more intelligence among the Latter-day … | archive.utlm.org/onlinebooks/changech9c.htm, archive.utlm.org/onlinebooks/curseofcain_part2.htm, mrm.org/mormonisms-prophetic-authority-and-selective-disobedience, mrm.org/polygamy, mrm.org/polygamy-quotes, mrm.org/the-new-and-everlasting-covenant, mrm.org/why-would-five-wives-brand-offend-mormons, utlm.org/polygamy-and-truth, utlm.org/temple-ritual-altered, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 114 | 6:32 | Heber C. Kimball | WAKE UP, YE ELDERS OF ISRAEL, AND LIVE TO GOD and none else;… | archive.utlm.org/onlinebooks/changech15.htm, mrm.org/september-dawn, mrm.org/when-salt-lake-city-calls, utlm.org/mormons-hughes-cia, utlm.org/the-changing-world-of-mormonism-chapter-15, utlm.org/the-thinking-has-been-done, utlm.org/the-thinking-has-been-done-the-mountain-meadows-to-guyana |
+| 115 | 14:10 | Orson Pratt | Let me here observe that the Book of Mormon, which has been … | utlm.org/lamanites |
+| 116 | 11:269 | Brigham Young | I heard the revelation on polygamy, and I believed it with a… | mrm.org/polygamy-quotes |
+| 117 | 5:266 | John Taylor | We used to have a difference between Church and State, but i… | utlm.org/the-mormon-kingdom |
+| 118 | 20:65 | Orson Pratt | The Prophet translated the part of these writings which, as … | utlm.org/prophet-seer-and-revelator |
+| 119 | 13:207 | George Q. Cannon | Under the system of Patriarchal Marriage, the offspring, bes… | archive.utlm.org/onlinebooks/changech9b.htm, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 120 | 17:159 | Brigham Young | Brother George A. Smith has been reading a little out of the… | archive.utlm.org/onlinebooks/changech9a.htm, mrm.org/brigham-young, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 121 | 4:220 | Brigham Young | I have known a great many men who have left this Church for … | archive.utlm.org/onlinebooks/changech20.htm, en.wikipedia.org/wiki/Blood_atonement, en.wikipedia.org/wiki/Mountain_Meadows_massacre, mrm.org/blood-atonement, www.mormonthink.com/QUOTES/bloodatonement.htm |
+| 122 | 16:344 | Orson Pratt | In other words, where is the church? It is said by some that… | utlm.org/lds-church-leaders-declare-christianity-to-be-in-a-state-of-total-apostasy |
+| 123 | 5:22 | Heber C. Kimball | I have noticed that a man who has but one wife, and is incli… | archive.utlm.org/onlinebooks/changech9b.htm, en.wikipedia.org/wiki/Heber_C_Kimball, utlm.org/mormon-claims-answered-chapter-9-temples-and-temple-ordinances, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 124 | 5:265 | John Taylor | Nothing but obedience to his law, obedience in families, obe… | mrm.org/mountain-meadows |
+| 125 | 8:12 | Brigham Young | When a man begins to find fault, inquiring in regard to this… | mrm.org/discourses-brigham-young-quotes |
+| 126 | 5:83 | Wilford Woodruff | Now, whatever I might have obtained in the shape of learning… | mit.irr.org/authority-claims-of-lds-leaders |
+| 127 | 14:58 | George Q. Cannon | We close the door on one side, and say that whoredoms, seduc… | mrm.org/polygamy-quotes |
+| 128 | 1:339 | Brigham Young | Will all the people be damned who are not Latter-day Saints?… | mrm.org/brigham-young |
+| 129 | 18:343 | Orson Pratt | The whole term means Valley of God, where Adam dwelt. It is … | mrm.org/eden |
+| 130 | 11:272 | Brigham Young | Why are so many of the inhabitants of the earth cursed with … | archive.utlm.org/onlinebooks/curseofcain_part2.htm, en.wikipedia.org/wiki/Black_people_and_Mormonism, mit.irr.org/brigham-young-on-race-later-comments, mrm.org/lds-citations-blacks, mrm.org/why-priesthood-ban |
+| 131 | 4:174 | Heber C. Kimball | Are there men in our midst who will court other men's wives?… | en.wikipedia.org/wiki/Blood_atonement, utlm.org/heber-c-kimball-sermon-blood-atonement |
+| 132 | 16:161 | Brigham Young | If there is an Elder here, or any member of this Church, cal… | mit.irr.org/authority-claims-of-lds-leaders, mrm.org/authority-quotes, mrm.org/brigham-young, mrm.org/brigham-young-jerk, mrm.org/heaven-schindler, mrm.org/jacobson-on-questions, mrm.org/pinning-down-mormon-doctrine, mrm.org/president-monsons-views-dont-represent-the-mormon-church, mrm.org/pyle-on-questions, utlm.org/did-brigham-young-teach-false-doctrine |
+| 133 | 25:21 | George Teasdale | I bear my solemn testimony that plural marriage is as true a… | archive.utlm.org/onlinebooks/changech9c.htm, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 134 | 18:259 | Brigham Young | When they receive their crowns, their dominions, they then w… | mrm.org/becoming-like-god, mrm.org/exaltation-speculation, mrm.org/godhood-quotes, mrm.org/kfd |
+| 135 | 11:337 | George Q. Cannon | Men have supposed that because the Ark rested on Ararat that… | mrm.org/eden |
+| 136 | 21:296 | Orson Pratt | All these principles that I have treated upon, pertaining to… | archive.utlm.org/onlinebooks/changech22a.htm, mrm.org/polygamy, utlm.org/covering-up-mormon-polygamy, utlm.org/temple-ritual-altered, utlm.org/the-changing-world-of-mormonism-chapter-22, utlm.org/the-gods-of-mormonism |
+| 137 | 8:222 | Brigham Young | I doubt whether it can be found, from the revelations that a… | archive.utlm.org/onlinebooks/changech21.htm, utlm.org/mormon-claims-answered-chapter-10-the-eternal-state-of-mankind, utlm.org/the-changing-world-of-mormonism-chapter-21 |
+| 138 | 2:82 | Orson Hyde | We will turn over to the account of the marriage in Cana of … | mrm.org/lds-church-on-the-marriages-of-jesus |
+| 139 | 12:97 | Brigham Young | Be careful, O, ye mothers in Israel, and do not teach your d… | mrm.org/discourses-brigham-young-quotes, mrm.org/lds-citations-blacks, mrm.org/marriage-quotes |
+| 140 | 1:219 | Brigham Young | Gold and silver grow, and so does every other kind of metal,… | mrm.org/brigham-young |
+| 141 | 13:40 | George A. Smith | The opposers of Celestial Marriage sometimes quote a passage… | mrm.org/polygamy-quotes |
+| 142 | 19:269 | Erastus Snow | John, the Apostle, in writing the history of Jesus, speaks i… | en.wikipedia.org/wiki/Heavenly_Mother_Mormonism, mrm.org/a-mormon-apostle-explains-the-component-parts-of-god |
+| 143 | 16:175 | Orson Pratt | I said their baptisms are illegal. Now let me go a little fa… | mrm.org/marriage-quotes |
+| 144 | 4:219 | Brigham Young | The time has been in Israel under the law of God, the celest… | www.mormonthink.com/QUOTES/bloodatonement.htm |
+| 145 | 7:333 | Brigham Young | The people called Christians are shrouded in ignorance, and … | mrm.org/baptist-preacher, mrm.org/christianity, mrm.org/christianity-quotes, mrm.org/first-vision-accounts, mrm.org/scott-christianity |
+| 146 | 23:278 | George Q. Cannon | Now, I want to say for myself personally, if I had not obeye… | archive.utlm.org/onlinebooks/changech9b.htm, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 147 | 8:223 | Brigham Young | Every intelligent person under the heavens that does not, wh… | mit.irr.org/authority-claims-of-lds-leaders, mrm.org/allegiance-to-joseph-smith, mrm.org/joseph-smith-quotes |
+| 148 | 22:206 | Wilford Woodruff | I believe that God Almighty reserved a certain class of men … | mrm.org/joseph-smith-quotes, mrm.org/wilford-woodruff-quotes |
+| 149 | 5:331 | Brigham Young | Some have grumbled because I believe our God to be so near t… | www.mormonthink.com/QUOTES/adamgod.htm |
+| 150 | 17:223 | Orson Pratt | I stated in the beginning of my remarks, that polygamy, or a… | mrm.org/polygamy |
+| 151 | 8:39 | Brigham Young | More will prove faithful than will apostatize. A certain cla… | mrm.org/discourses-brigham-young-quotes |
+| 152 | 5:191 | John Taylor | What is a man's duty here? It is obedience to the oracles of… | mrm.org/mormons-believe-a-study-in-scarlet-is-inaccurate |
+| 153 | 9:247 | Brigham Young | Many of us have been taught the doctrine of total depravity—… | mrm.org/brigham-young, mrm.org/discourses-brigham-young-quotes |
+| 154 | 4:56 | Brigham Young | This is the reason why the doctrine of plurality of wives wa… | mrm.org/discourses-brigham-young-quotes, utlm.org/brigham-youngs-wives- |
+| 155 | 13:324 | Wilford Woodruff | While in this state of uncertainty he turned to the Bible, a… | mrm.org/first-vision-quotes, utlm.org/mormon-claims-answered-chapter-1-origin-and-history-of-mormonism |
+| 156 | 18:55 | Orson Pratt | Everybody knows that in this respect there is a difference b… | mrm.org/polygamy-quotes |
+| 157 | 3:212 | Brigham Young | I am a witness that those are the revelations of the Lord th… | archive.utlm.org/onlinebooks/changech17.htm, mrm.org/brigham-young, utlm.org/acceptance-of-joseph-smith-necessary-for-eternal-life, utlm.org/changing-world-of-mormonism-chapter-17 |
+| 158 | 8:160 | Brigham Young | Intelligent beings are organized to become Gods, even the so… | mrm.org/discourses-brigham-young-quotes, mrm.org/godhood-quotes |
+| 159 | 17:227 | Orson Pratt | Has God joined them together? No, a civil magistrate has don… | mrm.org/marriage-quotes |
+| 160 | 10:111 | Brigham Young | I am neither an abolitionist nor a pro-slavery man. If I cou… | en.wikipedia.org/wiki/Blood_atonement, mit.irr.org/brigham-young-on-race-later-comments |
+| 161 | 14:341 | John Taylor | We are after the truth. We commenced searching for it, and w… | mrm.org/gospel-kingdom-quotes |
+| 162 | 12:310 | Brigham Young | You may ask the question: Has no one Elder in Israel ever ta… | mrm.org/the-doctrine-of-christ |
+| 163 | 4:375 | Heber C. Kimball | I wish they would go this fall: it might relieve us from muc… | archive.utlm.org/onlinebooks/changech20.htm, en.wikipedia.org/wiki/Blood_atonement, mrm.org/blood-atonement, www.mormonthink.com/QUOTES/bloodatonement.htm |
+| 164 | 14:244 | Orson Pratt | Does not everything that is consistent and reasonable, and e… | archive.utlm.org/onlinebooks/changech9c.htm, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 165 | 6:10 | Joseph Smith | A question may be asked—“Will mothers have their children in… | carm.org/feelings-gods-and-joseph-smith, carm.org/interesting-quotes-from-joseph-smith-the-founder-of-mormonism, mrm.org/king-follett-discourse, utlm.org/top-stories |
+| 166 | 1:243 | Brigham Young | Are you a Calvinist, or a Wesleyan? It is no matter, if you … | mrm.org/nelsons-mandate |
+| 167 | 3:116 | Brigham Young | I will remark that brother Orson has clearly shown how the B… | archive.utlm.org/onlinebooks/changech12b.htm, utlm.org/the-changing-world-of-mormonism-chapter-12 |
+| 168 | 4:209 | Heber C. Kimball | In the spirit world there is an increase of males and female… | en.fairmormon.org/answers/Quote-mining-Journal-of-Discourses, mrm.org/polygamy-quotes |
+| 169 | 13:225 | John Taylor | What does the Christian world know about God? Nothing; yet t… | mrm.org/are-baptists-christian, mrm.org/baptist-preacher, mrm.org/christianity, mrm.org/christianity-quotes, mrm.org/first-vision-accounts, mrm.org/gospel-topics-women, mrm.org/mormon-official-equates-christianity-with-a-false-cult, mrm.org/music-of-the-faiths, mrm.org/scott-christianity, mrm.org/the-exclusiveness-of-mormonisms-truth-claims, mrm.org/we-never-criticize |
+| 170 | 2:268 | Brigham Young | Take a family of ten children, for instance, and you may fin… | utlm.org/excommunication-mormon-leader-expelled-after-charging-church-with-racism |
+| 171 | 2:345 | Orson Pratt | If we should take a million of worlds like this and number t… | archive.utlm.org/onlinebooks/changech7.htm, mrm.org/testaments, utlm.org/major-problems-of-mormonism, utlm.org/mormon-claims-answered-chapter-2-god, utlm.org/the-changing-world-of-mormonism-chapter-7, utlm.org/the-gods-of-mormonism |
+| 172 | 3:372 | Brigham Young | A man is ordained and receives his washings, anointings, and… | mrm.org/discourses-brigham-young-quotes |
+| 173 | 7:285 | Brigham Young | Here let me state to all philosophers of every class upon th… | www.mormonthink.com/QUOTES/adamgod.htm |
+| 174 | 12:173 | Brigham Young | We declare it to all the inhabitants of the earth from the v… | mrm.org/brigham-young, mrm.org/discourses-brigham-young-quotes |
+| 175 | 26:29 | Charles W. Penrose | We will comprehend everything we learned when we dwelt in th… | mrm.org/jacobson-on-questions |
+| 176 | 9:269 | Brigham Young | “Oh, be sealed to me, brother; I care not what you do, you m… | utlm.org/early-secrets |
+| 177 | 5:192 | John Taylor | Now, brother Brigham has said all is right, and he is the re… | mrm.org/mormons-believe-a-study-in-scarlet-is-inaccurate, mrm.org/mountain-meadows |
+| 178 | 2:143 | Brigham Young | When all the other children of Adam have had the privilege o… | archive.utlm.org/onlinebooks/curseofcain_part2.htm, en.wikipedia.org/wiki/Brigham_Young, mrm.org/race-and-the-priesthood |
+| 179 | 1:68 | Brigham Young | Teach them to keep your commandments, and you will learn the… | mrm.org/brigham-young |
+| 180 | 13:65 | Orson Pratt | By and by an obscure individual, a young man, rose up, and, … | utlm.org/evolution-of-the-first-vision, utlm.org/grappling |
+| 181 | 4:269 | Brigham Young | We are placed on this earth to prove whether we are worthy t… | mrm.org/discourses-brigham-young-quotes |
+| 182 | 2:179 | Brigham Young | We ask where Christ's Church is. My conclusive answer is, if… | mrm.org/brigham-young |
+| 183 | 1:123 | Orson Hyde | Remember that God, our heavenly Father, was perhaps once a c… | mrm.org/god-learning, mrm.org/god-quotes, mrm.org/regress |
+| 184 | 9:149 | Brigham Young | “Mormonism” embraces all truth that is revealed and that is … | mrm.org/nicknames-of-the-church |
+| 185 | 23:342 | Lorenzo Snow | God intends to make us saviors not only of many that now dwe… | mrm.org/quotes-lorenzo-snow |
+| 186 | 4:57 | Brigham Young | Prepare yourselves for two weeks from tomorrow; and I will t… | archive.utlm.org/onlinebooks/changech9b.htm, utlm.org/brigham-youngs-wives, utlm.org/early-secrets, utlm.org/problems-in-the-lds-essays-on-plural-marriage, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 187 | 13:95 | Brigham Young | I have never yet preached a sermon and sent it out to the ch… | en.fairmormon.org/answers/Quote-mining-Journal-of-Discourses, mrm.org/adam-god |
+| 188 | 3:226 | Brigham Young | The time is coming when justice will be laid to the line and… | archive.utlm.org/onlinebooks/changech20.htm, en.wikipedia.org/wiki/Blood_atonement, en.wikipedia.org/wiki/Mormon_Reformation |
+| 189 | 18:293 | Orson Pratt | We would find, were we to carry this subject from world to w… | utlm.org/mormons-hope-to-become-gods-of-their-own-worlds-procreating-endless-numbers-of-children |
+| 190 | 5:73 | Brigham Young | The Christian world, I discovered, was like the captain and … | mrm.org/april-general-conference-reaffirms-mormonisms-love-hate-relationship-with-christianity, mrm.org/brigham-young, mrm.org/christian-or-not, mrm.org/we-never-criticize |
+| 191 | 6:25 | John Taylor | What! Are Christians ignorant? Yes, as ignorant of the thing… | mrm.org/we-never-criticize |
+| 192 | 13:271 | Brigham Young | When we view its face we may see what is termed “the man in … | archive.utlm.org/onlinebooks/changech1.htm, mrm.org/aliens, mrm.org/brigham-young, mrm.org/inhabitants-of-the-moon-truth-or-fiction, mrm.org/moon-men, utlm.org/deseret-almanacs-god, utlm.org/mormon-claims-answered-more-lds-scripture-revelation, utlm.org/the-changing-world-of-mormonism-chapter-1 |
+| 193 | 9:37 | Brigham Young | Do you look forward to that? Or are you tormenting yourselve… | archive.utlm.org/onlinebooks/changech9b.htm, utlm.org/brigham-youngs-wives, utlm.org/the-changing-world-of-mormonism-chapter-9, utlm.org/women |
+| 194 | 6:237 | Joseph Smith | The Priesthood is an everlasting principle, and existed with… | mit.irr.org/mormon-priesthood-do-mormons-alone-have-power, mrm.org/priesthood-quotes |
+| 195 | 7:164 | Brigham Young | Some of the witnesses of the Book of Mormon, who handled the… | archive.utlm.org/onlinebooks/changech5a.htm, utlm.org/mean, utlm.org/roper, utlm.org/the-changing-world-of-mormonism-chapter-5, utlm.org/the-seer |
+| 196 | 21:308 | Orson Pratt | In a great and glorious open vision, in answer to his prayer… | utlm.org/evolution-of-the-first-vision |
+| 197 | 1:108 | Brigham Young | If you want to know what to do with a thief that you may fin… | archive.utlm.org/onlinebooks/changech20.htm, mrm.org/blood-atonement, www.mormonthink.com/QUOTES/bloodatonement.htm |
+| 198 | 5:88 | Heber C. Kimball | You call us fools; but the day will be, gentlemen and ladies… | archive.utlm.org/onlinebooks/changech17.htm, mrm.org/allegiance-to-joseph-smith, mrm.org/joseph-smith-quotes, mrm.org/praise-to-the-man, mrm.org/salvific-role, utlm.org/acceptance-of-joseph-smith-necessary-for-eternal-life, utlm.org/changing-world-of-mormonism-chapter-17 |
+| 199 | 14:71 | Brigham Young | Consequently every earth has its redeemer, and every earth h… | mrm.org/eternal-progression-quotes, mrm.org/exaltation, mrm.org/god-never-sinned, mrm.org/is-jesus-the-one-in-mormonism, mrm.org/jesus-of-mormonism, mrm.org/john-5-19, mrm.org/regress, mrm.org/the-adam-god-challenge, utlm.org/major-problems-of-mormonism |
+| 200 | 11:268 | Brigham Young | The man Joseph, the husband of Mary, did not, that we know o… | archive.utlm.org/onlinebooks/changech7.htm, mrm.org/celebrate-christmas-by-rejecting-mormon-leaders-who-have-rejected-the-virgin-birth, mrm.org/mormonisms-grinch-and-a-response-to-james-of-lehis-library, mrm.org/virgin-birth, mrm.org/what-child-is-this-the-lds-christmas-story, utlm.org/deseret-almanacs-god, utlm.org/embarrassing-doctrine, utlm.org/is-adam-christs-father, utlm.org/the-changing-world-of-mormonism-chapter-7, utlm.org/the-gods-of-mormonism |
+| 201 | 7:53 | Orson Hyde | What the world calls “Mormonism” will rule every nation. Jos… | mrm.org/nicknames-of-the-church, utlm.org/the-mormon-kingdom |
+| 202 | 26:368 | Lorenzo Snow | As man now is, God once was—even the babe of Bethlehem, adva… | mrm.org/eternal-progression-quotes, mrm.org/quotes-lorenzo-snow |
+| 203 | 13:309 | Brigham Young | The Scripture says that He, the Lord, came walking in the Te… | archive.utlm.org/onlinebooks/changech9b.htm, utlm.org/mother-god, utlm.org/problems-in-the-lds-essays-on-plural-marriage, utlm.org/the-changing-world-of-mormonism-chapter-9, utlm.org/the-gods-of-mormonism |
+| 204 | 5:195 | Parley P. Pratt | Also that he will hold those keys to all eternity; and no po… | utlm.org/importance-of-joseph-smith-in-mormonism |
+| 205 | 13:250 | Brigham Young | Take the Bible, then, as it is. If it is not translated corr… | mit.irr.org/authority-of-lds-scriptures |
+| 206 | 5:179 | Heber C. Kimball | Well, let me tell you, the Holy Ghost is a man; he is one of… | archive.utlm.org/onlinebooks/changech7.htm, mrm.org/holy-ghost, utlm.org/the-changing-world-of-mormonism-chapter-7 |
+| 207 | 9:147 | Brigham Young | The punishment of God is Godlike. It endures forever, becaus… | mrm.org/brigham-young |
+| 208 | 2:75 | Orson Hyde | The words contained in this Bible are merely a history of wh… | mrm.org/bible-quotes, mrm.org/the-bible-through-mormon-eyes, mrm.org/what-do-mormons-believe-about-the-bible-2 |
+| 209 | 3:212 | Brigham Young | What an uproar it would make in the Christian world to say, … | mrm.org/brigham-young |
+| 210 | 1:109 | Brigham Young | If you will cause all those whom you know to be thieves, to … | archive.utlm.org/onlinebooks/changech20.htm, utlm.org/the-changing-world-of-mormonism-chapter-20, www.mormonthink.com/QUOTES/bloodatonement.htm |
+| 211 | 19:264 | Joseph F. Smith | Not until he has redeemed and saved every son and daughter o… | mrm.org/baptism-for-the-dead-quotes, mrm.org/gospel-doctrine-quotes, mrm.org/historical-baptism-dead, mrm.org/jesus-quotes |
+| 212 | 8:197 | Brigham Young | All will not have part in the first resurrection, and perhap… | mrm.org/discourses-brigham-young-quotes |
+| 213 | 22:209 | Wilford Woodruff | We are now upon our second estate, and our eternal destiny d… | mrm.org/eternal-progression-quotes, mrm.org/wilford-woodruff-quotes |
+| 214 | 3:360 | Brigham Young | Elders, never love your wives one hair's breadth further tha… | mrm.org/brigham-young, mrm.org/marriage-quotes |
+| 215 | 25:309 | John Taylor | God has given us a revelation in regard to celestial marriag… | archive.utlm.org/onlinebooks/changech9c.htm, utlm.org/temple-ritual-altered, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 216 | 1:83 | Brigham Young | I say, rather than that apostates should flourish here, I wi… | archive.utlm.org/onlinebooks/changech20.htm, www.mormonthink.com/QUOTES/bloodatonement.htm |
+| 217 | 4:218 | Brigham Young | When the time came that His firstborn, the Savior, should co… | carm.org/questions-for-mormons-gods, mrm.org/brigham-young, mrm.org/virgin-birth, utlm.org/lds-leaders-define-their-concept-of-jesus-christ |
+| 218 | 20:28 | Joseph F. Smith | In other words, some of the Saints have said, and believe, t… | archive.utlm.org/onlinebooks/changech9b.htm, mrm.org/polygamy-abanes, utlm.org/polygamy-and-truth, utlm.org/problems-in-the-lds-essays-on-plural-marriage, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 219 | 14:208 | Brigham Young | By revelation. How do we know that Joseph Smith was called o… | mrm.org/discourses-brigham-young-quotes |
+| 220 | 6:207 | Joseph Young | Who is it that is at the head of this? It is the Devil, the … | mrm.org/lucifers-brother, mrm.org/prince-of-angels-brother-of-jesus, utlm.org/lucifer |
+| 221 | 17:225 | Orson Pratt | I want to prophesy that all men and women who oppose the rev… | archive.utlm.org/onlinebooks/curseofcain_part2.htm, mrm.org/polygamy-quotes |
+| 222 | 3:266 | Brigham Young | Some of these my brethren know what my feelings were at the … | mrm.org/gospel-topics-polygamy, mrm.org/polygamy-quotes, utlm.org/sacred-marriage-secret-affair |
+| 223 | 13:95 | Brigham Young | I know just as well what to teach this people and just what … | archive.utlm.org/onlinebooks/changech15.htm, mit.irr.org/authority-claims-of-lds-leaders, mrm.org/adam-god, mrm.org/are-their-words-really-scripture, mrm.org/brigham-young, mrm.org/brigham-young-jerk, mrm.org/topicsrebuttals-rejoindersmormonism-201church-and-its-leadership-johnson, utlm.org/did-brigham-young-teach-false-doctrine, utlm.org/mormon-claims-answered-chapter-2-god, utlm.org/mormon-claims-answered-chapter-9-temples-and-temple-ordinances, utlm.org/mormon-claims-answered-more-lds-scripture-revelation, utlm.org/prophet-seer-and-revelator, utlm.org/the-changing-world-of-mormonism-chapter-15, utlm.org/will-benson-be-king |
+| 224 | 4:126 | Jedediah M. Grant | Men have to be rewarded according to their works; if a man c… | utlm.org/orson-pratts-troubles |
+| 225 | 13:282 | Brigham Young | You will be the man that will say to the thief on the cross,… | mrm.org/brigham-young |
+| 226 | 25:58 | Joseph F. Smith | God designed this in the beginning. We are the children of G… | mrm.org/eternal-progression-quotes, mrm.org/god-quotes, mrm.org/regress |
+| 227 | 10:286 | Brigham Young | When the holy Priesthood is upon the earth, and the fulness … | mrm.org/tithing |
+| 228 | 24:374 | George Q. Cannon | Joseph Smith taught a different doctrine even before the Chu… | mrm.org/heaven-and-hell |
+| 229 | 6:176 | Brigham Young | Brother Taylor has just said that the religions of the day w… | mrm.org/april-general-conference-reaffirms-mormonisms-love-hate-relationship-with-christianity, mrm.org/mormonisms-only-true-church-doctrine-does-not-feel-loving, mrm.org/the-exclusiveness-of-mormonisms-truth-claims, mrm.org/we-never-criticize, utlm.org/lds-church-leaders-declare-christianity-to-be-in-a-state-of-total-apostasy |
+| 230 | 26:22 | Charles W. Penrose | Not only those that now dwell on the earth, but all people w… | mrm.org/we-are-christians-just-like-you |
+| 231 | 10:250 | Brigham Young | Treat the slaves kindly and let them live, for Ham must be t… | archive.utlm.org/onlinebooks/curseofcain_part2.htm, en.wikipedia.org/wiki/Black_people_and_Mormonism |
+| 232 | 11:298 | Brigham Young | Now ask the Father in the name of Jesus whether I am telling… | mrm.org/authority-quotes, mrm.org/brigham-young, utlm.org/early-secrets |
+| 233 | 25:59 | Joseph F. Smith | We expect our children will acknowledge us as their fathers … | mrm.org/gospel-doctrine-quotes, mrm.org/heavenly-mother-renlund |
+| 234 | 12:165 | Brigham Young | The ordinance of sealing must be performed here man to man, … | utlm.org/covering-up-mormon-polygamy |
+| 235 | 24:371 | George Q. Cannon | Though Jesus had appeared on the earth as a personage having… | utlm.org/the-gods-of-mormonism |
+| 236 | 11:125 | Brigham Young | The sectarian doctrine of final rewards and punishments is a… | mrm.org/discourses-brigham-young-quotes |
+| 237 | 6:237 | Joseph Smith | The Priesthood was first given to Adam. He obtained the Firs… | mrm.org/priesthood-quotes, utlm.org/mormon-claims-answered-chapter-6-priesthood |
+| 238 | 18:239 | Brigham Young | Do we believe that the Lord sent his messengers to Joseph Sm… | utlm.org/evolution-of-the-first-vision |
+| 239 | 8:195 | Brigham Young | In the beginning, after this earth was prepared for man, the… | carm.org/questions-for-mormons-gods, mrm.org/brigham-young, mrm.org/discourses-brigham-young-quotes, mrm.org/eden, utlm.org/eden |
+| 240 | 1:97 | George A. Smith | The principle, the only one that beats and throbs through th… | archive.utlm.org/onlinebooks/changech20.htm, www.mormonthink.com/QUOTES/bloodatonement.htm |
+| 241 | 6:167 | John Taylor | The world has been apostate for generations past: it has bee… | utlm.org/lds-church-leaders-declare-christianity-to-be-in-a-state-of-total-apostasy |
+| 242 | 7:336 | Brigham Young | When the Lord has a people, he makes covenants with them and… | mit.irr.org/brigham-young-on-race-later-comments, mrm.org/white-and-delightsome |
+| 243 | 24:371 | George Q. Cannon | There was no man scarcely upon the earth that had a true con… | archive.utlm.org/onlinebooks/changech6.htm, utlm.org/the-changing-world-of-mormonism-chapter-6, utlm.org/the-gods-of-mormonism |
+| 244 | 9:91 | Brigham Young | In trying all matters of doctrine, to make a decision valid,… | mrm.org/pyle-on-questions |
+| 245 | 17:225 | Orson Pratt | Sisters, you begin to say before your husbands, or husbands … | archive.utlm.org/onlinebooks/curseofcain_part2.htm, mrm.org/polygamy-quotes |
+| 246 | 4:215 | Brigham Young | The Scriptures teach that this is eternal life, to “know the… | mrm.org/brigham-young-testifies-of-joseph-smith-and-then-some |
+| 247 | 19:259 | Joseph F. Smith | The object of our earthly existence is that we may have a fu… | mrm.org/become-a-god, mrm.org/exaltation-quotes |
+| 248 | 12:127 | Brigham Young | What man or woman on the earth, what spirit in the spirit wo… | mit.irr.org/authority-claims-of-lds-leaders, mrm.org/authority-quotes, mrm.org/brigham-young-jerk |
+| 249 | 23:65 | John Taylor | Man is a dual being, possessed of body and spirit, made in t… | mrm.org/gospel-kingdom-quotes, mrm.org/notable-teachings-from-john-taylor |
+| 250 | 14:71 | Brigham Young | How many earths are there? I observed this morning that you … | mrm.org/eternal-progression-quotes, mrm.org/exaltation, mrm.org/god-never-sinned |
+| 251 | 17:159 | Brigham Young | You have heard me say, a great many times, that there is not… | mrm.org/brigham-young |
+| 252 | 1:106 | Brigham Young | Do you pray for Israel? You will no doubt answer in the affi… | utlm.org/lamanites |
+| 253 | 14:275 | Orson Pratt | We just as much expect that a city will be built, called Zio… | archive.utlm.org/onlinebooks/changech14.htm, utlm.org/the-changing-world-of-mormonism-chapter-14 |
+| 254 | 3:368 | Brigham Young | Do you suppose that one-third part of all the beings that ex… | mrm.org/brigham-young, mrm.org/discourses-brigham-young-quotes |
+| 255 | 20:29 | Joseph F. Smith | To put this matter more correctly before you, I here declare… | mit.irr.org/polygamy, mrm.org/polygamy-quotes |
+| 256 | 24:372 | George Q. Cannon | Faith was again restored to the earth, the true faith and th… | archive.utlm.org/onlinebooks/changech6.htm, utlm.org/examining-the-first-vision, utlm.org/the-changing-world-of-mormonism-chapter-6, utlm.org/the-gods-of-mormonism |
+| 257 | 12:313 | Brigham Young | I will now say to my friends—and I call you all, and all man… | mrm.org/discourses-brigham-young-quotes |
+| 258 | 17:347 | Daniel H. Wells | Without Temples they could not have the privilege and opport… | mrm.org/greg-trimble-response |
+| 259 | 2:31 | Brigham Young | Your endowment is, to receive all those ordinances in the Ho… | mrm.org/brigham-young, mrm.org/cultic-characteristics-of-mormonism, mrm.org/discourses-brigham-young-quotes, mrm.org/mormonisms-washington-d-c-temple-remains-a-mystery, mrm.org/temple-ceremony, mrm.org/temple-mcguire, utlm.org/temple-ritual-altered, utlm.org/temple-ritual-changed-again |
+| 260 | 2:186 | Brigham Young | I will tell you how much I love those characters. If they ha… | www.mormonthink.com/QUOTES/bloodatonement.htm |
+| 261 | 12:338 | Orson Pratt | We may, however, observe, that so far as new revelation has … | mrm.org/eden |
+| 262 | 4:78 | Brigham Young | If he acts like a devil, he has brought forth a doctrine tha… | mrm.org/praise-to-the-man |
+| 263 | 4:271 | Brigham Young | If we can pass the sentinel Joseph the Prophet, we shall go … | mrm.org/because-joseph-smith-was-a-prophet, mrm.org/boast-of-joseph, mrm.org/brigham-young, mrm.org/joseph-smith-quotes, mrm.org/salvific-role, mrm.org/starr-katich, mrm.org/the-boast-of-joseph, utlm.org/importance-of-joseph-smith-in-mormonism |
+| 264 | 4:1 | Heber C. Kimball | I have learned by experience that there is but one God that … | en.wikipedia.org/wiki/Adam–God_doctrine, mrm.org/adam-god, mrm.org/pinning-down-mormon-doctrine, www.mormonthink.com/QUOTES/adamgod.htm |
+| 265 | 8:199 | Brigham Young | With regard to true theology, a more ignorant people never l… | mrm.org/mormonisms-were-not-weird-campaign, mrm.org/we-never-criticize, utlm.org/lds-church-leaders-declare-christianity-to-be-in-a-state-of-total-apostasy |
+| 266 | 24:372 | George Q. Cannon | In one moment all the darkness disappeared, and once more th… | utlm.org/the-gods-of-mormonism |
+| 267 | 9:102 | Brigham Young | Angels are those beings who have been on an earth like this,… | mrm.org/angelic-or-human, mrm.org/angels-and-humans |
+| 268 | 7:322 | John Taylor | There was one man that had a little good sense and a spark o… | utlm.org/jerald-2 |
+| 269 | 20:31 | Joseph F. Smith | It is an additional privilege for that same man and wife to … | mit.irr.org/polygamy, mrm.org/polygamy-quotes |
+| 270 | 8:81 | Brigham Young | God will gather his children from all nations, and bring the… | mrm.org/discourses-brigham-young-quotes |
+| 271 | 9:289 | Brigham Young | The Lord Almighty leads this Church, and he will never suffe… | archive.utlm.org/onlinebooks/changech15.htm, mit.irr.org/authority-claims-of-lds-leaders, utlm.org/dunn-in-the-name-of-god, utlm.org/prophet-seer-and-revelator, utlm.org/the-changing-world-of-mormonism-chapter-15, utlm.org/the-thinking-has-been-done, utlm.org/the-thinking-has-been-done-the-mountain-meadows-to-guyana |
+| 272 | 6:29 | Heber C. Kimball | Do you suppose that God in person called upon Joseph Smith, … | utlm.org/evolution-of-the-first-vision, utlm.org/grappling |
+| 273 | 10:250 | Brigham Young | Ham will continue to be the servant of servants, as the Lord… | archive.utlm.org/onlinebooks/changech10a.htm, archive.utlm.org/onlinebooks/curseofcain_part2.htm, en.wikipedia.org/wiki/Black_people_and_Mormonism, utlm.org/did-brigham-young-teach-false-doctrine, utlm.org/important-document-on-negroes, utlm.org/jerald-1, utlm.org/the-changing-world-of-mormonism-chapter-10 |
+| 274 | 6:2 | Joseph Smith | My first object is to find out the character of the only wis… | mrm.org/kfd, mrm.org/regress |
+| 275 | 16:186 | Brigham Young | We also have the privilege of sealing women to men, without … | utlm.org/early-secrets, utlm.org/women |
+| 276 | 22:124 | George Q. Cannon | When we talk about celestial glory, we talk of the condition… | mrm.org/god-quotes, utlm.org/mormons-hope-to-become-gods-of-their-own-worlds-procreating-endless-numbers-of-children |
+| 277 | 4:56 | Brigham Young | Sisters, I am not joking, I do not throw out my proposition … | archive.utlm.org/onlinebooks/changech9b.htm, utlm.org/brigham-youngs-wives, utlm.org/early-secrets, utlm.org/problems-in-the-lds-essays-on-plural-marriage, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 278 | 14:147 | Brigham Young | For he who is not able to abide the law of a celestial kingd… | mrm.org/mormons-on-pbs |
+| 279 | 1:73 | Orson Hyde | I believe it is right; it is the law and practice of our nei… | archive.utlm.org/onlinebooks/changech20.htm, www.mormonthink.com/QUOTES/bloodatonement.htm |
+| 280 | 23:173 | Joseph F. Smith | The man who passes through this probation, and is faithful, … | mrm.org/regress |
+| 281 | 13:143 | Brigham Young | We must believe that this same Jesus was crucified for the s… | mrm.org/brigham-young |
+| 282 | 6:38 | Heber C. Kimball | Yea, I bless the earth and everything that is on this earth;… | archive.utlm.org/onlinebooks/changech19.htm, utlm.org/the-changing-world-of-mormonism-chapter-19 |
+| 283 | 19:38 | Brigham Young | Joseph did not translate all of the plates; there was a port… | archive.utlm.org/onlinebooks/changech4.htm, mrm.org/cumorah-cave, mrm.org/plates-of-gold-book-quotes, mrm.org/where-are-the-gold-plates, utlm.org/book-of-mormon-plates-artifact-vision-or-hoax, utlm.org/the-changing-world-of-mormonism-chapter-4 |
+| 284 | 14:86 | Brigham Young | There is a curse on these aborigines of our country who roam… | mit.irr.org/brigham-young-on-race-later-comments, mrm.org/discourses-brigham-young-quotes, mrm.org/lds-citations-blacks |
+| 285 | 17:231 | George Q. Cannon | Yes, it is man's privilege, the Latter-day Saints believe, t… | mrm.org/perfectionism, mrm.org/reading-between-the-lines-on-the-issue-of-perfection-part-1 |
+| 286 | 1:361 | Brigham Young | If I had forty wives in the United States, they did not know… | archive.utlm.org/onlinebooks/changech9a.htm, mrm.org/polygamy-quotes, utlm.org/the-changing-world-of-mormonism-chapter-9 |
+| 287 | 16:344 | Orson Pratt | If I cannot, I have no authority to pronounce any such churc… | utlm.org/lds-church-leaders-declare-christianity-to-be-in-a-state-of-total-apostasy |
+| 288 | 16:167 | Brigham Young | Now, sisters, do not say, “I do not want a husband when I ge… | mrm.org/plural-marriage-early-utah, mrm.org/polygamy-quotes |
+| 289 | 6:34 | Heber C. Kimball | God designs we should be pure men, holding the oracles of Go… | archive.utlm.org/onlinebooks/changech20.htm, utlm.org/blood-flows-in-utah, utlm.org/brigham-young-sermon-blood-atonement-3, utlm.org/heber-c-kimball-sermon-blood-atonement, utlm.org/kimballs-journal-confirms-oath-of-vengeance, utlm.org/new-light-on-blood-atonement, utlm.org/the-changing-world-of-mormonism-chapter-20 |
+| 290 | 1:38 | Brigham Young | There is not that person on the face of the earth who has ha… | mrm.org/bible-quotes, mrm.org/book-of-mormon-index, mrm.org/brigham-young, mrm.org/discourses-brigham-young-quotes, mrm.org/joseph-smith-quotes |
+| 291 | 14:86 | Brigham Young | Yet they transgressed every law that he gave them, changed e… | mit.irr.org/brigham-young-on-race-later-comments, mrm.org/brigham-young-jerk, mrm.org/discourses-brigham-young-quotes, mrm.org/lds-citations-blacks, mrm.org/seed-of-cain, mrm.org/was-ban-a-theory |
+| 292 | 25:169 | George Q. Cannon | When I first looked upon him, I was afraid; but the fear soo… | mrm.org/joseph-smith-quotes, mrm.org/plates-of-gold-book-quotes, utlm.org/book-of-mormon-plates-artifact-vision-or-hoax, utlm.org/dunn-in-the-name-of-god |
+| 293 | 5:19 | Heber C. Kimball | We must be grafted into the true vine, and continue to parta… | mrm.org/god-quotes, mrm.org/regress |
+| 294 | 9:319 | Brigham Young | I have not time now to dwell upon all the points of Abraham'… | mrm.org/everlasting-covenant |
+| 295 | 13:235 | Brigham Young | Now, excuse me everybody that does not believe in the Bible,… | utlm.org/lds-leaders-define-their-concept-of-jesus-christ |
+| 296 | 5:139 | Orson Hyde | The one is the church of the Lamb of God, and the other is t… | mrm.org/mere-mormonism, mrm.org/the-exclusiveness-of-mormonisms-truth-claims, mrm.org/we-never-criticize, utlm.org/lds-church-leaders-declare-christianity-to-be-in-a-state-of-total-apostasy, utlm.org/mormon-claims-answered-chapter-7-the-church |
+| 297 | 26:246 | George Q. Cannon | A Wesley, a Luther, a Calvin, a Wycliffe, and a host of othe… | mrm.org/introduction-hopkins, mrm.org/mormon-priesthood |
+| 298 | 17:143 | Brigham Young | We shall go on from one step to another, reaching forth into… | mrm.org/becoming-like-god, mrm.org/godhood-quotes |
+| 299 | 25:156 | George Q. Cannon | I at length came to the determination to “ask of God,” concl… | archive.utlm.org/onlinebooks/changech6.htm, utlm.org/dunn-in-the-name-of-god, utlm.org/examining-the-first-vision, utlm.org/the-changing-world-of-mormonism-chapter-6, utlm.org/the-gods-of-mormonism |
+| 300 | 12:100 | Brigham Young | Instead of receiving the gospel to become the sons of God, m… | mrm.org/do-we-need-to-become-children-of-god |
+| 301 | 1:50 | Brigham Young | Our God and Father in heaven, is a being of tabernacle, or, … | mrm.org/10-reasons-god, mrm.org/adam-god, mrm.org/brigham-young, mrm.org/discourses-brigham-young-quotes, mrm.org/god-quotes |
+| 302 | 8:321 | Brigham Young | What did they bestow upon him in return? They made a martyr … | mrm.org/praise-to-the-man |
+| 303 | 9:312 | Brigham Young | I have taught for thirty years, and still teach, that he tha… | carm.org/interesting-quotes-from-brigham-young-the-second-prophet-of-the-mormon-church, en.fairmormon.org/answers/Quote-mining-Journal-of-Discourses |
+| 304 | 9:150 | Brigham Young | Let every man and woman know, by the whispering of the Spiri… | mrm.org/revelation-modern-day |
+| 305 | 8:171 | Brigham Young | The Christian world, so called, are heathens as to their kno… | mrm.org/brigham-young |
+| 306 | 1:349 | Brigham Young | All organized existence is in progress, either to an endless… | mrm.org/eternal-progression-mormonism |
+| 307 | 3:93 | Brigham Young | The very heathen we were talking about; if they have a law, … | mrm.org/discourses-brigham-young-quotes |
+| 308 | 2:307 | Brigham Young | When was there a beginning? There never was one; if there wa… | mrm.org/discourses-brigham-young-quotes |
+| 309 | 6:95 | Brigham Young | We believe that we have a correct idea of the character of t… | mrm.org/brigham-young, mrm.org/different-jesus, mrm.org/jesus-of-mormonism, mrm.org/jesus-quotes |
+| 310 | 18:215 | Brigham Young | Still, it is our duty to send the Gospel to all nations, and… | mrm.org/brigham-young |
+| 311 | 9:37 | Brigham Young | Sisters, do you wish to make yourselves happy? Then what is … | archive.utlm.org/onlinebooks/changech9b.htm, utlm.org/brigham-youngs-wives, utlm.org/the-changing-world-of-mormonism-chapter-9, utlm.org/women |
+| 312 | 6:38 | Heber C. Kimball | We live to let live, and we will treat them with kindness an… | archive.utlm.org/onlinebooks/changech20.htm |
+| 313 | 14:200 | Brigham Young | The doctrine that we preach is the doctrine of the Bible, it… | mrm.org/bible-quotes, mrm.org/discourses-brigham-young-quotes |
+| 314 | 7:284 | Brigham Young | There is an eternity of life, from which we were composed by… | mrm.org/brigham-young |
+| 315 | 13:263 | Brigham Young | Our young men and women should consider their obligations to… | mrm.org/marriage-quotes |
+| 316 | 9:286 | Brigham Young | Brother Kimball quoted a saying of Joseph the Prophet, that … | en.wikipedia.org/wiki/Heavenly_Mother_Mormonism, mrm.org/god-quotes |
+| 317 | 4:268 | Brigham Young | Are all spirits endowed alike? No, not by any means. Will al… | mrm.org/discourses-brigham-young-quotes |
+| 318 | 8:115 | Brigham Young | The birth of the Savior was as natural as are the births of … | archive.utlm.org/onlinebooks/changech7.htm, carm.org/was-the-lds-jesus-born-of-the-virgin-mary, mrm.org/brigham-young, mrm.org/virgin-birth, mrm.org/virgin-birth-doctrine, utlm.org/book-of-abraham-translation-or-invention, utlm.org/embarrassing-doctrine, utlm.org/mother-god, utlm.org/the-changing-world-of-mormonism-chapter-7, utlm.org/the-gods-of-mormonism, utlm.org/the-virgin-birth-according-to-lds-leaders |
+| 319 | 4:297 | Brigham Young | Had I not thoroughly understood this and believed it, I much… | mrm.org/brigham-young, mrm.org/joseph-smith-quotes |
+| 320 | 13:144 | Brigham Young | Now I would ask the Christian world a question, and in doing… | mrm.org/10-reasons-god, mrm.org/brigham-young, mrm.org/god-quotes |
+| 321 | 20:276 | George Q. Cannon | If plural marriage be divine, as the Latter-day Saints say i… | mrm.org/plural-marriage-early-utah, mrm.org/polygamy-quotes |
+| 322 | 6:345 | Brigham Young | Some would have us believe that God is present everywhere. I… | mrm.org/brigham-young, mrm.org/discourses-brigham-young-quotes, mrm.org/elohim-2, mrm.org/god-quotes |
+| 323 | 6:332 | Brigham Young | The Apostles and Prophets, when speaking of our relationship… | mrm.org/10-reasons-jesus, mrm.org/discourses-brigham-young-quotes |
+| 324 | 4:56 | Brigham Young | I have told you many times that there are multitudes of pure… | mrm.org/brigham-young, mrm.org/discourses-brigham-young-quotes, mrm.org/unequally-yoked, utlm.org/mormon-claims-answered-chapter-8-salvation |
+| 325 | 9:149 | Brigham Young | Our religion is called “Mormonism” because the ancient recor… | mrm.org/discourses-brigham-young-quotes |
+| 326 | 14:116 | Brigham Young | God never made something out of nothing; it is not in the ec… | en.wikipedia.org/wiki/Mormon_cosmology, mrm.org/discourses-brigham-young-quotes |
+| 327 | 1:81 | Brigham Young | I will ask them if Joseph lived and died a Prophet of God, a… | mrm.org/ten-reasons-why |
+| 328 | 7:289 | Brigham Young | From the day that the Priesthood was taken from the earth to… | archive.utlm.org/onlinebooks/changech17.htm, mrm.org/assurances-and-promises, mrm.org/because-joseph-smith-was-a-prophet, mrm.org/brigham-young, mrm.org/cultic-characteristics-of-mormonism, mrm.org/for-mormons-christmastime-is-for-honoring-jesus-and-joseph-smith, mrm.org/joseph-smith-quotes, mrm.org/mormon-missionaries-bicycles, mrm.org/mormonisms-different-jesus, mrm.org/no-salvation-without-joseph-smith, mrm.org/praise-to-the-man, mrm.org/president-resurrection, mrm.org/restoration-review, mrm.org/salvific-role, mrm.org/something-crucial-is-missing-from-the-mormon-churchs-official-name, mrm.org/starr-katich, mrm.org/testaments, mrm.org/the-plan-of-salvation, mrm.org/the-plan-of-salvation-2, mrm.org/we-are-christians-just-like-you, utlm.org/acceptance-of-joseph-smith-necessary-for-eternal-life, utlm.org/brigham-young-sermon-joseph-smiths-consent, utlm.org/changing-world-of-mormonism-chapter-17, utlm.org/did-brigham-young-teach-false-doctrine, utlm.org/importance-of-joseph-smith-in-mormonism, utlm.org/jesus-and-joseph-smith, utlm.org/mormon-claims-answered-chapter-8-salvation, utlm.org/the-thinking-has-been-done-the-mountain-meadows-to-guyana |
+| 329 | 3:365 | Brigham Young | We were created upright, pure, and holy, in the image of our… | mrm.org/brigham-young |
+| 330 | 5:332 | Brigham Young | If we can pass Joseph and have him say, “Here; you have been… | en.wikipedia.org/wiki/Adam–God_doctrine, mrm.org/brigham-young, mrm.org/brigham-young-testifies-of-joseph-smith-and-then-some |
+| 331 | 10:265 | Brigham Young | The religion of God embraces every fact that exists in all t… | mrm.org/we-never-criticize, utlm.org/lds-church-leaders-declare-christianity-to-be-in-a-state-of-total-apostasy |
+| 332 | 10:312 | Brigham Young | Some may regret that our first parents sinned. This is nonse… | mrm.org/fall |
+| 333 | 15:220 | Brigham Young | Not but that we should find a great many who do not exactly … | mrm.org/salvation-quotes |
+| 334 | 1:50 | Brigham Young | Our Father in Heaven begat all the spirits that ever were, o… | utlm.org/did-brigham-young-teach-false-doctrine |
+| 335 | 10:2 | Brigham Young | Yes, he is one of us, flesh of our flesh, bone of our bone, … | utlm.org/lds-leaders-define-their-concept-of-jesus-christ |
+| 336 | 15:127 | Brigham Young | If anybody wants to know what the priesthood of the Son of G… | mit.irr.org/mormon-priesthood-do-mormons-alone-have-power |
+| 337 | 9:286 | Brigham Young | Our former religious traditions have taught us that our Fath… | utlm.org/deseret-almanacs-god |
+| 338 | 6:275 | Brigham Young | After men have got their exaltations and their crowns—have b… | mrm.org/govern-worlds |
+| 339 | 10:105 | Brigham Young | The spirits that live in these tabernacles were as pure as t… | archive.utlm.org/onlinebooks/curseofcain_part2.htm |
+| 340 | 7:2 | Brigham Young | Astronomers estimate that there is between us and the neares… | mrm.org/discourses-brigham-young-quotes |
+| 341 | 10:223 | Brigham Young | Though we are in the world, yet we should be as perfect as m… | mrm.org/brigham-young, mrm.org/brigham-youngs-kings-of-kings, mrm.org/godhood-quotes |
+| 342 | 18:213 | Brigham Young | Our fathers cannot be made perfect without us; we cannot be … | mrm.org/awake-or-asleep, mrm.org/baptism-for-the-dead-quotes, mrm.org/discourses-brigham-young-quotes, mrm.org/historical-baptism-dead |
+| 343 | 1:350 | Brigham Young | Nothing less than the privilege of increasing eternally, in … | mrm.org/eternal-progression-mormonism |
+| 344 | 6:238 | Joseph Smith | He will call his children together and hold a council with t… | en.wikipedia.org/wiki/Adam–God_doctrine, www.mormonthink.com/QUOTES/adamgod.htm |
+| 345 | 3:83 | Brigham Young | Wherefore, as it is written, they are gods, even the sons of… | utlm.org/mormons-hope-to-become-gods-of-their-own-worlds-procreating-endless-numbers-of-children |
+| 346 | 11:122 | Brigham Young | God has made His children like Himself to stand erect, and h… | mrm.org/eternal-increase, mrm.org/virgin-birth, utlm.org/mormon-claims-answered-chapter-2-god |
+| 347 | 5:331 | Brigham Young | Nobles once told a Methodist priest, after hearing him descr… | archive.utlm.org/onlinebooks/changech7.htm, utlm.org/the-changing-world-of-mormonism-chapter-7 |
+| 348 | 10:192 | Brigham Young | We are the sons and daughters of celestial beings, and the g… | mrm.org/brigham-young, mrm.org/discourses-brigham-young-quotes |
+| 349 | 5:313 | Lorenzo Snow | Through a continual course of progression, our heavenly Fath… | mrm.org/quotes-lorenzo-snow |
+| 350 | 9:102 | Brigham Young | All the difference between men and angels is, men are passin… | mrm.org/angelic-or-human |
+| 351 | 1:93 | Brigham Young | When we use the term perfection, it applies to man in his pr… | archive.utlm.org/onlinebooks/changech7.htm, mrm.org/brigham-young, mrm.org/discourses-brigham-young-quotes, utlm.org/orson-pratts-troubles, utlm.org/the-changing-world-of-mormonism-chapter-7 |
 
-### Dropped from the priority set
+### Removed from the earlier priority set in this pass
 
-- JD 2:184 Brigham Young "Formerly the rumor was that “they were agoing to tamper…": hyphenation artifact in our extracted text ("breth- ren")
-- JD 11:286 Brigham Young "Some men seem as if they could learn so much and no more.…": hyphenation artifact ("pro- gress") and over-long
-- JD 4:219 Brigham Young "Now take a person in this congregation who has knowledge…": over-long excerpt (>420 chars) after sentence bounding
-- JD 7:290 Brigham Young "The great majority of those who are now before me are the…": not a quote cited for a controversy (context-only passage)
-- JD 8:176 Brigham Young "I will now give my scripture—“Whosoever confesseth that…": over-long excerpt (>420 chars)
-- JD 5:291 Erastus Snow "Have any of you been there? You will remember that you…": replaced: id pointed to Erastus Snow 5:291 (near), intended quote is Hyde 2:82
-- JD 2:345 Orson Pratt, "more Gods than particles" passage: **near** (a source has "million worlds", our text "million of worlds"); excluded under the exact-words rule.
-- JD 1:83 Brigham Young (bowie knife): the cited bracketed audience reactions are kept in our text, so only the first sentence is used as the excerpt.
+- Six quotes cited only by Wikipedia were removed (not an evangelical or countercult source): JD 1:345 Jedediah M. Grant, JD 1:346 Jedediah M. Grant, JD 4:217 Brigham Young, JD 6:275 Brigham Young, JD 12:30 Brigham Young, JD 19:269 Erastus Snow.
+- Passages now excluded as non-substantive, context-dependent or duplicated were screened by hand (about 130 excerpts).
+- JD 2:345 Orson Pratt "more Gods than particles": one citing source words it "million worlds" (near), but other citing pages quote it as in our text ("million of worlds"), so it is used with our wording.
 
 ## Exact, not prioritized
 
