@@ -1,5 +1,6 @@
 [
  {
+  "n": 1,
   "volume": 4,
   "page": 259,
   "start_page": 257,
@@ -13,6 +14,7 @@
   ]
  },
  {
+  "n": 2,
   "volume": 15,
   "page": 117,
   "start_page": 111,
@@ -23,6 +25,7 @@
   ]
  },
  {
+  "n": 3,
   "volume": 24,
   "page": 194,
   "start_page": 187,
@@ -33,6 +36,7 @@
   ]
  },
  {
+  "n": 4,
   "volume": 2,
   "page": 216,
   "start_page": 211,
@@ -46,6 +50,7 @@
   ]
  },
  {
+  "n": 5,
   "volume": 3,
   "page": 247,
   "start_page": 243,
@@ -59,6 +64,7 @@
   ]
  },
  {
+  "n": 6,
   "volume": 16,
   "page": 348,
   "start_page": 339,
@@ -69,21 +75,7 @@
   ]
  },
  {
-  "volume": 10,
-  "page": 127,
-  "start_page": 123,
-  "speaker": "John Taylor",
-  "text": "How did this state of things called Mormonism originate? We read that an angel came down and revealed himself to Joseph Smith and manifested unto him in vision the true position of the world in a religious point of view.",
-  "source_notes": [
-   "mrm.org/first-vision-accounts",
-   "mrm.org/first-vision-quotes",
-   "mrm.org/nelsons-mandate",
-   "mrm.org/nicknames-of-the-church",
-   "utlm.org/evolution-of-the-first-vision",
-   "utlm.org/grappling"
-  ]
- },
- {
+  "n": 8,
   "volume": 13,
   "page": 320,
   "start_page": 318,
@@ -96,16 +88,7 @@
   ]
  },
  {
-  "volume": 23,
-  "page": 300,
-  "start_page": 294,
-  "speaker": "Erastus Snow",
-  "text": "The Book of Mormon contains the fullness of the everlasting Gospel—the record of the ancient Nephites, translated by the Prophet Joseph Smith, by the gift and power of God in him—that we may come to a knowledge of the principles of the Gospel in simplicity and in purity. It makes clear many dark sayings of the Jewish Scriptures, as they have come down to us.",
-  "source_notes": [
-   "mrm.org/book-of-mormon-index"
-  ]
- },
- {
+  "n": 10,
   "volume": 3,
   "page": 93,
   "start_page": 80,
@@ -120,6 +103,7 @@
   ]
  },
  {
+  "n": 11,
   "volume": 5,
   "page": 133,
   "start_page": 129,
@@ -131,6 +115,22 @@
   ]
  },
  {
+  "n": 367,
+  "volume": 1,
+  "page": 346,
+  "start_page": 341,
+  "speaker": "Jedediah M. Grant",
+  "text": "The grand reason of the burst of public sentiment in anathemas upon Christ and his disciples, causing his crucifixion, was evidently based upon polygamy, according to the testimony of the philosophers who rose in that age. A belief in the doctrine of a plurality of wives caused the persecution of Jesus and his followers. We might almost think they were “Mormons.”",
+  "source_notes": [
+   "archive.utlm.org/onlinebooks/changech9b.htm",
+   "mrm.org/lds-church-on-the-marriages-of-jesus",
+   "utlm.org/mother-god",
+   "utlm.org/the-changing-world-of-mormonism-chapter-9",
+   "utlm.org/the-gods-of-mormonism"
+  ]
+ },
+ {
+  "n": 12,
   "volume": 20,
   "page": 276,
   "start_page": 268,
@@ -142,6 +142,7 @@
   ]
  },
  {
+  "n": 13,
   "volume": 24,
   "page": 304,
   "start_page": 302,
@@ -152,6 +153,7 @@
   ]
  },
  {
+  "n": 14,
   "volume": 26,
   "page": 133,
   "start_page": 128,
@@ -162,6 +164,7 @@
   ]
  },
  {
+  "n": 15,
   "volume": 1,
   "page": 50,
   "start_page": 46,
@@ -178,17 +181,7 @@
   ]
  },
  {
-  "volume": 7,
-  "page": 36,
-  "start_page": 22,
-  "speaker": "Orson Pratt",
-  "text": "Therefore, the testimony establishing the truth of the Book of Mormon is far superior to that establishing the Bible in its present form.",
-  "source_notes": [
-   "archive.utlm.org/onlinebooks/changech12a.htm",
-   "utlm.org/the-changing-world-of-mormonism-chapter-12"
-  ]
- },
- {
+  "n": 17,
   "volume": 18,
   "page": 117,
   "start_page": 109,
@@ -200,6 +193,7 @@
   ]
  },
  {
+  "n": 18,
   "volume": 20,
   "page": 188,
   "start_page": 187,
@@ -212,6 +206,7 @@
   ]
  },
  {
+  "n": 19,
   "volume": 23,
   "page": 361,
   "start_page": 357,
@@ -227,6 +222,7 @@
   ]
  },
  {
+  "n": 20,
   "volume": 2,
   "page": 210,
   "start_page": 202,
@@ -239,6 +235,7 @@
   ]
  },
  {
+  "n": 21,
   "volume": 21,
   "page": 370,
   "start_page": 358,
@@ -249,40 +246,7 @@
   ]
  },
  {
-  "volume": 24,
-  "page": 96,
-  "start_page": 82,
-  "speaker": "Charles W. Penrose",
-  "text": "The Apostle Paul asks this question in the fifteenth chapter of the first epistle of the Corinthians: “Else what shall they do which are baptized for the dead, if the dead rise not at all? why are they then baptized for the dead?” It seems that the people to whom that was written were familiar with the ordinance called baptism for the dead, and they were baptized for their dead.",
-  "source_notes": [
-   "mrm.org/blueprint-church",
-   "mrm.org/greg-trimble-response",
-   "mrm.org/historical-baptism-dead",
-   "mrm.org/temple-ceremony"
-  ]
- },
- {
-  "volume": 7,
-  "page": 181,
-  "start_page": 176,
-  "speaker": "Orson Pratt",
-  "text": "About six hundred years before Christ, a Prophet was raised up in Jerusalem, by the name of Lehi, and another one by the name of Nephi; and the Lord commanded them to leave Jerusalem and go to a land he would give to them, and he brought them forth by his miraculous power upon this American continent.",
-  "source_notes": [
-   "mrm.org/jerusalem"
-  ]
- },
- {
-  "volume": 3,
-  "page": 109,
-  "start_page": 105,
-  "speaker": "Heber C. Kimball",
-  "text": "Yes, they will, but they will be saved as I have told you many of this people will; they will first go to hell and remain there until the corruption with which they are impregnated is burnt out; and the day will yet come when they will come to me and acknowledge me as their savior, and I will redeem them and bring them forth from hell to where I live and make them my servants; and they will be quite willing to enter into my service.",
-  "source_notes": [
-   "archive.utlm.org/onlinebooks/changech21.htm",
-   "utlm.org/the-changing-world-of-mormonism-chapter-21"
-  ]
- },
- {
+  "n": 25,
   "volume": 10,
   "page": 110,
   "start_page": 104,
@@ -301,47 +265,7 @@
   ]
  },
  {
-  "volume": 25,
-  "page": 157,
-  "start_page": 148,
-  "speaker": "George Q. Cannon",
-  "text": "I was answered that I must join none of them, for they were all wrong; and the Personage who addressed me said that all their creeds were an abomination in his sight; that those professors were all corrupt; that: “they draw near to me with their lips, but their hearts are far from me, they teach for doctrines the commandments of men, having a form of godliness, but they deny the power thereof.”",
-  "source_notes": [
-   "archive.utlm.org/onlinebooks/changech1.htm",
-   "archive.utlm.org/onlinebooks/changech6.htm",
-   "en.wikipedia.org/wiki/Mormonism_and_Christianity",
-   "mrm.org/april-general-conference-reaffirms-mormonisms-love-hate-relationship-with-christianity",
-   "mrm.org/baptist-preacher",
-   "mrm.org/bofm-answer-man",
-   "mrm.org/cultic-characteristics-of-mormonism",
-   "mrm.org/first-vision-account",
-   "mrm.org/first-vision-accounts",
-   "mrm.org/first-vision-quotes",
-   "mrm.org/gospel-topics-women",
-   "mrm.org/great-apostasy",
-   "mrm.org/mormon-official-equates-christianity-with-a-false-cult",
-   "mrm.org/mormons-on-pbs",
-   "mrm.org/scott-christianity",
-   "mrm.org/we-never-criticize",
-   "utlm.org/covering-up-syn-ex-satanist-brings-confusion-to-mormons-and-their-critics",
-   "utlm.org/dunn-in-the-name-of-god",
-   "utlm.org/evolution-of-the-first-vision",
-   "utlm.org/examining-the-first-vision",
-   "utlm.org/farms",
-   "utlm.org/first-vision-200-years-later",
-   "utlm.org/grappling",
-   "utlm.org/jerald-1",
-   "utlm.org/lds-church-leaders-declare-christianity-to-be-in-a-state-of-total-apostasy",
-   "utlm.org/letters-to-the-editor-january-2005",
-   "utlm.org/mormon-claims-answered-chapter-1-origin-and-history-of-mormonism",
-   "utlm.org/satanic-verses-and-mormonism",
-   "utlm.org/temple-ritual-altered",
-   "utlm.org/the-changing-world-of-mormonism-chapter-1",
-   "utlm.org/the-changing-world-of-mormonism-chapter-6",
-   "utlm.org/the-gods-of-mormonism"
-  ]
- },
- {
+  "n": 27,
   "volume": 20,
   "page": 29,
   "start_page": 24,
@@ -355,16 +279,7 @@
   ]
  },
  {
-  "volume": 21,
-  "page": 163,
-  "start_page": 155,
-  "speaker": "John Taylor",
-  "text": "Who was Joseph Smith? The Book of Mormon tells us he was of the seed of Joseph that was sold into Egypt, and hence he was selected as Abraham was to fulfil a work upon the earth.",
-  "source_notes": [
-   "mrm.org/joseph-smith-quotes"
-  ]
- },
- {
+  "n": 29,
   "volume": 3,
   "page": 247,
   "start_page": 243,
@@ -379,6 +294,7 @@
   ]
  },
  {
+  "n": 30,
   "volume": 13,
   "page": 181,
   "start_page": 179,
@@ -389,6 +305,7 @@
   ]
  },
  {
+  "n": 31,
   "volume": 17,
   "page": 104,
   "start_page": 103,
@@ -401,6 +318,7 @@
   ]
  },
  {
+  "n": 32,
   "volume": 12,
   "page": 334,
   "start_page": 332,
@@ -418,6 +336,7 @@
   ]
  },
  {
+  "n": 33,
   "volume": 24,
   "page": 372,
   "start_page": 368,
@@ -431,6 +350,7 @@
   ]
  },
  {
+  "n": 34,
   "volume": 6,
   "page": 3,
   "start_page": 1,
@@ -445,6 +365,7 @@
   ]
  },
  {
+  "n": 35,
   "volume": 5,
   "page": 22,
   "start_page": 18,
@@ -456,6 +377,7 @@
   ]
  },
  {
+  "n": 36,
   "volume": 7,
   "page": 299,
   "start_page": 296,
@@ -466,16 +388,21 @@
   ]
  },
  {
-  "volume": 13,
-  "page": 320,
-  "start_page": 318,
-  "speaker": "Wilford Woodruff",
-  "text": "On the occasion of that visit we are informed that Jesus chose Twelve Apostles and gave to them the same power, keys, gifts and graces that he had given to his Apostles on the eastern continent, and they went forth and magnified their callings. All of this quorum of the Twelve Apostles had the promise of departing and being with Christ when they were seventy-two years old, except three of them.",
+  "n": 368,
+  "volume": 2,
+  "page": 182,
+  "start_page": 179,
+  "speaker": "Brigham Young",
+  "text": "I answer, they are first-rate, and we will prove it too, as you will see if you only live long enough, for that we shall live to prove it is certain; and when the Constitution of the United States hangs, as it were, upon a single thread, they will have to call for the “Mormon” Elders to save it from utter destruction; and they will step forth and do it.",
   "source_notes": [
-   "mrm.org/wilford-woodruff-quotes"
+   "mrm.org/discourses-brigham-young-quotes",
+   "mrm.org/the-white-horse-prophecy-rides-again",
+   "mrm.org/white-horse-prophecy",
+   "utlm.org/joseph-smiths-white-horse-prophecy"
   ]
  },
  {
+  "n": 38,
   "volume": 2,
   "page": 338,
   "start_page": 334,
@@ -487,6 +414,7 @@
   ]
  },
  {
+  "n": 39,
   "volume": 1,
   "page": 50,
   "start_page": 46,
@@ -498,6 +426,7 @@
   ]
  },
  {
+  "n": 40,
   "volume": 14,
   "page": 320,
   "start_page": 310,
@@ -508,6 +437,7 @@
   ]
  },
  {
+  "n": 41,
   "volume": 13,
   "page": 38,
   "start_page": 37,
@@ -518,6 +448,7 @@
   ]
  },
  {
+  "n": 42,
   "volume": 13,
   "page": 18,
   "start_page": 12,
@@ -528,17 +459,7 @@
   ]
  },
  {
-  "volume": 23,
-  "page": 292,
-  "start_page": 288,
-  "speaker": "Lorenzo Snow",
-  "text": "Well, what have we to fear with regard to persecution and with regard to attempts that are made to destroy the principles of “Mormonism?” We know they cannot be destroyed. Our enemies, if permitted, may kill the President of our Church, they may kill his Counselors and the Twelve Apostles, they may destroy the Seventies, and even the whole of the Priesthood, but the principles of “Mormonism” they cannot destroy.",
-  "source_notes": [
-   "mrm.org/nicknames-of-the-church",
-   "mrm.org/quotes-lorenzo-snow"
-  ]
- },
- {
+  "n": 44,
   "volume": 2,
   "page": 82,
   "start_page": 75,
@@ -549,6 +470,7 @@
   ]
  },
  {
+  "n": 45,
   "volume": 18,
   "page": 179,
   "start_page": 169,
@@ -559,6 +481,7 @@
   ]
  },
  {
+  "n": 46,
   "volume": 1,
   "page": 238,
   "start_page": 233,
@@ -570,6 +493,7 @@
   ]
  },
  {
+  "n": 47,
   "volume": 24,
   "page": 189,
   "start_page": 187,
@@ -581,6 +505,7 @@
   ]
  },
  {
+  "n": 48,
   "volume": 22,
   "page": 173,
   "start_page": 169,
@@ -591,6 +516,7 @@
   ]
  },
  {
+  "n": 49,
   "volume": 4,
   "page": 51,
   "start_page": 49,
@@ -605,6 +531,7 @@
   ]
  },
  {
+  "n": 50,
   "volume": 5,
   "page": 90,
   "start_page": 86,
@@ -615,28 +542,7 @@
   ]
  },
  {
-  "volume": 16,
-  "page": 305,
-  "start_page": 301,
-  "speaker": "John Taylor",
-  "text": "We call ourselves Christians, that is, we Methodists, Baptists, Presbyterians, Congregationalists, Episcopalians and “Mormons,” we all call ourselves Christians.",
-  "source_notes": [
-   "mrm.org/christianity-quotes",
-   "mrm.org/gospel-kingdom-quotes",
-   "mrm.org/nicknames-of-the-church"
-  ]
- },
- {
-  "volume": 6,
-  "page": 155,
-  "start_page": 150,
-  "speaker": "Orson Hyde",
-  "text": "If it is all right with him, it is all right with me. Then if Joseph shall say to a man, or if brother Brigham say to a man, I forgive you your sins, “Whosoever sins ye remit, they are remitted unto them;” if you who have suffered and felt the weight of transgression—if you have generosity enough to forgive the sinner, I will forgive him: you cannot have more generosity than I have.",
-  "source_notes": [
-   "mrm.org/praise-to-the-man"
-  ]
- },
- {
+  "n": 53,
   "volume": 3,
   "page": 266,
   "start_page": 264,
@@ -649,6 +555,7 @@
   ]
  },
  {
+  "n": 54,
   "volume": 18,
   "page": 50,
   "start_page": 41,
@@ -659,6 +566,7 @@
   ]
  },
  {
+  "n": 55,
   "volume": 13,
   "page": 166,
   "start_page": 156,
@@ -678,6 +586,7 @@
   ]
  },
  {
+  "n": 56,
   "volume": 6,
   "page": 35,
   "start_page": 28,
@@ -694,6 +603,7 @@
   ]
  },
  {
+  "n": 57,
   "volume": 11,
   "page": 53,
   "start_page": 51,
@@ -706,6 +616,7 @@
   ]
  },
  {
+  "n": 58,
   "volume": 6,
   "page": 4,
   "start_page": 1,
@@ -718,6 +629,7 @@
   ]
  },
  {
+  "n": 59,
   "volume": 24,
   "page": 185,
   "start_page": 179,
@@ -733,36 +645,21 @@
   ]
  },
  {
-  "volume": 2,
-  "page": 13,
-  "start_page": 10,
-  "speaker": "Jedediah M. Grant",
-  "text": "When the family organization was revealed from heaven—the patriarchal order of God, and Joseph began, on the right and on the left, to add to his family, what a quaking there was in Israel. Says one brother to another, “Joseph says all covenants are done away, and none are binding but the new covenants; now suppose Joseph should come and say he wanted your wife, what would you say to that?”",
+  "n": 369,
+  "volume": 8,
+  "page": 318,
+  "start_page": 315,
+  "speaker": "Brigham Young",
+  "text": "There are many here that are acquainted with brother Joseph's manner. He would not bear the usage I have borne, and would appear as though he would tear down all the houses in the city, and tear up trees by the roots, if men conducted to him in the way they have to me.",
   "source_notes": [
-   "archive.utlm.org/onlinebooks/changech9b.htm",
-   "mrm.org/starr-katich",
-   "utlm.org/covering-up-mormon-polygamy",
-   "utlm.org/joseph-smith-and-polygamy",
-   "utlm.org/legacy-distorted-view",
-   "utlm.org/new-joseph-smith-movie-history-or-propaganda",
-   "utlm.org/polygamist-sentenced-to-five-years-in-prison",
-   "utlm.org/polygamy-and-truth",
-   "utlm.org/problems-in-the-lds-essays-on-plural-marriage",
-   "utlm.org/sacred-marriage-secret-affair",
-   "utlm.org/the-changing-world-of-mormonism-chapter-9"
+   "archive.utlm.org/onlinebooks/changech17.htm",
+   "utlm.org/changing-world-of-mormonism-chapter-17",
+   "utlm.org/farms",
+   "utlm.org/legacy-distorted-view"
   ]
  },
  {
-  "volume": 3,
-  "page": 347,
-  "start_page": 344,
-  "speaker": "Orson Pratt",
-  "text": "You recollect that when the Book of Mormon was translated from the plates, about two-thirds were sealed up, and Joseph was commanded not to break the seal; that part of the record was hid up.",
-  "source_notes": [
-   "utlm.org/book-of-mormon-plates-artifact-vision-or-hoax"
-  ]
- },
- {
+  "n": 62,
   "volume": 8,
   "page": 234,
   "start_page": 232,
@@ -773,6 +670,7 @@
   ]
  },
  {
+  "n": 63,
   "volume": 13,
   "page": 264,
   "start_page": 261,
@@ -786,16 +684,7 @@
   ]
  },
  {
-  "volume": 12,
-  "page": 278,
-  "start_page": 275,
-  "speaker": "Wilford Woodruff",
-  "text": "Jesus told His disciples to go into all the world and preach the Gospel to every living creature, and he that believed and was baptized should be saved, and he that believed not should be damned.",
-  "source_notes": [
-   "utlm.org/blacks-and-the-mormon-priesthood"
-  ]
- },
- {
+  "n": 65,
   "volume": 1,
   "page": 155,
   "start_page": 147,
@@ -808,16 +697,7 @@
   ]
  },
  {
-  "volume": 23,
-  "page": 360,
-  "start_page": 357,
-  "speaker": "George Q. Cannon",
-  "text": "Jesus said to him, “Suffer it to be so now; for thus it becometh us to fulfill all righteousness:” and John then administered the ordinance of baptism to the Son of God, pure and holy as He was.",
-  "source_notes": [
-   "utlm.org/mormon-claims-answered-chapter-8-salvation"
-  ]
- },
- {
+  "n": 67,
   "volume": 3,
   "page": 125,
   "start_page": 123,
@@ -829,6 +709,7 @@
   ]
  },
  {
+  "n": 68,
   "volume": 1,
   "page": 51,
   "start_page": 46,
@@ -844,6 +725,7 @@
   ]
  },
  {
+  "n": 69,
   "volume": 16,
   "page": 349,
   "start_page": 339,
@@ -854,6 +736,7 @@
   ]
  },
  {
+  "n": 70,
   "volume": 19,
   "page": 229,
   "start_page": 223,
@@ -870,6 +753,7 @@
   ]
  },
  {
+  "n": 71,
   "volume": 4,
   "page": 260,
   "start_page": 257,
@@ -880,6 +764,7 @@
   ]
  },
  {
+  "n": 72,
   "volume": 22,
   "page": 44,
   "start_page": 42,
@@ -891,6 +776,7 @@
   ]
  },
  {
+  "n": 73,
   "volume": 5,
   "page": 203,
   "start_page": 202,
@@ -902,18 +788,7 @@
   ]
  },
  {
-  "volume": 3,
-  "page": 360,
-  "start_page": 354,
-  "speaker": "Brigham Young",
-  "text": "No, for you ought to love a woman only so far as she adorns the doctrine you profess; so far as she adorns that doctrine, just so far let your love extend to her.",
-  "source_notes": [
-   "mrm.org/brigham-young",
-   "mrm.org/discourses-brigham-young-quotes",
-   "mrm.org/doctrine-quotes"
-  ]
- },
- {
+  "n": 75,
   "volume": 23,
   "page": 343,
   "start_page": 343,
@@ -925,19 +800,7 @@
   ]
  },
  {
-  "volume": 20,
-  "page": 167,
-  "start_page": 158,
-  "speaker": "John Taylor",
-  "text": "None of them was right, just as it was when the Prophet Joseph asked the angel which of the sects was right that he might join it. The answer was that none of them are right. What, none of them? No. We will not stop to argue that question; the angel merely told him to join none of them that none of them were right.",
-  "source_notes": [
-   "archive.utlm.org/onlinebooks/changech6.htm",
-   "mrm.org/first-vision-accounts",
-   "mrm.org/first-vision-quotes",
-   "utlm.org/the-changing-world-of-mormonism-chapter-6"
-  ]
- },
- {
+  "n": 77,
   "volume": 7,
   "page": 30,
   "start_page": 22,
@@ -949,6 +812,7 @@
   ]
  },
  {
+  "n": 78,
   "volume": 7,
   "page": 290,
   "start_page": 282,
@@ -965,6 +829,7 @@
   ]
  },
  {
+  "n": 79,
   "volume": 6,
   "page": 335,
   "start_page": 334,
@@ -977,6 +842,7 @@
   ]
  },
  {
+  "n": 80,
   "volume": 26,
   "page": 7,
   "start_page": 3,
@@ -988,6 +854,7 @@
   ]
  },
  {
+  "n": 81,
   "volume": 5,
   "page": 275,
   "start_page": 271,
@@ -998,6 +865,7 @@
   ]
  },
  {
+  "n": 82,
   "volume": 4,
   "page": 53,
   "start_page": 51,
@@ -1013,6 +881,7 @@
   ]
  },
  {
+  "n": 83,
   "volume": 19,
   "page": 228,
   "start_page": 223,
@@ -1024,6 +893,7 @@
   ]
  },
  {
+  "n": 84,
   "volume": 6,
   "page": 24,
   "start_page": 18,
@@ -1034,26 +904,19 @@
   ]
  },
  {
-  "volume": 15,
-  "page": 188,
-  "start_page": 178,
-  "speaker": "Orson Pratt",
-  "text": "Because the Book of Mormon reveals the mode as it was given to the ancient Nephites on this continent. So in regard to every other principle of the doctrine of Christ—it is set forth in such great plainness that it is impossible for any two persons to form different ideas in relation to it, after reading the Book of Mormon.",
-  "source_notes": [
-   "mit.irr.org/authority-of-lds-scriptures"
-  ]
- },
- {
+  "n": 370,
   "volume": 4,
-  "page": 260,
-  "start_page": 257,
-  "speaker": "Orson Hyde",
-  "text": "Is there no way provided for those to come into this covenant relation who may not possess, in their veins, any of the blood of Abraham or of Christ? Yes! By doing the works of Abraham and of Christ in the faith of Abraham and of Christ; not in unbelief and unrighteousness, like the wicked world who have damned themselves in their own corruption and unbelief.",
+  "page": 178,
+  "start_page": 164,
+  "speaker": "Heber C. Kimball",
+  "text": "There is a great deal of quarrelling in the houses, and contending for power and authority; and the second wife is against the first wife, perhaps, in some instances. But that is done away in my family, and there is none of it in brother Brigham's, nor in brother Wells', nor in any family where they have common sense.",
   "source_notes": [
-   "utlm.org/lds-leaders-claim-to-be-descended-from-christ-and-his-apostles"
+   "archive.utlm.org/onlinebooks/changech9b.htm",
+   "utlm.org/the-changing-world-of-mormonism-chapter-9"
   ]
  },
  {
+  "n": 87,
   "volume": 6,
   "page": 120,
   "start_page": 115,
@@ -1068,6 +931,7 @@
   ]
  },
  {
+  "n": 88,
   "volume": 25,
   "page": 368,
   "start_page": 360,
@@ -1079,6 +943,7 @@
   ]
  },
  {
+  "n": 89,
   "volume": 6,
   "page": 38,
   "start_page": 28,
@@ -1090,32 +955,7 @@
   ]
  },
  {
-  "volume": 18,
-  "page": 44,
-  "start_page": 41,
-  "speaker": "Orson Pratt",
-  "text": "No; it is in accordance with the Scriptures, for they foretell the Apostasy, the falling away and the darkness that should reign over the nations, and show that instead of having true teachers, men would heap to themselves teachers without authority from God, uninspired men, whose ears would be turned away from the truth unto fables. This great apostasy commenced about the close of the first century of the Christian era, and it has been waxing worse and worse from then until now.",
-  "source_notes": [
-   "mrm.org/we-never-criticize"
-  ]
- },
- {
-  "volume": 23,
-  "page": 173,
-  "start_page": 169,
-  "speaker": "Joseph F. Smith",
-  "text": "I have shown what Christ is like, and he is like his Father, but I will refer to an undoubted authority to this people, on this point, “The Father has a body of flesh and bones as tangible as man's; the Son also; but the Holy Ghost has not a body of flesh and bones, but is a personage of Spirit. Were it not so the Holy Ghost could not dwell in us.”",
-  "source_notes": [
-   "carm.org/with-a-mormon-on-mormon-doctrine",
-   "en.wikipedia.org/wiki/Jesus_in_Mormonism",
-   "mrm.org/blueprint-church",
-   "mrm.org/first-vision-quotes",
-   "utlm.org/first-vision-200-years-later",
-   "utlm.org/grappling",
-   "utlm.org/mormon-claims-answered-chapter-2-god"
-  ]
- },
- {
+  "n": 92,
   "volume": 9,
   "page": 322,
   "start_page": 318,
@@ -1128,6 +968,7 @@
   ]
  },
  {
+  "n": 93,
   "volume": 2,
   "page": 14,
   "start_page": 10,
@@ -1151,6 +992,7 @@
   ]
  },
  {
+  "n": 94,
   "volume": 20,
   "page": 99,
   "start_page": 97,
@@ -1161,6 +1003,7 @@
   ]
  },
  {
+  "n": 95,
   "volume": 6,
   "page": 167,
   "start_page": 162,
@@ -1177,6 +1020,7 @@
   ]
  },
  {
+  "n": 96,
   "volume": 13,
   "page": 125,
   "start_page": 124,
@@ -1192,6 +1036,7 @@
   ]
  },
  {
+  "n": 97,
   "volume": 2,
   "page": 6,
   "start_page": 1,
@@ -1204,16 +1049,7 @@
   ]
  },
  {
-  "volume": 13,
-  "page": 320,
-  "start_page": 318,
-  "speaker": "Wilford Woodruff",
-  "text": "After the death and resurrection of the Savior, when he ministered to his disciples the last time on earth, he informed them that he had other sheep not of this fold whom he was going to visit and minister unto. The Book of Mormon is a record of the descendants of the House of Israel who dwelt on this continent anciently.",
-  "source_notes": [
-   "mrm.org/wilford-woodruff-quotes"
-  ]
- },
- {
+  "n": 99,
   "volume": 2,
   "page": 106,
   "start_page": 105,
@@ -1225,16 +1061,7 @@
   ]
  },
  {
-  "volume": 23,
-  "page": 362,
-  "start_page": 357,
-  "speaker": "George Q. Cannon",
-  "text": "There was no end scarcely, in many respects, to the knowledge that he received. He was visited constantly by angels; and the Son of God Himself condescended to come and minister unto him, the Father having also shown Himself unto him; and these various angels, the heads of dispensations, having also ministered unto him.",
-  "source_notes": [
-   "utlm.org/evolution-of-the-first-vision"
-  ]
- },
- {
+  "n": 101,
   "volume": 3,
   "page": 291,
   "start_page": 280,
@@ -1246,6 +1073,7 @@
   ]
  },
  {
+  "n": 102,
   "volume": 4,
   "page": 53,
   "start_page": 51,
@@ -1259,26 +1087,7 @@
   ]
  },
  {
-  "volume": 16,
-  "page": 344,
-  "start_page": 339,
-  "speaker": "Orson Pratt",
-  "text": "The people had entirely apostatized from that ancient order of things. There were no doubt many who were very zealous and who professed Christianity, and claimed to be the church of God, but where were their Apostles? Nowhere to be found among men. Where were the Prophets in what was called the Christian church towards the latter part of the second century?",
-  "source_notes": [
-   "utlm.org/lds-church-leaders-declare-christianity-to-be-in-a-state-of-total-apostasy"
-  ]
- },
- {
-  "volume": 20,
-  "page": 257,
-  "start_page": 256,
-  "speaker": "John Taylor",
-  "text": "When the Father and the Son and Moroni and others came to Joseph Smith, he had a priesthood conferred upon him which he conferred upon others for the purpose of manifesting the laws of life, the Gospel of the Son of God, by direct authority, that light and truth might be spread forth among all nations.",
-  "source_notes": [
-   "utlm.org/evolution-of-the-first-vision"
-  ]
- },
- {
+  "n": 105,
   "volume": 25,
   "page": 21,
   "start_page": 13,
@@ -1290,6 +1099,7 @@
   ]
  },
  {
+  "n": 106,
   "volume": 11,
   "page": 269,
   "start_page": 266,
@@ -1302,6 +1112,7 @@
   ]
  },
  {
+  "n": 107,
   "volume": 2,
   "page": 82,
   "start_page": 75,
@@ -1312,6 +1123,7 @@
   ]
  },
  {
+  "n": 108,
   "volume": 2,
   "page": 196,
   "start_page": 191,
@@ -1322,6 +1134,7 @@
   ]
  },
  {
+  "n": 109,
   "volume": 24,
   "page": 193,
   "start_page": 187,
@@ -1336,6 +1149,7 @@
   ]
  },
  {
+  "n": 110,
   "volume": 6,
   "page": 351,
   "start_page": 349,
@@ -1347,6 +1161,7 @@
   ]
  },
  {
+  "n": 111,
   "volume": 7,
   "page": 333,
   "start_page": 331,
@@ -1360,18 +1175,19 @@
   ]
  },
  {
-  "volume": 18,
-  "page": 241,
-  "start_page": 235,
-  "speaker": "Brigham Young",
-  "text": "Hundreds and thousands, I suppose, were baptized before any record was kept at all, and they were baptized over, and a record kept of the baptisms and the names of the administrator, those who acted for the dead, and of the dead, and of the witnesses. You can read in the Book of Doctrine and Covenants, the letter that Joseph wrote when he was away from home in regard to having witnesses at these baptisms.",
+  "n": 371,
+  "volume": 7,
+  "page": 19,
+  "start_page": 16,
+  "speaker": "Heber C. Kimball",
+  "text": "We will not have them in this valley, unless they repent; for, so help me God, while I live, I will lend my hand to wipe such persons out; and I know this people will.",
   "source_notes": [
-   "archive.utlm.org/onlinebooks/changech22a.htm",
-   "mrm.org/hougey",
-   "utlm.org/the-changing-world-of-mormonism-chapter-22"
+   "archive.utlm.org/onlinebooks/changech20.htm",
+   "utlm.org/the-changing-world-of-mormonism-chapter-20"
   ]
  },
  {
+  "n": 113,
   "volume": 17,
   "page": 224,
   "start_page": 214,
@@ -1391,6 +1207,7 @@
   ]
  },
  {
+  "n": 114,
   "volume": 6,
   "page": 32,
   "start_page": 28,
@@ -1407,6 +1224,7 @@
   ]
  },
  {
+  "n": 115,
   "volume": 14,
   "page": 10,
   "start_page": 7,
@@ -1417,6 +1235,7 @@
   ]
  },
  {
+  "n": 116,
   "volume": 11,
   "page": 269,
   "start_page": 266,
@@ -1427,6 +1246,7 @@
   ]
  },
  {
+  "n": 117,
   "volume": 5,
   "page": 266,
   "start_page": 259,
@@ -1437,6 +1257,7 @@
   ]
  },
  {
+  "n": 118,
   "volume": 20,
   "page": 65,
   "start_page": 62,
@@ -1447,6 +1268,7 @@
   ]
  },
  {
+  "n": 119,
   "volume": 13,
   "page": 207,
   "start_page": 197,
@@ -1458,6 +1280,7 @@
   ]
  },
  {
+  "n": 120,
   "volume": 17,
   "page": 159,
   "start_page": 154,
@@ -1470,6 +1293,7 @@
   ]
  },
  {
+  "n": 121,
   "volume": 4,
   "page": 220,
   "start_page": 215,
@@ -1484,16 +1308,7 @@
   ]
  },
  {
-  "volume": 16,
-  "page": 344,
-  "start_page": 339,
-  "speaker": "Orson Pratt",
-  "text": "In other words, where is the church? It is said by some that the church has continued from the Apostolic period down until the present century of the Christian era. But if it has, I cannot find it, the researches I have made give me no indication of the existence of the kingdom that was transferred to the hands of the Gentiles.",
-  "source_notes": [
-   "utlm.org/lds-church-leaders-declare-christianity-to-be-in-a-state-of-total-apostasy"
-  ]
- },
- {
+  "n": 123,
   "volume": 5,
   "page": 22,
   "start_page": 18,
@@ -1507,6 +1322,7 @@
   ]
  },
  {
+  "n": 124,
   "volume": 5,
   "page": 265,
   "start_page": 259,
@@ -1517,6 +1333,7 @@
   ]
  },
  {
+  "n": 125,
   "volume": 8,
   "page": 12,
   "start_page": 11,
@@ -1527,6 +1344,7 @@
   ]
  },
  {
+  "n": 126,
   "volume": 5,
   "page": 83,
   "start_page": 82,
@@ -1537,6 +1355,7 @@
   ]
  },
  {
+  "n": 127,
   "volume": 14,
   "page": 58,
   "start_page": 45,
@@ -1547,6 +1366,7 @@
   ]
  },
  {
+  "n": 128,
   "volume": 1,
   "page": 339,
   "start_page": 334,
@@ -1557,6 +1377,7 @@
   ]
  },
  {
+  "n": 129,
   "volume": 18,
   "page": 343,
   "start_page": 335,
@@ -1567,6 +1388,7 @@
   ]
  },
  {
+  "n": 130,
   "volume": 11,
   "page": 272,
   "start_page": 266,
@@ -1581,6 +1403,7 @@
   ]
  },
  {
+  "n": 131,
   "volume": 4,
   "page": 174,
   "start_page": 164,
@@ -1592,6 +1415,7 @@
   ]
  },
  {
+  "n": 132,
   "volume": 16,
   "page": 161,
   "start_page": 160,
@@ -1611,6 +1435,19 @@
   ]
  },
  {
+  "n": 372,
+  "volume": 5,
+  "page": 32,
+  "start_page": 27,
+  "speaker": "Heber C. Kimball",
+  "text": "There is a poor curse who has written the bigger part of those lies which have been printed in the States; and I curse him, in the name of Israel's God, and by the Priesthood and authority of Jesus Christ; and the disease that is in him shall sap and dry up the fountain of life and eat him up.",
+  "source_notes": [
+   "archive.utlm.org/onlinebooks/changech19.htm",
+   "utlm.org/the-changing-world-of-mormonism-chapter-19"
+  ]
+ },
+ {
+  "n": 133,
   "volume": 25,
   "page": 21,
   "start_page": 13,
@@ -1622,6 +1459,7 @@
   ]
  },
  {
+  "n": 134,
   "volume": 18,
   "page": 259,
   "start_page": 257,
@@ -1635,6 +1473,7 @@
   ]
  },
  {
+  "n": 135,
   "volume": 11,
   "page": 337,
   "start_page": 330,
@@ -1645,6 +1484,7 @@
   ]
  },
  {
+  "n": 136,
   "volume": 21,
   "page": 296,
   "start_page": 286,
@@ -1660,6 +1500,7 @@
   ]
  },
  {
+  "n": 137,
   "volume": 8,
   "page": 222,
   "start_page": 222,
@@ -1672,16 +1513,7 @@
   ]
  },
  {
-  "volume": 2,
-  "page": 82,
-  "start_page": 75,
-  "speaker": "Orson Hyde",
-  "text": "We will turn over to the account of the marriage in Cana of Galilee, and the mother of Jesus was there.",
-  "source_notes": [
-   "mrm.org/lds-church-on-the-marriages-of-jesus"
-  ]
- },
- {
+  "n": 139,
   "volume": 12,
   "page": 97,
   "start_page": 93,
@@ -1694,6 +1526,7 @@
   ]
  },
  {
+  "n": 140,
   "volume": 1,
   "page": 219,
   "start_page": 209,
@@ -1704,6 +1537,7 @@
   ]
  },
  {
+  "n": 141,
   "volume": 13,
   "page": 40,
   "start_page": 37,
@@ -1714,6 +1548,7 @@
   ]
  },
  {
+  "n": 142,
   "volume": 19,
   "page": 269,
   "start_page": 266,
@@ -1725,6 +1560,7 @@
   ]
  },
  {
+  "n": 143,
   "volume": 16,
   "page": 175,
   "start_page": 171,
@@ -1735,6 +1571,7 @@
   ]
  },
  {
+  "n": 144,
   "volume": 4,
   "page": 219,
   "start_page": 215,
@@ -1745,6 +1582,7 @@
   ]
  },
  {
+  "n": 145,
   "volume": 7,
   "page": 333,
   "start_page": 331,
@@ -1759,6 +1597,7 @@
   ]
  },
  {
+  "n": 146,
   "volume": 23,
   "page": 278,
   "start_page": 271,
@@ -1770,6 +1609,7 @@
   ]
  },
  {
+  "n": 147,
   "volume": 8,
   "page": 223,
   "start_page": 222,
@@ -1782,6 +1622,7 @@
   ]
  },
  {
+  "n": 148,
   "volume": 22,
   "page": 206,
   "start_page": 204,
@@ -1793,6 +1634,7 @@
   ]
  },
  {
+  "n": 149,
   "volume": 5,
   "page": 331,
   "start_page": 327,
@@ -1803,6 +1645,7 @@
   ]
  },
  {
+  "n": 150,
   "volume": 17,
   "page": 223,
   "start_page": 214,
@@ -1813,26 +1656,7 @@
   ]
  },
  {
-  "volume": 8,
-  "page": 39,
-  "start_page": 37,
-  "speaker": "Brigham Young",
-  "text": "More will prove faithful than will apostatize. A certain class of this people will go into the celestial kingdom, while others cannot enter there, because they cannot abide a celestial law; but they will attain to as good a kingdom as they desire and live for.",
-  "source_notes": [
-   "mrm.org/discourses-brigham-young-quotes"
-  ]
- },
- {
-  "volume": 5,
-  "page": 191,
-  "start_page": 182,
-  "speaker": "John Taylor",
-  "text": "What is a man's duty here? It is obedience to the oracles of God that are in our midst; and so long as we keep the commandments of God, we need not fear any evil; for the Lord will be with us in time and in eternity.",
-  "source_notes": [
-   "mrm.org/mormons-believe-a-study-in-scarlet-is-inaccurate"
-  ]
- },
- {
+  "n": 153,
   "volume": 9,
   "page": 247,
   "start_page": 246,
@@ -1844,6 +1668,19 @@
   ]
  },
  {
+  "n": 373,
+  "volume": 5,
+  "page": 89,
+  "start_page": 86,
+  "speaker": "Heber C. Kimball",
+  "text": "Christians—those poor, miserable priests brother Brigham was speaking about—some of them are the biggest whoremasters there are on the earth, and at the same time preaching righteousness to the children of men.",
+  "source_notes": [
+   "mrm.org/mormon-official-equates-christianity-with-a-false-cult",
+   "mrm.org/we-never-criticize"
+  ]
+ },
+ {
+  "n": 154,
   "volume": 4,
   "page": 56,
   "start_page": 51,
@@ -1855,17 +1692,7 @@
   ]
  },
  {
-  "volume": 13,
-  "page": 324,
-  "start_page": 318,
-  "speaker": "Wilford Woodruff",
-  "text": "While in this state of uncertainty he turned to the Bible, and there saw that passage in the epistle of James which directs him that lacks wisdom to ask of God. He went into his secret chamber and asked the Lord what he must do to be saved. The Lord heard his prayer and sent His angel to him, who informed him that all the sects were wrong, and that the God of heaven was about to establish His work upon the earth.",
-  "source_notes": [
-   "mrm.org/first-vision-quotes",
-   "utlm.org/mormon-claims-answered-chapter-1-origin-and-history-of-mormonism"
-  ]
- },
- {
+  "n": 156,
   "volume": 18,
   "page": 55,
   "start_page": 41,
@@ -1876,6 +1703,7 @@
   ]
  },
  {
+  "n": 157,
   "volume": 3,
   "page": 212,
   "start_page": 202,
@@ -1889,6 +1717,7 @@
   ]
  },
  {
+  "n": 158,
   "volume": 8,
   "page": 160,
   "start_page": 158,
@@ -1900,6 +1729,7 @@
   ]
  },
  {
+  "n": 159,
   "volume": 17,
   "page": 227,
   "start_page": 214,
@@ -1910,6 +1740,7 @@
   ]
  },
  {
+  "n": 160,
   "volume": 10,
   "page": 111,
   "start_page": 104,
@@ -1921,16 +1752,7 @@
   ]
  },
  {
-  "volume": 14,
-  "page": 341,
-  "start_page": 336,
-  "speaker": "John Taylor",
-  "text": "We are after the truth. We commenced searching for it, and we are constantly in search of it, and so fast as we find any true principle revealed by any man, by God or by holy angels, we embrace it and make it part of our religious creed.",
-  "source_notes": [
-   "mrm.org/gospel-kingdom-quotes"
-  ]
- },
- {
+  "n": 162,
   "volume": 12,
   "page": 310,
   "start_page": 308,
@@ -1941,6 +1763,7 @@
   ]
  },
  {
+  "n": 163,
   "volume": 4,
   "page": 375,
   "start_page": 374,
@@ -1954,6 +1777,7 @@
   ]
  },
  {
+  "n": 164,
   "volume": 14,
   "page": 244,
   "start_page": 233,
@@ -1965,51 +1789,7 @@
   ]
  },
  {
-  "volume": 6,
-  "page": 10,
-  "start_page": 1,
-  "speaker": "Joseph Smith",
-  "text": "A question may be asked—“Will mothers have their children in eternity?” Yes! Yes! Mothers, you shall have your children; for they shall have eternal life; for their debt is paid. There is no damnation awaits them, for they are in the spirit. But as the child dies, so shall it rise from the dead, and be forever living in the learning of God.",
-  "source_notes": [
-   "carm.org/feelings-gods-and-joseph-smith",
-   "carm.org/interesting-quotes-from-joseph-smith-the-founder-of-mormonism",
-   "mrm.org/king-follett-discourse",
-   "utlm.org/top-stories"
-  ]
- },
- {
-  "volume": 1,
-  "page": 243,
-  "start_page": 233,
-  "speaker": "Brigham Young",
-  "text": "Are you a Calvinist, or a Wesleyan? It is no matter, if you have got the truth; that truth is also mine. Do you belong to the Methodist's society? And have you got the truth? It is right, that truth is “Mormonism,” it is my property. Are you a Quaker? It is no matter, if you have the truth, that same truth is mine. Are you a Catholic, and have got the truth? That is my doctrine, and I will not quarrel about it.",
-  "source_notes": [
-   "mrm.org/nelsons-mandate"
-  ]
- },
- {
-  "volume": 3,
-  "page": 116,
-  "start_page": 115,
-  "speaker": "Brigham Young",
-  "text": "I will remark that brother Orson has clearly shown how the Bible has come into our hands, in order to convince the people of the necessity of positive proof for the validity of the Book of Mormon, the Book of Doctrine and Covenants, and that Joseph Smith was a true Prophet of God, and to prove that our testimony, witnesses, evidence and knowledge of these facts are ten thousand times more than can be produced in favor of the Bible, unless a man has the power of God to testify to it, for there can be no proof in its favor short of revelation.",
-  "source_notes": [
-   "archive.utlm.org/onlinebooks/changech12b.htm",
-   "utlm.org/the-changing-world-of-mormonism-chapter-12"
-  ]
- },
- {
-  "volume": 4,
-  "page": 209,
-  "start_page": 207,
-  "speaker": "Heber C. Kimball",
-  "text": "In the spirit world there is an increase of males and females, there are millions of them, and if I am faithful all the time, and continue right along with brother Brigham, we will go to brother Joseph and say, “Here we are brother Joseph; we are here ourselves are we not, with none of the property we possessed in our probationary state, not even the rings on our fingers?”",
-  "source_notes": [
-   "en.fairmormon.org/answers/Quote-mining-Journal-of-Discourses",
-   "mrm.org/polygamy-quotes"
-  ]
- },
- {
+  "n": 169,
   "volume": 13,
   "page": 225,
   "start_page": 221,
@@ -2030,6 +1810,7 @@
   ]
  },
  {
+  "n": 170,
   "volume": 2,
   "page": 268,
   "start_page": 266,
@@ -2040,6 +1821,7 @@
   ]
  },
  {
+  "n": 171,
   "volume": 2,
   "page": 345,
   "start_page": 334,
@@ -2055,16 +1837,7 @@
   ]
  },
  {
-  "volume": 3,
-  "page": 372,
-  "start_page": 362,
-  "speaker": "Brigham Young",
-  "text": "A man is ordained and receives his washings, anointings, and endowments for the male portion of his and his wife's progenitors, and his wife for the female portion.",
-  "source_notes": [
-   "mrm.org/discourses-brigham-young-quotes"
-  ]
- },
- {
+  "n": 173,
   "volume": 7,
   "page": 285,
   "start_page": 282,
@@ -2075,6 +1848,7 @@
   ]
  },
  {
+  "n": 174,
   "volume": 12,
   "page": 173,
   "start_page": 167,
@@ -2086,6 +1860,7 @@
   ]
  },
  {
+  "n": 175,
   "volume": 26,
   "page": 29,
   "start_page": 18,
@@ -2096,16 +1871,7 @@
   ]
  },
  {
-  "volume": 9,
-  "page": 269,
-  "start_page": 266,
-  "speaker": "Brigham Young",
-  "text": "“Oh, be sealed to me, brother; I care not what you do, you may lie and steal, or anything else, I can put up with all your meanness, if you will only be sealed to me.” Now this is not so much weakness as it is selfishness. It is a great and glorious doctrine, but the reason I have not preached it in the midst of this people, is, I could not do it without turning so many of them to the Devil.",
-  "source_notes": [
-   "utlm.org/early-secrets"
-  ]
- },
- {
+  "n": 177,
   "volume": 5,
   "page": 192,
   "start_page": 182,
@@ -2117,6 +1883,7 @@
   ]
  },
  {
+  "n": 178,
   "volume": 2,
   "page": 143,
   "start_page": 136,
@@ -2129,6 +1896,7 @@
   ]
  },
  {
+  "n": 179,
   "volume": 1,
   "page": 68,
   "start_page": 66,
@@ -2139,27 +1907,7 @@
   ]
  },
  {
-  "volume": 13,
-  "page": 65,
-  "start_page": 62,
-  "speaker": "Orson Pratt",
-  "text": "By and by an obscure individual, a young man, rose up, and, in the midst of all Christendom, proclaimed the startling news that God had sent an angel to him; that through his faith, prayers, and sincere repentance he had beheld a supernatural vision, that he had seen a pillar of fire descend from Heaven, and saw two glorious personages clothed upon with this pillar of fire, whose countenance shone like the sun at noonday; that he heard one of these personages say, pointing to the other, “This is my beloved Son, hear ye him.”",
-  "source_notes": [
-   "utlm.org/evolution-of-the-first-vision",
-   "utlm.org/grappling"
-  ]
- },
- {
-  "volume": 4,
-  "page": 269,
-  "start_page": 264,
-  "speaker": "Brigham Young",
-  "text": "We are placed on this earth to prove whether we are worthy to go into the celestial world, the terrestrial, or the telestial, or to hell, or to any other kingdom or place, and we have enough of life given us to do this.",
-  "source_notes": [
-   "mrm.org/discourses-brigham-young-quotes"
-  ]
- },
- {
+  "n": 182,
   "volume": 2,
   "page": 179,
   "start_page": 179,
@@ -2170,6 +1918,19 @@
   ]
  },
  {
+  "n": 374,
+  "volume": 5,
+  "page": 110,
+  "start_page": 101,
+  "speaker": "George A. Smith",
+  "text": "You must know that I love my friends, and God Almighty knows that I do hate my enemies.",
+  "source_notes": [
+   "archive.utlm.org/onlinebooks/changech19.htm",
+   "utlm.org/the-changing-world-of-mormonism-chapter-19"
+  ]
+ },
+ {
+  "n": 183,
   "volume": 1,
   "page": 123,
   "start_page": 121,
@@ -2182,6 +1943,7 @@
   ]
  },
  {
+  "n": 184,
   "volume": 9,
   "page": 149,
   "start_page": 147,
@@ -2192,6 +1954,7 @@
   ]
  },
  {
+  "n": 185,
   "volume": 23,
   "page": 342,
   "start_page": 338,
@@ -2202,6 +1965,7 @@
   ]
  },
  {
+  "n": 186,
   "volume": 4,
   "page": 57,
   "start_page": 51,
@@ -2216,6 +1980,7 @@
   ]
  },
  {
+  "n": 187,
   "volume": 13,
   "page": 95,
   "start_page": 87,
@@ -2227,6 +1992,7 @@
   ]
  },
  {
+  "n": 188,
   "volume": 3,
   "page": 226,
   "start_page": 221,
@@ -2239,6 +2005,7 @@
   ]
  },
  {
+  "n": 189,
   "volume": 18,
   "page": 293,
   "start_page": 286,
@@ -2249,6 +2016,7 @@
   ]
  },
  {
+  "n": 190,
   "volume": 5,
   "page": 73,
   "start_page": 72,
@@ -2262,6 +2030,7 @@
   ]
  },
  {
+  "n": 191,
   "volume": 6,
   "page": 25,
   "start_page": 18,
@@ -2272,6 +2041,7 @@
   ]
  },
  {
+  "n": 192,
   "volume": 13,
   "page": 271,
   "start_page": 268,
@@ -2289,30 +2059,7 @@
   ]
  },
  {
-  "volume": 9,
-  "page": 37,
-  "start_page": 31,
-  "speaker": "Brigham Young",
-  "text": "Do you look forward to that? Or are you tormenting yourselves by thinking that your husbands do not love you? I would not care whether they loved a particle or not; but I would cry out, like one of old, in the joy of my heart, “I have got a man from the Lord!” “Hallelujah! I am a mother—I have borne an image of God!”",
-  "source_notes": [
-   "archive.utlm.org/onlinebooks/changech9b.htm",
-   "utlm.org/brigham-youngs-wives",
-   "utlm.org/the-changing-world-of-mormonism-chapter-9",
-   "utlm.org/women"
-  ]
- },
- {
-  "volume": 6,
-  "page": 237,
-  "start_page": 237,
-  "speaker": "Joseph Smith",
-  "text": "The Priesthood is an everlasting principle, and existed with God from eternity, and will to eternity, without beginning of days or end of years. The keys have to be brought from heaven, whenever the Gospel is sent.",
-  "source_notes": [
-   "mit.irr.org/mormon-priesthood-do-mormons-alone-have-power",
-   "mrm.org/priesthood-quotes"
-  ]
- },
- {
+  "n": 195,
   "volume": 7,
   "page": 164,
   "start_page": 160,
@@ -2327,16 +2074,7 @@
   ]
  },
  {
-  "volume": 21,
-  "page": 308,
-  "start_page": 303,
-  "speaker": "Orson Pratt",
-  "text": "In a great and glorious open vision, in answer to his prayers, there was the manifestation of two of the great personages in the heavens—not angels, not messengers, but two persons that hold the keys of authority over all the creations of the universe. Who were they? God the Eternal Father and his Son Jesus Christ, through whom God the Father made the worlds!",
-  "source_notes": [
-   "utlm.org/evolution-of-the-first-vision"
-  ]
- },
- {
+  "n": 197,
   "volume": 1,
   "page": 108,
   "start_page": 103,
@@ -2349,6 +2087,7 @@
   ]
  },
  {
+  "n": 198,
   "volume": 5,
   "page": 88,
   "start_page": 86,
@@ -2365,6 +2104,7 @@
   ]
  },
  {
+  "n": 199,
   "volume": 14,
   "page": 71,
   "start_page": 70,
@@ -2383,6 +2123,7 @@
   ]
  },
  {
+  "n": 200,
   "volume": 11,
   "page": 268,
   "start_page": 266,
@@ -2402,6 +2143,7 @@
   ]
  },
  {
+  "n": 201,
   "volume": 7,
   "page": 53,
   "start_page": 48,
@@ -2413,6 +2155,7 @@
   ]
  },
  {
+  "n": 202,
   "volume": 26,
   "page": 368,
   "start_page": 364,
@@ -2424,6 +2167,7 @@
   ]
  },
  {
+  "n": 203,
   "volume": 13,
   "page": 309,
   "start_page": 300,
@@ -2438,16 +2182,7 @@
   ]
  },
  {
-  "volume": 5,
-  "page": 195,
-  "start_page": 193,
-  "speaker": "Parley P. Pratt",
-  "text": "Also that he will hold those keys to all eternity; and no power in heaven or on the earth will ever take them from him; for he will continue holding those keys through all eternity, and will stand—yes, again in the flesh upon this earth, as the head of the Latter-day Saints under Jesus Christ, and under Peter, James, and John.",
-  "source_notes": [
-   "utlm.org/importance-of-joseph-smith-in-mormonism"
-  ]
- },
- {
+  "n": 205,
   "volume": 13,
   "page": 250,
   "start_page": 242,
@@ -2458,6 +2193,7 @@
   ]
  },
  {
+  "n": 206,
   "volume": 5,
   "page": 179,
   "start_page": 171,
@@ -2470,6 +2206,7 @@
   ]
  },
  {
+  "n": 207,
   "volume": 9,
   "page": 147,
   "start_page": 147,
@@ -2480,6 +2217,7 @@
   ]
  },
  {
+  "n": 208,
   "volume": 2,
   "page": 75,
   "start_page": 75,
@@ -2492,6 +2230,7 @@
   ]
  },
  {
+  "n": 209,
   "volume": 3,
   "page": 212,
   "start_page": 202,
@@ -2502,6 +2241,7 @@
   ]
  },
  {
+  "n": 210,
   "volume": 1,
   "page": 109,
   "start_page": 103,
@@ -2514,29 +2254,7 @@
   ]
  },
  {
-  "volume": 19,
-  "page": 264,
-  "start_page": 258,
-  "speaker": "Joseph F. Smith",
-  "text": "Not until he has redeemed and saved every son and daughter of our father Adam that has or ever will be born upon this earth to the end of time, except the sons of perdition. That is his mission. We will not finish our work until we have saved ourselves, and then not until we shall have saved all depending upon us; for we are to become saviors upon Mount Zion, as well as Christ. We are called to this mission.",
-  "source_notes": [
-   "mrm.org/baptism-for-the-dead-quotes",
-   "mrm.org/gospel-doctrine-quotes",
-   "mrm.org/historical-baptism-dead",
-   "mrm.org/jesus-quotes"
-  ]
- },
- {
-  "volume": 8,
-  "page": 197,
-  "start_page": 194,
-  "speaker": "Brigham Young",
-  "text": "All will not have part in the first resurrection, and perhaps many will not appear in the second; but all will be resurrected, and, except the sons of perdition, enter kingdoms, the least of which I presume is more glorious than ever John Wesley saw in vision.",
-  "source_notes": [
-   "mrm.org/discourses-brigham-young-quotes"
-  ]
- },
- {
+  "n": 213,
   "volume": 22,
   "page": 209,
   "start_page": 204,
@@ -2548,6 +2266,7 @@
   ]
  },
  {
+  "n": 214,
   "volume": 3,
   "page": 360,
   "start_page": 354,
@@ -2559,6 +2278,7 @@
   ]
  },
  {
+  "n": 215,
   "volume": 25,
   "page": 309,
   "start_page": 303,
@@ -2571,6 +2291,7 @@
   ]
  },
  {
+  "n": 216,
   "volume": 1,
   "page": 83,
   "start_page": 81,
@@ -2582,6 +2303,7 @@
   ]
  },
  {
+  "n": 217,
   "volume": 4,
   "page": 218,
   "start_page": 215,
@@ -2595,6 +2317,7 @@
   ]
  },
  {
+  "n": 218,
   "volume": 20,
   "page": 28,
   "start_page": 24,
@@ -2609,16 +2332,19 @@
   ]
  },
  {
-  "volume": 14,
-  "page": 208,
-  "start_page": 201,
+  "n": 375,
+  "volume": 8,
+  "page": 69,
+  "start_page": 64,
   "speaker": "Brigham Young",
-  "text": "By revelation. How do we know that Joseph Smith was called of God to establish his kingdom upon the earth? By revelation. How do we know that the leaders of this people teach the truth? By revelation. How do we know the doctrine of baptism for the remission of sins to be true? It is written in the Bible; but the Christian world deny it, because it is not manifested to them by the revelations of the Lord Jesus.",
+  "text": "The brethren testify that brother Brigham is brother Joseph's legal successor. You never heard me say so. I say that I am a good hand to keep the dogs and wolves out of the flock. I do not care a groat who rises up. I do not think anything about being Joseph's successor. That is nothing that concerns me.",
   "source_notes": [
-   "mrm.org/discourses-brigham-young-quotes"
+   "mrm.org/brigham-young",
+   "utlm.org/joseph-as-a-prophet-an-important-new-document-comes-to-light"
   ]
  },
  {
+  "n": 220,
   "volume": 6,
   "page": 207,
   "start_page": 206,
@@ -2631,6 +2357,7 @@
   ]
  },
  {
+  "n": 221,
   "volume": 17,
   "page": 225,
   "start_page": 214,
@@ -2642,6 +2369,7 @@
   ]
  },
  {
+  "n": 222,
   "volume": 3,
   "page": 266,
   "start_page": 264,
@@ -2654,6 +2382,7 @@
   ]
  },
  {
+  "n": 223,
   "volume": 13,
   "page": 95,
   "start_page": 87,
@@ -2677,6 +2406,7 @@
   ]
  },
  {
+  "n": 224,
   "volume": 4,
   "page": 126,
   "start_page": 122,
@@ -2687,6 +2417,7 @@
   ]
  },
  {
+  "n": 225,
   "volume": 13,
   "page": 282,
   "start_page": 274,
@@ -2697,6 +2428,7 @@
   ]
  },
  {
+  "n": 226,
   "volume": 25,
   "page": 58,
   "start_page": 51,
@@ -2709,26 +2441,7 @@
   ]
  },
  {
-  "volume": 10,
-  "page": 286,
-  "start_page": 282,
-  "speaker": "Brigham Young",
-  "text": "When the holy Priesthood is upon the earth, and the fulness of the kingdom of God has come to the people, it requires a strict obedience to every point of law and doctrine and to every ordinance which the Lord reveals: in short, it requires a strict observance of every requirement of Heaven, to fully prepare a people for the possession and enjoyment of the celestial kingdom.",
-  "source_notes": [
-   "mrm.org/tithing"
-  ]
- },
- {
-  "volume": 24,
-  "page": 374,
-  "start_page": 368,
-  "speaker": "George Q. Cannon",
-  "text": "Joseph Smith taught a different doctrine even before the Church was organized. He taught the doctrine, in a revelation given to Martin Harris—it had to be given with great care, because it was entirely different to what was generally believed—that “eternal punishment is God's punishment;” but it does not follow that those who come under God's punishment are to be punished throughout the endless ages of eternity.",
-  "source_notes": [
-   "mrm.org/heaven-and-hell"
-  ]
- },
- {
+  "n": 229,
   "volume": 6,
   "page": 176,
   "start_page": 169,
@@ -2743,6 +2456,7 @@
   ]
  },
  {
+  "n": 230,
   "volume": 26,
   "page": 22,
   "start_page": 18,
@@ -2753,6 +2467,7 @@
   ]
  },
  {
+  "n": 231,
   "volume": 10,
   "page": 250,
   "start_page": 248,
@@ -2764,6 +2479,7 @@
   ]
  },
  {
+  "n": 232,
   "volume": 11,
   "page": 298,
   "start_page": 291,
@@ -2776,6 +2492,7 @@
   ]
  },
  {
+  "n": 233,
   "volume": 25,
   "page": 59,
   "start_page": 51,
@@ -2787,16 +2504,19 @@
   ]
  },
  {
-  "volume": 12,
-  "page": 165,
-  "start_page": 161,
+  "n": 376,
+  "volume": 9,
+  "page": 143,
+  "start_page": 137,
   "speaker": "Brigham Young",
-  "text": "The ordinance of sealing must be performed here man to man, and woman to man, and children to parents, etc., until the chain of generation is made perfect in the sealing ordinances back to father Adam; hence, we have been commanded to gather ourselves together, to come out from Babylon, and sanctify ourselves, and build up the Zion of our God, by building cities and temples, redeeming countries from the solitude of nature, until the earth is sanctified and prepared for the residence of God and angels.",
+  "text": "Will it be over in six months or in three years? No; it will take years and years, and will never cease until the work is accomplished. There may be seasons that the fire will appear to be extinguished, and the first you know it will break out in another portion, and all is on fire again, and it will spread and continue until the land is emptied.",
   "source_notes": [
-   "utlm.org/covering-up-mormon-polygamy"
+   "archive.utlm.org/onlinebooks/changech14.htm",
+   "utlm.org/the-changing-world-of-mormonism-chapter-14"
   ]
  },
  {
+  "n": 235,
   "volume": 24,
   "page": 371,
   "start_page": 368,
@@ -2807,6 +2527,7 @@
   ]
  },
  {
+  "n": 236,
   "volume": 11,
   "page": 125,
   "start_page": 119,
@@ -2817,27 +2538,7 @@
   ]
  },
  {
-  "volume": 6,
-  "page": 237,
-  "start_page": 237,
-  "speaker": "Joseph Smith",
-  "text": "The Priesthood was first given to Adam. He obtained the First Presidency, and held the keys of it from generation to generation. He obtained it in the creation, before the world was formed, as in Gen. i.",
-  "source_notes": [
-   "mrm.org/priesthood-quotes",
-   "utlm.org/mormon-claims-answered-chapter-6-priesthood"
-  ]
- },
- {
-  "volume": 18,
-  "page": 239,
-  "start_page": 235,
-  "speaker": "Brigham Young",
-  "text": "Do we believe that the Lord sent his messengers to Joseph Smith, and commanded him to refrain from joining any Christian church, and to refrain from the wickedness he saw in the churches, and finally delivered to him a message informing him that the Lord was about to establish his kingdom on the earth, and led him on step by step until he gave him the revelation concerning the plates? Yes, this is all correct.",
-  "source_notes": [
-   "utlm.org/evolution-of-the-first-vision"
-  ]
- },
- {
+  "n": 239,
   "volume": 8,
   "page": 195,
   "start_page": 194,
@@ -2852,6 +2553,7 @@
   ]
  },
  {
+  "n": 240,
   "volume": 1,
   "page": 97,
   "start_page": 95,
@@ -2863,6 +2565,7 @@
   ]
  },
  {
+  "n": 241,
   "volume": 6,
   "page": 167,
   "start_page": 162,
@@ -2873,6 +2576,7 @@
   ]
  },
  {
+  "n": 242,
   "volume": 7,
   "page": 336,
   "start_page": 335,
@@ -2884,28 +2588,7 @@
   ]
  },
  {
-  "volume": 24,
-  "page": 371,
-  "start_page": 368,
-  "speaker": "George Q. Cannon",
-  "text": "There was no man scarcely upon the earth that had a true conception of God; the densest ignorance prevailed; and even ministers of religion could not conceive of the true idea, and there was mystery associated with what is called the Trinity—that is, with the Father, the Son, and the Holy Ghost.",
-  "source_notes": [
-   "archive.utlm.org/onlinebooks/changech6.htm",
-   "utlm.org/the-changing-world-of-mormonism-chapter-6",
-   "utlm.org/the-gods-of-mormonism"
-  ]
- },
- {
-  "volume": 9,
-  "page": 91,
-  "start_page": 86,
-  "speaker": "Brigham Young",
-  "text": "In trying all matters of doctrine, to make a decision valid, it is necessary to obtain a unanimous voice, faith, and decision. In the capacity of a Quorum, the three First Presidents must be one in their voice—the Twelve Apostles must be unanimous in their voice, to obtain a righteous decision upon any matter that may come before them, as you may read in the Doctrine and Covenants.",
-  "source_notes": [
-   "mrm.org/pyle-on-questions"
-  ]
- },
- {
+  "n": 245,
   "volume": 17,
   "page": 225,
   "start_page": 214,
@@ -2917,16 +2600,7 @@
   ]
  },
  {
-  "volume": 4,
-  "page": 215,
-  "start_page": 215,
-  "speaker": "Brigham Young",
-  "text": "The Scriptures teach that this is eternal life, to “know thee the only true God, and Jesus Christ, whom thou hast sent;” this is as much as to say that no man can enjoy or be prepared for eternal life without that knowledge.",
-  "source_notes": [
-   "mrm.org/brigham-young-testifies-of-joseph-smith-and-then-some"
-  ]
- },
- {
+  "n": 247,
   "volume": 19,
   "page": 259,
   "start_page": 258,
@@ -2938,6 +2612,7 @@
   ]
  },
  {
+  "n": 248,
   "volume": 12,
   "page": 127,
   "start_page": 123,
@@ -2950,6 +2625,7 @@
   ]
  },
  {
+  "n": 249,
   "volume": 23,
   "page": 65,
   "start_page": 47,
@@ -2961,6 +2637,7 @@
   ]
  },
  {
+  "n": 250,
   "volume": 14,
   "page": 71,
   "start_page": 70,
@@ -2973,16 +2650,7 @@
   ]
  },
  {
-  "volume": 17,
-  "page": 159,
-  "start_page": 154,
-  "speaker": "Brigham Young",
-  "text": "You have heard me say, a great many times, that there is not that man or woman in this Church, and there never was and never will be, who turn up their noses at the counsel that is given them from the First Presidency, but who, unless they repent of and refrain from such conduct, will eventually go out of the Church and go to hell, every one of them; and I expect one thing will be true that Joseph said when living.",
-  "source_notes": [
-   "mrm.org/brigham-young"
-  ]
- },
- {
+  "n": 252,
   "volume": 1,
   "page": 106,
   "start_page": 103,
@@ -2993,6 +2661,7 @@
   ]
  },
  {
+  "n": 253,
   "volume": 14,
   "page": 275,
   "start_page": 271,
@@ -3004,6 +2673,7 @@
   ]
  },
  {
+  "n": 254,
   "volume": 3,
   "page": 368,
   "start_page": 362,
@@ -3015,6 +2685,19 @@
   ]
  },
  {
+  "n": 377,
+  "volume": 13,
+  "page": 362,
+  "start_page": 354,
+  "speaker": "Orson Pratt",
+  "text": "We believe in these promises as much as we believe in any promise ever uttered by the mouth of Jehovah. The Latter-day Saints just as much expect to receive a fulfillment of that promise during the generation that was in existence in 1832 as they expect that the sun will rise and set tomorrow. Why? Because God cannot lie. He will fulfil all His promises. He has spoken, it must come to pass. This is our faith.",
+  "source_notes": [
+   "archive.utlm.org/onlinebooks/changech14.htm",
+   "utlm.org/the-changing-world-of-mormonism-chapter-14"
+  ]
+ },
+ {
+  "n": 255,
   "volume": 20,
   "page": 29,
   "start_page": 24,
@@ -3026,6 +2709,7 @@
   ]
  },
  {
+  "n": 256,
   "volume": 24,
   "page": 372,
   "start_page": 368,
@@ -3039,6 +2723,7 @@
   ]
  },
  {
+  "n": 257,
   "volume": 12,
   "page": 313,
   "start_page": 308,
@@ -3049,16 +2734,7 @@
   ]
  },
  {
-  "volume": 17,
-  "page": 347,
-  "start_page": 343,
-  "speaker": "Daniel H. Wells",
-  "text": "Without Temples they could not have the privilege and opportunity of being officiated for in the ordinances of the Gospel of salvation devised by our Father in heaven before the world was organized. This plan of salvation was devised before this earth was organized and made habitable for the children of men to dwell on, away in the eternities back, “when the morning stars sang together and all the sons of God shouted for joy,” if you know when that was.",
-  "source_notes": [
-   "mrm.org/greg-trimble-response"
-  ]
- },
- {
+  "n": 259,
   "volume": 2,
   "page": 31,
   "start_page": 29,
@@ -3076,6 +2752,7 @@
   ]
  },
  {
+  "n": 260,
   "volume": 2,
   "page": 186,
   "start_page": 179,
@@ -3086,6 +2763,7 @@
   ]
  },
  {
+  "n": 261,
   "volume": 12,
   "page": 338,
   "start_page": 338,
@@ -3096,16 +2774,7 @@
   ]
  },
  {
-  "volume": 4,
-  "page": 78,
-  "start_page": 75,
-  "speaker": "Brigham Young",
-  "text": "If he acts like a devil, he has brought forth a doctrine that will save us, if we will abide it. He may get drunk every day of his life, sleep with his neighbor's wife every night, run horses and gamble, I do not care anything about that, for I never embrace any man in my faith. But the doctrine he has produced will save you and me, and the whole world; and if you can find fault with that, find it.",
-  "source_notes": [
-   "mrm.org/praise-to-the-man"
-  ]
- },
- {
+  "n": 263,
   "volume": 4,
   "page": 271,
   "start_page": 264,
@@ -3123,6 +2792,7 @@
   ]
  },
  {
+  "n": 264,
   "volume": 4,
   "page": 1,
   "start_page": 1,
@@ -3136,6 +2806,7 @@
   ]
  },
  {
+  "n": 265,
   "volume": 8,
   "page": 199,
   "start_page": 194,
@@ -3148,16 +2819,7 @@
   ]
  },
  {
-  "volume": 24,
-  "page": 372,
-  "start_page": 368,
-  "speaker": "George Q. Cannon",
-  "text": "In one moment all the darkness disappeared, and once more there was a man found on the earth, embodied in the flesh, who had seen God, who had seen Jesus, and who could describe the personality of both.",
-  "source_notes": [
-   "utlm.org/the-gods-of-mormonism"
-  ]
- },
- {
+  "n": 267,
   "volume": 9,
   "page": 102,
   "start_page": 101,
@@ -3169,16 +2831,7 @@
   ]
  },
  {
-  "volume": 7,
-  "page": 322,
-  "start_page": 317,
-  "speaker": "John Taylor",
-  "text": "There was one man that had a little good sense and a spark of faith in the promises of God, and that was Joseph Smith—a backwoods man. He believed a certain portion of Scripture which said—“If any man lack wisdom, let him ask of God, who giveth to all men liberally, and upbraideth not.”",
-  "source_notes": [
-   "utlm.org/jerald-2"
-  ]
- },
- {
+  "n": 269,
   "volume": 20,
   "page": 31,
   "start_page": 24,
@@ -3190,16 +2843,7 @@
   ]
  },
  {
-  "volume": 8,
-  "page": 81,
-  "start_page": 80,
-  "speaker": "Brigham Young",
-  "text": "God will gather his children from all nations, and bring them home to Zion. This is the land of Zion—this is the continent whereon the Lord has commenced his work for the last time, and whereon Jesus will make his appearance the second time, when he comes to gather and save the house of Israel.",
-  "source_notes": [
-   "mrm.org/discourses-brigham-young-quotes"
-  ]
- },
- {
+  "n": 271,
   "volume": 9,
   "page": 289,
   "start_page": 286,
@@ -3216,6 +2860,7 @@
   ]
  },
  {
+  "n": 272,
   "volume": 6,
   "page": 29,
   "start_page": 28,
@@ -3227,6 +2872,7 @@
   ]
  },
  {
+  "n": 273,
   "volume": 10,
   "page": 250,
   "start_page": 248,
@@ -3243,6 +2889,7 @@
   ]
  },
  {
+  "n": 274,
   "volume": 6,
   "page": 2,
   "start_page": 1,
@@ -3254,6 +2901,7 @@
   ]
  },
  {
+  "n": 275,
   "volume": 16,
   "page": 186,
   "start_page": 185,
@@ -3265,6 +2913,7 @@
   ]
  },
  {
+  "n": 276,
   "volume": 22,
   "page": 124,
   "start_page": 120,
@@ -3276,6 +2925,7 @@
   ]
  },
  {
+  "n": 277,
   "volume": 4,
   "page": 56,
   "start_page": 51,
@@ -3290,16 +2940,7 @@
   ]
  },
  {
-  "volume": 14,
-  "page": 147,
-  "start_page": 147,
-  "speaker": "Brigham Young",
-  "text": "For he who is not able to abide the law of a celestial kingdom, cannot abide a celestial glory; and he who cannot abide the law of a terrestrial kingdom cannot abide a terrestrial glory; he who cannot abide the law of a telestial kingdom, cannot abide a telestial glory; therefore he is not meet for a kingdom of glory.",
-  "source_notes": [
-   "mrm.org/mormons-on-pbs"
-  ]
- },
- {
+  "n": 279,
   "volume": 1,
   "page": 73,
   "start_page": 71,
@@ -3311,6 +2952,19 @@
   ]
  },
  {
+  "n": 378,
+  "volume": 10,
+  "page": 206,
+  "start_page": 200,
+  "speaker": "Brigham Young",
+  "text": "When there was no whiskey to be had here, and we needed it for rational purposes, I built a house to make it in. When the distillery was almost completed and in good working order, an army was heard of in our vicinity and I shut up the works; I did not make a gallon of whiskey at my works, because it came here in great quantities, more than was needed.",
+  "source_notes": [
+   "archive.utlm.org/onlinebooks/changech18.htm",
+   "utlm.org/the-changing-world-of-mormonism-chapter-18"
+  ]
+ },
+ {
+  "n": 280,
   "volume": 23,
   "page": 173,
   "start_page": 169,
@@ -3321,6 +2975,7 @@
   ]
  },
  {
+  "n": 281,
   "volume": 13,
   "page": 143,
   "start_page": 139,
@@ -3331,6 +2986,7 @@
   ]
  },
  {
+  "n": 282,
   "volume": 6,
   "page": 38,
   "start_page": 28,
@@ -3342,6 +2998,7 @@
   ]
  },
  {
+  "n": 283,
   "volume": 19,
   "page": 38,
   "start_page": 36,
@@ -3357,6 +3014,7 @@
   ]
  },
  {
+  "n": 284,
   "volume": 14,
   "page": 86,
   "start_page": 78,
@@ -3369,17 +3027,7 @@
   ]
  },
  {
-  "volume": 17,
-  "page": 231,
-  "start_page": 229,
-  "speaker": "George Q. Cannon",
-  "text": "Yes, it is man's privilege, the Latter-day Saints believe, to be as perfect in his sphere as God our eternal Father is in his sphere, or as Jesus in his sphere, or as the angels in their spheres. Said Jesus to his disciples—“Be ye perfect, even as your Father in heaven is perfect.” Perfection, then, is to a certain extent possible on earth for those who will live lives that are agreeable to the mind and will of God.",
-  "source_notes": [
-   "mrm.org/perfectionism",
-   "mrm.org/reading-between-the-lines-on-the-issue-of-perfection-part-1"
-  ]
- },
- {
+  "n": 286,
   "volume": 1,
   "page": 361,
   "start_page": 358,
@@ -3392,16 +3040,7 @@
   ]
  },
  {
-  "volume": 16,
-  "page": 344,
-  "start_page": 339,
-  "speaker": "Orson Pratt",
-  "text": "If I cannot, I have no authority to pronounce any such church the church of God. Its members may believe in the Bible, and they may be honest, we do not dispute the honesty of men; but unless they have this distinguishing characteristic of the Church of the living God, we have no right to suppose them to be the real, true Christian church.",
-  "source_notes": [
-   "utlm.org/lds-church-leaders-declare-christianity-to-be-in-a-state-of-total-apostasy"
-  ]
- },
- {
+  "n": 288,
   "volume": 16,
   "page": 167,
   "start_page": 160,
@@ -3413,6 +3052,7 @@
   ]
  },
  {
+  "n": 289,
   "volume": 6,
   "page": 34,
   "start_page": 28,
@@ -3429,6 +3069,7 @@
   ]
  },
  {
+  "n": 290,
   "volume": 1,
   "page": 38,
   "start_page": 37,
@@ -3443,11 +3084,12 @@
   ]
  },
  {
+  "n": 291,
   "volume": 14,
   "page": 86,
   "start_page": 78,
   "speaker": "Brigham Young",
-  "text": "Yet they transgressed every law that he gave them, changed every ordinance that he delivered to them, broke every covenant made with the fathers, and turned away entirely from his holy commandments, and the Lord cursed them. Cain was cursed for this, with this black skin that there is so much said about. Do you think that we could make laws to change the color of the skin of Cain's descendants?",
+  "text": "In ancient days old Israel was the chosen people in whom the Lord delighted, and whom he blessed and did so much for. Yet they transgressed every law that he gave them, changed every ordinance that he delivered to them, broke every covenant made with the fathers, and turned away entirely from his holy commandments, and the Lord cursed them. Cain was cursed for this, with this black skin that there is so much said about. Do you think that we could make laws to change the color of the skin of Cain's descendants?",
   "source_notes": [
    "mit.irr.org/brigham-young-on-race-later-comments",
    "mrm.org/brigham-young-jerk",
@@ -3458,19 +3100,7 @@
   ]
  },
  {
-  "volume": 25,
-  "page": 169,
-  "start_page": 166,
-  "speaker": "George Q. Cannon",
-  "text": "When I first looked upon him, I was afraid; but the fear soon left me. He called me by name, and said unto me that he was a messenger sent from the presence of God to me, and that his name was Moroni; that God had a work for me to do; and that my name should be had for good and evil among all nations, kindreds, and tongues, or that it should be both good and evil spoken of among all people.",
-  "source_notes": [
-   "mrm.org/joseph-smith-quotes",
-   "mrm.org/plates-of-gold-book-quotes",
-   "utlm.org/book-of-mormon-plates-artifact-vision-or-hoax",
-   "utlm.org/dunn-in-the-name-of-god"
-  ]
- },
- {
+  "n": 293,
   "volume": 5,
   "page": 19,
   "start_page": 18,
@@ -3482,6 +3112,7 @@
   ]
  },
  {
+  "n": 294,
   "volume": 9,
   "page": 319,
   "start_page": 318,
@@ -3492,30 +3123,7 @@
   ]
  },
  {
-  "volume": 13,
-  "page": 235,
-  "start_page": 233,
-  "speaker": "Brigham Young",
-  "text": "Now, excuse me everybody that does not believe in the Bible, or who is inclined not to believe in it, we are so unwise, so shortsighted, so foolish in our imagination that we believe the Bible, we actually believe that God the Father is our heavenly Father, that we are His children; and we believe that Jesus Christ is our elder brother—that he is actually the Son of our Father and that he is the Savior of the world, and was appointed to this before the foundations of this earth were laid.",
-  "source_notes": [
-   "utlm.org/lds-leaders-define-their-concept-of-jesus-christ"
-  ]
- },
- {
-  "volume": 5,
-  "page": 139,
-  "start_page": 138,
-  "speaker": "Orson Hyde",
-  "text": "The one is the church of the Lamb of God, and the other is the church of the devil; and whoso belongeth not to the church of the Lamb of God belongeth to that great church which is the mother of abominations and the whore of all the earth.",
-  "source_notes": [
-   "mrm.org/mere-mormonism",
-   "mrm.org/the-exclusiveness-of-mormonisms-truth-claims",
-   "mrm.org/we-never-criticize",
-   "utlm.org/lds-church-leaders-declare-christianity-to-be-in-a-state-of-total-apostasy",
-   "utlm.org/mormon-claims-answered-chapter-7-the-church"
-  ]
- },
- {
+  "n": 297,
   "volume": 26,
   "page": 246,
   "start_page": 241,
@@ -3527,6 +3135,7 @@
   ]
  },
  {
+  "n": 298,
   "volume": 17,
   "page": 143,
   "start_page": 139,
@@ -3538,20 +3147,7 @@
   ]
  },
  {
-  "volume": 25,
-  "page": 156,
-  "start_page": 148,
-  "speaker": "George Q. Cannon",
-  "text": "I at length came to the determination to “ask of God,” concluding that if He gave wisdom to them that lacked wisdom, and would give liberally, and not upbraid, I might venture. So, in accordance with this, my determination to ask of God, I retired to the woods to make the attempt. It was on the morning of a beautiful, clear day, early in the spring of 1820.",
-  "source_notes": [
-   "archive.utlm.org/onlinebooks/changech6.htm",
-   "utlm.org/dunn-in-the-name-of-god",
-   "utlm.org/examining-the-first-vision",
-   "utlm.org/the-changing-world-of-mormonism-chapter-6",
-   "utlm.org/the-gods-of-mormonism"
-  ]
- },
- {
+  "n": 300,
   "volume": 12,
   "page": 100,
   "start_page": 99,
@@ -3562,6 +3158,7 @@
   ]
  },
  {
+  "n": 301,
   "volume": 1,
   "page": 50,
   "start_page": 46,
@@ -3576,16 +3173,7 @@
   ]
  },
  {
-  "volume": 8,
-  "page": 321,
-  "start_page": 319,
-  "speaker": "Brigham Young",
-  "text": "What did they bestow upon him in return? They made a martyr of him—I would not like to say a savior, although he is our benefactor. He is the man through whom God has spoken and revealed some of the most glorious principles that ever were revealed to the children of men; yet I would not like to call him a savior, though in a certain capacity he was a God to us, and is to the nations of the earth, and will continue to be.",
-  "source_notes": [
-   "mrm.org/praise-to-the-man"
-  ]
- },
- {
+  "n": 303,
   "volume": 9,
   "page": 312,
   "start_page": 308,
@@ -3597,6 +3185,7 @@
   ]
  },
  {
+  "n": 304,
   "volume": 9,
   "page": 150,
   "start_page": 147,
@@ -3607,6 +3196,7 @@
   ]
  },
  {
+  "n": 305,
   "volume": 8,
   "page": 171,
   "start_page": 171,
@@ -3617,6 +3207,7 @@
   ]
  },
  {
+  "n": 306,
   "volume": 1,
   "page": 349,
   "start_page": 349,
@@ -3627,16 +3218,7 @@
   ]
  },
  {
-  "volume": 3,
-  "page": 93,
-  "start_page": 80,
-  "speaker": "Brigham Young",
-  "text": "The very heathen we were talking about; if they have a law, no matter who made it, and do the best they know how, they will have a glory which is beyond your imagination, by any description I might give; you cannot conceive of the least portion of the glory of God prepared for His beings, the workmanship of His hands; for these people who are seated before me, who are the sons and daughters, legitimately so, of our Father in heaven, they all sprung from Him; it hath not entered into the heart of man to conceive what He has prepared for them.",
-  "source_notes": [
-   "mrm.org/discourses-brigham-young-quotes"
-  ]
- },
- {
+  "n": 308,
   "volume": 2,
   "page": 307,
   "start_page": 298,
@@ -3647,6 +3229,7 @@
   ]
  },
  {
+  "n": 309,
   "volume": 6,
   "page": 95,
   "start_page": 93,
@@ -3660,16 +3243,7 @@
   ]
  },
  {
-  "volume": 18,
-  "page": 215,
-  "start_page": 212,
-  "speaker": "Brigham Young",
-  "text": "Still, it is our duty to send the Gospel to all nations, and to continue to donate means to gather out the poor. The Lord will save a few, all that will accept salvation according to the design which the Lord has devised. He has made the plan, not us. It is not the conception of man. It was the Gods who sat in council together—they planned it and now offer it to us. Will we accept of it?",
-  "source_notes": [
-   "mrm.org/brigham-young"
-  ]
- },
- {
+  "n": 311,
   "volume": 9,
   "page": 37,
   "start_page": 31,
@@ -3683,6 +3257,7 @@
   ]
  },
  {
+  "n": 312,
   "volume": 6,
   "page": 38,
   "start_page": 28,
@@ -3693,37 +3268,7 @@
   ]
  },
  {
-  "volume": 14,
-  "page": 200,
-  "start_page": 192,
-  "speaker": "Brigham Young",
-  "text": "The doctrine that we preach is the doctrine of the Bible, it is the doctrine the Lord has revealed for the salvation of the children of God, and when men, who have once obeyed it, deny it, they deny it with their eyes wide open, and knowing that they deny the truth and set at naught the counsels of the Almighty.",
-  "source_notes": [
-   "mrm.org/bible-quotes",
-   "mrm.org/discourses-brigham-young-quotes"
-  ]
- },
- {
-  "volume": 7,
-  "page": 284,
-  "start_page": 282,
-  "speaker": "Brigham Young",
-  "text": "There is an eternity of life, from which we were composed by the wisdom and skill of superior Beings. It would be as easy for a gnat to trace the history of man back to his origin as for man to fathom the First Cause of all things, lift the veil of eternity, and reveal the mysteries that have been sought after by philosophers from the beginning.",
-  "source_notes": [
-   "mrm.org/brigham-young"
-  ]
- },
- {
-  "volume": 13,
-  "page": 263,
-  "start_page": 261,
-  "speaker": "Brigham Young",
-  "text": "Our young men and women should consider their obligations to each other, to God, the earth, their parents, and to future generations for their salvation and exaltation among the Gods and for the glory of Him whom we serve.",
-  "source_notes": [
-   "mrm.org/marriage-quotes"
-  ]
- },
- {
+  "n": 316,
   "volume": 9,
   "page": 286,
   "start_page": 286,
@@ -3735,6 +3280,7 @@
   ]
  },
  {
+  "n": 317,
   "volume": 4,
   "page": 268,
   "start_page": 264,
@@ -3745,6 +3291,7 @@
   ]
  },
  {
+  "n": 318,
   "volume": 8,
   "page": 115,
   "start_page": 114,
@@ -3765,6 +3312,7 @@
   ]
  },
  {
+  "n": 319,
   "volume": 4,
   "page": 297,
   "start_page": 295,
@@ -3776,6 +3324,7 @@
   ]
  },
  {
+  "n": 320,
   "volume": 13,
   "page": 144,
   "start_page": 139,
@@ -3788,6 +3337,7 @@
   ]
  },
  {
+  "n": 321,
   "volume": 20,
   "page": 276,
   "start_page": 268,
@@ -3799,6 +3349,7 @@
   ]
  },
  {
+  "n": 322,
   "volume": 6,
   "page": 345,
   "start_page": 342,
@@ -3812,6 +3363,7 @@
   ]
  },
  {
+  "n": 323,
   "volume": 6,
   "page": 332,
   "start_page": 330,
@@ -3823,6 +3375,7 @@
   ]
  },
  {
+  "n": 324,
   "volume": 4,
   "page": 56,
   "start_page": 51,
@@ -3836,16 +3389,7 @@
   ]
  },
  {
-  "volume": 9,
-  "page": 149,
-  "start_page": 147,
-  "speaker": "Brigham Young",
-  "text": "Our religion is called “Mormonism” because the ancient records revealed to Joseph Smith were entitled the Book of Mormon, according to the instructions given to him by the Lord; but I will call it the plan of salvation devised in the heavens for the redemption of mankind from sin, and their restoration to the presence of God.",
-  "source_notes": [
-   "mrm.org/discourses-brigham-young-quotes"
-  ]
- },
- {
+  "n": 326,
   "volume": 14,
   "page": 116,
   "start_page": 114,
@@ -3857,16 +3401,7 @@
   ]
  },
  {
-  "volume": 1,
-  "page": 81,
-  "start_page": 81,
-  "speaker": "Brigham Young",
-  "text": "I will ask them if Joseph lived and died a Prophet of God, and what would they answer? All men and women know, by the power of the Holy Ghost, by the spirit they know it, by the light that is in them, for light cleaveth to light, and truth embraces truth.",
-  "source_notes": [
-   "mrm.org/ten-reasons-why"
-  ]
- },
- {
+  "n": 328,
   "volume": 7,
   "page": 289,
   "start_page": 282,
@@ -3904,6 +3439,7 @@
   ]
  },
  {
+  "n": 329,
   "volume": 3,
   "page": 365,
   "start_page": 362,
@@ -3914,18 +3450,7 @@
   ]
  },
  {
-  "volume": 5,
-  "page": 332,
-  "start_page": 327,
-  "speaker": "Brigham Young",
-  "text": "If we can pass Joseph and have him say, “Here; you have been faithful, good boys; I hold the keys of this dispensation; I will let you pass;” then we shall be very glad to see the white locks of Father Adam. But those are ideas which do not concern us at present, although it is written in the Bible—“This is eternal life, to know thee, the only true God, and Jesus Christ whom thou hast sent.”",
-  "source_notes": [
-   "en.wikipedia.org/wiki/Adam–God_doctrine",
-   "mrm.org/brigham-young",
-   "mrm.org/brigham-young-testifies-of-joseph-smith-and-then-some"
-  ]
- },
- {
+  "n": 331,
   "volume": 10,
   "page": 265,
   "start_page": 265,
@@ -3937,6 +3462,7 @@
   ]
  },
  {
+  "n": 332,
   "volume": 10,
   "page": 312,
   "start_page": 307,
@@ -3947,16 +3473,7 @@
   ]
  },
  {
-  "volume": 15,
-  "page": 220,
-  "start_page": 220,
-  "speaker": "Brigham Young",
-  "text": "Not but that we should find a great many who do not exactly understand how to yield obedience, strictly, to the requirements of heaven for their own salvation and exaltation; but no person can be exalted in the kingdom of heaven without first submitting himself to the rules, regulations, laws and ordinances of that kingdom, and being perfectly subject to them in every respect.",
-  "source_notes": [
-   "mrm.org/salvation-quotes"
-  ]
- },
- {
+  "n": 334,
   "volume": 1,
   "page": 50,
   "start_page": 46,
@@ -3967,16 +3484,7 @@
   ]
  },
  {
-  "volume": 10,
-  "page": 2,
-  "start_page": 1,
-  "speaker": "Brigham Young",
-  "text": "Yes, he is one of us, flesh of our flesh, bone of our bone, and became a partaker with us of all that is earthly. He also inherited a greater portion of the divine nature than we can possess in this life. He was the Son of our heavenly Father, as we are the sons of our earthly fathers. God is the Father of our spirits, which are clothed upon by fleshly bodies, begotten for us by our earthly fathers. Jesus is our elder Brother spirit clothed upon with an earthly body begotten by the Father of our spirits.",
-  "source_notes": [
-   "utlm.org/lds-leaders-define-their-concept-of-jesus-christ"
-  ]
- },
- {
+  "n": 336,
   "volume": 15,
   "page": 127,
   "start_page": 121,
@@ -3987,16 +3495,7 @@
   ]
  },
  {
-  "volume": 9,
-  "page": 286,
-  "start_page": 286,
-  "speaker": "Brigham Young",
-  "text": "Our former religious traditions have taught us that our Father in heaven has no tabernacle, that his center is everywhere and his circumference nowhere. Yet we read that, “God came from Teman, and the Holy One from mount Paran.”",
-  "source_notes": [
-   "utlm.org/deseret-almanacs-god"
-  ]
- },
- {
+  "n": 338,
   "volume": 6,
   "page": 275,
   "start_page": 273,
@@ -4007,16 +3506,7 @@
   ]
  },
  {
-  "volume": 10,
-  "page": 105,
-  "start_page": 104,
-  "speaker": "Brigham Young",
-  "text": "The spirits that live in these tabernacles were as pure as the heavens, when they entered them.",
-  "source_notes": [
-   "archive.utlm.org/onlinebooks/curseofcain_part2.htm"
-  ]
- },
- {
+  "n": 340,
   "volume": 7,
   "page": 2,
   "start_page": 1,
@@ -4027,6 +3517,7 @@
   ]
  },
  {
+  "n": 341,
   "volume": 10,
   "page": 223,
   "start_page": 221,
@@ -4039,6 +3530,7 @@
   ]
  },
  {
+  "n": 342,
   "volume": 18,
   "page": 213,
   "start_page": 212,
@@ -4052,6 +3544,7 @@
   ]
  },
  {
+  "n": 343,
   "volume": 1,
   "page": 350,
   "start_page": 349,
@@ -4062,27 +3555,7 @@
   ]
  },
  {
-  "volume": 6,
-  "page": 238,
-  "start_page": 237,
-  "speaker": "Joseph Smith",
-  "text": "He will call his children together and hold a council with them to prepare them for the coming of the Son of Man. He (Adam) is the Father of the human family, and presides over the spirits of all men; and all that have had the keys must stand before him in this grand council. This may take place before some of us leave this stage of action. The Son of Man stands before him, and there is given him glory and dominion. Adam delivers up his stewardship to Christ—that which was delivered to him as holding the keys of the universe, but retains his standing as head of the human family.",
-  "source_notes": [
-   "en.wikipedia.org/wiki/Adam–God_doctrine",
-   "www.mormonthink.com/QUOTES/adamgod.htm"
-  ]
- },
- {
-  "volume": 3,
-  "page": 83,
-  "start_page": 80,
-  "speaker": "Brigham Young",
-  "text": "Wherefore, as it is written, they are gods, even the sons of God—Wherefore, all things are theirs, whether life or death, or things present, or things to come, all are theirs and they are Christ's and Christ is God's.",
-  "source_notes": [
-   "utlm.org/mormons-hope-to-become-gods-of-their-own-worlds-procreating-endless-numbers-of-children"
-  ]
- },
- {
+  "n": 346,
   "volume": 11,
   "page": 122,
   "start_page": 119,
@@ -4095,6 +3568,7 @@
   ]
  },
  {
+  "n": 347,
   "volume": 5,
   "page": 331,
   "start_page": 327,
@@ -4106,6 +3580,7 @@
   ]
  },
  {
+  "n": 348,
   "volume": 10,
   "page": 192,
   "start_page": 187,
@@ -4117,6 +3592,7 @@
   ]
  },
  {
+  "n": 349,
   "volume": 5,
   "page": 313,
   "start_page": 312,
@@ -4127,6 +3603,7 @@
   ]
  },
  {
+  "n": 350,
   "volume": 9,
   "page": 102,
   "start_page": 101,
@@ -4137,6 +3614,7 @@
   ]
  },
  {
+  "n": 351,
   "volume": 1,
   "page": 93,
   "start_page": 88,
@@ -4148,6 +3626,39 @@
    "mrm.org/discourses-brigham-young-quotes",
    "utlm.org/orson-pratts-troubles",
    "utlm.org/the-changing-world-of-mormonism-chapter-7"
+  ]
+ },
+ {
+  "n": 381,
+  "volume": 12,
+  "page": 28,
+  "start_page": 27,
+  "speaker": "Brigham Young",
+  "text": "If a person is weary, worn out, cast down, fainting, or dying, a brandy sling, a little wine, or a cup of tea is good to revive them. Do not throw these things away, and say they must never be used; they are good to be used with judgment, prudence, and discretion. Ask our Bishops if they drink tea every day, and in most cases they will tell you they do if they can get it.",
+  "source_notes": [
+   "mrm.org/blueprint-church"
+  ]
+ },
+ {
+  "n": 380,
+  "volume": 9,
+  "page": 332,
+  "start_page": 329,
+  "speaker": "Brigham Young",
+  "text": "Did the Devil believe that Joseph Smith was an impostor? He knew that Joseph Smith was a true Prophet. Did the first priest who persecuted Joseph Smith, when Joseph was about nineteen years of age, believe that Joseph was an impostor? No. The Devil and his emissaries are not afraid of an impostor; for the world is full of imposition. Men who lecture against God, Jesus Christ, and the Bible, are not persecuted, but figure in what is called the best society.",
+  "source_notes": [
+   "mrm.org/joseph-smith-quotes"
+  ]
+ },
+ {
+  "n": 379,
+  "volume": 5,
+  "page": 236,
+  "start_page": 231,
+  "speaker": "Brigham Young",
+  "text": "If they persist in sending troops here, I want the people in the west and in the east to understand that it will not be safe for them to cross the Plains.",
+  "source_notes": [
+   "mrm.org/mountain-meadows"
   ]
  }
 ]

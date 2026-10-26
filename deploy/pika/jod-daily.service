@@ -1,0 +1,6 @@
+[Unit]
+Description=Rebuild and deploy jod.mrm.org (daily quote of the day)
+[Service]
+Type=oneshot
+ExecStart=%h/jod-deploy/jod-daily-deploy.sh
+TimeoutStartSec=1500

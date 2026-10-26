@@ -1,0 +1,8 @@
+[Unit]
+Description=Daily rebuild of jod.mrm.org at 00:03 America/Denver
+[Timer]
+OnCalendar=*-*-* 00:03:00 America/Denver
+Persistent=true
+RandomizedDelaySec=0
+[Install]
+WantedBy=timers.target

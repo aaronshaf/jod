@@ -8,11 +8,19 @@ let satori;
 const h = (type, style, children) => ({ type, props: { style, children } });
 async function ogImage({ title, speaker, date, ref, max = 150, quote = false, portrait = null }) {
   satori = satori || (await import("satori")).default;
-  const key = crypto.createHash("sha1").update(JSON.stringify(["v4", title, speaker, date, ref, max, quote, portrait ? crypto.createHash("sha1").update(portrait).digest("hex") : null])).digest("hex");
+  const key = crypto.createHash("sha1").update(JSON.stringify(["v5", title, speaker, date, ref, max, quote, portrait ? crypto.createHash("sha1").update(portrait).digest("hex") : null])).digest("hex");
   const cached = path.join(CACHE, key + ".png");
   if (fs.existsSync(cached)) return fs.readFileSync(cached);
-  const cut = title.length > max;
-  const t = cut ? title.slice(0, max - 3).replace(/\s+\S*$/, "") + "…" + (quote && title.endsWith("\u201d") ? "\u201d" : "") : title;
+  // Truncate on a sentence end if one falls in the second half of the budget, otherwise on a whole word; never mid-word.
+  const clipTo = (s, n) => {
+    if (s.length <= n) return s;
+    const head = s.slice(0, n), sent = head.match(/^[\s\S]*[.!?]["\u201d\u2019]?(?=\s)/);
+    if (sent && sent[0].length >= n * 0.5 && !/\b(Mr|Mrs|Dr|St|Jr|Sr|Gen|Col|Gov|Rev|Capt|Prof|vs|No|Esq|Bro|Pres)\.["\u201d\u2019]?$/.test(sent[0])) return { t: sent[0], ell: false };
+    const w = /\s/.test(s[n]) ? head : head.replace(/\s+\S*$/, "");
+    return { t: w.replace(/[\s,;:\u2014\u2013-]+$/, ""), ell: true };
+  };
+  const c = title.length > max ? clipTo(quote ? title.replace(/\u201d$/, "") : title, max - 1) : null;
+  const t = c ? (quote ? c.t.replace(/^\u201c?/, "\u201c") + (c.ell ? "\u2026" : "") + "\u201d" : c.t + (c.ell ? "\u2026" : "")) : title;
   const size = quote ? (t.length > 200 ? 38 : t.length > 140 ? 44 : 50) : t.length > 100 ? 48 : t.length > 60 ? 58 : 68;
   const tree = h("div", { width: 1200, height: 630, boxSizing: "border-box", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "64px 72px", background: "#052f54", color: "#ffffff", fontFamily: "Serif" }, [
     h("div", { display: "flex", fontSize: 30, letterSpacing: 4, color: "#b7c5d7" }, "JOURNAL OF DISCOURSES"),
