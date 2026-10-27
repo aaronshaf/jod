@@ -150,7 +150,7 @@ async function main() {
 <h2>Static files</h2><ul><li><a href="/llms.txt">/llms.txt</a> and <a href="/llms-full.txt">/llms-full.txt</a></li><li>Each discourse: <code>/&lt;volume&gt;/&lt;page&gt;/index.md</code> and <code>index.json</code></li><li><a href="/data/index.json">/data/index.json</a> (metadata), <a href="/data/README.md">bulk downloads</a></li><li><a href="/quotes.json">/quotes.json</a> and <a href="/feed/quotes.xml">the quote feed</a></li></ul></main>`;
     r.body = r.body.replace(/<main>[\s\S]*<\/main>/, main);
     r.head = r.head.replace(/<title[^>]*>[^<]*<\/title>/, "<title>For agents · Journal of Discourses</title>");
-    page("agents/index.html", r, `<style>.ag{max-width:46rem;padding:8px 16px 40px}.ag h1{font-size:1.5rem;margin:.6em 0 .4em}.ag h2{font-size:1.1rem;margin:1.4em 0 .3em}.ag li{margin:.3em 0}.ag code{font-size:.9em}</style>`, { canonical: `${SITE}/agents/` });
+    page("agents/index.html", r, `<style>.ag{max-width:46rem;padding:8px 16px 40px}.ag h1{font-size:1.5rem;margin:.6em 0 .4em}.ag h2{font-size:1.1rem;margin:1.4em 0 .3em}.ag li{margin:.3em 0}.ag code{font-size:.9em}</style>` + LD.script(LD.graph([...LD.base(), LD.webpage(`${SITE}/agents/`, "WebPage", "For agents: Journal of Discourses", { description: "How software agents can use the Journal of Discourses: the /mcp server, WebMCP tools in the browser, and static JSON and Markdown files." }), LD.crumbs(`${SITE}/agents/`, [["Journal of Discourses", SITE + "/"], ["For agents", `${SITE}/agents/`]])])), { canonical: `${SITE}/agents/` });
   }
   // quotes: the validated rotation from gen/quotes-priority.json
   {
