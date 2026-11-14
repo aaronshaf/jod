@@ -15,4 +15,4 @@
 
 - Lexend Deca is self-hosted from `gen/fonts/` (SIL OFL 1.1), latin file preloaded, `font-display: optional`; no third-party requests.
 - `gen/build.js` appends security headers to `dist/_headers`: a hash-based CSP (SHA-256 of every inline script it emitted, recomputed each build, so the nightly quote script stays allowed), Referrer-Policy, Permissions-Policy, HSTS, COOP. Adding a new inline `<script>` needs no manual CSP edit; adding a third-party origin does.
-- Base CSS: `color-scheme: light`, `text-wrap: balance` (headings) / `pretty` (paragraphs), and a 150 ms cross-document view-transition fade (skipped for `prefers-reduced-motion`).
+- Dark mode follows `prefers-color-scheme` (no toggle): `build.js` rewrites colour literals in emitted CSS to custom properties (PALETTE; light values are the originals). Base CSS: `color-scheme: light dark`, `text-wrap: balance` (headings) / `pretty` (paragraphs), and a 150 ms cross-document view-transition fade (skipped for `prefers-reduced-motion`).
