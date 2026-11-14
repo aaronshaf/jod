@@ -70,6 +70,29 @@ async function main() {
   for (const d of ["icons"]) fs.cpSync(path.join(__dirname, "static", d), path.join(OUT, d), { recursive: true });
   for (const f of fs.readdirSync(path.join(__dirname, "static"))) if (f !== "icons") fs.cpSync(path.join(__dirname, "static", f), path.join(OUT, f), { recursive: true });
 
+  // Dark mode (prefers-color-scheme, no toggle). Every colour literal in emitted <style> blocks and style="" attributes is
+  // rewritten to a custom property whose light value is the original literal (light mode stays pixel-identical); the dark
+  // values below override them. Roles: bg = background*, fg = color, bd = border/outline, sh = box-shadow (darker than the page in dark mode). Unmapped colours stay literal.
+  const PALETTE = {
+    bg: { f0eee2: "#161719", fff: "#1f2023", faf9f3: "#26272a", f8f8f8: "#26272a", f4f2e4: "#2a2b2e", e3e1ce: "#34363a", "052f54": "#111c28", f1ae46: "#9c7436",
+      b3cd6b: "#4b5a33", b1cc68: "#47562f", a6c452: "#414f2b", "9db362": "#5a6b3c", "99af5b": "#566739", "8ba546": "#4f6034" },
+    fg: { "000e1a": "#e4e2da", "0066cc": "#8db3df", "052f54": "#c3d3e6", 222: "#d4d2ca", 333: "#cfcdc5", "5a5a50": "#a6a398", "8a6a2a": "#cfae6e", b7c5d7: "#93a5ba", fff: "#f2f1ec" },
+    bd: { e3e1ce: "#33353a", dddddd: "#3a3c40", efedde: "#2b2c30", d3d0b8: "#4a4c52", f0eee2: "#2a2b2f", faf9f3: "#2a2b2f", fff: "#26272b", "0066cc": "#8db3df", "052f54": "#c3d3e6", f1ae46: "#b8873f" },
+    sh: { e3e1ce: "#0e0e10", f1ae46: "#b8873f" },
+  };
+  const THEME = (() => {
+    let light = "", dark = "";
+    const norm = h => { h = h.toLowerCase(); return h.length === 3 ? h : h; };
+    for (const [role, m] of Object.entries(PALETTE)) for (const [hex, d] of Object.entries(m)) { light += `--${role}-${hex}:#${hex};`; dark += `--${role}-${hex}:${d};`; }
+    const roleOf = p => /^background/.test(p) ? "bg" : p === "color" ? "fg" : /^(border|outline)/.test(p) ? "bd" : p === "box-shadow" ? "sh" : null;
+    const unknown = new Set();
+    const css = t => t.replace(/([a-z-]+)(\s*:\s*)([^;{}"]*)/gi, (m0, p, sep, v) => { const role = roleOf(p.toLowerCase()); if (!role) return m0;
+      return p + sep + v.replace(/#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b/g, (c, hex) => { hex = hex.toLowerCase(); if (PALETTE[role][hex]) return `var(--${role}-${hex})`; unknown.add(role + ":" + c); return c; }); });
+    const apply = html => html.replace(/(<style[^>]*>)([\s\S]*?)(<\/style>)/g, (m0, a, t, b) => a + css(t) + b).replace(/ style="([^"]*)"/g, (m0, t) => ` style="${css(t)}"`);
+    // Images: dark line icons (svg fill #000, cite png) are inverted; photos dimmed slightly so they don't glare.
+    const darkCss = `@media (prefers-color-scheme:dark){:root{${dark}}img[src^="data:image/svg+xml"][src*="%23000000"],img[src^="/img/cite."]{filter:invert(.86)}img[src^="/img/speakers/"],img[src^="/img/portraits/"]{opacity:.88}body{color:rgb(228 226 218)}::selection{background:rgba(141,179,223,.32)}}`;
+    return { vars: light, dark: darkCss, apply, unknown };
+  })();
   // Lexend Deca, self-hosted (SIL OFL 1.1, gen/fonts/OFL-LexendDeca.txt): no third-party render-blocking CSS, one preloaded latin file.
   fs.mkdirSync(path.join(OUT, "fonts"), { recursive: true });
   const fontUrl = {};
@@ -81,16 +104,16 @@ async function main() {
   fs.copyFileSync(path.join(__dirname, "fonts/OFL-LexendDeca.txt"), path.join(OUT, "fonts/OFL.txt"));
   const ff = (u, r) => `@font-face{font-family:"Lexend Deca";font-style:normal;font-weight:400;font-display:optional;src:url(${u}) format("woff2");unicode-range:${r}}`;
   // Base CSS (Modern Web Guidance): font-face, color-scheme, balanced/pretty wrapping, a short cross-document fade (off for reduced motion).
-  const baseHead = `<link rel="preload" href="${fontUrl.latin}" as="font" type="font/woff2" crossorigin/><style>${ff(fontUrl["latin-ext"], "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF")}${ff(fontUrl.latin, "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD")}:root{color-scheme:light}h1,h2,h3{text-wrap:balance}p,li,blockquote{text-wrap:pretty}@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}::view-transition-group(root){animation-duration:.15s}}</style>`;
+  const baseHead = `<link rel="preload" href="${fontUrl.latin}" as="font" type="font/woff2" crossorigin/><style>${ff(fontUrl["latin-ext"], "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF")}${ff(fontUrl.latin, "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD")}:root{color-scheme:light dark;${THEME.vars}}${THEME.dark}h1,h2,h3{text-wrap:balance}p,li,blockquote{text-wrap:pretty}@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}::view-transition-group(root){animation-duration:.15s}}</style>`;
   const esc = s => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
-  const iconLinks = `<script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/api/*","/mcp","/mcp/*","/_idx/*","/*.md","/*.json","/*.txt"]}}]},"eagerness":"moderate"}],"prerender":[{"where":{"selector_matches":"a[rel~=next], a[rel~=prev], nav a[title*=' by ']"},"eagerness":"moderate"}]}</script><link rel="icon" href="/icons/icon-48x48.png"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#122E51"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png"/><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt"/>`;
+  const iconLinks = `<script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/api/*","/mcp","/mcp/*","/_idx/*","/*.md","/*.json","/*.txt"]}}]},"eagerness":"moderate"}],"prerender":[{"where":{"selector_matches":"a[rel~=next], a[rel~=prev], nav a[title*=' by ']"},"eagerness":"moderate"}]}</script><link rel="icon" href="/icons/icon-48x48.png"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#122E51" media="(prefers-color-scheme: light)"/><meta name="theme-color" content="#111c28" media="(prefers-color-scheme: dark)"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png"/><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt"/>`;
   function page(file, r, extraHead, { pagefind = false, ogType = "website", canonical, image, pfTitle, pfExtra } = {}) {
     let body = r.body;
         if (pagefind) body = body.replace(/<article ([^>]*)>/, (m0, attrs) => `<article data-pagefind-body=""${pfTitle ? ` data-pagefind-meta="title:${esc(pfTitle)}"` : ""} ${attrs}>${(pfExtra || []).map(([k, a, v]) => `<span data-pagefind-${k}="${a}:${esc(v)}"></span>`).join("")}`);
     const og = `<meta property="og:url" content="${esc(canonical)}"/><meta property="og:site_name" content="Journal of Discourses"/>${image ? `<meta property="og:image" content="${image}"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta name="twitter:image" content="${image}"/>` : `<meta property="og:image" content="${SITE}/icons/icon-512x512.png"/><meta name="twitter:image" content="${SITE}/icons/icon-512x512.png"/>`}<meta property="og:image:alt" content="Journal of Discourses"/>`;
     let head = (image ? r.head.replace('name="twitter:card" content="summary"', 'name="twitter:card" content="summary_large_image"') : r.head).replace(/(rel="(?:prev|next|parent)" href="https:\/\/jod\.mrm\.org\/[0-9/]*[0-9])"/g, "$1/\"").replace(/(content="[^"]*?)\s+"/g, '$1"').replace('property="og:type" content="website"', `property="og:type" content="${ogType}"`).replace(/(rel="canonical" href=")[^"]*"/, `$1${esc(canonical)}"`);
     if (!head.includes('rel="canonical"')) head += `<link rel="canonical" href="${esc(canonical)}"/>`;
-    const html = `<!DOCTYPE html><html ${r.htmlAttrs}><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>${baseHead}${head}${og}${iconLinks}${extraHead || ""}</head><body><div id="___gatsby"><div id="gatsby-focus-wrapper">${body}</div></div><script src="/${clientName}" defer></script></body></html>`;
+    const html = THEME.apply(`<!DOCTYPE html><html ${r.htmlAttrs}><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>${baseHead}${head}${og}${iconLinks}${extraHead || ""}</head><body><div id="___gatsby"><div id="gatsby-focus-wrapper">${body}</div></div><script src="/${clientName}" defer></script></body></html>`);
     const p = path.join(OUT, file);
     fs.mkdirSync(path.dirname(p), { recursive: true });
     fs.writeFileSync(p, html);
@@ -324,6 +347,7 @@ if(q)apply(q);else{setTimeout(show,2500);fetch("/quotes.json").then(function(r){
   const csp = ["default-src 'self'", `script-src 'self' 'wasm-unsafe-eval' ${[...hashes].sort().join(" ")}`, "style-src 'self' 'unsafe-inline'", "img-src 'self' data:", "font-src 'self'", "connect-src 'self'", "object-src 'none'", "base-uri 'none'", "form-action 'self' https://www.google.com", "frame-ancestors 'self' https://mrm.org https://*.mrm.org", "upgrade-insecure-requests"].join("; ");
   if (csp.length > 1900) throw new Error(`CSP too long for _headers (${csp.length}); ${hashes.size} inline scripts`);
   fs.appendFileSync(path.join(OUT, "_headers"), `/fonts/*\n  Cache-Control: public, max-age=31536000, immutable\n  Access-Control-Allow-Origin: *\n/*\n  Content-Security-Policy: ${csp}\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()\n  Strict-Transport-Security: max-age=31536000\n  Cross-Origin-Opener-Policy: same-origin\n`);
+  if (THEME.unknown.size) console.log(`theme: unmapped colours ${[...THEME.unknown].join(" ")}`);
   console.log(`csp: ${hashes.size} inline script hashes`);
   console.log(`pages: ${urls.length} discourses: ${all.length} out: ${OUT}`);
 }
