@@ -70,6 +70,18 @@ async function main() {
   for (const d of ["icons"]) fs.cpSync(path.join(__dirname, "static", d), path.join(OUT, d), { recursive: true });
   for (const f of fs.readdirSync(path.join(__dirname, "static"))) if (f !== "icons") fs.cpSync(path.join(__dirname, "static", f), path.join(OUT, f), { recursive: true });
 
+  // Lexend Deca, self-hosted (SIL OFL 1.1, gen/fonts/OFL-LexendDeca.txt): no third-party render-blocking CSS, one preloaded latin file.
+  fs.mkdirSync(path.join(OUT, "fonts"), { recursive: true });
+  const fontUrl = {};
+  for (const sub of ["latin", "latin-ext"]) {
+    const buf = fs.readFileSync(path.join(__dirname, "fonts", `lexend-deca-${sub}.woff2`));
+    const name = `fonts/lexend-deca-${sub}.${crypto.createHash("sha1").update(buf).digest("hex").slice(0, 8)}.woff2`;
+    fs.writeFileSync(path.join(OUT, name), buf); fontUrl[sub] = "/" + name;
+  }
+  fs.copyFileSync(path.join(__dirname, "fonts/OFL-LexendDeca.txt"), path.join(OUT, "fonts/OFL.txt"));
+  const ff = (u, r) => `@font-face{font-family:"Lexend Deca";font-style:normal;font-weight:400;font-display:optional;src:url(${u}) format("woff2");unicode-range:${r}}`;
+  // Base CSS (Modern Web Guidance): font-face, color-scheme, balanced/pretty wrapping, a short cross-document fade (off for reduced motion).
+  const baseHead = `<link rel="preload" href="${fontUrl.latin}" as="font" type="font/woff2" crossorigin/><style>${ff(fontUrl["latin-ext"], "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF")}${ff(fontUrl.latin, "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD")}:root{color-scheme:light}h1,h2,h3{text-wrap:balance}p,li,blockquote{text-wrap:pretty}@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}::view-transition-group(root){animation-duration:.15s}}</style>`;
   const esc = s => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
   const iconLinks = `<script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/api/*","/mcp","/mcp/*","/_idx/*","/*.md","/*.json","/*.txt"]}}]},"eagerness":"moderate"}],"prerender":[{"where":{"selector_matches":"a[rel~=next], a[rel~=prev], nav a[title*=' by ']"},"eagerness":"moderate"}]}</script><link rel="icon" href="/icons/icon-48x48.png"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#122E51"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png"/><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt"/>`;
   function page(file, r, extraHead, { pagefind = false, ogType = "website", canonical, image, pfTitle, pfExtra } = {}) {
@@ -78,7 +90,7 @@ async function main() {
     const og = `<meta property="og:url" content="${esc(canonical)}"/><meta property="og:site_name" content="Journal of Discourses"/>${image ? `<meta property="og:image" content="${image}"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta name="twitter:image" content="${image}"/>` : `<meta property="og:image" content="${SITE}/icons/icon-512x512.png"/><meta name="twitter:image" content="${SITE}/icons/icon-512x512.png"/>`}<meta property="og:image:alt" content="Journal of Discourses"/>`;
     let head = (image ? r.head.replace('name="twitter:card" content="summary"', 'name="twitter:card" content="summary_large_image"') : r.head).replace(/(rel="(?:prev|next|parent)" href="https:\/\/jod\.mrm\.org\/[0-9/]*[0-9])"/g, "$1/\"").replace(/(content="[^"]*?)\s+"/g, '$1"').replace('property="og:type" content="website"', `property="og:type" content="${ogType}"`).replace(/(rel="canonical" href=")[^"]*"/, `$1${esc(canonical)}"`);
     if (!head.includes('rel="canonical"')) head += `<link rel="canonical" href="${esc(canonical)}"/>`;
-    const html = `<!DOCTYPE html><html ${r.htmlAttrs}><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>${head}${og}${iconLinks}${extraHead || ""}</head><body><div id="___gatsby"><div id="gatsby-focus-wrapper">${body}</div></div><script src="/${clientName}" defer></script></body></html>`;
+    const html = `<!DOCTYPE html><html ${r.htmlAttrs}><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>${baseHead}${head}${og}${iconLinks}${extraHead || ""}</head><body><div id="___gatsby"><div id="gatsby-focus-wrapper">${body}</div></div><script src="/${clientName}" defer></script></body></html>`;
     const p = path.join(OUT, file);
     fs.mkdirSync(path.dirname(p), { recursive: true });
     fs.writeFileSync(p, html);
@@ -304,6 +316,15 @@ if(q)apply(q);else{setTimeout(show,2500);fetch("/quotes.json").then(function(r){
   fs.writeFileSync(path.join(OUT, "llms-full.txt"), F);
   require("child_process").execFileSync(process.execPath, [path.join(__dirname, "search-index.js"), OUT], { stdio: "inherit" });
   require("child_process").execFileSync(path.join(NM, ".bin/pagefind"), ["--site", OUT, "--output-path", path.join(OUT, "pagefind", BUILD_ID), "--silent"], { stdio: "inherit" });
+  // Security headers (Cloudflare static-asset _headers). CSP lists SHA-256 hashes of every inline script the build emitted
+  // (speculation rules, home quote fix, search config, /quote/ redirect); data blocks (JSON-LD, application/json) are not scripts.
+  const hashes = new Set();
+  const walk = d => { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); if (e.isDirectory()) { if (e.name !== "pagefind") walk(p); } else if (e.name.endsWith(".html")) for (const m of fs.readFileSync(p, "utf8").matchAll(/<script((?:\s[^>]*)?)>([\s\S]*?)<\/script>/g)) { const t = (m[1].match(/type="([^"]*)"/) || [])[1]; if (/\bsrc=/.test(m[1]) || (t && t !== "speculationrules" && t !== "module" && t !== "text/javascript")) continue; hashes.add(`'sha256-${crypto.createHash("sha256").update(m[2]).digest("base64")}'`); } } };
+  walk(OUT);
+  const csp = ["default-src 'self'", `script-src 'self' 'wasm-unsafe-eval' ${[...hashes].sort().join(" ")}`, "style-src 'self' 'unsafe-inline'", "img-src 'self' data:", "font-src 'self'", "connect-src 'self'", "object-src 'none'", "base-uri 'none'", "form-action 'self' https://www.google.com", "frame-ancestors 'self' https://mrm.org https://*.mrm.org", "upgrade-insecure-requests"].join("; ");
+  if (csp.length > 1900) throw new Error(`CSP too long for _headers (${csp.length}); ${hashes.size} inline scripts`);
+  fs.appendFileSync(path.join(OUT, "_headers"), `/fonts/*\n  Cache-Control: public, max-age=31536000, immutable\n  Access-Control-Allow-Origin: *\n/*\n  Content-Security-Policy: ${csp}\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()\n  Strict-Transport-Security: max-age=31536000\n  Cross-Origin-Opener-Policy: same-origin\n`);
+  console.log(`csp: ${hashes.size} inline script hashes`);
   console.log(`pages: ${urls.length} discourses: ${all.length} out: ${OUT}`);
 }
 main().catch(e => { console.error(e); process.exit(1); });

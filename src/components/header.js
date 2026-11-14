@@ -53,10 +53,11 @@ export default function HeaderComponent(props) {
                 type="text"
                 name="q"
                 placeholder="Search"
+                aria-label="Search"
                 className="query"
               />
               <SearchButton className="go" type="submit" title="Search">
-                <SearchButtonIcon src={searchSvg} />
+                <SearchButtonIcon src={searchSvg} alt="" />
               </SearchButton>
             </SearchForm>
           </div>

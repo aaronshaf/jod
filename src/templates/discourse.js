@@ -124,7 +124,7 @@ export default ({
                     to={`/${previousDiscourse.volume}/${previousDiscourse.start_page}`}
                     title={`${previousDiscourse.page_header}, by ${previousDiscourse.speaker}`}
                   >
-                    <TraversalLinkImageStart src={previousSvg} />
+                    <TraversalLinkImageStart src={previousSvg} alt="" />
                     <TraversalLinkText>
                       {previousDiscourse.volume !== discourse.volume && (
                         <>vol. {previousDiscourse.volume}, </>
@@ -160,7 +160,7 @@ export default ({
                       )}
                       pp. {nextDiscourse.start_page}-{nextDiscourse.end_page}
                     </TraversalLinkText>
-                    <TraversalLinkImageEnd src={nextSvg} />
+                    <TraversalLinkImageEnd src={nextSvg} alt="" />
                   </TraversalLink>
                 </>
               )}
@@ -246,7 +246,7 @@ export default ({
                     }}
                   />
                   <ColumnSeparator>
-                    <ColumnIcon src={columnSvg} />
+                    <ColumnIcon src={columnSvg} alt="" />
                   </ColumnSeparator>
                   <RightColumn
                     dangerouslySetInnerHTML={{

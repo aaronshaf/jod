@@ -32,8 +32,7 @@ const Layout = ({ children, volumeNumbers, volumeNumber }) => {
             bg: "whites.1",
             padding: 0,
             margin: 0,
-            fontFamily: '"Lexend Deca", "Trebuchet MS", Arial, Helvetica',
-            fontDisplay: "optional"
+            fontFamily: '"Lexend Deca", "Trebuchet MS", Arial, Helvetica'
           },
           a: {
             color: "blues.0"
