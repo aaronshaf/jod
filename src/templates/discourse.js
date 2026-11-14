@@ -116,7 +116,7 @@ export default ({
           previousUrl={previousUrl}
         />
         <Discourse>
-          <DiscourseNav>
+          <DiscourseNav aria-label="Pages">
             <PreviousDiscourse>
               {previousDiscourse && (
                 <>

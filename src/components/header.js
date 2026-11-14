@@ -65,7 +65,7 @@ export default function HeaderComponent(props) {
       </Header>
       {volumeNumbers && (
         <VolumeNumbersWrapper ref={wrapperEl} onScroll={handleScroll}>
-          <VolumeNumbers>
+          <VolumeNumbers aria-label="Volumes">
             {volumeNumbers.map(volumeNumber_ => (
               <React.Fragment key={volumeNumber_}>
                 {volumeNumber_ === 1 && (
